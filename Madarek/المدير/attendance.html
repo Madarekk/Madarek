@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الحضور والغياب - مدارِك</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        tailwind.config = {
+            content: ["./*.html"],
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'arabic': ['Tajawal', 'Arial', 'sans-serif']
+                    },
+                    colors: {
+                        'primary': '#4F46E5',
+                        'primary-dark': '#4338CA',
+                        'secondary': '#059669',
+                        'accent': '#0891b2'
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="https://r2.flowith.net/files/o/1748451765656-Modern_Logo_Design_for_Madarek_School_Management_Platform_index_0@1024x1024.png" type="image/png">
+</head>
+<body class="font-arabic bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-40">
+        <div class="mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <img src="https://r2.flowith.net/files/o/1748451765656-Modern_Logo_Design_for_Madarek_School_Management_Platform_index_0@1024x1024.png" alt="مدارك" class="h-10 w-10 rounded-full">
+                        <span class="mr-3 text-xl font-bold text-gray-800">مدارك</span>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4 space-x-reverse">
+                    <button id="notificationButton" class="p-2 text-gray-400 hover:text-gray-600 relative" onclick="window.location.href='announcements.html'">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-5 5v-5zM10.9 18.1a5 5 0 1 1 0-9.2"/>
+                        </svg>
+                        <span class="absolute top-0 right-0 block h-2 w-2 rounded-full bg-red-400 transform translate-x-1/2 -translate-y-1/2"></span>
+                    </button>
+                    <div class="relative">
+                        <button id="userMenuButton" class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
+                            <div class="h-8 w-8 rounded-full bg-primary text-white flex items-center justify-center text-sm font-medium">أ</div>
+                            <span class="mr-2 text-gray-700 hidden sm:block">أحمد المدير</span>
+                            <svg class="w-4 h-4 mr-1 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div id="userMenu" class="hidden absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50">
+                            <div class="py-1">
+                                <a href="profile.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">الملف الشخصي</a>
+                                <a href="settings.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">الإعدادات</a>
+                                <div class="border-t border-gray-100"></div>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">تسجيل الخروج</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="flex h-screen bg-gray-50">
+        <!-- Sidebar -->
+        <nav class="hidden lg:flex lg:flex-shrink-0">
+            <div class="flex flex-col w-64">
+                <div class="flex flex-col flex-grow bg-white border-l border-gray-200 pt-5 pb-4 overflow-y-auto">
+                    <div class="flex-grow mt-5">
+                        <nav class="px-3">
+                            <ul class="space-y-1">
+                                <li><a href="index.html" class="text-gray-700 hover:text-gray-900 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md"><svg class="text-gray-400 group-hover:text-gray-500 ml-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"/></svg>لوحة التحكم</a></li>
+                                <li><a href="users.html" class="text-gray-700 hover:text-gray-900 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md"><svg class="text-gray-400 group-hover:text-gray-500 ml-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z\"/></svg>إدارة المستخدمين</a></li>
+                                <li><a href="classes.html" class="text-gray-700 hover:text-gray-900 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md"><svg class="text-gray-400 group-hover:text-gray-500 ml-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4\"/></svg>الصفوف والفصول</a></li>
+                                <li><a href="schedules.html" class="text-gray-700 hover:text-gray-900 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md"><svg class="text-gray-400 group-hover:text-gray-500 ml-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z\"/></svg>الجداول الدراسية</a></li>
+                                <!-- Current page is Attendance -->
+                                <li><a href="attendance.html" class="bg-primary text-white group flex items-center px-3 py-2 text-sm font-medium rounded-md"><svg class="text-white ml-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4\"/></svg>الحضور والغياب</a></li>
+                                <li><a href="grades.html" class="text-gray-700 hover:text-gray-900 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md"><svg class="text-gray-400 group-hover:text-gray-500 ml-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z\"/></svg>الدرجات والتقارير</a></li>
+                                <li><a href="messages.html" class="text-gray-700 hover:text-gray-900 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md"><svg class="text-gray-400 group-hover:text-gray-500 ml-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-.55.55c-.1.1-.2.15-.35.15s-.25-.05-.35-.15L8 16z\"/></svg>المحادثات</a></li>
+                                <li><a href="announcements.html" class="text-gray-700 hover:text-gray-900 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md"><svg class="text-gray-400 group-hover:text-gray-500 ml-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z\"/></svg>الإعلانات</a></li>
+                                <li><a href="settings.html" class="text-gray-700 hover:text-gray-900 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md"><svg class=\"text-gray-400 group-hover:text-gray-500 ml-3 h-5 w-5\" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z\"/><path stroke-linecap="round" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"M15 12a3 3 0 11-6 0 3 3 0 016 0z\"/></svg>إعدادات النظام</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Mobile menu button -->
+        <div class="lg:hidden">
+            <button id="mobileMenuButton" class="fixed top-4 right-4 z-50 p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary">
+                <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile menu overlay -->
+        <div id="mobileMenuOverlay" class="fixed inset-0 z-40 lg:hidden hidden">
+             <div class="fixed inset-0 bg-gray-600 bg-opacity-75" aria-hidden="true"></div>
+             <nav class="fixed top-0 right-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 bg-white shadow-xl overflow-y-auto">
+                 <div class="px-4 pb-4 flex items-center justify-between">
+                    <div>
+                        <img src="https://r2.flowith.net/files/o/1748451765656-Modern_Logo_Design_for_Madarek_School_Management_Platform_index_0@1024x1024.png" alt="مدارك" class="h-8 w-8 rounded-full inline-block">
+                        <span class="mr-2 text-lg font-bold text-gray-800">مدارك</span>
+                    </div>
+                    <button id="closeMobileMenuButtonAttendance" class="p-2 text-gray-500 hover:text-gray-700 lg:hidden">
+                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
+                 </div>
+                 <nav class="mt-5 px-4 flex-1">
+                     <ul class="space-y-1">
+                         <li><a href="index.html" class="text-gray-700 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md">لوحة التحكم</a></li>
+                         <li><a href="users.html" class="text-gray-700 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md">إدارة المستخدمين</a></li>
+                         <li><a href="classes.html" class="text-gray-700 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md">الصفوف والفصول</a></li>
+                         <li><a href="schedules.html" class="text-gray-700 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md">الجداول الدراسية</a></li>
+                         <!-- Current page is Attendance -->
+                         <li><a href="attendance.html" class="bg-primary text-white group flex items-center px-3 py-2 text-sm font-medium rounded-md">الحضور والغياب</a></li>
+                         <li><a href="grades.html" class="text-gray-700 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md">الدرجات والتقارير</a></li>
+                         <li><a href="messages.html" class="text-gray-700 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md">المحادثات</a></li>
+                         <li><a href="announcements.html" class="text-gray-700 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md">الإعلانات</a></li>
+                         <li><a href="settings.html" class="text-gray-700 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md">إعدادات النظام</a></li>
+                     </ul>
+                 </nav>
+             </nav>
+         </div>
+
+        <!-- Main content -->
+        <main class="flex-1 overflow-y-auto focus:outline-none">
+            <div class="py-6">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+                    <div class="md:flex md:items-center md:justify-between">
+                        <div class="flex-1 min-w-0">
+                            <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">
+                                الحضور والغياب
+                            </h2>
+                            <p class="mt-1 text-sm text-gray-500">
+                                إدارة وتسجيل ومتابعة حضور وغياب الطلاب والمعلمين
+                            </p>
+                        </div>
+                        <div class="mt-4 flex md:mt-0 md:mr-4 space-x-2 space-x-reverse">
+                            <button id="recordAttendanceBtn" class="bg-secondary hover:bg-green-700 text-white px-4 py-2 rounded-md text-sm font-medium shadow-sm">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block ml-1" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd" />
+                                </svg>
+                                تسجيل الحضور لليوم
+                            </button>
+                             <button id="viewAbsenceReportsBtn" class="bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-md text-sm font-medium shadow-sm">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block ml-1" viewBox="0 0 20 20" fill="currentColor">
+                                    <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z" />
+                                    <path d="M12 2.252A8.014 8.014 0 0117.748 12H12V2.252z" />
+                                </svg>
+                                عرض تقارير الغياب
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Filters -->
+                    <div class="mt-6 bg-white shadow rounded-lg">
+                        <div class="px-4 py-5 sm:p-6">
+                             <h3 class="text-lg leading-6 font-medium text-gray-900 mb-4">فلاتر عرض سجلات الحضور</h3>
+                             <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                                 <div>
+                                     <label for="dateFilter" class="block text-sm font-medium text-gray-700">التاريخ</label>
+                                     <input type="date" id="dateFilter" value="" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm">
+                                 </div>
+                                 <div>
+                                    <label for="attendanceClassFilter" class="block text-sm font-medium text-gray-700">الصف/الفصل</label>
+                                    <select id="attendanceClassFilter" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md">
+                                        <option value="">جميع الصفوف/الفصول</option>
+                                        <!-- Backend Note: Populate class/sections dynamically -->
+                                        <option value="الصف الأول أ">الصف الأول أ</option>
+                                        <option value="الصف الثاني ب">الصف الثاني ب</option>
+                                        <option value="الصف الثالث ج">الصف الثالث ج</option>
+                                    </select>
+                                </div>
+                                 <div>
+                                    <label for="attendanceUserFilter" class="block text-sm font-medium text-gray-700">نوع المستخدم</label>
+                                    <select id="attendanceUserFilter" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md">
+                                        <option value="">جميع المستخدمين</option>
+                                         <option value="student">الطلاب</option>
+                                         <option value="teacher">المعلمون</option>
+                                    </select>
+                                </div>
+                                <div class="flex items-end">
+                                     <button id="applyAttendanceFiltersBtn" class="w-full bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-md text-sm font-medium">
+                                        تطبيق الفلاتر
+                                    </button>
+                                 </div>
+                             </div>
+                        </div>
+                    </div>
+
+                     <div class="mt-6 bg-white shadow rounded-lg overflow-hidden">
+                         <div class="px-4 py-5 sm:p-6">
+                            <h3 class="text-lg leading-6 font-medium text-gray-900 mb-4">سجلات الحضور والغياب</h3>
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full divide-y divide-gray-200">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">اسم الطالب/المعلم</th>
+                                            <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">الصف/الدور</th>
+                                            <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">التاريخ</th>
+                                            <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">الحالة</th>
+                                            <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">ملاحظات</th>
+                                            <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">إجراءات</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="attendanceTableBody" class="bg-white divide-y divide-gray-200">
+                                         <tr id="attendanceTablePlaceholder">
+                                            <td colspan="6" class="px-6 py-10 text-center text-gray-500">
+                                                <svg class="mx-auto h-10 w-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                                                <p class="mt-2">الرجاء تحديد الفلاتر لعرض سجلات الحضور.</p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                             <div class="mt-4 px-4 py-3 bg-gray-50 text-right sm:px-6 border-t border-gray-200">
+                                <!-- Backend Note: Implement pagination or infinite scroll -->
+                                <a href="#" class="text-sm font-medium text-primary hover:text-primary-dark">عرض المزيد من السجلات...</a>
+                             </div>
+                         </div>
+                     </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Record Attendance Modal -->
+    <div id="recordAttendanceModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden z-50">
+        <div class="relative top-10 md:top-20 mx-auto p-5 border w-11/12 md:max-w-2xl shadow-lg rounded-md bg-white">
+            <div class="mt-3">
+                <div class="flex items-center justify-between mb-4 pb-3 border-b border-gray-200">
+                    <h3 class="text-lg font-medium text-gray-900">تسجيل الحضور لليوم</h3>
+                    <button class="close-modal-btn text-gray-400 hover:text-gray-600" data-modal-id="recordAttendanceModal">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                <form id="recordAttendanceForm" class="space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label for="attendanceDate" class="block text-sm font-medium text-gray-700">التاريخ</label>
+                            <input type="date" id="attendanceDate" name="attendanceDate" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm">
+                        </div>
+                        <div>
+                            <label for="attendanceTargetClass" class="block text-sm font-medium text-gray-700">الصف/الفصل</label>
+                            <select id="attendanceTargetClass" name="attendanceTargetClass" required class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md">
+                                <option value="">اختر الصف/الفصل</option>
+                                <!-- Backend Note: Populate classes/sections dynamically -->
+                                <option value="الصف الأول أ">الصف الأول أ</option>
+                                <option value="الصف الأول ب">الصف الأول ب</option>
+                                <option value="معلمون">المعلمون (عام)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                         <h4 class="text-md font-medium text-gray-900 mb-2">قائمة الطلاب/المعلمين</h4>
+                         <div id="attendanceListForRecording" class="border border-gray-200 rounded-md p-3 bg-gray-50 max-h-72 overflow-y-auto space-y-3">
+                             <!-- Backend Note: List students/teachers here dynamically after selecting class/section. -->
+                             <p class="text-sm text-gray-500 text-center py-4">اختر الصف/الفصل أولاً لتحميل القائمة.</p>
+                             <!-- Example Row (hidden by default, template for JS) -->
+                             <div id="attendanceUserRowTemplate" class="hidden flex flex-col sm:flex-row items-center justify-between py-2 border-b border-gray-200 last:border-b-0 bg-white p-3 rounded-md shadow-sm">
+                                 <span class="text-sm text-gray-800 font-medium mb-2 sm:mb-0 sm:w-1/3 user-name-placeholder">اسم المستخدم</span>
+                                 <div class="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-3 sm:space-x-reverse sm:w-2/3">
+                                     <select name="status_user_ID_PLACEHOLDER" class="block w-full sm:w-auto px-2 py-1 text-xs border-gray-300 rounded-md focus:ring-primary focus:border-primary">
+                                         <option value="present">حاضر</option>
+                                         <option value="absent">غائب</option>
+                                         <option value="late">متأخر</option>
+                                         <option value="excused">غائب بعذر</option>
+                                     </select>
+                                     <input type="text" name="notes_user_ID_PLACEHOLDER" placeholder="ملاحظات (اختياري)" class="block w-full sm:flex-1 px-2 py-1 text-xs border-gray-300 rounded-md focus:ring-primary focus:border-primary">
+                                 </div>
+                             </div>
+                         </div>
+                    </div>
+
+                    <div class="flex items-center justify-end pt-4 space-x-2 space-x-reverse border-t border-gray-200 mt-4">
+                        <button type="button" class="cancel-modal-btn bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded-md" data-modal-id="recordAttendanceModal">
+                            إلغاء
+                        </button>
+                        <button type="submit" class="bg-primary hover:bg-primary-dark text-white font-medium py-2 px-4 rounded-md">
+                            حفظ سجل الحضور
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+     <!-- Absence Reports Modal -->
+    <div id="absenceReportsModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden z-50">
+        <div class="relative top-10 md:top-20 mx-auto p-5 border w-11/12 md:max-w-3xl shadow-lg rounded-md bg-white">
+            <div class="mt-3">
+                <div class="flex items-center justify-between mb-4 pb-3 border-b border-gray-200">
+                    <h3 class="text-lg font-medium text-gray-900">عرض تقارير الغياب</h3>
+                    <button class="close-modal-btn text-gray-400 hover:text-gray-600" data-modal-id="absenceReportsModal">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                 <form id="absenceReportsForm" class="space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div>
+                             <label for="reportStartDate" class="block text-sm font-medium text-gray-700">من تاريخ</label>
+                             <input type="date" id="reportStartDate" name="reportStartDate" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm">
+                        </div>
+                         <div>
+                             <label for="reportEndDate" class="block text-sm font-medium text-gray-700">إلى تاريخ</label>
+                             <input type="date" id="reportEndDate" name="reportEndDate" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm">
+                        </div>
+                        <div>
+                            <label for="reportClassFilter" class="block text-sm font-medium text-gray-700">الصف/الفصل (اختياري)</label>
+                            <select id="reportClassFilter" name="reportClassFilter" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md">
+                                <option value="">جميع الصفوف/الفصول</option>
+                                <!-- Backend Note: Populate classes/sections dynamically -->
+                                <option value="الصف الأول أ">الصف الأول أ</option>
+                                <option value="الصف الثاني ب">الصف الثاني ب</option>
+                            </select>
+                        </div>
+                         <div>
+                            <label for="reportUserType" class="block text-sm font-medium text-gray-700">نوع المستخدم (اختياري)</label>
+                            <select id="reportUserType" name="reportUserType" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md">
+                                <option value="">الكل</option>
+                                <option value="student">الطلاب</option>
+                                <option value="teacher">المعلمون</option>
+                            </select>
+                        </div>
+                         <div class="sm:col-span-2 lg:col-span-1 flex items-end">
+                             <button type="submit" class="w-full bg-secondary hover:bg-green-700 text-white font-medium py-2 px-4 rounded-md">
+                                 توليد التقرير
+                            </button>
+                        </div>
+                    </div>
+                 </form>
+
+                 <div id="absenceReportResults" class="mt-6 border-t border-gray-200 pt-6 hidden">
+                    <h4 class="text-md font-medium text-gray-900 mb-3">نتائج التقرير</h4>
+                     <div class="bg-gray-50 p-4 rounded-md text-sm text-gray-700 min-h-[100px] flex items-center justify-center">
+                         <p id="absenceReportContentPlaceholder">سيتم عرض بيانات تقرير الغياب هنا بناءً على الفلاتر المحددة. (Backend Note: استخدم هذه المنطقة لعرض جدول بيانات، رسوم بيانية، أو ملخصات للغياب.)</p>
+                         <!-- Backend Note: Actual report content (e.g., table, chart, download link) will be populated here. -->
+                     </div>
+                 </div>
+
+
+                <div class="flex items-center justify-end pt-4 space-x-2 space-x-reverse border-t border-gray-200 mt-6">
+                    <button type="button" class="cancel-modal-btn bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded-md" data-modal-id="absenceReportsModal">
+                        إغلاق
+                    </button>
+                     <button type="button" id="downloadAbsenceReportBtn" class="hidden bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md">
+                        تنزيل التقرير (PDF)
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="dashboard.js"></script>
+     <script>
+        document.addEventListener('DOMContentLoaded', () => {
+             const closeMobileMenuButtonAttendance = document.getElementById('closeMobileMenuButtonAttendance');
+             const mobileMenuOverlayInstance = document.getElementById('mobileMenuOverlay');
+             if (closeMobileMenuButtonAttendance && mobileMenuOverlayInstance) {
+                 closeMobileMenuButtonAttendance.addEventListener('click', () => {
+                     mobileMenuOverlayInstance.classList.add('hidden');
+                 });
+             }
+
+             const dateFilter = document.getElementById('dateFilter');
+             if(dateFilter) dateFilter.valueAsDate = new Date(); // Set default to today
+
+             const classFilter = document.getElementById('attendanceClassFilter');
+             const userFilter = document.getElementById('attendanceUserFilter');
+             const applyBtn = document.getElementById('applyAttendanceFiltersBtn');
+             const tableBody = document.getElementById('attendanceTableBody');
+             const placeholderRow = document.getElementById('attendanceTablePlaceholder');
+
+             const fetchAndDisplayAttendance = () => {
+                 const selectedDate = dateFilter ? dateFilter.value : '';
+                 const selectedClass = classFilter ? classFilter.value : '';
+                 const selectedUserType = userFilter ? userFilter.value : '';
+                 
+                 console.log('Applying Attendance Filters:', { date: selectedDate, class: selectedClass, userType: selectedUserType });
+                 tableBody.innerHTML = ''; // Clear previous results
+                 const loadingRow = `<tr><td colspan="6" class="px-6 py-10 text-center text-gray-500">جاري تحميل البيانات...</td></tr>`;
+                 tableBody.insertAdjacentHTML('beforeend', loadingRow);
+
+
+                 setTimeout(() => { // Simulate network delay
+                    // Backend Note: Replace with actual API call to fetch attendance data based on filters
+                    let sampleData = [
+                        { id:1, name: 'أحمد عبدالله', roleClass: 'الصف الأول ج', date: '2024-07-26', status: 'حاضر', notes: '', statusColor: 'green' },
+                        { id:2, name: 'سارة محمود', roleClass: 'الصف الأول ج', date: '2024-07-26', status: 'غائب', notes: 'مرض', statusColor: 'red' },
+                        { id:3, name: 'أ. خالد إبراهيم', roleClass: 'معلم رياضيات', date: '2024-07-26', status: 'حاضر', notes: 'تأخير بسيط', statusColor: 'green' },
+                        { id:4, name: 'محمد علي حسن', roleClass: 'الصف الأول أ', date: '2024-07-25', status: 'حاضر', notes: '', statusColor: 'green' },
+                    ];
+
+                    let filteredData = sampleData.filter(item => {
+                         const dateMatch = selectedDate ? item.date === selectedDate : true;
+                         const classMatch = selectedClass ? item.roleClass.includes(selectedClass) : true; 
+                         const userTypeMatch = selectedUserType ? 
+                            (selectedUserType === 'student' ? item.roleClass.startsWith('الصف') : !item.roleClass.startsWith('الصف')) 
+                            : true;
+                         return dateMatch && classMatch && userTypeMatch;
+                    });
+
+                    tableBody.innerHTML = ''; // Clear loading row
+
+                    if (filteredData.length === 0) {
+                        if (placeholderRow) tableBody.appendChild(placeholderRow);
+                    } else {
+                        filteredData.forEach(item => {
+                            const row = `
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${item.name}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${item.roleClass}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${item.date}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-${item.statusColor}-100 text-${item.statusColor}-800">${item.status}</span>
+                                    </td>
+                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${item.notes || 'لا يوجد'}</td>
+                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                        <button class="text-primary hover:text-primary-dark text-xs" onclick="alert('Backend Note: Implement edit functionality for attendance ID ${item.id}')">تعديل</button>
+                                    </td>
+                                </tr>
+                            `;
+                            tableBody.insertAdjacentHTML('beforeend', row);
+                        });
+                    }
+                 }, 1000);
+             };
+
+             if(applyBtn) applyBtn.addEventListener('click', fetchAndDisplayAttendance);
+             // fetchAndDisplayAttendance(); // Optional: Load initial data for today
+
+            const recordAttendanceBtn = document.getElementById('recordAttendanceBtn');
+            const recordAttendanceModal = document.getElementById('recordAttendanceModal');
+            const recordAttendanceForm = document.getElementById('recordAttendanceForm');
+            const attendanceDateInput = document.getElementById('attendanceDate');
+            const attendanceTargetClassSelect = document.getElementById('attendanceTargetClass');
+            const attendanceListContainer = document.getElementById('attendanceListForRecording');
+            const userRowTemplate = document.getElementById('attendanceUserRowTemplate');
+
+
+            const viewAbsenceReportsBtn = document.getElementById('viewAbsenceReportsBtn');
+            const absenceReportsModal = document.getElementById('absenceReportsModal');
+            const absenceReportsForm = document.getElementById('absenceReportsForm');
+            const absenceReportResultsDiv = document.getElementById('absenceReportResults');
+            const absenceReportContentPlaceholder = document.getElementById('absenceReportContentPlaceholder');
+            const downloadAbsenceReportBtn = document.getElementById('downloadAbsenceReportBtn');
+
+
+            const toggleModal = (modal, show) => {
+                if (modal) {
+                    modal.classList.toggle('hidden', !show);
+                     if (show) {
+                         if (modal === recordAttendanceModal) {
+                            if(recordAttendanceForm) recordAttendanceForm.reset();
+                            if(attendanceDateInput) attendanceDateInput.valueAsDate = new Date(); // Default to today
+                            attendanceListContainer.innerHTML = '<p class="text-sm text-gray-500 text-center py-4">اختر الصف/الفصل أولاً لتحميل القائمة.</p>'; // Reset list
+                         }
+                         if (modal === absenceReportsModal) {
+                             if(absenceReportsForm) absenceReportsForm.reset();
+                             if(absenceReportResultsDiv) absenceReportResultsDiv.classList.add('hidden');
+                             if(absenceReportContentPlaceholder) absenceReportContentPlaceholder.textContent = 'سيتم عرض بيانات تقرير الغياب هنا...';
+                             if(downloadAbsenceReportBtn) downloadAbsenceReportBtn.classList.add('hidden');
+                         }
+                     }
+                }
+            };
+
+            if (recordAttendanceBtn) {
+                recordAttendanceBtn.addEventListener('click', () => toggleModal(recordAttendanceModal, true));
+            }
+
+            if (viewAbsenceReportsBtn) {
+                viewAbsenceReportsBtn.addEventListener('click', () => toggleModal(absenceReportsModal, true));
+            }
+
+            document.querySelectorAll('.close-modal-btn, .cancel-modal-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    const modalId = button.dataset.modalId;
+                    if (modalId === 'recordAttendanceModal') toggleModal(recordAttendanceModal, false);
+                    else if (modalId === 'absenceReportsModal') toggleModal(absenceReportsModal, false);
+                });
+            });
+
+            [recordAttendanceModal, absenceReportsModal].forEach(modal => {
+                if (modal) {
+                    modal.addEventListener('click', (event) => {
+                        if (event.target === modal) toggleModal(modal, false);
+                    });
+                }
+            });
+
+            // Dynamic user list for Record Attendance Modal
+            if (attendanceTargetClassSelect && attendanceListContainer && userRowTemplate) {
+                attendanceTargetClassSelect.addEventListener('change', function() {
+                    const selectedClass = this.value;
+                    attendanceListContainer.innerHTML = ''; // Clear previous list or placeholder
+                    if (!selectedClass) {
+                        attendanceListContainer.innerHTML = '<p class="text-sm text-gray-500 text-center py-4">اختر الصف/الفصل أولاً لتحميل القائمة.</p>';
+                        return;
+                    }
+                    // Backend Note: Fetch users (students/teachers) for the selectedClass
+                    console.log(`Fetching users for class: ${selectedClass}`);
+                    attendanceListContainer.innerHTML = '<p class="text-sm text-gray-500 text-center py-4">جاري تحميل القائمة...</p>';
+                    
+                    setTimeout(() => { // Simulate API call
+                        let users = [];
+                        if (selectedClass === "الصف الأول أ") {
+                            users = [{id: 101, name: "علي"}, {id: 102, name: "فاطمة"}, {id: 103, name: "حسن"}];
+                        } else if (selectedClass === "الصف الأول ب") {
+                            users = [{id: 201, name: "زينب"}, {id: 202, name: "عمر"}];
+                        } else if (selectedClass === "معلمون") {
+                            users = [{id: 901, name: "أ.أحمد السيد"}, {id: 902, name: "أ.هدى محمد"}];
+                        }
+
+                        attendanceListContainer.innerHTML = ''; // Clear loading message
+                        if (users.length === 0) {
+                             attendanceListContainer.innerHTML = '<p class="text-sm text-gray-500 text-center py-4">لا يوجد مستخدمون لهذا الصف/الفصل.</p>';
+                             return;
+                        }
+
+                        users.forEach(user => {
+                            const newRow = userRowTemplate.cloneNode(true);
+                            newRow.classList.remove('hidden');
+                            newRow.id = `user_row_${user.id}`;
+                            newRow.querySelector('.user-name-placeholder').textContent = user.name;
+                            newRow.querySelectorAll('select, input').forEach(input => {
+                                input.name = input.name.replace('ID_PLACEHOLDER', user.id);
+                            });
+                            attendanceListContainer.appendChild(newRow);
+                        });
+                    }, 1000);
+                });
+            }
+
+
+            if (recordAttendanceForm) {
+                recordAttendanceForm.addEventListener('submit', (event) => {
+                    event.preventDefault();
+                    const formData = new FormData(recordAttendanceForm);
+                    const attendanceData = {};
+                    // Process form data to group by user
+                    // Example: { date: "YYYY-MM-DD", class: "ClassName", users: { "userId1": { status: "present", notes: "" }, ... } }
+                    attendanceData.date = formData.get('attendanceDate');
+                    attendanceData.class = formData.get('attendanceTargetClass');
+                    attendanceData.users = {};
+                    formData.forEach((value, key) => {
+                        if (key.startsWith('status_user_')) {
+                            const userId = key.split('_')[2];
+                            if(!attendanceData.users[userId]) attendanceData.users[userId] = {};
+                            attendanceData.users[userId].status = value;
+                        } else if (key.startsWith('notes_user_')) {
+                            const userId = key.split('_')[2];
+                             if(!attendanceData.users[userId]) attendanceData.users[userId] = {};
+                            attendanceData.users[userId].notes = value;
+                        }
+                    });
+                    
+                    console.log('Record Attendance form submitted:', attendanceData);
+                    alert(`تم إرسال بيانات تسجيل الحضور للتاريخ "${attendanceData.date}" والصف "${attendanceData.class}". (سيتم ربطه بالـ backend لاحقاً)`);
+                    toggleModal(recordAttendanceModal, false);
+                });
+            }
+
+            if (absenceReportsForm) {
+                absenceReportsForm.addEventListener('submit', (event) => {
+                    event.preventDefault();
+                    const formData = new FormData(absenceReportsForm);
+                    const reportFilters = Object.fromEntries(formData.entries());
+                    console.log('Absence Reports form submitted with filters:', reportFilters);
+                    
+                    if(absenceReportResultsDiv) absenceReportResultsDiv.classList.remove('hidden');
+                    if(absenceReportContentPlaceholder) absenceReportContentPlaceholder.textContent = 'جاري توليد التقرير...';
+                    if(downloadAbsenceReportBtn) downloadAbsenceReportBtn.classList.add('hidden');
+
+                    // Backend Note: Send reportFilters to backend API to generate the report. 
+                    // On success, display summary or link to download.
+                    setTimeout(() => { // Simulate report generation
+                        if(absenceReportContentPlaceholder) absenceReportContentPlaceholder.innerHTML = `<p>تم توليد تقرير الغياب للفترة من ${reportFilters.reportStartDate} إلى ${reportFilters.reportEndDate}.</p><p class="mt-2 text-xs">Backend Note: محتوى التقرير الفعلي (جدول أو ملخص) أو رابط التنزيل سيظهر هنا.</p>`;
+                        if(downloadAbsenceReportBtn) downloadAbsenceReportBtn.classList.remove('hidden');
+                    }, 1500);
+                });
+            }
+            if(downloadAbsenceReportBtn) {
+                downloadAbsenceReportBtn.addEventListener('click', () => {
+                    alert('Backend Note: Implement actual PDF/Excel report download.');
+                });
+            }
+
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة المستخدمين - مدارِك</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        tailwind.config = {
+            content: ["./*.html"],
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'arabic': ['Tajawal', 'Arial', 'sans-serif']
+                    },
+                    colors: {
+                        'primary': '#4F46E5',
+                        'primary-dark': '#4338CA',
+                        'secondary': '#059669',
+                        'accent': '#0891b2'
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="https://r2.flowith.net/files/o/1748451765656-Modern_Logo_Design_for_Madarek_School_Management_Platform_index_0@1024x1024.png" type="image/png">
+</head>
+<body class="font-arabic bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-40">
+        <div class="mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <img src="https://r2.flowith.net/files/o/1748451765656-Modern_Logo_Design_for_Madarek_School_Management_Platform_index_0@1024x1024.png" alt="مدارك" class="h-10 w-10 rounded-full">
+                        <span class="mr-3 text-xl font-bold text-gray-800">مدارك</span>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4 space-x-reverse">
+                    <button id="chatButton" title="المحادثات" class="p-2 text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary rounded-full">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+                    </button>
+                    <button id="notificationButton" title="الإشعارات" class="p-2 text-gray-400 hover:text-gray-600 relative focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary rounded-full">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                        </svg>
+                        <span class="absolute top-1 right-1 block h-2 w-2 rounded-full bg-red-500 ring-2 ring-white"></span>
+                    </button>
+                    <div class="relative">
+                        <button id="userMenuButton" class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
+                            <div class="h-8 w-8 rounded-full bg-secondary text-white flex items-center justify-center text-sm font-medium">م</div>
+                            <span class="mr-2 text-gray-700 hidden sm:block">محمد الإداري</span>
+                            <svg class="w-4 h-4 mr-1 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div id="userMenu" class="hidden absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50">
+                            <div class="py-1">
+                                <a href="profile.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">الملف الشخصي</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 pointer-events-none text-gray-400">الإعدادات</a>
+                                <div class="border-t border-gray-100"></div>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">تسجيل الخروج</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="flex h-screen bg-gray-50">
+        <!-- Sidebar -->
+        <nav class="hidden lg:flex lg:flex-shrink-0">
+            <div class="flex flex-col w-64">
+                <div class="flex flex-col flex-grow bg-white border-l border-gray-200 pt-5 pb-4 overflow-y-auto">
+                    <div class="flex-grow mt-5">
+                        <nav class="px-3">
+                            <ul class="space-y-1">
+                                <li><a href="index.html" class="group flex items-center px-3 py-2 text-sm font-medium rounded-md"><svg class="ml-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"/></svg>لوحة التحكم</a></li>
+                                <li><a href="users.html" class="group flex items-center px-3 py-2 text-sm font-medium rounded-md"><svg class="ml-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"/></svg>إدارة المستخدمين</a></li>
+                                <li><a href="classes_sections.html" class="group flex items-center px-3 py-2 text-sm font-medium rounded-md"><svg class="ml-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path></svg>الصفوف والفصول</a></li>
+                                <li><a href="schedules.html" class="group flex items-center px-3 py-2 text-sm font-medium rounded-md"><svg class="ml-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>الجداول الدراسية</a></li>
+                                <li><a href="attendance.html" class="group flex items-center px-3 py-2 text-sm font-medium rounded-md"><svg class="ml-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>الحضور والغياب</a></li>
+                                <li><a href="grades_reports.html" class="group flex items-center px-3 py-2 text-sm font-medium rounded-md"><svg class="ml-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>الدرجات والتقارير</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Mobile menu button -->
+        <div class="lg:hidden">
+            <button id="mobileMenuButton" class="fixed top-4 right-4 z-50 p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary">
+                <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile menu overlay -->
+        <div id="mobileMenuOverlay" class="fixed inset-0 z-40 lg:hidden hidden">
+            <div class="fixed inset-0 bg-gray-600 bg-opacity-75" aria-hidden="true"></div>
+            <nav class="fixed top-0 right-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 bg-white shadow-xl overflow-y-auto">
+                <div class="px-4 pb-4 flex items-center justify-between">
+                    <div>
+                        <img src="https://r2.flowith.net/files/o/1748451765656-Modern_Logo_Design_for_Madarek_School_Management_Platform_index_0@1024x1024.png" alt="مدارك" class="h-8 w-8 rounded-full inline-block">
+                        <span class="mr-2 text-lg font-bold text-gray-800">مدارك</span>
+                    </div>
+                    <button id="closeMobileMenuButton" class="p-2 text-gray-500 hover:text-gray-700 lg:hidden">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+                <nav class="mt-5 px-4 flex-1">
+                    <ul class="space-y-1">
+                        <li><a href="index.html" class="group flex items-center px-3 py-2 text-sm font-medium rounded-md">لوحة التحكم</a></li>
+                        <li><a href="users.html" class="group flex items-center px-3 py-2 text-sm font-medium rounded-md">إدارة المستخدمين</a></li>
+                        <li><a href="classes_sections.html" class="group flex items-center px-3 py-2 text-sm font-medium rounded-md">الصفوف والفصول</a></li>
+                        <li><a href="schedules.html" class="group flex items-center px-3 py-2 text-sm font-medium rounded-md">الجداول الدراسية</a></li>
+                        <li><a href="attendance.html" class="group flex items-center px-3 py-2 text-sm font-medium rounded-md">الحضور والغياب</a></li>
+                        <li><a href="grades_reports.html" class="group flex items-center px-3 py-2 text-sm font-medium rounded-md">الدرجات والتقارير</a></li>
+                    </ul>
+                </nav>
+            </nav>
+        </div>
+
+        <!-- Main content -->
+        <main class="flex-1 overflow-y-auto focus:outline-none">
+            <div class="py-6">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+                    <!-- Page header -->
+                    <div class="md:flex md:items-center md:justify-between">
+                        <div class="flex-1 min-w-0">
+                            <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">
+                                إدارة المستخدمين
+                            </h2>
+                            <p class="mt-1 text-sm text-gray-500">
+                                إضافة وتعديل وإدارة جميع المستخدمين في النظام (صلاحيات الإداري)
+                            </p>
+                        </div>
+                        <div class="mt-4 flex md:mt-0 md:mr-4 space-x-2 space-x-reverse">
+                            <button id="addUserBtn" class="bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-md text-sm font-medium">
+                                إضافة مستخدم جديد
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Stats Cards -->
+                    <div class="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+                        <div class="bg-white overflow-hidden shadow rounded-lg">
+                            <div class="p-5">
+                                <div class="flex items-center">
+                                    <div class="flex-shrink-0">
+                                        <div class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
+                                            <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="mr-5 w-0 flex-1">
+                                        <dt class="text-sm font-medium text-gray-500 truncate">المديرون</dt>
+                                        <dd class="text-lg font-medium text-gray-900">3</dd>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white overflow-hidden shadow rounded-lg">
+                            <div class="p-5">
+                                <div class="flex items-center">
+                                    <div class="flex-shrink-0">
+                                        <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                                            <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="mr-5 w-0 flex-1">
+                                        <dt class="text-sm font-medium text-gray-500 truncate">المعلمون</dt>
+                                        <dd class="text-lg font-medium text-gray-900">85</dd>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white overflow-hidden shadow rounded-lg">
+                            <div class="p-5">
+                                <div class="flex items-center">
+                                    <div class="flex-shrink-0">
+                                        <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                                            <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"/>
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="mr-5 w-0 flex-1">
+                                        <dt class="text-sm font-medium text-gray-500 truncate">الطلاب</dt>
+                                        <dd class="text-lg font-medium text-gray-900">1,245</dd>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white overflow-hidden shadow rounded-lg">
+                            <div class="p-5">
+                                <div class="flex items-center">
+                                    <div class="flex-shrink-0">
+                                        <div class="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center">
+                                            <svg class="w-5 h-5 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="mr-5 w-0 flex-1">
+                                        <dt class="text-sm font-medium text-gray-500 truncate">أولياء الأمور</dt>
+                                        <dd class="text-lg font-medium text-gray-900">892</dd>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Filters -->
+                    <div class="mt-6 bg-white shadow rounded-lg">
+                        <div class="px-4 py-5 sm:p-6">
+                            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4">
+                                <div>
+                                    <label for="roleFilter" class="block text-sm font-medium text-gray-700">فلترة حسب الدور</label>
+                                    <select id="roleFilter" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md">
+                                        <option value="">جميع الأدوار</option>
+                                        <option value="manager">المدير</option>
+                                        <option value="teacher">المعلم</option>
+                                        <option value="external_teacher">معلم خارجي</option>
+                                        <option value="student">الطالب</option>
+                                        <option value="parent">ولي الأمر</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="statusFilter" class="block text-sm font-medium text-gray-700">فلترة حسب الحالة</label>
+                                    <select id="statusFilter" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md">
+                                        <option value="">جميع الحالات</option>
+                                        <option value="active">نشط</option>
+                                        <option value="inactive">غير نشط</option>
+                                        <option value="pending">في الانتظار</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="searchInput" class="block text-sm font-medium text-gray-700">البحث</label>
+                                    <input type="text" id="searchInput" placeholder="البحث بالاسم أو المعرف المؤقت..." class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm">
+                                </div>
+                                <div class="flex items-end">
+                                    <button id="clearFiltersBtn" class="w-full bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-md text-sm font-medium">
+                                        مسح الفلاتر
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Users Table -->
+                    <div class="mt-6 bg-white shadow rounded-lg overflow-hidden">
+                        <div class="px-4 py-5 sm:p-6">
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full divide-y divide-gray-200">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">المستخدم</th>
+                                            <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">الدور</th>
+                                            <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">الحالة</th>
+                                            <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">آخر نشاط</th>
+                                            <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">الإجراءات</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="usersTableBody" class="bg-white divide-y divide-gray-200">
+                                        <tr data-user-id="1">
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="flex items-center">
+                                                    <div class="flex-shrink-0 h-10 w-10">
+                                                        <div class="h-10 w-10 rounded-full bg-primary text-white flex items-center justify-center text-sm font-medium">أ</div>
+                                                    </div>
+                                                    <div class="mr-4">
+                                                        <div class="text-sm font-medium text-gray-900">أحمد محمد علي</div>
+                                                        <div class="text-sm text-gray-500">المعرف المؤقت: temp123</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-purple-100 text-purple-800">
+                                                    المدير
+                                                </span>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">
+                                                    نشط
+                                                </span>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                منذ 5 دقائق
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                لا توجد إجراءات متاحة
+                                            </td>
+                                        </tr>
+                                        <tr data-user-id="2">
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="flex items-center">
+                                                    <div class="flex-shrink-0 h-10 w-10">
+                                                        <div class="h-10 w-10 rounded-full bg-secondary text-white flex items-center justify-center text-sm font-medium">ف</div>
+                                                    </div>
+                                                    <div class="mr-4">
+                                                        <div class="text-sm font-medium text-gray-900">فاطمة خالد إبراهيم</div>
+                                                        <div class="text-sm text-gray-500">المعرف المؤقت: temp456</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">
+                                                    معلمة
+                                                </span>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">
+                                                    نشط
+                                                </span>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                منذ ساعة
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                لا توجد إجراءات متاحة
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add User Modal -->
+    <div id="addUserModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden z-50">
+        <div class="relative top-10 md:top-20 mx-auto p-5 border w-11/12 md:max-w-lg shadow-lg rounded-md bg-white">
+            <div class="mt-3">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-medium text-gray-900">إضافة مستخدم جديد</h3>
+                    <button id="closeModalBtn" class="text-gray-400 hover:text-gray-600">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <form id="addUserForm" class="space-y-4">
+                    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                        <div>
+                            <label for="firstName" class="block text-sm font-medium text-gray-700">الاسم الأول</label>
+                            <input type="text" id="firstName" name="firstName" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm">
+                        </div>
+                         <div>
+                            <label for="middleName" class="block text-sm font-medium text-gray-700">الاسم الثاني</label>
+                            <input type="text" id="middleName" name="middleName" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm">
+                        </div>
+                    </div>
+                     <div>
+                        <label for="lastName" class="block text-sm font-medium text-gray-700">الاسم الأخير</label>
+                        <input type="text" id="lastName" name="lastName" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="temporaryId" class="block text-sm font-medium text-gray-700">المعرّف المؤقت</label>
+                        <input type="text" id="temporaryId" name="temporaryId" required placeholder="يستخدم للدخول الأولي" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm">
+                         <p class="mt-1 text-xs text-gray-500">سيستخدم المستخدم هذا المعرف لمرة واحدة للدخول الأولي وتعيين بريده وكلمة مروره.</p>
+                    </div>
+                    <div>
+                        <label for="phone" class="block text-sm font-medium text-gray-700">رقم الهاتف</label>
+                        <input type="tel" id="phone" name="phone" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="userRole" class="block text-sm font-medium text-gray-700">الدور</label>
+                        <select id="userRole" name="userRole" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm">
+                            <option value="">اختر الدور</option>
+                            <option value="teacher">المعلم</option>
+                            <option value="external_teacher">معلم خارجي</option>
+                            <option value="student">الطالب</option>
+                            <option value="parent">ولي الأمر</option>
+                        </select>
+                    </div>
+
+                    <div class="flex items-center justify-end pt-4 space-x-2 space-x-reverse">
+                        <button type="button" id="cancelModalBtn" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded-md">
+                            إلغاء
+                        </button>
+                        <button type="submit" class="bg-primary hover:bg-primary-dark text-white font-medium py-2 px-4 rounded-md">
+                            إضافة المستخدم
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Panel -->
+    <div id="notificationPanel" class="hidden fixed top-16 left-4 sm:left-auto sm:right-16 mt-2 w-80 sm:w-96 bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 z-[60]">
+        <div class="p-4 border-b border-gray-200 flex justify-between items-center">
+            <h3 class="text-lg font-medium text-gray-900">الإشعارات</h3>
+            <button id="closeNotificationPanel" class="text-gray-400 hover:text-gray-600">
+                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+        </div>
+        <div class="p-4 max-h-80 overflow-y-auto">
+            <div class="flex items-start space-x-3 space-x-reverse mb-3 p-2 hover:bg-gray-50 rounded-md cursor-pointer">
+                <div class="flex-shrink-0">
+                    <div class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"/></svg>
+                    </div>
+                </div>
+                <div class="min-w-0 flex-1">
+                    <p class="text-sm font-medium text-gray-800">طلب موافقة جديد</p>
+                    <p class="text-xs text-gray-500">تم إضافة مستخدم جديد وينتظر الموافقة.</p>
+                    <p class="text-xs text-gray-400 mt-1">منذ 5 دقائق</p>
+                </div>
+            </div>
+            <div class="flex items-start space-x-3 space-x-reverse mb-3 p-2 hover:bg-gray-50 rounded-md cursor-pointer">
+                <div class="flex-shrink-0">
+                    <div class="w-8 h-8 bg-green-500 text-white rounded-full flex items-center justify-center">
+                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/></svg>
+                    </div>
+                </div>
+                <div class="min-w-0 flex-1">
+                    <p class="text-sm font-medium text-gray-800">تحديث النظام</p>
+                    <p class="text-xs text-gray-500">تم تحديث النظام بنجاح إلى الإصدار 1.2.0.</p>
+                    <p class="text-xs text-gray-400 mt-1">منذ ساعتين</p>
+                </div>
+            </div>
+             <p id="noNotifications" class="text-sm text-gray-500 text-center py-4 hidden">لا توجد إشعارات جديدة.</p>
+        </div>
+        <div class="p-3 border-t border-gray-200 text-center">
+            <a href="notifications.html" class="text-sm font-medium text-primary hover:text-primary-dark">عرض جميع الإشعارات</a>
+        </div>
+    </div>
+
+    <!-- Chat Panel -->
+    <div id="chatPanel" class="hidden fixed top-16 left-4 sm:left-auto sm:right-28 mt-2 w-80 sm:w-96 bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 z-[60]">
+        <div class="p-4 border-b border-gray-200 flex justify-between items-center">
+            <h3 class="text-lg font-medium text-gray-900">المحادثات</h3>
+            <button id="closeChatPanel" class="text-gray-400 hover:text-gray-600">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+        </div>
+        <div class="p-4 max-h-80 overflow-y-auto">
+            <div class="flex items-start space-x-3 space-x-reverse mb-3 p-2 hover:bg-gray-50 rounded-md cursor-pointer">
+                <div class="flex-shrink-0">
+                    <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="User Avatar">
+                </div>
+                <div class="min-w-0 flex-1">
+                    <div class="flex justify-between items-center">
+                        <p class="text-sm font-medium text-gray-800">أحمد عبدالله</p>
+                        <p class="text-xs text-gray-400">10:30 ص</p>
+                    </div>
+                    <p class="text-xs text-gray-500 truncate">السلام عليكم، هل يمكنك مراجعة...</p>
+                </div>
+                <span class="ml-2 inline-flex items-center justify-center px-2 py-0.5 text-xs font-bold leading-none text-red-100 bg-red-600 rounded-full">2</span>
+            </div>
+            <div class="flex items-start space-x-3 space-x-reverse mb-3 p-2 hover:bg-gray-50 rounded-md cursor-pointer">
+                <div class="flex-shrink-0">
+                    <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1540845511934-7721dd7adec3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="User Avatar">
+                </div>
+                <div class="min-w-0 flex-1">
+                     <div class="flex justify-between items-center">
+                        <p class="text-sm font-medium text-gray-800">سارة كريم</p>
+                        <p class="text-xs text-gray-400">أمس</p>
+                    </div>
+                    <p class="text-xs text-gray-500 truncate">شكراً جزيلاً على المساعدة.</p>
+                </div>
+            </div>
+            <p id="noChats" class="text-sm text-gray-500 text-center py-4 hidden">لا توجد محادثات جديدة.</p>
+        </div>
+        <div class="p-3 border-t border-gray-200 text-center">
+            <a href="chat_page.html" class="text-sm font-medium text-primary hover:text-primary-dark">عرض جميع المحادثات</a>
+        </div>
+    </div>
+
+    <script src="dashboard.js"></script>
+    <script src="users.js"></script>
+</body>
+</html>

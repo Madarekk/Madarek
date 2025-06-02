@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>درجاتي - نظام إدارة المدرسة الذكي</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 font-arabic">
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b border-gray-200 fixed top-0 w-full z-50">
+        <div class="flex items-center justify-between px-6 py-4">
+            <div class="flex items-center space-x-4 space-x-reverse">
+                <button id="sidebarToggle" class="lg:hidden text-gray-600 hover:text-gray-900">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+                <div class="flex items-center space-x-3 space-x-reverse">
+                    <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-graduation-cap text-white text-sm"></i>
+                    </div>
+                    <h1 class="text-xl font-bold text-gray-900">مدارك</h1>
+                </div>
+            </div>
+            
+            <div class="flex items-center space-x-4 space-x-reverse">
+                <div class="relative">
+                    <button class="text-gray-600 hover:text-gray-900 relative">
+                        <i class="fas fa-bell text-xl"></i>
+                        <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">3</span>
+                    </button>
+                </div>
+                
+                <div class="relative">
+                    <button class="text-gray-600 hover:text-gray-900 relative">
+                        <i class="fas fa-envelope text-xl"></i>
+                        <span class="absolute -top-1 -right-1 bg-blue-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">2</span>
+                    </button>
+                </div>
+                
+                <div class="relative">
+                    <button id="profileDropdown" class="flex items-center space-x-2 space-x-reverse text-gray-700 hover:text-gray-900">
+                        <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                            <i class="fas fa-user text-blue-600 text-sm"></i>
+                        </div>
+                        <span class="hidden md:block">أحمد محمد</span>
+                        <i class="fas fa-chevron-down text-sm"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="flex pt-16">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="fixed lg:static inset-y-0 right-0 w-64 bg-white shadow-lg transform lg:transform-none transition-transform duration-300 ease-in-out lg:translate-x-0 translate-x-full z-40 pt-16 lg:pt-0">
+            <div class="flex flex-col h-full">
+                <nav class="flex-1 px-4 py-6 space-y-2">
+                    <a href="index.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-lg">
+                        <i class="fas fa-home ml-3"></i>
+                        <span>لوحة المعلومات</span>
+                    </a>
+                    
+                    <a href="schedule.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-lg">
+                        <i class="fas fa-calendar-alt ml-3"></i>
+                        <span>جدولي الدراسي</span>
+                    </a>
+                    
+                    <a href="subjects.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-lg">
+                        <i class="fas fa-book-open ml-3"></i>
+                        <span>مقرراتي الدراسية</span>
+                    </a>
+                    
+                    <a href="assignments.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-lg">
+                        <i class="fas fa-tasks ml-3"></i>
+                        <span>الواجبات والاختبارات</span>
+                    </a>
+                    
+                    <a href="grades.html" class="flex items-center px-4 py-3 text-blue-600 bg-blue-50 rounded-lg">
+                        <i class="fas fa-chart-line ml-3"></i>
+                        <span>درجاتي</span>
+                    </a>
+                    
+                    <a href="attendance.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-lg">
+                        <i class="fas fa-user-check ml-3"></i>
+                        <span>الحضور والغياب</span>
+                    </a>
+                    
+                    <a href="messages.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-lg">
+                        <i class="fas fa-comments ml-3"></i>
+                        <span>التواصل</span>
+                    </a>
+                </nav>
+            </div>
+        </aside>
+
+        <div id="sidebarOverlay" class="hidden fixed inset-0 bg-black bg-opacity-50 z-30 lg:hidden"></div>
+
+        <!-- Main Content -->
+        <main class="flex-1 lg:mr-64 p-6">
+            <div class="mb-8">
+                <h2 class="text-2xl font-bold text-gray-900 mb-2">درجاتي</h2>
+                <p class="text-gray-600">متابعة الأداء الأكاديمي والدرجات في جميع المواد</p>
+            </div>
+
+            <!-- Summary Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm text-gray-600 mb-1">المتوسط العام</p>
+                            <p class="text-2xl font-bold text-green-600">87.5</p>
+                        </div>
+                        <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-chart-line text-green-600 text-xl"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm text-gray-600 mb-1">أعلى درجة</p>
+                            <p class="text-2xl font-bold text-blue-600">95</p>
+                        </div>
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-trophy text-blue-600 text-xl"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm text-gray-600 mb-1">عدد التقييمات</p>
+                            <p class="text-2xl font-bold text-purple-600">24</p>
+                        </div>
+                        <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-list-alt text-purple-600 text-xl"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grades by Subject -->
+            <div class="bg-white rounded-lg shadow-sm border border-gray-200">
+                <div class="p-6 border-b border-gray-200">
+                    <h3 class="text-lg font-semibold text-gray-900">الدرجات حسب المادة</h3>
+                </div>
+                <div class="p-6">
+                    <div id="gradesContainer" class="space-y-6">
+                        <!-- Grades will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            loadGrades();
+        });
+
+        function loadGrades() {
+            const container = document.getElementById('gradesContainer');
+            const allGrades = getAllGrades();
+            
+            const gradesHTML = Object.entries(allGrades).map(([subject, grades]) => {
+                const totalScore = grades.reduce((sum, grade) => sum + (grade.score * grade.weight / 100), 0);
+                const totalWeight = grades.reduce((sum, grade) => sum + grade.weight, 0);
+                const average = totalWeight > 0 ? (totalScore / totalWeight * 100).toFixed(1) : 0;
+                
+                const gradesRows = grades.map(grade => `
+                    <tr class="border-b border-gray-100">
+                        <td class="py-3 px-4 text-gray-900">${grade.type}</td>
+                        <td class="py-3 px-4 text-center">
+                            <span class="font-semibold ${getGradeColor(grade.score)}">${grade.score}/${grade.total}</span>
+                        </td>
+                        <td class="py-3 px-4 text-center text-gray-600">${grade.weight}%</td>
+                        <td class="py-3 px-4 text-center text-gray-600">${formatDate(grade.date)}</td>
+                    </tr>
+                `).join('');
+                
+                return `
+                    <div class="border border-gray-200 rounded-lg overflow-hidden">
+                        <div class="bg-gray-50 px-6 py-4 flex items-center justify-between">
+                            <h4 class="font-semibold text-gray-900">${subject}</h4>
+                            <div class="flex items-center space-x-4 space-x-reverse">
+                                <span class="text-sm text-gray-600">المتوسط:</span>
+                                <span class="font-bold text-lg ${getGradeColor(average)}">${average}%</span>
+                            </div>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="text-right py-3 px-4 font-medium text-gray-700">نوع التقييم</th>
+                                        <th class="text-center py-3 px-4 font-medium text-gray-700">الدرجة</th>
+                                        <th class="text-center py-3 px-4 font-medium text-gray-700">الوزن</th>
+                                        <th class="text-center py-3 px-4 font-medium text-gray-700">التاريخ</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${gradesRows}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            container.innerHTML = gradesHTML;
+        }
+    </script>
+</body>
+</html>

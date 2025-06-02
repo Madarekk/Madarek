@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول - مدارك</title>
+    <link rel="stylesheet" href="login.css">
+    <link href="https://fonts.googleapis.com/css?family=Cairo&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- الهيدر -->
+    <header class="header">
+        <div class="logo">مدارِك</div>
+        <nav>
+            <ul>
+                <li><a href="#" class="active">الرئيسية</a></li>
+                <li><a href="#about">عن المنصة</a></li>
+                <li><a href="#services">الخدمات</a></li>
+                <li><a href="#gallery">المعرض</a></li>
+                <li><a href="#contact">تواصل معنا</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- المحتوى الرئيسي -->
+    <main class="main-content">
+        <section class="login-section">
+            <div class="welcome-message">
+                <h1>مرحباً بعودتك</h1>
+                <p>سجل دخولك للوصول إلى حسابك</p>
+            </div>
+            
+            <form class="login-form">
+    <div class="input-group">
+        <label for="username">البريد الإلكتروني</label>
+        <input type="email" id="username" required>
+    </div>
+
+    <div class="input-group">
+        <label for="password">كلمة المرور</label>
+        <input type="password" id="password" required>
+    </div>
+
+    <div class="form-options">
+        <label class="remember-me">
+            <input type="checkbox">
+            تذكرني
+        </label>
+        <a href="#" class="forgot-password">نسيت كلمة المرور؟</a>
+    </div>
+
+    <button type="submit" class="cta-btn">تسجيل الدخول</button>
+
+    <div class="register-link">
+        ليس لديك حساب؟ <a href="#">سجل الآن</a>
+    </div>
+</form>
+        </section>
+    </main>
+
+    <!-- الفوتر -->
+    <footer class="footer">
+        <p>جميع الحقوق محفوظة &copy; مدارك 2025</p>
+    </footer>
+    
+    <script src="login.js"></script>
+</body>
+</html>

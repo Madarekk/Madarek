@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الرسائل - لوحة ولي الأمر</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="../bootstrap/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="parent-header">
+        <span class="parent-title"><i class="fa-solid fa-envelope ms-2"></i> الرسائل والتواصل</span>
+    </header>
+    <main class="parent-main">
+        <div class="container-fluid">
+            <!-- التواصل مع المعلمين -->
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-primary text-white"><i class="fa-solid fa-envelope ms-2"></i> التواصل مع المعلمين</div>
+                <div class="card-body">
+                    <ul class="mb-2">
+                        <li>رسالة من أ. خالد: يرجى متابعة الواجبات.</li>
+                        <li>رد من أ. منى: تم استلام الواجبات.</li>
+                    </ul>
+                </div>
+            </div>
+            <!-- آخر الرسائل -->
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-primary text-white"><i class="fa-solid fa-envelope-open-text ms-2"></i> آخر الرسائل</div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">تم تحديث درجات الطالب أحمد.</li>
+                    <li class="list-group-item">موعد اجتماع أولياء الأمور يوم الخميس.</li>
+                    <li class="list-group-item">تم إضافة تقرير جديد للطالب يوسف.</li>
+                    <li class="list-group-item">تنبيه: تأخير في الحافلة رقم 7.</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+    <!-- Sidebar -->
+    <aside class="parent-sidebar d-flex flex-column collapsed-sidebar">
+        <h2 class="d-flex flex-column align-items-center">
+            <i class="fa-solid fa-graduation-cap fa-2x mb-2"></i>
+            مدارٍك
+        </h2>
+        <ul class="nav flex-column">
+            <li class="nav-item mb-2">
+                <a class="nav-link" href="parent_home.html"><i class="fa-solid fa-house me-2"></i> <span>الرئيسية</span></a>
+            </li>
+            <li class="nav-item mb-2">
+                <a class="nav-link" href="parent_children.html"><i class="fa-solid fa-user-graduate me-2"></i> <span>أبنائي</span></a>
+            </li>
+            <li class="nav-item mb-2">
+                <a class="nav-link" href="parent_reports.html"><i class="fa-solid fa-chart-line me-2"></i> <span>التقارير</span></a>
+            </li>
+            <li class="nav-item mb-2">
+                <a class="nav-link active" href="parent_messages.html"><i class="fa-solid fa-envelope me-2"></i> <span>الرسائل</span></a>
+            </li>
+        </ul>
+    </aside>
+
+    <!-- Header -->
+    <header class="parent-header">
+        <span class="parent-title">الرسائل</span>
+        <div class="parent-header-right">
+            <button class="btn btn-link position-relative p-0 me-2" aria-label="الإشعارات">
+                <i class="fa-regular fa-bell fa-lg text-primary"></i>
+                <span class="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-danger" style="font-size:0.7rem;">
+                    3
+                </span>
+            </button>
+            <button class="btn btn-link position-relative p-0 me-2" aria-label="الرسائل">
+                <i class="fa-regular fa-envelope fa-lg text-primary"></i>
+                <span class="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-success" style="font-size:0.7rem;">
+                    2
+                </span>
+            </button>
+            <!-- User Dropdown -->
+            <div class="dropdown parent-user-dropdown">
+                <a href="#" class="parent-user dropdown-toggle d-flex align-items-center" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa-solid fa-user fa-lg text-primary"></i> <span class="ms-1"></span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end text-end" aria-labelledby="userDropdown">
+                    <li><a class="dropdown-item" href="#">الملف الشخصي</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item text-danger" href="#">تسجيل الخروج</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="parent-main">
+        <div class="container-fluid">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 class="mb-0">صندوق الرسائل</h5>
+                <a href="#" class="btn btn-primary btn-sm"><i class="fa-solid fa-plus"></i> رسالة جديدة</a>
+            </div>
+            <div class="card shadow-sm mb-4">
+                <div class="card-body p-0">
+                    <table class="table table-hover mb-0 text-center">
+                        <thead>
+                            <tr>
+                                <th>المرسل</th>
+                                <th>الموضوع</th>
+                                <th>التاريخ</th>
+                                <th>الحالة</th>
+                                <th>عرض</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>إدارة المدرسة</td>
+                                <td>تحديث الدرجات</td>
+                                <td>2025-05-20</td>
+                                <td><span class="badge bg-success">جديد</span></td>
+                                <td><a href="#" class="btn btn-sm btn-outline-primary">عرض</a></td>
+                            </tr>
+                            <tr>
+                                <td>المعلم محمد</td>
+                                <td>اجتماع أولياء الأمور</td>
+                                <td>2025-05-18</td>
+                                <td><span class="badge bg-secondary">مقروء</span></td>
+                                <td><a href="#" class="btn btn-sm btn-outline-primary">عرض</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <button class="btn btn-primary d-lg-none position-fixed top-0 end-0 m-3 z-3" type="button" id="sidebarToggle">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/all.min.js"></script>
+    <script>
+        const sidebar = document.querySelector('.parent-sidebar');
+        const toggleBtn = document.getElementById('sidebarToggle');
+        toggleBtn.addEventListener('click', function() {
+            sidebar.classList.toggle('show');
+            document.body.classList.toggle('sidebar-open');
+        });
+        // Optional: close sidebar when clicking outside
+        document.addEventListener('click', function(e) {
+            if (window.innerWidth <= 991.98 && sidebar.classList.contains('show')) {
+                if (!sidebar.contains(e.target) && !toggleBtn.contains(e.target)) {
+                    sidebar.classList.remove('show');
+                    document.body.classList.remove('sidebar-open');
+                }
+            }
+        });
+    </script>
+</body>
+</html>

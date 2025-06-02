@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الواجبات والاختبارات - نظام إدارة المدرسة الذكي</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 font-arabic">
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b border-gray-200 fixed top-0 w-full z-50">
+        <div class="flex items-center justify-between px-6 py-4">
+            <div class="flex items-center space-x-4 space-x-reverse">
+                <button id="sidebarToggle" class="lg:hidden text-gray-600 hover:text-gray-900">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+                <div class="flex items-center space-x-3 space-x-reverse">
+                    <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-graduation-cap text-white text-sm"></i>
+                    </div>
+                    <h1 class="text-xl font-bold text-gray-900">مدارك</h1>
+                </div>
+            </div>
+            
+            <div class="flex items-center space-x-4 space-x-reverse">
+                <div class="relative">
+                    <button class="text-gray-600 hover:text-gray-900 relative">
+                        <i class="fas fa-bell text-xl"></i>
+                        <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">3</span>
+                    </button>
+                </div>
+                
+                <div class="relative">
+                    <button class="text-gray-600 
+
+hover:text-gray-900 relative">
+                        <i class="fas fa-envelope text-xl"></i>
+                        <span class="absolute -top-1 -right-1 bg-blue-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">2</span>
+                    </button>
+                </div>
+                
+                <div class="relative">
+                    <button id="profileDropdown" class="flex items-center space-x-2 space-x-reverse text-gray-700 hover:text-gray-900">
+                        <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                            <i class="fas fa-user text-blue-600 text-sm"></i>
+                        </div>
+                        <span class="hidden md:block">أحمد محمد</span>
+                        <i class="fas fa-chevron-down text-sm"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="flex pt-16">
+        <!-- Sidebar -->
+        <aside id="sidebar" class="fixed lg:static inset-y-0 right-0 w-64 bg-white shadow-lg transform lg:transform-none transition-transform duration-300 ease-in-out lg:translate-x-0 translate-x-full z-40 pt-16 lg:pt-0">
+            <div class="flex flex-col h-full">
+                <nav class="flex-1 px-4 py-6 space-y-2">
+                    <a href="index.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-lg">
+                        <i class="fas fa-home ml-3"></i>
+                        <span>لوحة المعلومات</span>
+                    </a>
+                    
+                    <a href="schedule.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-lg">
+                        <i class="fas fa-calendar-alt ml-3"></i>
+                        <span>جدولي الدراسي</span>
+                    </a>
+                    
+                    <a href="subjects.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-lg">
+                        <i class="fas fa-book-open ml-3"></i>
+                        <span>مقرراتي الدراسية</span>
+                    </a>
+                    
+                    <a href="assignments.html" class="flex items-center px-4 py-3 text-blue-600 bg-blue-50 rounded-lg">
+                        <i class="fas fa-tasks ml-3"></i>
+                        <span>الواجبات والاختبارات</span>
+                    </a>
+                    
+                    <a href="grades.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-lg">
+                        <i class="fas fa-chart-line ml-3"></i>
+                        <span>درجاتي</span>
+                    </a>
+                    
+                    <a href="attendance.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-lg">
+                        <i class="fas fa-user-check ml-3"></i>
+                        <span>الحضور والغياب</span>
+                    </a>
+                    
+                    <a href="messages.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-lg">
+                        <i class="fas fa-comments ml-3"></i>
+                        <span>التواصل</span>
+                    </a>
+                </nav>
+            </div>
+        </aside>
+
+        <div id="sidebarOverlay" class="hidden fixed inset-0 bg-black bg-opacity-50 z-30 lg:hidden"></div>
+
+        <!-- Main Content -->
+        <main class="flex-1 lg:mr-64 p-6">
+            <div class="mb-8">
+                <h2 class="text-2xl font-bold text-gray-900 mb-2">الواجبات والاختبارات</h2>
+                <p class="text-gray-600">متابعة جميع الواجبات والاختبارات المطلوبة</p>
+            </div>
+
+            <!-- Filter Tabs -->
+            <div class="mb-6">
+                <div class="border-b border-gray-200">
+                    <nav class="-mb-px flex space-x-8 space-x-reverse">
+                        <button id="allTab" class="tab-button active py-2 px-1 border-b-2 border-blue-500 font-medium text-sm text-blue-600">
+                            الكل
+                        </button>
+                        <button id="pendingTab" class="tab-button py-2 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-gray-700">
+                            معلق
+                        </button>
+                        <button id="submittedTab" class="tab-button py-2 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-gray-700">
+                            تم التسليم
+                        </button>
+                        <button id="overdueTab" class="tab-button py-2 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-gray-700">
+                            متأخر
+                        </button>
+                    </nav>
+                </div>
+            </div>
+
+            <!-- Assignments List -->
+            <div class="bg-white rounded-lg shadow-sm border border-gray-200">
+                <div class="p-6">
+                    <div id="assignmentsContainer" class="space-y-4">
+                        <!-- Assignments will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+    <script>
+        let currentFilter = 'all';
+
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeTabs();
+            loadAssignments();
+        });
+
+        function initializeTabs() {
+            const tabs = document.querySelectorAll('.tab-button');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remove active class from all tabs
+                    tabs.forEach(t => {
+                        t.classList.remove('active', 'border-blue-500', 'text-blue-600');
+                        t.classList.add('border-transparent', 'text-gray-500');
+                    });
+                    
+                    // Add active class to clicked tab
+                    this.classList.add('active', 'border-blue-500', 'text-blue-600');
+                    this.classList.remove('border-transparent', 'text-gray-500');
+                    
+                    // Set current filter
+                    currentFilter = this.id.replace('Tab', '');
+                    loadAssignments();
+                });
+            });
+        }
+
+        function loadAssignments() {
+            const container = document.getElementById('assignmentsContainer');
+            let assignments = getPendingAssignments();
+            
+            // Filter assignments based on current filter
+            if (currentFilter !== 'all') {
+                assignments = assignments.filter(assignment => assignment.status === currentFilter);
+            }
+            
+            if (assignments.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-12">
+                        <i class="fas fa-tasks text-gray-300 text-4xl mb-4"></i>
+                        <p class="text-gray-500">لا توجد واجبات في هذه الفئة</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            const assignmentsHTML = assignments.map(assignment => `
+                <div class="border border-gray-200 rounded-lg p-6 hover-card cursor-pointer" onclick="viewAssignment(${assignment.id})">
+                    <div class="flex items-start justify-between">
+                        <div class="flex-1">
+                            <div class="flex items-center space-x-3 space-x-reverse mb-2">
+                                <div class="w-10 h-10 ${getTypeIcon(assignment.type).bg} rounded-lg flex items-center justify-center">
+                                    <i class="fas ${getTypeIcon(assignment.type).icon} ${getTypeIcon(assignment.type).color} text-sm"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-900">${assignment.title}</h3>
+                                    <p class="text-sm text-gray-600">${assignment.subject} • ${assignment.teacher}</p>
+                                </div>
+                            </div>
+                            
+                            <p class="text-gray-700 mb-4">${assignment.description}</p>
+                            
+                            <div class="flex items-center space-x-4 space-x-reverse text-sm text-gray-600">
+                                <span><i class="fas fa-calendar ml-1"></i>موعد التسليم: ${formatDate(assignment.dueDate)}</span>
+                                <span><i class="fas fa-tag ml-1"></i>${getTypeText(assignment.type)}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-col items-end space-y-2">
+                            <span class="inline-block px-3 py-1 text-xs rounded-full ${getStatusClass(assignment.status)}">
+                                ${getStatusText(assignment.status)}
+                            </span>
+                            <span class="text-sm ${getDueDateColor(assignment.dueDate)}">
+                                ${getDaysUntilDue(assignment.dueDate)}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            
+            container.innerHTML = assignmentsHTML;
+        }
+
+        function getTypeIcon(type) {
+            const icons = {
+                homework: { icon: 'fa-book', color: 'text-blue-600', bg: 'bg-blue-100' },
+                research: { icon: 'fa-search', color: 'text-green-600', bg: 'bg-green-100' },
+                experiment: { icon: 'fa-flask', color: 'text-purple-600', bg: 'bg-purple-100' },
+                essay: { icon: 'fa-pen', color: 'text-orange-600', bg: 'bg-orange-100' },
+                exam: { icon: 'fa-clipboard-check', color: 'text-red-600', bg: 'bg-red-100' }
+            };
+            return icons[type] || icons.homework;
+        }
+
+        function getTypeText(type) {
+            const types = {
+                homework: 'واجب منزلي',
+                research: 'بحث',
+                experiment: 'تجربة',
+                essay: 'مقال',
+                exam: 'امتحان'
+            };
+            return types[type] || 'واجب';
+        }
+
+        function getDaysUntilDue(dueDate) {
+            const date = new Date(dueDate);
+            const now = new Date();
+            const diffTime = date - now;
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            
+            if (diffDays < 0) return `متأخر ${Math.abs(diffDays)} يوم`;
+            if (diffDays === 0) return 'يستحق اليوم';
+            if (diffDays === 1) return 'يستحق غداً';
+            return `يستحق خلال ${diffDays} أيام`;
+        }
+
+        function viewAssignment(id) {
+            window.location.href = `assignment-details.html?id=${id}`;
+        }
+    </script>
+</body>
+</html>

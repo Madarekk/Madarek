@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>عنوان الصفحة</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    /* انسخ الـ CSS من كودك السابق هنا */
+  </style>
+</head>
+<body>
+
+  <!-- ✅ الشريط الجانبي -->
+  <aside class="parent-sidebar d-flex flex-column collapsed-sidebar">
+    <!-- انسخ محتوى الشريط الجانبي هنا -->
+  </aside>
+
+  <!-- ✅ الهيدر -->
+  <header class="parent-header">
+        <span class="parent-title">لوحة ولي الأمر</span>
+        <div class="parent-header-right">
+            <button class="btn btn-link position-relative p-0 me-2" aria-label="الإشعارات">
+                <i class="fa-regular fa-bell fa-lg text-primary"></i>
+                <span class="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-danger" style="font-size:0.7rem;">
+                    3
+                </span>
+            </button>
+            <button class="btn btn-link position-relative p-0 me-2" aria-label="الرسائل">
+                <i class="fa-regular fa-envelope fa-lg text-primary"></i>
+                <span class="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-success" style="font-size:0.7rem;">
+                    2
+                </span>
+            </button>
+            <!-- User Dropdown -->
+            <div class="dropdown parent-user-dropdown">
+                <a href="#" class="parent-user dropdown-toggle d-flex align-items-center" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa-solid fa-user fa-lg text-primary"></i> <span class="ms-1"></span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end text-end" aria-labelledby="userDropdown">
+                    <li><a class="dropdown-item" href="#">الملف الشخصي</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item text-danger" href="#">تسجيل الخروج</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>غ
+
+  <!-- ✅ محتوى الصفحة المتغير -->
+  <main class="parent-main">
+    <!-- هنا تحط المحتوى الخاص بالصفحة الجديدة -->
+    <div class="container-fluid">
+      <h1>مثال على صفحة جديدة</h1>
+      <p>محتوى الصفحة هنا...</p>
+    </div>
+  </main>
+
+  <!-- ✅ زر القائمة الجانبية -->
+  <button class="btn btn-primary d-lg-none position-fixed top-0 end-0 m-3 z-3" type="button" id="sidebarToggle">
+    <i class="fa-solid fa-bars"></i>
+  </button>
+
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/all.min.js"></script>
+  <script>
+    // نفس كود الجافا سكريبت للتبديل بين القوائم الجانبية
+  </script>
+</body>
+</html>

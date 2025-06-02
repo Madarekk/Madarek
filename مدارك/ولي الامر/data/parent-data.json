@@ -1,0 +1,159 @@
+{
+  "parent": {
+    "id": "parent_001",
+    "name": "أحمد محمد السعد",
+    "email": "ahmed.saad@email.com",
+    "phone": "+966501234567",
+    "address": "الرياض، حي الملز"
+  },
+  "children": [
+    {
+      "id": "student_001",
+      "name": "محمد أحمد السعد",
+      "grade": "الصف السادس",
+      "class": "6-أ",
+      "photo": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
+      "averageGrade": 87,
+      "absenceDays": 2,
+      "pendingAssignments": 3,
+      "subjects": [
+        {
+          "name": "الرياضيات",
+          "homework": 90,
+          "quizzes": 85,
+          "finalExam": 88,
+          "total": 87
+        },
+        {
+          "name": "العلوم",
+          "homework": 92,
+          "quizzes": 89,
+          "finalExam": 91,
+          "total": 91
+        },
+        {
+          "name": "اللغة العربية",
+          "homework": 85,
+          "quizzes": 82,
+          "finalExam": 86,
+          "total": 84
+        },
+        {
+          "name": "التربية الإسلامية",
+          "homework": 95,
+          "quizzes": 93,
+          "finalExam": 94,
+          "total": 94
+        },
+        {
+          "name": "الدراسات الاجتماعية",
+          "homework": 80,
+          "quizzes": 78,
+          "finalExam": 82,
+          "total": 80
+        }
+      ],
+      "assignments": [
+        {
+          "id": "assign_001",
+          "title": "حل تمارين الكسور",
+          "subject": "الرياضيات",
+          "dueDate": "2024-01-15",
+          "status": "pending"
+        },
+        {
+          "id": "assign_002",
+          "title": "بحث عن النباتات",
+          "subject": "العلوم",
+          "dueDate": "2024-01-18",
+          "status": "completed"
+        },
+        {
+          "id": "assign_003",
+          "title": "كتابة موضوع تعبير",
+          "subject": "اللغة العربية",
+          "dueDate": "2024-01-20",
+          "status": "pending"
+        }
+      ],
+      "attendance": {
+        "present": 45,
+        "absent": 2,
+        "late": 1
+      },
+      "attendanceRecords": [
+        {
+          "date": "2024-01-10",
+          "status": "present",
+          "arrivalTime": "07:45",
+          "notes": ""
+        },
+        {
+          "date": "2024-01-09",
+          "status": "absent",
+          "arrivalTime": "-",
+          "notes": "مرض"
+        },
+        {
+          "date": "2024-01-08",
+          "status": "late",
+          "arrivalTime": "08:15",
+          "notes": "تأخر في المواصلات"
+        },
+        {
+          "date": "2024-01-07",
+          "status": "present",
+          "arrivalTime": "07:40",
+          "notes": ""
+        },
+        {
+          "date": "2024-01-06",
+          "status": "present",
+          "arrivalTime": "07:50",
+          "notes": ""
+        }
+      ],
+      "schedule": {
+        "sunday": ["الرياضيات", "العلوم", "اللغة العربية", "التربية البدنية", "الفنون"],
+        "monday": ["اللغة العربية", "الرياضيات", "العلوم", "التربية الإسلامية", "الحاسوب"],
+        "tuesday": ["العلوم", "اللغة العربية", "الرياضيات", "الدراسات الاجتماعية", "الموسيقى"],
+        "wednesday": ["الرياضيات", "التربية الإسلامية", "اللغة العربية", "العلوم", "المكتبة"],
+        "thursday": ["الدراسات الاجتماعية", "العلوم", "الرياضيات", "اللغة الإنجليزية", "النشاط"]
+      }
+    },
+    {
+      "id": "student_002",
+      "name": "فاطمة أحمد السعد",
+      "grade": "الصف الثالث",
+      "class": "3-ب",
+      "photo": "https://images.unsplash.com/photo-1494790108755-2616c35513c6?w=150&h=150&fit=crop&crop=face",
+      "averageGrade": 92,
+      "absenceDays": 1,
+      "pendingAssignments": 2,
+      "subjects": [
+        {
+          "name": "الرياضيات",
+          "homework": 95,
+          "quizzes": 92,
+          "finalExam": 94,
+          "total": 94
+        },
+        {
+          "name": "العلوم",
+          "homework": 90,
+          "quizzes": 88,
+          "finalExam": 91,
+          "total": 90
+        },
+        {
+          "name": "اللغة العربية",
+          "homework": 96,
+          "quizzes": 94,
+          "finalExam": 95,
+          "total": 95
+        },
+        {
+          "name": "التربية الإسلامية",
+          "homework": 98,
+          "quizzes": 96,
+          "finalExam": 

@@ -1,0 +1,597 @@
+/* الأساسيات */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.teacher-body {
+    font-family: 'Cairo', Tahoma, Arial, sans-serif;
+    background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+    direction: rtl;
+    margin: 0;
+    padding: 0;
+}
+
+/* الشريط الجانبي */
+.teacher-sidebar {
+    width: 260px;
+    background: linear-gradient(135deg, #4068fc 80%, #43cea2 100%);
+    color: #fff;
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 1.5rem;
+    overflow: hidden;
+    transform: translateX(0); /* ← الوضع الطبيعي */
+    transition: transform 0.3s ease-in-out; /* ← هذا هو الترانزيشن الفعلي */
+}
+
+/* حالة الإغلاق */
+.teacher-sidebar.collapsed {
+    transform: translateX(260px); /* ← إخفاء بالسحب للخارج */
+}
+
+
+
+/* زر السايدبار */
+.sidebar-toggle {
+    position: relative;
+    right: 260px;
+    top: 0;
+    margin-right: 0.5rem;
+    background: #4068fc;
+    border: none;
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+    z-index: 3001;
+    transition: right 0.3s ease-in-out;
+}
+.sidebar-toggle:hover {
+    background: #43cea2;
+}
+
+
+.sidebar-toggle.sidebar-collapsed {
+    right: 0.5rem; /* يرجع الزر إلى الحافة اليمنى */
+}
+
+
+.sidebar-toggle:hover {
+    background: #43cea2;
+}
+
+#teacher-main-content {
+    margin-right: 220px;
+    transition: all 0.3s ease;
+}
+
+/* عند إغلاق السايدبار */
+.sidebar-collapsed#teacher-sidebar {
+    width: 60px;
+}
+
+.sidebar-collapsed#teacher-main-content {
+    margin-right: 0px;
+}
+
+.teacher-sidebar h2 {
+    color: #fff;
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 2.5rem;
+    text-align: center;
+    width: 100%;
+    padding: 0.5rem;
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
+}
+
+.teacher-sidebar ul {
+    width: 100%;
+    list-style: none;
+    padding: 0 0.5rem;
+    margin: 0;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+}
+
+.teacher-sidebar ul::-webkit-scrollbar {
+    width: 6px;
+}
+
+.teacher-sidebar ul::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.teacher-sidebar ul::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+}
+
+.teacher-sidebar li {
+    width: 100%;
+    margin-bottom: 1.2rem;
+}
+
+.teacher-sidebar a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.08rem;
+    display: flex;
+    align-items: center;
+    padding: 0.7rem 1rem;
+    border-radius: 8px;
+    transition: background 0.2s, color 0.2s;
+    font-family: inherit;
+    font-weight: 500;
+    gap: 0.7em;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.teacher-sidebar a .icon {
+    margin-left: 10px;
+    font-size: 1.2em;
+    vertical-align: middle;
+}
+
+.teacher-sidebar a.active,
+.teacher-sidebar a:hover {
+    background: rgba(255,255,255,0.18);
+    color: #43cea2;
+    font-weight: bold;
+    text-shadow: 0 1px 8px rgba(67, 206, 162, 0.10);
+    letter-spacing: 0.5px;
+}
+
+/* الهيدر */
+.teacher-header {
+    width: 100%;
+    height: 64px;
+    background: #fff;
+    box-shadow: 0 2px 12px rgba(67, 206, 162, 0.07);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 110;
+    padding: 0 2rem;
+}
+
+.teacher-header-left {
+    display: flex;
+    align-items: center;
+    margin-right: 300px;
+}
+
+.teacher-header-right {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.teacher-title {
+    color: #4068fc;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding-right: 20px;
+}
+
+.teacher-avatar {
+    font-size: 1.3rem;
+    background: #43cea2;
+    color: #fff;
+    border-radius: 50%;
+    padding: 0.2rem 0.4rem;
+    margin-left: 0.4rem;
+    min-width: 32px;
+    min-height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.teacher-user {
+    font-size: 1.05rem;
+    color: #4068fc;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    font-weight: 500;
+}
+
+.logout-btn {
+    background: #4068fc;
+    color: #fff !important;
+    border: none;
+    border-radius: 8px;
+    padding: 0.5rem 1.1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.logout-btn:hover {
+    background: #43cea2 !important;
+}
+
+/* المحتوى الرئيسي */
+.teacher-main {
+    margin-right: 260px;
+    margin-top: 64px;
+    padding: 2.5rem 2.5rem 2.5rem 2rem;
+    flex: 1;
+    background: #fff;
+    min-height: 100vh;
+    border-radius: 0;
+    box-shadow: 0 2px 16px rgba(67, 206, 162, 0.07);
+    transition: margin 0.2s;
+    overflow-x: auto;
+}
+
+.dashboard-section, .subjects-section, .assign-section, .exams-section {
+    background: #f4f6fb;
+    border-radius: 10px;
+    padding: 1rem 1.5rem;
+    margin-bottom: 1.2rem;
+    color: #4068fc;
+    font-size: 1.08rem;
+}
+
+.cta-btn {
+    background: #43cea2 !important;
+    color: #fff !important;
+    border: none;
+    border-radius: 8px;
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    margin-bottom: 1.2rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.cta-btn:hover {
+    background: #4068fc !important;
+}
+
+/* تنسيق الجداول */
+.students-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2rem;
+    background: #f9f9fb;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 1px 6px rgba(67, 206, 162, 0.04);
+}
+
+.students-table th, .students-table td {
+    padding: 0.9rem 0.7rem;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+
+.students-table th {
+    background: #4068fc;
+    color: #fff;
+    font-weight: bold;
+}
+
+/* تنسيق قسم الاختبارات */
+.exam-item {
+    background: linear-gradient(135deg, #4068fc 70%, #43cea2 100%);
+    color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 2px 12px rgba(67, 206, 162, 0.10);
+    padding: 1.8rem 2.2rem;
+    margin-bottom: 1.2rem;
+}
+
+.exam-item h5 {
+    color: #fff;
+    margin: 0 0 10px 0;
+    font-size: 1.2rem;
+}
+
+.exam-item p {
+    margin: 5px 0;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.add-exam-form {
+    background: #f4f6fb;
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-top: 1.2rem;
+}
+
+#new-exam-form .form-group {
+    margin-bottom: 1rem;
+}
+
+#new-exam-form label {
+    color: #4068fc;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+#new-exam-form input,
+#new-exam-form select,
+#new-exam-form textarea {
+    width: 100%;
+    padding: 0.7rem;
+    border: 1px solid rgba(67, 206, 162, 0.2);
+    border-radius: 8px;
+    font-family: 'Cairo', sans-serif;
+    color: #4068fc;
+}
+
+.cancel-btn {
+    background: #dc3545;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.cancel-btn:hover {
+    background: #c82333;
+}
+
+/* استجابة الشاشات الصغيرة */
+@media (max-width: 900px) {
+    .teacher-sidebar {
+        width: 70px;
+        padding: 1rem 0.3rem 1rem 0.3rem;
+    }
+    .teacher-sidebar h2 {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+    .teacher-sidebar ul li a {
+        font-size: 0.95rem;
+        padding: 0.5rem 0.5rem;
+        text-align: center;
+    }
+    .teacher-header {
+        right: 70px;
+        padding: 0 0.5rem;
+    }
+    .teacher-main {
+        margin-right: 80px;
+        padding: 1.2rem 1rem 1.2rem 1rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .teacher-sidebar {
+        display: none;
+    }
+    .teacher-header {
+        right: 0;
+        padding: 0 0.2rem;
+    }
+    .teacher-main {
+        margin-right: 0;
+        border-radius: 0;
+        padding: 1rem 0.5rem;
+    }
+}
+
+/* الإحصائيات السريعة */
+.quick-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: transform 0.2s;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+}
+
+.stat-icon {
+    font-size: 2rem;
+    background: rgba(64, 104, 252, 0.1);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stat-info h3 {
+    margin: 0;
+    font-size: 1rem;
+    color: #666;
+}
+
+.stat-info p {
+    margin: 0.5rem 0 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #4068fc;
+}
+
+/* جدول الحصص */
+.schedule-section {
+    background: #fff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.schedule-section h2 {
+    margin: 0 0 1.5rem;
+    color: #4068fc;
+}
+
+.schedule-table-container {
+    overflow-x: auto;
+}
+
+.schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px;
+}
+
+.schedule-table th,
+.schedule-table td {
+    padding: 1rem;
+    text-align: center;
+    border: 1px solid #eee;
+}
+
+.schedule-table th {
+    background: #4068fc;
+    color: #fff;
+    font-weight: 600;
+}
+
+.schedule-table td {
+    height: 80px;
+    vertical-align: middle;
+}
+
+.schedule-table td.has-class {
+    background: rgba(67, 206, 162, 0.1);
+}
+
+/* الإحصائيات التفصيلية */
+.detailed-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.stats-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 1.5rem;
+}
+
+.stats-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.stats-card h3 {
+    margin: 0 0 1.5rem;
+    color: #4068fc;
+}
+
+/* إحصائيات الاختبارات والدروس */
+.exam-stats,
+.lessons-activity {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.exam-stat,
+.lesson-stat {
+    background: rgba(64, 104, 252, 0.05);
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.exam-stat .label,
+.lesson-stat .label {
+    display: block;
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
+.exam-stat .value,
+.lesson-stat .value {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #4068fc;
+}
+
+/* قائمة المواد */
+.subjects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+}
+
+.subject-item {
+    background: rgba(67, 206, 162, 0.1);
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    color: #4068fc;
+    font-weight: 500;
+}
+
+/* التجاوب مع الشاشات الصغيرة */
+@media (max-width: 768px) {
+    .quick-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-row {
+        grid-template-columns: 1fr;
+    }
+
+    .exam-stats,
+    .lessons-activity {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* تحسينات عامة */
+.teacher-main {
+    padding: 2rem;
+    margin-right: 260px;
+    margin-top: 64px;
+    background: #f8f9fa;
+    min-height: calc(100vh - 64px);
+}
+
+@media (max-width: 768px) {
+    .teacher-main {
+        margin-right: 0;
+        padding: 1rem;
+    }
+}

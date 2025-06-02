@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الرئيسية - لوحة ولي الأمر</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="parent-sidebar d-flex flex-column collapsed-sidebar">
+        <h2 class="d-flex flex-column align-items-center">
+            <i class="fa-solid fa-graduation-cap fa-2x mb-2"></i>
+            مدارٍك
+        </h2>
+        <ul class="nav flex-column">
+            <li class="nav-item mb-2">
+                <a class="nav-link active" href="parent_home.html"><i class="fa-solid fa-house me-2"></i> <span>الرئيسية</span></a>
+            </li>
+            <li class="nav-item mb-2">
+                <a class="nav-link" href="parent_children.html"><i class="fa-solid fa-user-graduate me-2"></i> <span>أبنائي</span></a>
+            </li>
+            <li class="nav-item mb-2">
+                <a class="nav-link" href="parent_reports.html"><i class="fa-solid fa-chart-line me-2"></i> <span>التقارير</span></a>
+            </li>
+            <li class="nav-item mb-2">
+                <a class="nav-link" href="parent_messages.html"><i class="fa-solid fa-envelope me-2"></i> <span>الرسائل</span></a>
+            </li>
+        </ul>
+    </aside>
+
+    <!-- Header -->
+    <header class="parent-header">
+        <span class="parent-title">الرئيسية</span>
+        <div class="parent-header-right">
+            <button class="btn btn-link position-relative p-0 me-2" aria-label="الإشعارات">
+                <i class="fa-regular fa-bell fa-lg text-primary"></i>
+                <span class="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-danger" style="font-size:0.7rem;">
+                    3
+                </span>
+            </button>
+            <button class="btn btn-link position-relative p-0 me-2" aria-label="الرسائل">
+                <i class="fa-regular fa-envelope fa-lg text-primary"></i>
+                <span class="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-success" style="font-size:0.7rem;">
+                    2
+                </span>
+            </button>
+            <!-- User Dropdown -->
+            <div class="dropdown parent-user-dropdown">
+                <a href="#" class="parent-user dropdown-toggle d-flex align-items-center" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa-solid fa-user fa-lg text-primary"></i> <span class="ms-1"></span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end text-end" aria-labelledby="userDropdown">
+                    <li><a class="dropdown-item" href="#">الملف الشخصي</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item text-danger" href="#">تسجيل الخروج</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="parent-main">
+        <div class="container-fluid mt-4">
+            <div class="row g-4">
+                <!-- الأعمدة الرئيسية -->
+                <div class="col-lg-8">
+                    <!-- المواد/الأبناء -->
+                    <div class="card mb-4">
+                        <div class="card-header bg-primary text-white d-flex align-items-center">
+                            <i class="fa-solid fa-children ms-2"></i>
+                            <span>أبناؤك</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <div class="border rounded p-3 h-100">
+                                        <div class="d-flex align-items-center mb-2">
+                                            <i class="fa-solid fa-user-graduate fa-2x text-primary ms-2"></i>
+                                            <div>
+                                                <strong>أحمد محمد</strong>
+                                                <div class="text-muted small">الصف الخامس</div>
+                                            </div>
+                                        </div>
+                                        <a href="student_details.html?id=1" class="btn btn-outline-primary btn-sm w-100">عرض التفاصيل</a>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="border rounded p-3 h-100">
+                                        <div class="d-flex align-items-center mb-2">
+                                            <i class="fa-solid fa-user-graduate fa-2x text-primary ms-2"></i>
+                                            <div>
+                                                <strong>سارة محمد</strong>
+                                                <div class="text-muted small">الصف الثالث</div>
+                                            </div>
+                                        </div>
+                                        <a href="student_details.html?id=2" class="btn btn-outline-primary btn-sm w-100">عرض التفاصيل</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- الجدول الزمني للواجبات -->
+                    <div class="card mb-4">
+                        <div class="card-header bg-info text-white d-flex align-items-center">
+                            <i class="fa-solid fa-calendar-days ms-2"></i>
+                            <span>الواجبات غير المكتملة</span>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div>
+                                    <strong>سارة:</strong> علوم – تجربة الماء
+                                    <span class="badge bg-danger ms-2">متأخر</span>
+                                </div>
+                                <span class="text-muted small">2025-05-25</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div>
+                                    <strong>أحمد:</strong> لا يوجد واجبات متأخرة
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="card-footer text-end">
+                            <a href="parent_homework.html" class="btn btn-link btn-sm">عرض جميع الواجبات</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- العمود الجانبي -->
+                <div class="col-lg-4">
+                    <!-- الإشعارات -->
+                    <div class="card mb-4">
+                        <div class="card-header bg-warning text-dark d-flex align-items-center">
+                            <i class="fa-solid fa-bell ms-2"></i>
+                            <span>إشعارات حديثة</span>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><i class="fa-solid fa-user-clock text-danger ms-1"></i> أحمد غاب اليوم.</li>
+                            <li class="list-group-item"><i class="fa-solid fa-file-circle-check text-success ms-1"></i> تم إصدار نتيجة اختبار العلوم.</li>
+                            <li class="list-group-item"><i class="fa-solid fa-book-open text-danger ms-1"></i> واجب اللغة العربية لم يُسلَّم.</li>
+                            <li class="list-group-item"><i class="fa-solid fa-envelope text-primary ms-1"></i> رسالة جديدة من معلم الرياضيات.</li>
+                        </ul>
+                        <div class="card-footer text-end">
+                            <a href="parent_notifications.html" class="btn btn-link btn-sm">عرض كل الإشعارات</a>
+                        </div>
+                    </div>
+
+                    <!-- الأداء الأكاديمي -->
+                    <div class="card mb-4">
+                        <div class="card-header bg-success text-white d-flex align-items-center">
+                            <i class="fa-solid fa-chart-line ms-2"></i>
+                            <span>الأداء الأكاديمي (مختصر)</span>
+                        </div>
+                        <div class="card-body p-2">
+                            <div class="mb-2">
+                                <strong>أحمد:</strong> متوسط الدرجات <span class="badge bg-info">88%</span>
+                                <span class="text-success ms-2">ممتاز</span>
+                            </div>
+                            <div>
+                                <strong>سارة:</strong> متوسط الدرجات <span class="badge bg-info">91%</span>
+                                <span class="text-success ms-2">ممتاز</span>
+                            </div>
+                        </div>
+                        <div class="card-footer text-end">
+                            <a href="parent_reports.html" class="btn btn-link btn-sm">عرض جميع الدرجات</a>
+                        </div>
+                    </div>
+
+                    <!-- الحضور والغياب -->
+                    <div class="card mb-4">
+                        <div class="card-header bg-secondary text-white d-flex align-items-center">
+                            <i class="fa-solid fa-calendar-check ms-2"></i>
+                            <span>الحضور والغياب (هذا الشهر)</span>
+                        </div>
+                        <div class="card-body p-2">
+                            <div class="mb-2">
+                                <strong>أحمد:</strong> 3 غيابات (<span class="text-danger">1 بدون عذر</span>)
+                            </div>
+                            <div>
+                                <strong>سارة:</strong> لا توجد غيابات
+                            </div>
+                        </div>
+                        <div class="card-footer text-end">
+                            <a href="parent_attendance.html" class="btn btn-link btn-sm">عرض تفاصيل الحضور</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/all.min.js"></script>
+</body>
+</html>

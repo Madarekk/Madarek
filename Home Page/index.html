@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Madarek</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Cairo&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- هيدر شفاف وعصري -->
+    <header class="header-modern">
+        <div class="logo-arabic">مدارك</div>
+        <nav>
+            <ul>
+                <li><a href="#" class="active">الرئيسية</a></li>
+                <li><a href="#about">عن المنصة</a></li>
+                <li><a href="#services">الخدمات</a></li>
+                <li><a href="#gallery">المعرض</a></li>
+
+                <li><a href="#contact">تواصل معنا</a></li>
+            </ul>
+        </nav>
+        <a href="#contact" class="header-cta-btn">ابدأ الآن</a>
+    </header>
+
+    <!-- قسم رئيسي (Hero) -->
+    <section class="hero-section">
+        <div class="hero-bg-img"></div>
+        <div class="hero-content">
+            <h1>ارتقِ بتجربتك التعليمية مع مدارك</h1>
+            <p>نظام متكامل لتسهيل العمليات المدرسية، يعزز التواصل بين الجميع ويوفر تجربة تعليمية متطورة</p>
+            <a href="#about" class="cta-btn">اكتشف المزيد</a>
+        </div>
+    </section>
+
+    <!-- قسم تعريفي متداخل (يمين صورة - يسار نص) -->
+    <section id="about" class="about-section alt-layout">
+        <div class="about-img" style="background-image:url('https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80');"></div>
+        <div class="about-text">
+            <h2>من نحن؟</h2>
+            <p>منصة رقمية تهدف إلى تحسين إدارة المدارس من خلال أتمتة العمليات الأكاديمية والإدارية وتعزيز التواصل بين جميع الأطراف في بيئة تعليمية منظمة وآمنة.</p>
+            <a href="#services" class="cta-btn small">خدماتنا</a>
+        </div>
+    </section>
+
+    <!-- قسم تعريفي متداخل (يمين نص - يسار صورة) -->
+    <section class="about-section">
+        <div class="about-text">
+            <h2>لماذا مدارك؟</h2>
+            <p>نقدم حلولاً متطورة لإدارة التعليم، تسهّل التواصل، وتمنحك تحكمًا كاملاً في رحلتك التعليمية.</p>
+        </div>
+        <div class="about-img" style="background-image:url('https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=600&q=80');"></div>
+    </section>
+
+    <!-- بطاقات الخدمات/المميزات -->
+    <section id="services" class="services-section">
+        <h2>خدماتنا</h2>
+        <div class="services-cards">
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1503676382389-4809596d5290?auto=format&fit=crop&w=400&q=80" alt="دروس تفاعلية">
+                <h3>الخدمات الإدارية</h3>
+                <p>إدارة بيانات الطلاب والمعلمين: تنظيم شامل لملفات الطلاب والمعلمين مع إمكانية التعديل والمتابعة بسهولة.</p>
+                <p>متابعة الحضور والانصراف</p>
+                <p>تنظيم الجداول الدراسية</p>
+            </div>
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80" alt="تقارير متقدمة">
+                <h3>الخدمات التعليمية</h3>
+                <p>نشر المحتوى التعليمي</p>
+                <p>الواجبات والاختبارات الإلكترونية</p>
+                <p>تقارير الأداء الأكاديمي</p>
+            </div>
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80" alt="مجتمع داعم">
+                <h3>خدمات التواصل</h3>
+                <p>نظام رسائل داخلي</p>
+                <p>إشعارات فورية</p>
+                <p>الإعلانات المدرسية</p>
+            </div>
+            <div class="service-card">
+                <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80" alt="مجتمع داعم">
+                <h3>خدمات التقارير والتحليل</h3>
+                <p>لوحات تحكم ذكية</p>
+                <p>تقارير مفصلة</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- معرض صور عصري -->
+    <section id="gallery" class="gallery-section">
+        <h2>المعرض</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item" style="background-image:url('images/sadeka\ 1.jpg');" title="Sadeka 1"></div>
+            <div class="gallery-item" style="background-image:url('images/sadeka\ 2.jpg');" title="Sadeka 2"></div>
+            <div class="gallery-item" style="background-image:url('images/sadeka\ 3.jpg');" title="Sadeka 3"></div>
+            <div class="gallery-item" style="background-image:url('images/jerry-wang-jfnUC7s3iuw-unsplash.jpg');" title="طفل يرفع يده في الفصل (صورة بديلة)"></div>
+            <div class="gallery-item" style="background-image:url('images/annie-spratt-ORDz1m1-q0I-unsplash.jpg');" title="أطفال يلعبون في الروضة"></div>
+            <div class="gallery-item" style="background-image:url('images/pexels-bhupindra-international-public-school-440721663-31864451.jpg');" title="طفل صغير يصنع أعمال يدوية"></div>
+        </div>
+    </section>
+
+
+    <!-- دعوة أخيرة -->
+    <section class="cta-final-section">
+        <h2>انضم إلى مدارك وابدأ رحلتك الآن</h2>
+        <a href="#contact" class="cta-btn">سجل مجانًا</a>
+    </section>
+
+    <!-- تذييل غني -->
+    <footer class="footer-section">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#about">عن المنصة</a>
+                <a href="#services">الخدمات</a>
+                <a href="#gallery">المعرض</a>
+
+                <a href="#contact">تواصل معنا</a>
+            </div>
+            <div class="footer-social">
+                <span>تابعنا:</span>
+                <a href="#">فيسبوك</a>
+                <a href="#">تويتر</a>
+                <a href="#">انستجرام</a>
+            </div>
+            <div class="footer-copy">جميع الحقوق محفوظة &copy; مدارك 2025</div>
+        </div>
+    </footer>
+</body>
+    
+    <main>
+        <section class="cards">
+            <div class="card">
+                <h3>الطلاب</h3>
+                <p>إدارة بيانات الطلاب، التسجيل، والبحث.</p>
+            </div>
+            <div class="card">
+                <h3>المعلمين</h3>
+                <p>معلومات المعلمين وجدولة الحصص.</p>
+            </div>
+            <div class="card">
+                <h3>الصفوف</h3>
+                <p>تنظيم الصفوف والجداول الدراسية.</p>
+            </div>
+            <div class="card">
+                <h3>التقارير</h3>
+                <p>عرض تقارير الأداء والحضور.</p>
+            </div>
+        </section>
+        <section class="about-section">
+            <h2>عن مدارك</h2>
+            <p>منصة "مدارِك" هي منصة إلكترونية متكاملة صُممت لخدمة المدارس والإداريين والمعلمين وأولياء الأمور، وتهدف إلى تسهيل الإدارة المدرسية وتعزيز التواصل داخل البيئة التعليمية. تقدم "مدارِك" حلولاً فعّالة لتنظيم الدراسة، متابعة أداء الطلاب، والتواصل المباشر بين أولياء الأمور والمعلمين، مما يساهم في خلق بيئة تعليمية أكثر تفاعلاً ووضوحًا.</p>
+        </section>
+        <!-- قسم المميزات -->
+        <section class="features-section">
+            <h2 class="section-title">مميزات المنصة</h2>
+            <div class="features-list">
+                <div class="feature-item">
+                    <span class="feature-icon">✅</span>
+                    <div>
+                        <h4>إدارة الجداول بسهولة</h4>
+                        <p>تنظيم الجداول الدراسية والصفوف بكل مرونة ووضوح.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">📊</span>
+                    <div>
+                        <h4>تقارير فورية عن الأداء</h4>
+                        <p>متابعة أداء الطلاب والمعلمين من خلال تقارير دقيقة وفورية.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">💬</span>
+                    <div>
+                        <h4>تواصل مباشر وسهل</h4>
+                        <p>تسهيل التواصل بين الإدارة، المعلمين، وأولياء الأمور عبر المنصة.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">🛡️</span>
+                    <div>
+                        <h4>أمان وخصوصية عالية</h4>
+                        <p>حماية بيانات المستخدمين وضمان سرية المعلومات.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- قسم الأسئلة الشائعة -->
+        <section class="faq-section">
+            <h2 class="section-title">الأسئلة الشائعة</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <h4>ما هي منصة مدارِك؟</h4>
+                    <p>مدارِك هي منصة إلكترونية متكاملة لإدارة المدارس وتسهيل التواصل بين جميع الأطراف التعليمية.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>من يمكنه استخدام المنصة؟</h4>
+                    <p>المنصة متاحة للإداريين، المعلمين، الطلاب، وأولياء الأمور.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>هل بياناتي آمنة على المنصة؟</h4>
+                    <p>نعم، نولي أهمية كبيرة لأمان وخصوصية بيانات جميع المستخدمين.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>كيف يمكنني التواصل مع الدعم الفني؟</h4>
+                    <p>يمكنك التواصل مع فريق الدعم الفني عبر نموذج التواصل في المنصة أو البريد الإلكتروني.</p>
+                </div>
+            </div>
+        </section>
+        <section class="partners-section">
+            <h2>شركاؤنا</h2>
+            <div class="partners-logos">
+                <img src="https://dummyimage.com/80x40/2d3e50/fff&text=شريك+1" alt="شريك 1">
+                <img src="https://dummyimage.com/80x40/f9d342/2d3e50&text=شريك+2" alt="شريك 2">
+                <img src="https://dummyimage.com/80x40/2d3e50/fff&text=شريك+3" alt="شريك 3">
+            </div>
+        </section>
+    </main>
+    <!-- Newsletter Signup Section -->
+    <section class="newsletter-footer">
+      <div class="newsletter-container">
+        <h2>اشترك في النشرة البريدية</h2>
+        <p>ادخل بريدك الإلكتروني ليصلك كل جديد من الأخبار والتحديثات.</p>
+        <form id="newsletter-form">
+          <input type="email" id="newsletter-email" placeholder="البريد الإلكتروني" required>
+          <button type="submit">اشتراك</button>
+        </form>
+        <div id="newsletter-message" class="newsletter-message"></div>
+      </div>
+    </section>
+    <footer>
+        جميع الحقوق محفوظة &copy; 2025 مدارك
+    </footer>
+</body>
+</html>

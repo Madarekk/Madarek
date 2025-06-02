@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول - مدارِك</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        tailwind.config = {
+            content: ["./*.html"],
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'arabic': ['Tajawal', 'Arial', 'sans-serif']
+                    },
+                    colors: {
+                        'primary': '#4F46E5', // indigo-600 (new primary color)
+                        // Kept old secondary and accent if they are used elsewhere,
+                        // but login page primarily uses indigo/purple.
+                        'secondary': '#059669', 
+                        'accent': '#0891b2'
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Favicon (example using the provided logo) -->
+    <link rel="icon" href="https://r2.flowith.net/files/o/1748451765656-Modern_Logo_Design_for_Madarek_School_Management_Platform_index_0@1024x1024.png" type="image/png">
+</head>
+<body class="font-arabic bg-gray-50">
+
+    <div class="min-h-screen flex flex-col md:flex-row">
+        <!-- Left Panel (Branding) - Visible on medium screens and up -->
+        <div class="md:w-1/2 lg:w-2/5 bg-gradient-to-br from-indigo-600 to-purple-700 text-white p-8 md:p-12 flex flex-col justify-center items-center relative overflow-hidden">
+            <!-- Decorative abstract shapes -->
+            <div class="absolute top-0 left-0 w-48 h-48 md:w-64 md:h-64 bg-white/5 rounded-full -translate-x-1/3 -translate-y-1/3 opacity-50"></div>
+            <div class="absolute bottom-0 right-0 w-48 h-48 md:w-72 md:h-72 bg-white/5 rounded-full translate-x-1/4 translate-y-1/4 opacity-50"></div>
+            
+            <div class="text-center z-10 relative">
+                 <!-- Logo - Backend Note: Ensure this path is updated if logo is hosted locally -->
+                <img src="https://r2.flowith.net/files/o/1748451765656-Modern_Logo_Design_for_Madarek_School_Management_Platform_index_0@1024x1024.png" alt="شعار مدارك" class="w-32 h-32 md:w-40 md:h-40 mx-auto mb-6 object-contain rounded-full shadow-lg">
+                <h1 class="text-4xl md:text-5xl font-bold mb-3">مــدارك</h1>
+                <p class="text-lg md:text-xl text-indigo-200">نظام إدارة التعلم الشامل</p>
+            </div>
+        </div>
+
+        <!-- Right Panel (Login Form) -->
+        <div class="w-full md:w-1/2 lg:w-3/5 flex items-center justify-center p-6 sm:p-8 md:p-12 bg-white">
+            <div class="w-full max-w-md">
+                <div class="text-center md:hidden mb-8"> <!-- Logo for mobile, hidden on md+ -->
+                     <img src="https://r2.flowith.net/files/o/1748451765656-Modern_Logo_Design_for_Madarek_School_Management_Platform_index_0@1024x1024.png" alt="شعار مدارك" class="w-24 h-24 mx-auto mb-4 object-contain rounded-full">
+                     <h1 class="text-3xl font-bold text-gray-800">مــدارك</h1>
+                </div>
+
+                <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-8 text-center">تسجيل الدخول</h2>
+                
+                <!-- Form Start - Backend developers: Form will submit to 'login.php' (example) with POST method -->
+                <form id="loginForm" method="POST" action="login.php" class="space-y-6">
+                    
+                    <!-- User ID Field - Backend: field name is 'user_id' -->
+                    <div class="form-field-container">
+                        <label for="user_id" class="block text-sm font-medium text-gray-700 mb-1">معرف المستخدم</label>
+                        <div class="relative">
+                          <span class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-gray-400">
+                            <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                              <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+                            </svg>
+                          </span>
+                          <input 
+                              type="text" 
+                              id="user_id" 
+                              name="user_id" 
+                              required 
+                              class="w-full pr-10 pl-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200"
+                              placeholder="أدخل معرف المستخدم"
+                          >
+                        </div>
+                        <div class="error-message hidden text-red-600 text-sm mt-1"></div>
+                    </div>
+
+                    <!-- Password Field - Backend: field name is 'password' -->
+                    <div class="form-field-container">
+                        <label for="password" class="block text-sm font-medium text-gray-700 mb-1">كلمة المرور</label>
+                        <div class="relative">
+                            <span class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-gray-400">
+                                 <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M18 8a6 6 0 01-7.743 5.743L10 14l-0.743-0.257A6 6 0 1118 8zM10 6a2 2 0 100 4 2 2 0 000-4z" clip-rule="evenodd" />
+                                </svg>
+                            </span>
+                            <input 
+                                type="password" 
+                                id="password" 
+                                name="password" 
+                                required 
+                                class="w-full pr-10 pl-10 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200"
+                                placeholder="أدخل كلمة المرور"
+                            >
+                            <button 
+                                type="button" 
+                                id="togglePassword" 
+                                class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 focus:outline-none"
+                                aria-label="إظهار / إخفاء كلمة المرور"
+                            >
+                                <svg id="eyeIconOpen" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                </svg>
+                                <svg id="eyeIconClosed" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L3 3m6.878 6.878L12 12m3.878-3.878L21 21"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="error-message hidden text-red-600 text-sm mt-1"></div>
+                    </div>
+
+                    <!-- Role Selection - Backend: field name is 'user_role' with specific values -->
+                    <div class="form-field-container">
+                        <label for="user_role" class="block text-sm font-medium text-gray-700 mb-1">اختيار الدور</label>
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+                                <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                   <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                </svg>
+                            </span>
+                            <select 
+                                id="user_role" 
+                                name="user_role" 
+                                required 
+                                class="w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 bg-white appearance-none"
+                            >
+                                <option value="">اختر الدور</option>
+                                <option value="director">المدير</option>
+                                <option value="admin">الإداري</option>
+                                <option value="teacher">المعلم</option>
+                                <option value="external_teacher">معلم خارجي</option>
+                                <option value="student">الطالب</option>
+                                <option value="parent">ولي الأمر</option>
+                            </select>
+                        </div>
+                        <div class="error-message hidden text-red-600 text-sm mt-1"></div>
+                    </div>
+
+                    <!-- Remember Me & Forgot Password -->
+                    <div class="flex items-center justify-between text-sm">
+                        <div class="flex items-center">
+                            <input 
+                                type="checkbox" 
+                                id="remember_me" 
+                                name="remember_me" 
+                                class="ml-2 h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                            >
+                            <label for="remember_me" class="text-gray-700">تذكرني</label>
+                        </div>
+                        <a href="forgot-password.html" class="font-medium text-indigo-600 hover:text-indigo-800 transition-colors duration-200">
+                            نسيت كلمة المرور؟
+                        </a>
+                    </div>
+
+                    <!-- Login Button -->
+                    <button 
+                        type="submit" 
+                        id="loginBtn"
+                        class="w-full bg-gradient-to-r from-indigo-600 to-purple-700 hover:from-indigo-700 hover:to-purple-800 text-white py-3 px-6 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all duration-300 ease-in-out font-semibold text-lg shadow-md hover:shadow-lg"
+                    >
+                        <span id="loginBtnText">تسجيل الدخول</span>
+                        <span id="loginBtnLoader" class="hidden items-center justify-center">
+                            <svg class="animate-spin mr-2 h-5 w-5 text-white inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                            جارٍ تسجيل الدخول...
+                        </span>
+                    </button>
+                </form>
+
+                <!-- Footer -->
+                <div class="text-center mt-8 text-gray-500 text-xs sm:text-sm">
+                    <p>&copy; 2024 مدارِك. جميع الحقوق محفوظة.</p>
+                    <p class="mt-1">تحتاج مساعدة؟ <a href="contact.html" class="text-indigo-600 hover:text-indigo-800">اتصل بالدعم الفني</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success/Error Modal -->
+    <div id="messageModal" class="fixed inset-0 bg-black bg-opacity-60 hidden items-center justify-center z-50 p-4 transition-opacity duration-300">
+        <div class="bg-white rounded-xl p-6 sm:p-8 m-4 max-w-sm w-full shadow-2xl transform transition-all duration-300 scale-95 opacity-0" id="modalDialog">
+            <div class="text-center">
+                <div id="modalIconContainer" class="mx-auto mb-4 w-16 h-16 rounded-full flex items-center justify-center text-3xl">
+                    <!-- Icon (SVG) will be inserted here by JS -->
+                </div>
+                <h3 id="modalTitle" class="text-xl font-semibold text-gray-800 mb-2"></h3>
+                <p id="modalMessage" class="text-gray-600 mb-6 text-sm sm:text-base"></p>
+                <button 
+                    onclick="closeModal()" 
+                    class="w-full bg-primary text-white py-2.5 px-4 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 transition-colors duration-200"
+                >
+                    حسناً
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

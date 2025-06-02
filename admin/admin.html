@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ادمن</title>
+  <link rel="stylesheet" href="../parent/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../parent/css/all.min.css" />
+  <link rel="stylesheet" href="admin.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- الشريط الجانبي للأدمن -->
+  <aside class="admin-sidebar d-flex flex-column">
+    <h2>لوحة تحكم الأدمن</h2>
+    <ul>
+      <li><a href="admin.html"><i class="fa fa-home me-2"></i>لوحة المعلومات</a></li>
+      <li><a href="ادارة الطلاب.html"><i class="fa fa-users me-2"></i>إدارة الطلاب</a></li>
+      <li><a href="ادارة المعلمين.html"><i class="fa fa-chalkboard-teacher me-2"></i>إدارة المعلمين</a></li>
+      <li><a href="#"><i class="fa fa-calendar-check me-2"></i>الحضور والانصراف</a></li>
+      <li><a href="الجداول الدراسية.html"><i class="fa fa-calendar-alt me-2"></i>الجداول الدراسية</a></li>
+      <li><a href="المحتوى والاختبارات.html"><i class="fa fa-book me-2"></i>المحتوى والاختبارات</a></li>
+      <li><a href="التقارير والاحصائيات.html"><i class="fa fa-chart-bar me-2"></i>التقارير والإحصائيات</a></li>
+      <li><a href="اعدادات النظام.html"><i class="fa fa-cog me-2"></i>إعدادات النظام</a></li>
+    </ul>
+  </aside>
+
+  <!-- الهيدر للأدمن -->
+  <header class="admin-header">
+    <span class="admin-title">مدارك - لوحة تحكم الأدمن</span>
+    <div class="admin-header-right">
+      <!-- أيقونة الإشعارات -->
+      <button class="btn btn-link position-relative p-0 me-2" aria-label="الإشعارات">
+        <i class="fa-regular fa-bell fa-lg text-primary"></i>
+        <span class="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-danger" style="font-size:0.7rem;">
+          3
+        </span>
+      </button>
+      <button class="btn btn-link position-relative p-0 me-2" aria-label="الرسائل">
+        <i class="fa-regular fa-envelope fa-lg text-primary"></i>
+        <span class="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-success" style="font-size:0.7rem;">
+          2
+        </span>
+      </button>
+      <!-- User Dropdown -->
+      <div class="dropdown admin-user-dropdown">
+        <a href="#" class="admin-user dropdown-toggle d-flex align-items-center" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="fa-solid fa-user fa-lg text-primary"></i> <span class="ms-1"></span>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end text-end" aria-labelledby="userDropdown">
+          <li><a class="dropdown-item" href="#">الملف الشخصي</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item text-danger" href="#">تسجيل الخروج</a></li>
+        </ul>
+      </div>
+      <span class="admin-user d-none d-md-inline"></span>
+    </div>
+  </header>
+
+  <!-- محتوى الأدمن -->
+  <main class="admin-main">
+    <div class="container-fluid">
+      <h1 class="mb-4">لوحة تحكم الأدمن</h1>
+      <div class="row mb-4">
+        <!-- كارت الطلاب -->
+        <div class="col-md-3 mb-3">
+          <div class="card text-center border-info">
+            <div class="card-body">
+              <i class="fa fa-users fa-2x text-info mb-2"></i>
+              <h5 class="card-title">عدد الطلاب</h5>
+              <p class="card-text fs-3">120</p>
+              <a href="ادارة الطلاب.html" class="btn btn-outline-info btn-sm mt-2 w-100">إدارة الطلاب</a>
+            </div>
+          </div>
+        </div>
+        <!-- كارت المعلمين -->
+        <div class="col-md-3 mb-3">
+          <div class="card text-center border-success">
+            <div class="card-body">
+              <i class="fa fa-chalkboard-teacher fa-2x text-success mb-2"></i>
+              <h5 class="card-title">عدد المعلمين</h5>
+              <p class="card-text fs-3">15</p>
+              <a href="ادارة المعلمين.html" class="btn btn-outline-success btn-sm mt-2 w-100">إدارة المعلمين</a>
+            </div>
+          </div>
+        </div>
+        <!-- كارت الجداول الدراسية -->
+        <div class="col-md-3 mb-3">
+          <div class="card text-center border-warning">
+            <div class="card-body">
+              <i class="fa fa-calendar-alt fa-2x text-warning mb-2"></i>
+              <h5 class="card-title">الجداول الدراسية</h5>
+              <p class="card-text fs-3">6</p>
+              <a href="الجداول الدراسية.html" class="btn btn-outline-warning btn-sm mt-2 w-100">إدارة الجداول</a>
+            </div>
+          </div>
+        </div>
+        <!-- كارت المحتوى والاختبارات -->
+         <div class="col-md-3 mb-3">
+          <div class="card text-center border-danger">
+            <div class="card-body">
+              <i class="fa fa-book fa-2x text-danger mb-2"></i>
+              <h5 class="card-title">المحتوى والاختبارات</h5>
+              <p class="card-text fs-3">100</p>
+              <a href="الجداول الدراسية.html" class="btn btn-outline-danger btn-sm mt-2 w-100">إدارة الجداول</a>
+            </div>
+          </div>
+        </div>
+
+    
+
+
+      <div class="row mb-4">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header bg-primary text-white">آخر الطلاب المسجلين</div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">محمد علي</li>
+              <li class="list-group-item">سارة أحمد</li>
+              <li class="list-group-item">خالد يوسف</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header bg-success text-white">آخر الرسائل</div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">رسالة من ولي أمر الطالب أحمد</li>
+              <li class="list-group-item">استفسار من المعلم فاطمة</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="card mt-4">
+        <div class="card-header bg-info text-white">تنبيهات هامة</div>
+        <div class="card-body">
+          <ul>
+            <li>يرجى مراجعة تقارير الحضور اليومي.</li>
+            <li>تحديث بيانات الطلاب قبل نهاية الأسبوع.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- زر القائمة الجانبية للجوال -->
+  <button class="btn btn-primary d-lg-none position-fixed top-0 end-0 m-3 z-3" type="button" id="sidebarToggle">
+    <i class="fa-solid fa-bars"></i>
+  </button>
+
+  <script src="../parent/js/bootstrap.bundle.min.js"></script>
+  <script src="../parent/js/all.min.js"></script>
+  <script>
+    // كود التبديل الجانبي
+    document.getElementById('sidebarToggle').onclick = function() {
+      document.querySelector('.admin-sidebar').classList.toggle('show');
+      document.body.classList.toggle('sidebar-open');
+    };
+  </script>
+</body>
+</html>

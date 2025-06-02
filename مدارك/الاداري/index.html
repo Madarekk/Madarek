@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام مدارك - لوحة تحكم الإداري</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'arabic': ['Cairo', 'Tajawal', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 font-arabic">
+    <!-- Header -->
+    <header class="bg-white shadow-md border-b border-gray-200 fixed w-full top-0 z-50">
+        <div class="flex items-center justify-between px-6 py-4">
+            <!-- Logo and Title -->
+            <div class="flex items-center space-x-reverse space-x-4">
+                <button id="sidebarToggle" class="text-gray-600 hover:text-gray-800 lg:hidden">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+                <div class="flex items-center space-x-reverse space-x-3">
+                    <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-graduation-cap text-white text-lg"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold text-gray-800">مدارك</h1>
+                        <p class="text-sm text-gray-500">نظام إدارة المدارس</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Header Actions -->
+            <div class="flex items-center space-x-reverse space-x-4">
+                <!-- Notifications -->
+                <div class="relative">
+                    <button class="p-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-lg transition-colors">
+                        <i class="fas fa-bell text-lg"></i>
+                        <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">3</span>
+                    </button>
+                </div>
+
+                <!-- Messages -->
+                <div class="relative">
+                    <button class="p-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-lg transition-colors">
+                        <i class="fas fa-envelope text-lg"></i>
+                        <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">2</span>
+                    </button>
+                </div>
+
+                <!-- User Profile -->
+                <div class="relative">
+                    <button id="userMenuToggle" class="flex items-center space-x-reverse space-x-2 p-2 hover:bg-gray-100 rounded-lg transition-colors">
+                        <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
+                            <span class="text-white text-sm font-medium">أ</span>
+                        </div>
+                        <span class="text-gray-700 font-medium">أحمد الإداري</span>
+                        <i class="fas fa-chevron-down text-gray-500 text-sm"></i>
+                    </button>
+                    
+                    <!-- User Dropdown -->
+                    <div id="userDropdown" class="hidden absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2">
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 transition-colors">
+                            <i class="fas fa-user ml-2"></i>
+                            الملف الشخصي
+                        </a>
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 transition-colors">
+                            <i class="fas fa-cog ml-2"></i>
+                            الإعدادات
+                        </a>
+                        <hr class="my-2">
+                        <a href="login.html" class="block px-4 py-2 text-red-600 hover:bg-red-50 transition-colors">
+                            <i class="fas fa-sign-out-alt ml-2"></i>
+                            تسجيل الخروج
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <aside id="sidebar" class="fixed right-0 top-0 h-full w-64 bg-white shadow-lg border-l border-gray-200 z-40 transform transition-transform duration-300 lg:translate-x-0">
+        <div class="pt-20 pb-4 px-4">
+            <!-- Navigation Menu -->
+            <nav class="space-y-2">
+                <a href="index.html" class="flex items-center space-x-reverse space-x-3 px-4 py-3 text-blue-600 bg-blue-50 border-r-4 border-blue-600 rounded-l-lg font-medium">
+                    <i class="fas fa-home text-lg"></i>
+                    <span>لوحة المعلومات</span>
+                </a>
+                
+                <a href="students.html" class="flex items-center space-x-reverse space-x-3 px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-colors">
+                    <i class="fas fa-user-graduate text-lg"></i>
+                    <span>إدارة التسجيلات</span>
+                </a>
+                
+                <a href="teachers.html" class="flex items-center space-x-reverse space-x-3 px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-colors">
+                    <i class="fas fa-chalkboard-teacher text-lg"></i>
+                    <span>إدارة المعلمين</span>
+                </a>
+                
+                <a href="attendance.html" class="flex items-center space-x-reverse space-x-3 px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-colors">
+                    <i class="fas fa-calendar-check text-lg"></i>
+                    <span>الحضور والانصراف</span>
+                </a>
+                
+                <a href="payments.html" class="flex items-center space-x-reverse space-x-3 px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-colors">
+                    <i class="fas fa-money-bill-wave text-lg"></i>
+                    <span>إدارة الرسوم</span>
+                </a>
+                
+                <a href="communication.html" class="flex items-center space-x-reverse space-x-3 px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-colors">
+                    <i class="fas fa-comments text-lg"></i>
+                    <span>التواصل</span>
+                </a>
+                
+                <a href="reports.html" class="flex items-center space-x-reverse space-x-3 px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-colors">
+                    <i class="fas fa-chart-bar text-lg"></i>
+                    <span>التقارير الأساسية</span>
+                </a>
+            </nav>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="lg:mr-64 pt-20 min-h-screen">
+        <div class="p-6">
+            <!-- Page Header -->
+            <div class="mb-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-2">لوحة المعلومات</h2>
+                <p class="text-gray-600">نظرة عامة على العمليات الإدارية اليومية</p>
+            </div>
+
+            <!-- Quick Stats Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <!-- Today's Registrations -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-600 text-sm font-medium">التسجيلات اليوم</p>
+                            <p class="text-3xl font-bold text-blue-600 mt-2">5</p>
+                        </div>
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-user-plus text-blue-600 text-xl"></i>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <a href="students.html" class="text-blue-600 text-sm font-medium hover:text-blue-700">عرض التفاصيل →</a>
+                    </div>
+                </div>
+
+                <!-- Today's Payments -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-600 text-sm font-medium">المدفوعات اليوم</p>
+                            <p class="text-3xl font-bold text-green-600 mt-2">12</p>
+                        </div>
+                        <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-dollar-sign text-green-600 text-xl"></i>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <a href="payments.html" class="text-green-600 text-sm font-medium hover:text-green-700">عرض التفاصيل →</a>
+                    </div>
+                </div>
+
+                <!-- Today's Absences -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-600 text-sm font-medium">الغياب اليوم</p>
+                            <p class="text-3xl font-bold text-red-600 mt-2">8</p>
+                        </div>
+                        <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-user-times text-red-600 text-xl"></i>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <a href="attendance.html" class="text-red-600 text-sm font-medium hover:text-red-700">عرض التفاصيل →</a>
+                    </div>
+                </div>
+
+                <!-- Pending Messages -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-600 text-sm font-medium">الرسائل المعلقة</p>
+                            <p class="text-3xl font-bold text-purple-600 mt-2">3</p>
+                        </div>
+                        <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-envelope text-purple-600 text-xl"></i>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <a href="communication.html" class="text-purple-600 text-sm font-medium hover:text-purple-700">عرض التفاصيل →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activities -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Recent Registrations -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="text-lg font-semibold text-gray-800">آخر التسجيلات</h3>
+                        <a href="students.html" class="text-blue-600 text-sm font-medium hover:text-blue-700">عرض الكل</a>
+                    </div>
+<div class="space-y-4">
+                        <div class="flex items-center space-x-reverse space-x-4 p-4 border border-gray-100 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">
+                            <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-user text-blue-600"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-medium text-gray-800">محمد أحمد علي</h4>
+                                <p class="text-sm text-gray-600">الصف السادس أ - منذ ساعتين</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-reverse space-x-4 p-4 border border-gray-100 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">
+                            <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-user text-green-600"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-medium text-gray-800">فاطمة محمد سالم</h4>
+                                <p class="text-sm text-gray-600">الصف الثالث ب - منذ 3 ساعات</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-reverse space-x-4 p-4 border border-gray-100 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">
+                            <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-user text-purple-600"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-medium text-gray-800">عبدالله سعد الغامدي</h4>
+                                <p class="text-sm text-gray-600">الصف الأول أ - منذ 4 ساعات</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Messages -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="text-lg font-semibold text-gray-800">آخر الرسائل</h3>
+                        <a href="communication.html" class="text-blue-600 text-sm font-medium hover:text-blue-700">عرض الكل</a>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-reverse space-x-4 p-4 border border-gray-100 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">
+                            <div class="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-user-tie text-orange-600"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-medium text-gray-800">أحمد الأستاذ</h4>
+                                <p class="text-sm text-gray-600 mt-1">استفسار حول جدول الحصص الجديد</p>
+                                <p class="text-xs text-gray-500 mt-2">منذ 30 دقيقة</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-reverse space-x-4 p-4 border border-gray-100 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">
+                            <div class="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-user text-pink-600"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-medium text-gray-800">سعاد ولي أمر</h4>
+                                <p class="text-sm text-gray-600 mt-1">طلب تحديث بيانات الطالب</p>
+                                <p class="text-xs text-gray-500 mt-2">منذ ساعة</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-reverse space-x-4 p-4 border border-gray-100 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">
+                            <div class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-user text-indigo-600"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-medium text-gray-800">خالد ولي أمر</h4>
+                                <p class="text-sm text-gray-600 mt-1">استفسار حول الرسوم الدراسية</p>
+                                <p class="text-xs text-gray-500 mt-2">منذ ساعتين</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Sidebar Overlay for Mobile -->
+    <div id="sidebarOverlay" class="fixed inset-0 bg-black bg-opacity-50 z-30 lg:hidden hidden"></div>
+
+    <!-- Scripts -->
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/dashboard.js"></script>
+</body>
+</html>

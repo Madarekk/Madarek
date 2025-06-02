@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الملف الشخصي - مدارِك</title>
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        tailwind.config = {
+            content: ["./*.html"],
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'arabic': ['Tajawal', 'Arial', 'sans-serif']
+                    },
+                    colors: {
+                        'primary': '#059669',
+                        'primary-dark': '#047857',
+                        'secondary': '#4F46E5',
+                        'secondary-dark': '#4338CA',
+                        'accent': '#0891b2',
+                        'background': '#f9fafb',
+                        'card': '#ffffff',
+                        'text-primary': '#1f2937',
+                        'text-secondary': '#6b7280',
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="icon" href="https://r2.flowith.net/files/o/1748451765656-Modern_Logo_Design_for_Madarek_School_Management_Platform_index_0@1024x1024.png" type="image/png">
+</head>
+<body class="font-arabic bg-background text-text-primary">
+    <div class="flex h-screen">
+        <!-- Sidebar (Copied from index.html) -->
+        <nav class="hidden lg:flex lg:flex-shrink-0 bg-card border-l border-gray-200 shadow-md">
+            <div class="flex flex-col w-64">
+                <div class="flex items-center justify-center h-16 border-b border-gray-200 px-4">
+                    <img src="https://r2.flowith.net/files/o/1748451765656-Modern_Logo_Design_for_Madarek_School_Management_Platform_index_0@1024x1024.png" alt="مدارك" class="h-10 w-auto rounded-full">
+                    <span class="mr-3 text-xl font-bold text-primary">مدارِك</span>
+                </div>
+                <div class="flex-grow mt-5 overflow-y-auto">
+                    <nav class="px-3">
+                        <ul class="space-y-1.5">
+                            <li><a href="index.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="layout-dashboard" class="ml-3 h-5 w-5"></i>لوحة التحكم</a></li>
+                            <li><a href="subjects.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="book-open" class="ml-3 h-5 w-5"></i>المواد الدراسية</a></li>
+                            <li><a href="students.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="users" class="ml-3 h-5 w-5"></i>الطلاب</a></li>
+                            <li><a href="grades.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="graduation-cap" class="ml-3 h-5 w-5"></i>الدرجات والتقييمات</a></li>
+                            <li><a href="lessons.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="file-text" class="ml-3 h-5 w-5"></i>الدروس</a></li>
+                            <li><a href="discussions.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="message-circle" class="ml-3 h-5 w-5"></i>النقاشات</a></li>
+                            <li><a href="parent_messages.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="mail" class="ml-3 h-5 w-5"></i>رسائل أولياء الأمور</a></li>
+                            <li><a href="timetable.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="calendar-days" class="ml-3 h-5 w-5"></i>الجدول الدراسي</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </nav>
+
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <!-- Header (Copied from index.html) -->
+             <header class="bg-card shadow-sm border-b border-gray-200 sticky top-0 z-30">
+                <div class="mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex justify-between h-16">
+                        <div class="flex items-center lg:hidden">
+                            <button id="mobileMenuButton" class="p-2 text-gray-500 hover:text-gray-700">
+                                <i data-lucide="menu" class="h-6 w-6"></i>
+                            </button>
+                        </div>
+                        <div class="flex-1 flex justify-end items-center space-x-4 space-x-reverse">
+                             <button title="الإشعارات" class="p-2 text-gray-500 hover:text-gray-700 relative rounded-full hover:bg-gray-100">
+                                <i data-lucide="bell" class="h-6 w-6"></i>
+                                <span class="absolute top-1 right-1 block h-2.5 w-2.5 rounded-full bg-red-500 ring-2 ring-card"></span>
+                            </button>
+                            <div class="relative">
+                                <button id="userMenuButton" class="flex items-center text-sm rounded-full focus:outline-none">
+                                    <div class="h-9 w-9 rounded-full bg-primary text-white flex items-center justify-center text-sm font-medium">أ</div>
+                                    <span class="mr-2 text-text-primary hidden sm:block">أحمد المعلم</span>
+                                    <i data-lucide="chevron-down" class="w-4 h-4 mr-1 text-gray-500 hidden sm:block"></i>
+                                </button>
+                                <div id="userMenu" class="hidden absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-card ring-1 ring-black ring-opacity-5 z-50">
+                                    <div class="py-1">
+                                        <a href="profile.html" class="block px-4 py-2 text-sm text-text-primary hover:bg-gray-100">الملف الشخصي</a>
+                                        <div class="border-t border-gray-100"></div>
+                                        <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-red-50">تسجيل الخروج</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Mobile Menu Overlay (Copied from index.html) -->
+             <div id="mobileMenuOverlay" class="fixed inset-0 z-40 lg:hidden hidden">
+                <div class="fixed inset-0 bg-gray-600 bg-opacity-75" aria-hidden="true"></div>
+                <nav class="fixed top-0 right-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 bg-card shadow-xl overflow-y-auto">
+                    <div class="px-4 pb-4 flex items-center justify-between border-b">
+                       <div class="flex items-center">
+                            <img src="https://r2.flowith.net/files/o/1748451765656-Modern_Logo_Design_for_Madarek_School_Management_Platform_index_0@1024x1024.png" alt="مدارك" class="h-8 w-auto rounded-full">
+                            <span class="mr-2 text-lg font-bold text-primary">مدارِك</span>
+                        </div>
+                        <button id="closeMobileMenuButton" class="p-2 text-gray-500 hover:text-gray-700">
+                            <i data-lucide="x" class="h-6 w-6"></i>
+                        </button>
+                    </div>
+                    <nav class="mt-5 px-4 flex-1">
+                        <ul class="space-y-1">
+                            <li><a href="index.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="layout-dashboard" class="ml-3 h-5 w-5"></i>لوحة التحكم</a></li>
+                            <li><a href="subjects.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="book-open" class="ml-3 h-5 w-5"></i>المواد الدراسية</a></li>
+                            <li><a href="students.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="users" class="ml-3 h-5 w-5"></i>الطلاب</a></li>
+                            <li><a href="grades.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="graduation-cap" class="ml-3 h-5 w-5"></i>الدرجات والتقييمات</a></li>
+                            <li><a href="lessons.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="file-text" class="ml-3 h-5 w-5"></i>الدروس</a></li>
+                            <li><a href="discussions.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="message-circle" class="ml-3 h-5 w-5"></i>النقاشات</a></li>
+                            <li><a href="parent_messages.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="mail" class="ml-3 h-5 w-5"></i>رسائل أولياء الأمور</a></li>
+                            <li><a href="timetable.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="calendar-days" class="ml-3 h-5 w-5"></i>الجدول الدراسي</a></li>
+                        </ul>
+                    </nav>
+                </nav>
+            </div>
+
+            <!-- Page content -->
+            <main class="flex-1 overflow-y-auto focus:outline-none p-6">
+                <div class="mb-6">
+                    <h1 class="text-2xl font-semibold text-text-primary">الملف الشخصي</h1>
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- Left Column: Profile Card & Basic Info -->
+                    <div class="lg:col-span-1 space-y-6">
+                        <div class="bg-card shadow-lg rounded-xl border border-gray-200 p-6 text-center">
+                            <img id="profileImage" class="h-32 w-32 rounded-full mx-auto mb-4 object-cover ring-2 ring-primary/50" src="https://ui-avatars.com/api/?name=أحمد+المعلم&background=059669&color=fff&size=128" alt="صورة الملف الشخصي">
+                            <h2 id="profileName" class="text-xl font-bold text-text-primary">أحمد المعلم</h2>
+                            <p id="profileRole" class="text-sm text-text-secondary">معلم رياضيات وعلوم</p>
+                            <input type="file" id="profileImageInput" class="hidden" accept="image/*">
+                            <button id="changeProfilePicBtn" class="mt-4 text-sm text-primary hover:text-primary-dark font-medium">تغيير الصورة</button>
+                        </div>
+
+                        <div class="bg-card shadow-lg rounded-xl border border-gray-200 p-6">
+                            <h3 class="text-lg font-medium text-text-primary border-b pb-3 mb-4">معلومات الاتصال</h3>
+                            <dl class="space-y-3">
+                                <div class="flex justify-between">
+                                    <dt class="text-sm font-medium text-text-secondary">البريد الإلكتروني</dt>
+                                    <dd id="profileEmail" class="text-sm text-text-primary">ahmed.teacher@madarek.edu</dd>
+                                </div>
+                                <div class="flex justify-between">
+                                    <dt class="text-sm font-medium text-text-secondary">رقم الهاتف</dt>
+                                    <dd id="profilePhone" class="text-sm text-text-primary">+966 501 234 567</dd>
+                                </div>
+                                 <div class="flex justify-between">
+                                    <dt class="text-sm font-medium text-text-secondary">رقم المعرف</dt>
+                                    <dd id="profileEmployeeId" class="text-sm text-text-primary">TCH-042</dd>
+                                </div>
+                            </dl>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Edit Form -->
+                    <div class="lg:col-span-2 bg-card shadow-lg rounded-xl border border-gray-200 p-6">
+                        <h3 class="text-xl font-semibold text-text-primary mb-6">تعديل معلومات الحساب</h3>
+                        <form id="profileForm" class="space-y-6">
+                            <div>
+                                <label for="fullName" class="block text-sm font-medium text-text-secondary">الاسم الكامل</label>
+                                <input type="text" name="fullName" id="fullName" value="أحمد عبدالله المعلم" class="mt-1 block w-full p-2.5 border-gray-300 rounded-lg shadow-sm focus:ring-primary focus:border-primary sm:text-sm">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-text-secondary">البريد الإلكتروني</label>
+                                <input type="email" name="email" id="email" value="ahmed.teacher@madarek.edu" class="mt-1 block w-full p-2.5 border-gray-300 rounded-lg shadow-sm focus:ring-primary focus:border-primary sm:text-sm">
+                            </div>
+                             <div>
+                                <label for="phone" class="block text-sm font-medium text-text-secondary">رقم الهاتف</label>
+                                <input type="tel" name="phone" id="phone" value="+966 501 234 567" class="mt-1 block w-full p-2.5 border-gray-300 rounded-lg shadow-sm focus:ring-primary focus:border-primary sm:text-sm">
+                            </div>
+                             <div>
+                                <label for="bio" class="block text-sm font-medium text-text-secondary">نبذة تعريفية (اختياري)</label>
+                                <textarea name="bio" id="bio" rows="3" class="mt-1 block w-full p-2.5 border-gray-300 rounded-lg shadow-sm focus:ring-primary focus:border-primary sm:text-sm" placeholder="اكتب نبذة مختصرة عنك، خبراتك، أو اهتماماتك التعليمية..."></textarea>
+                            </div>
+                            <hr class="my-6">
+                            <h4 class="text-md font-semibold text-text-primary">تغيير كلمة المرور</h4>
+                             <div>
+                                <label for="currentPassword" class="block text-sm font-medium text-text-secondary">كلمة المرور الحالية</label>
+                                <input type="password" name="currentPassword" id="currentPassword" class="mt-1 block w-full p-2.5 border-gray-300 rounded-lg shadow-sm focus:ring-primary focus:border-primary sm:text-sm">
+                            </div>
+                            <div>
+                                <label for="newPassword" class="block text-sm font-medium text-text-secondary">كلمة المرور الجديدة</label>
+                                <input type="password" name="newPassword" id="newPassword" class="mt-1 block w-full p-2.5 border-gray-300 rounded-lg shadow-sm focus:ring-primary focus:border-primary sm:text-sm">
+                            </div>
+                            <div>
+                                <label for="confirmNewPassword" class="block text-sm font-medium text-text-secondary">تأكيد كلمة المرور الجديدة</label>
+                                <input type="password" name="confirmNewPassword" id="confirmNewPassword" class="mt-1 block w-full p-2.5 border-gray-300 rounded-lg shadow-sm focus:ring-primary focus:border-primary sm:text-sm">
+                            </div>
+
+                            <div class="flex justify-end pt-2">
+                                <button type="submit" class="bg-primary hover:bg-primary-dark text-white font-medium py-2.5 px-6 rounded-lg text-sm">حفظ التغييرات</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    <script src="icons.js"></script>
+    <script type="module" src="script.js"></script>
+    <script type="module">
+        const changeProfilePicBtn = document.getElementById('changeProfilePicBtn');
+        const profileImageInput = document.getElementById('profileImageInput');
+        const profileImage = document.getElementById('profileImage');
+        const profileForm = document.getElementById('profileForm');
+
+        changeProfilePicBtn?.addEventListener('click', () => profileImageInput?.click());
+
+        profileImageInput?.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    if(profileImage) profileImage.src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        profileForm?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const formData = new FormData(profileForm);
+            const newPassword = formData.get('newPassword');
+            const confirmNewPassword = formData.get('confirmNewPassword');
+
+            if (newPassword && newPassword !== confirmNewPassword) {
+                alert('كلمتا المرور الجديدتان غير متطابقتين!');
+                return;
+            }
+            alert('تم حفظ تغييرات الملف الشخصي (محاكاة).');
+        });
+    </script>
+</body>
+</html>
+

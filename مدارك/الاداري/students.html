@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة التسجيلات - نظام مدارك</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'arabic': ['Cairo', 'Tajawal', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 font-arabic">
+    <!-- Header -->
+    <header class="bg-white shadow-md border-b border-gray-200 fixed w-full top-0 z-50">
+        <div class="flex items-center justify-between px-6 py-4">
+            <!-- Logo and Title -->
+            <div class="flex items-center space-x-reverse space-x-4">
+                <button id="sidebarToggle" class="text-gray-600 hover:text-gray-800 lg:hidden">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+                <div class="flex items-center space-x-reverse space-x-3">
+                    <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-graduation-cap text-white text-lg"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold text-gray-800">مدارك</h1>
+                        <p class="text-sm text-gray-500">نظام إدارة المدارس</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Header Actions -->
+            <div class="flex items-center space-x-reverse space-x-4">
+                <!-- Notifications -->
+                <div class="relative">
+                    <button class="p-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-lg transition-colors">
+                        <i class="fas fa-bell text-lg"></i>
+                        <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">3</span>
+                    </button>
+                </div>
+
+                <!-- Messages -->
+                <div class="relative">
+                    <button class="p-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-lg transition-colors">
+                        <i class="fas fa-envelope text-lg"></i>
+                        <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">2</span>
+                    </button>
+                </div>
+
+                <!-- User Profile -->
+                <div class="relative">
+                    <button id="userMenuToggle" class="flex items-center space-x-reverse space-x-2 p-2 hover:bg-gray-100 rounded-lg transition-colors">
+                        <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
+                            <span class="text-white text-sm font-medium">أ</span>
+                        </div>
+                        <span class="text-gray-700 font-medium">أحمد الإداري</span>
+                        <i class="fas fa-chevron-down text-gray-500 text-sm"></i>
+                    </button>
+                    
+                    <!-- User Dropdown -->
+                    <div id="userDropdown" class="hidden absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2">
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 transition-colors">
+                            <i class="fas fa-user ml-2"></i>
+                            الملف الشخصي
+                        </a>
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 transition-colors">
+                            <i class="fas fa-cog ml-2"></i>
+                            الإعدادات
+                        </a>
+                        <hr class="my-2">
+                        <a href="login.html" class="block px-4 py-2 text-red-600 hover:bg-red-50 transition-colors">
+                            <i class="fas fa-sign-out-alt ml-2"></i>
+                            تسجيل الخروج
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <aside id="sidebar" class="fixed right-0 top-0 h-full w-64 bg-white shadow-lg border-l border-gray-200 z-40 transform transition-transform duration-300 lg:translate-x-0">
+        <div class="pt-20 pb-4 px-4">
+            <!-- Navigation Menu -->
+            <nav class="space-y-2">
+                <a href="index.html" class="flex items-center space-x-reverse space-x-3 px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-colors">
+                    <i class="fas fa-home text-lg"></i>
+                    <span>لوحة المعلومات</span>
+                </a>
+                
+                <a href="students.html" class="flex items-center space-x-reverse space-x-3 px-4 py-3 text-blue-600 bg-blue-50 border-r-4 border-blue-600 rounded-l-lg font-medium">
+                    <i class="fas fa-user-graduate text-lg"></i>
+                    <span>إدارة التسجيلات</span>
+                </a>
+                
+                <a href="teachers.html" class="flex items-center space-x-reverse space-x-3 px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-colors">
+                    <i class="fas fa-chalkboard-teacher text-lg"></i>
+                    <span>إدارة المعلمين</span>
+                </a>
+                
+                <a href="attendance.html" class="flex items-center space-x-reverse space-x-3 px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-colors">
+                    <i class="fas fa-calendar-check text-lg"></i>
+                    <span>الحضور والانصراف</span>
+                </a>
+                
+                <a href="payments.html" class="flex items-center space-x-reverse space-x-3 px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-colors">
+                    <i class="fas fa-money-bill-wave text-lg"></i>
+                    <span>إدارة الرسوم</span>
+                </a>
+                
+                <a href="communication.html" class="flex items-center space-x-reverse space-x-3 px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-colors">
+                    <i class="fas fa-comments text-lg"></i>
+                    <span>التواصل</span>
+                </a>
+                
+                <a href="reports.html" class="flex items-center space-x-reverse space-x-3 px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-colors">
+                    <i class="fas fa-chart-bar text-lg"></i>
+                    <span>التقارير الأساسية</span>
+                </a>
+            </nav>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="lg:mr-64 pt-20 min-h-screen">
+        <div class="p-6">
+            <!-- Page Header -->
+            <div class="flex items-center justify-between mb-8">
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2">إدارة التسجيلات</h2>
+                    <p class="text-gray-600">إدارة تسجيل الطلاب الجدد وتحديث بيانات الطلاب الحاليين</p>
+                </div>
+                <button id="addStudentBtn" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors btn-animate">
+                    <i class="fas fa-plus ml-2"></i>
+                    تسجيل طالب جديد
+                </button>
+            </div>
+
+            <!-- Search and Filters -->
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <!-- Search -->
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">البحث</label>
+                        <div class="relative">
+                            <input type="text" id="searchInput" placeholder="ابحث بالاسم أو رقم الهوية..." 
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 pr-10">
+                            <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                                <i class="fas fa-search text-gray-400"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Class Filter -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">الصف</label>
+                        <select id="classFilter" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            <option value="">جميع الصفوف</option>
+                            <option value="الأول">الصف الأول</option>
+                            <option value="الثاني">الصف الثاني</option>
+                            <option value="الثالث">الصف الثالث</option>
+                            <option value="الرابع">الصف الرابع</option>
+                            <option value="الخامس">الصف الخامس</option>
+                            <option value="السادس">الصف السادس</option>
+                        </select>
+                    </div>
+
+                    <!-- Status Filter -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">الحالة</label>
+                        <select id="statusFilter" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            <option value="">جميع الحالات</option>
+                            <option value="نشط">نشط</option>
+                            <option value="معلق">معلق</option>
+                            <option value="مجمد">مجمد</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Students Table -->
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table id="studentsTable" class="w-full">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="text-right px-6 py-4 text-sm font-medium text-gray-700">الاسم</th>
+                                <th class="text-right px-6 py-4 text-sm font-medium text-gray-700">رقم الهوية</th>
+                                <th class="text-right px-6 py-4 text-sm font-medium text-gray-700">الصف</th>
+                                <th class="text-right px-6 py-4 text-sm font-medium text-gray-700">ولي الأمر</th>
+                                <th class="text-right px-6 py-4 text-sm font-medium text-gray-700">تاريخ التسجيل</th>
+                                <th class="text-right px-6 py-4 text-sm font-medium text-gray-700">الحالة</th>
+                                <th class="text-center px-6 py-4 text-sm font-medium text-gray-700">الإجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <!-- Table
+rows will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Pagination -->
+                <div class="bg-gray-50 px-6 py-4 flex items-center justify-between border-t border-gray-200">
+                    <div class="text-sm text-gray-700">
+                        عرض <span id="currentRange">1-10</span> من <span id="totalStudents">50</span> طالب
+                    </div>
+                    <div class="flex items-center space-x-reverse space-x-2">
+                        <button id="prevPage" class="px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors disabled:opacity-50">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        <div id="pageNumbers" class="flex items-center space-x-reverse space-x-1">
+                            <!-- Page numbers will be populated by JavaScript -->
+                        </div>
+                        <button id="nextPage" class="px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Add/Edit Student Modal -->
+    <div id="studentModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-xl shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto modal-enter">
+                <div class="p-6 border-b border-gray-200">
+                    <div class="flex items-center justify-between">
+                        <h3 id="modalTitle" class="text-lg font-semibold text-gray-800">تسجيل طالب جديد</h3>
+                        <button id="closeModal" class="text-gray-400 hover:text-gray-600 transition-colors">
+                            <i class="fas fa-times text-xl"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <form id="studentForm" class="p-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Student Name -->
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">اسم الطالب الكامل *</label>
+                            <input type="text" id="studentName" name="studentName" required
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 form-input">
+                        </div>
+
+                        <!-- ID Number -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">رقم الهوية *</label>
+                            <input type="text" id="studentId" name="studentId" required
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 form-input">
+                        </div>
+
+                        <!-- Birth Date -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">تاريخ الميلاد *</label>
+                            <input type="date" id="birthDate" name="birthDate" required
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 form-input">
+                        </div>
+
+                        <!-- Class -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">الصف *</label>
+                            <select id="studentClass" name="studentClass" required
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                <option value="">اختر الصف</option>
+                                <option value="الأول أ">الصف الأول أ</option>
+                                <option value="الأول ب">الصف الأول ب</option>
+                                <option value="الثاني أ">الصف الثاني أ</option>
+                                <option value="الثاني ب">الصف الثاني ب</option>
+                                <option value="الثالث أ">الصف الثالث أ</option>
+                                <option value="الثالث ب">الصف الثالث ب</option>
+                                <option value="الرابع أ">الصف الرابع أ</option>
+                                <option value="الرابع ب">الصف الرابع ب</option>
+                                <option value="الخامس أ">الصف الخامس أ</option>
+                                <option value="الخامس ب">الصف الخامس ب</option>
+                                <option value="السادس أ">الصف السادس أ</option>
+                                <option value="السادس ب">الصف السادس ب</option>
+                            </select>
+                        </div>
+
+                        <!-- Gender -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">الجنس *</label>
+                            <select id="gender" name="gender" required
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                <option value="">اختر الجنس</option>
+                                <option value="ذكر">ذكر</option>
+                                <option value="أنثى">أنثى</option>
+                            </select>
+                        </div>
+
+                        <!-- Parent Name -->
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">اسم ولي الأمر *</label>
+                            <input type="text" id="parentName" name="parentName" required
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 form-input">
+                        </div>
+
+                        <!-- Parent Phone -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">هاتف ولي الأمر *</label>
+                            <input type="tel" id="parentPhone" name="parentPhone" required
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 form-input">
+                        </div>
+
+                        <!-- Parent Email -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">بريد ولي الأمر</label>
+                            <input type="email" id="parentEmail" name="parentEmail"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 form-input">
+                        </div>
+
+                        <!-- Address -->
+                        <div class="md:col-span-2">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">العنوان</label>
+                            <textarea id="address" name="address" rows="3"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 form-input"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-end space-x-reverse space-x-4 mt-8 pt-6 border-t border-gray-200">
+                        <button type="button" id="cancelBtn" class="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+                            إلغاء
+                        </button>
+                        <button type="submit" class="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors btn-animate">
+                            <i class="fas fa-save ml-2"></i>
+                            حفظ
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sidebar Overlay for Mobile -->
+    <div id="sidebarOverlay" class="fixed inset-0 bg-black bg-opacity-50 z-30 lg:hidden hidden"></div>
+
+    <!-- Scripts -->
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/students.js"></script>
+</body>
+</html>

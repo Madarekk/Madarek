@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام إدارة المدرسة الذكي - ولي الأمر</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="styles/main.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'arabic': ['Cairo', 'Segoe UI', 'Tahoma', 'Geneva', 'Verdana', 'sans-serif']
+                    },
+                    colors: {
+                        primary: '#1e40af',
+                        secondary: '#64748b',
+                        success: '#059669',
+                        warning: '#d97706',
+                        danger: '#dc2626'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 font-arabic">
+    <!-- Top Navigation -->
+    <nav class="bg-white shadow-sm border-b border-gray-200 fixed top-0 right-0 left-0 z-50">
+        <div class="flex items-center justify-between px-6 py-4">
+            <div class="flex items-center space-x-reverse space-x-4">
+                <div class="flex items-center">
+                    <img src="https://images.unsplash.com/photo-1562774053-701939374585?w=40&h=40&fit=crop&crop=face" 
+                         alt="Logo" class="w-10 h-10 rounded-lg">
+                    <h1 class="mr-3 text-xl font-bold text-gray-800">مدارك - ولي الأمر</h1>
+                </div>
+            </div>
+            
+            <div class="flex items-center space-x-reverse space-x-4">
+                <!-- Child Selector -->
+                <div class="relative">
+                    <select id="childSelector" class="bg-gray-50 border border-gray-300 text-gray-700 py-2 px-4 pr-8 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                        <option value="">اختر الطفل</option>
+                    </select>
+                </div>
+                
+                <!-- Notifications -->
+                <div class="relative">
+                    <button id="notificationsBtn" class="relative p-2 text-gray-600 hover:text-primary transition-colors">
+                        <i class="fas fa-bell text-lg"></i>
+                        <span id="notificationsBadge" class="absolute -top-1 -right-1 bg-danger text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">3</span>
+                    </button>
+                </div>
+                
+                <!-- Messages -->
+                <div class="relative">
+                    <button id="messagesBtn" class="relative p-2 text-gray-600 hover:text-primary transition-colors">
+                        <i class="fas fa-envelope text-lg"></i>
+                        <span id="messagesBadge" class="absolute -top-1 -right-1 bg-primary text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">2</span>
+                    </button>
+                </div>
+                
+                <!-- User Menu -->
+                <div class="relative">
+                    <button id="userMenuBtn" class="flex items-center space-x-reverse space-x-2 text-gray-700 hover:text-primary transition-colors">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&h=32&fit=crop&crop=face" 
+                             alt="User" class="w-8 h-8 rounded-full">
+                        <span class="font-medium">أحمد محمد</span>
+                        <i class="fas fa-chevron-down text-sm"></i>
+                    </button>
+                    
+                    <!-- User Dropdown -->
+                    <div id="userDropdown" class="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 hidden">
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-50">الملف الشخصي</a>
+                        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-50">الإعدادات</a>
+                        <hr class="my-1">
+                        <a href="#" class="block px-4 py-2 text-danger hover:bg-gray-50">تسجيل الخروج</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="flex pt-16">
+        <!-- Sidebar Navigation -->
+        <aside class="w-64 bg-white shadow-sm border-l border-gray-200 min-h-screen fixed right-0 top-16">
+            <nav class="p-4">
+                <ul class="space-y-2">
+                    <li>
+                        <a href="#dashboard" data-section="dashboard" class="nav-link flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors active">
+                            <i class="fas fa-home w-5 text-primary ml-3"></i>
+                            لوحة المعلومات
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#children" data-section="children" class="nav-link flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">
+                            <i class="fas fa-users w-5 text-primary ml-3"></i>
+                            أبنائي
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#academic" data-section="academic" class="nav-link flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">
+                            <i class="fas fa-chart-line w-5 text-primary ml-3"></i>
+                            الأداء الأكاديمي
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#attendance" data-section="attendance" class="nav-link flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">
+                            <i class="fas fa-calendar-check w-5 text-primary ml-3"></i>
+                            الحضور والغياب
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#fees" data-section="fees" class="nav-link flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">
+                            <i class="fas fa-credit-card w-5 text-primary ml-3"></i>
+                            الرسوم الدراسية
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#communication" data-section="communication" class="nav-link flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">
+                            <i class="fas fa-comments w-5 text-primary ml-3"></i>
+                            التواصل
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#schedule" data-section="schedule" class="nav-link flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">
+                            <i class="fas fa-calendar w-5 text-primary ml-3"></i>
+                            الجدول الدراسي
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 mr-64 p-6">
+            <!-- Dashboard Section -->
+            <div id="dashboard-section" class="section active">
+                <div class="mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">لوحة المعلومات</h2>
+                    <p class="text-gray-600 mt-1">نظرة شاملة على أداء أطفالك الأكاديمي</p>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0">
+                                <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-users text-primary text-xl"></i>
+                                </div>
+                            </div>
+                            <div class="mr-4">
+                                <p class="text-sm font-medium text-gray-600">عدد الأطفال</p>
+                                <p id="totalChildren" class="text-2xl font-bold text-gray-900">2</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0">
+                                <div class="w-12 h-12 bg-success/10 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-chart-line text-success text-xl"></i>
+                                </div>
+                            </div>
+                            <div class="mr-4">
+                                <p class="text-sm font-medium text-gray-600">متوسط الدرجات</p>
+                                <p id="averageGrades" class="text-2xl font-bold text-gray-900">85%</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0">
+                                <div class="w-12 h-12 bg-warning/10 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-calendar-times text-warning text-xl"></i>
+                                </div>
+                            </div>
+                            <div class="mr-4">
+                                <p class="text-sm font-medium text-gray-600">أيام الغياب</p>
+                                <p id="absenceDays" class="text-2xl font-bold text-gray-900">3</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0">
+                                <div class="w-12 h-12 bg-danger/10 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-dollar-sign text-danger text-xl"></i>
+                                </div>
+                            </div>
+                            <div class="mr-4">
+                                <p class="text-sm font-medium text-gray-600">الرسوم المستحقة</p>
+                                <p id="pendingFees" class="text-2xl font-bold text-gray-900">1,200 ر.س</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dashboard Content Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <!-- Children Summary -->
+                    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">ملخص الأطفال</h3>
+                        <div id="childrenSummary" class="space-y-4">
+                            <!-- Dynamic content will be loaded here -->
+                        </div>
+                    </div>
+
+                    <!-- Recent Notifications -->
+                    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">الإشعارات الأخيرة</h3>
+                        <div id="recentNotifications" class="space-y-3">
+                            <!-- Dynamic content will be loaded here -->
+                        </div>
+                    </div>
+
+                    <!-- Upcoming Assignments -->
+                    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">الواجبات والاختبارات القادمة</h3>
+                        <div id="upcomingAssignments" class="space-y-3">
+                            <!-- Dynamic content will be loaded here -->
+                        </div>
+                    </div>
+
+                    <!-- Fee Status -->
+                    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">حالة الرسوم الدراسية</h3>
+                        <div id="feeStatus" class="space-y-3">
+                            <!-- Dynamic content will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Children Section -->
+            <div id="children-section" class="section hidden">
+                <div class="mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">أبنائي</h2>
+                    <p class="text-gray-600 mt-1">إدارة ومتابعة معلومات أطفالك</p>
+                </div>
+
+                <div id="childrenList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Dynamic content will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Academic Performance Section -->
+            <div id="academic-section" class="section hidden">
+                <div class="mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">الأداء الأكاديمي</h2>
+                    <p class="text-gray-600 mt-1">متابعة درجات وأداء أطفالك الأكاديمي</p>
+                </div>
+
+                <!-- Child Selector -->
+                
+<div class="mb-6">
+                    <select id="academicChildSelector" class="bg-white border border-gray-300 text-gray-700 py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                        <option value="">اختر الطفل لعرض أدائه الأكاديمي</option>
+                    </select>
+                </div>
+
+                <div id="academicContent" class="space-y-6">
+                    <!-- Grades Table -->
+                    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">الدرجات</h3>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full table-auto">
+                                <thead>
+                                    <tr class="bg-gray-50">
+                                        <th class="px-4 py-3 text-right text-sm font-medium text-gray-700">المادة</th>
+                                        <th class="px-4 py-3 text-center text-sm font-medium text-gray-700">الواجبات</th>
+                                        <th class="px-4 py-3 text-center text-sm font-medium text-gray-700">الاختبارات القصيرة</th>
+                                        <th class="px-4 py-3 text-center text-sm font-medium text-gray-700">الاختبار النهائي</th>
+                                        <th class="px-4 py-3 text-center text-sm font-medium text-gray-700">المجموع</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="gradesTableBody">
+                                    <!-- Dynamic content will be loaded here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Assignments Status -->
+                    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">حالة الواجبات والاختبارات</h3>
+                        <div id="assignmentsStatus" class="space-y-3">
+                            <!-- Dynamic content will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Attendance Section -->
+            <div id="attendance-section" class="section hidden">
+                <div class="mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">الحضور والغياب</h2>
+                    <p class="text-gray-600 mt-1">متابعة سجل حضور وغياب أطفالك</p>
+                </div>
+
+                <!-- Child Selector -->
+                <div class="mb-6">
+                    <select id="attendanceChildSelector" class="bg-white border border-gray-300 text-gray-700 py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                        <option value="">اختر الطفل لعرض سجل الحضور</option>
+                    </select>
+                </div>
+
+                <div id="attendanceContent" class="space-y-6">
+                    <!-- Attendance Summary -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-success/10 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-check text-success text-xl"></i>
+                                </div>
+                                <div class="mr-4">
+                                    <p class="text-sm font-medium text-gray-600">أيام الحضور</p>
+                                    <p id="presentDays" class="text-2xl font-bold text-success">47</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-danger/10 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-times text-danger text-xl"></i>
+                                </div>
+                                <div class="mr-4">
+                                    <p class="text-sm font-medium text-gray-600">أيام الغياب</p>
+                                    <p id="absentDays" class="text-2xl font-bold text-danger">3</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-warning/10 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-clock text-warning text-xl"></i>
+                                </div>
+                                <div class="mr-4">
+                                    <p class="text-sm font-medium text-gray-600">التأخير</p>
+                                    <p id="lateDays" class="text-2xl font-bold text-warning">2</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Attendance Record -->
+                    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">سجل الحضور</h3>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full table-auto">
+                                <thead>
+                                    <tr class="bg-gray-50">
+                                        <th class="px-4 py-3 text-right text-sm font-medium text-gray-700">التاريخ</th>
+                                        <th class="px-4 py-3 text-center text-sm font-medium text-gray-700">الحالة</th>
+                                        <th class="px-4 py-3 text-center text-sm font-medium text-gray-700">وقت الوصول</th>
+                                        <th class="px-4 py-3 text-center text-sm font-medium text-gray-700">ملاحظات</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="attendanceTableBody">
+                                    <!-- Dynamic content will be loaded here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fees Section -->
+            <div id="fees-section" class="section hidden">
+                <div class="mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">الرسوم الدراسية</h2>
+                    <p class="text-gray-600 mt-1">إدارة ومتابعة الرسوم الدراسية</p>
+                </div>
+
+                <!-- Fee Summary -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-success/10 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-check-circle text-success text-xl"></i>
+                            </div>
+                            <div class="mr-4">
+                                <p class="text-sm font-medium text-gray-600">المدفوع</p>
+                                <p class="text-2xl font-bold text-success">8,800 ر.س</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-danger/10 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-exclamation-circle text-danger text-xl"></i>
+                            </div>
+                            <div class="mr-4">
+                                <p class="text-sm font-medium text-gray-600">المستحق</p>
+                                <p class="text-2xl font-bold text-danger">1,200 ر.س</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-calculator text-primary text-xl"></i>
+                            </div>
+                            <div class="mr-4">
+                                <p class="text-sm font-medium text-gray-600">الإجمالي</p>
+                                <p class="text-2xl font-bold text-primary">10,000 ر.س</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fee Details -->
+                <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">تفاصيل الرسوم</h3>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full table-auto">
+                            <thead>
+                                <tr class="bg-gray-50">
+                                    <th class="px-4 py-3 text-right text-sm font-medium text-gray-700">الطفل</th>
+                                    <th class="px-4 py-3 text-center text-sm font-medium text-gray-700">نوع الرسم</th>
+                                    <th class="px-4 py-3 text-center text-sm font-medium text-gray-700">المبلغ</th>
+                                    <th class="px-4 py-3 text-center text-sm font-medium text-gray-700">تاريخ الاستحقاق</th>
+                                    <th class="px-4 py-3 text-center text-sm font-medium text-gray-700">الحالة</th>
+                                    <th class="px-4 py-3 text-center text-sm font-medium text-gray-700">الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody id="feesTableBody">
+                                <!-- Dynamic content will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Payment History -->
+                <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mt-6">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">سجل المدفوعات</h3>
+                    <div id="paymentHistory" class="space-y-3">
+                        <!-- Dynamic content will be loaded here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Communication Section -->
+            <div id="communication-section" class="section hidden">
+                <div class="mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">التواصل</h2>
+                    <p class="text-gray-600 mt-1">التواصل مع المعلمين وإدارة المدرسة</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- Messages List -->
+                    <div class="lg:col-span-1">
+                        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-lg font-semibold text-gray-800">المحادثات</h3>
+                                <button id="newMessageBtn" class="bg-primary text-white px-3 py-1 rounded-lg text-sm hover:bg-primary/90 transition-colors">
+                                    <i class="fas fa-plus ml-1"></i>
+                                    رسالة جديدة
+                                </button>
+                            </div>
+                            <div id="messagesList" class="space-y-2 max-h-96 overflow-y-auto">
+                                <!-- Dynamic content will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Message Content -->
+                    <div class="lg:col-span-2">
+                        <div class="bg-white rounded-lg shadow-sm border border-gray-200 h-96 flex flex-col">
+                            <div id="messageHeader" class="border-b border-gray-200 p-4">
+                                <p class="text-gray-500">اختر محادثة لعرض الرسائل</p>
+                            </div>
+                            <div id="messageContent" class="flex-1 p-4 overflow-y-auto">
+                                <!-- Dynamic content will be loaded here -->
+                            </div>
+                            <div id="messageInput" class="border-t border-gray-200 p-4 hidden">
+                                <div class="flex gap-2">
+                                    <input type="text" id="messageText" placeholder="اكتب رسالتك هنا..." 
+                                           class="flex-1 border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary">
+                                    <button id="sendMessageBtn" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors">
+                                        <i class="fas fa-paper-plane"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Schedule Section -->
+            <div id="schedule-section" class="section hidden">
+                <div class="mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">الجدول الدراسي</h2>
+                    <p class="text-gray-600 mt-1">جداول أطفالك الدراسية</p>
+                </div>
+
+                <!-- Child Selector -->
+                <div class="mb-6">
+                    <select id="scheduleChildSelector" class="bg-white border border-gray-300 text-gray-700 py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                        <option value="">اختر الطفل لعرض جدوله الدراسي</option>
+                    </select>
+                </div>
+
+                <div id="scheduleContent">
+                    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                        <h
+3 class="text-lg font-semibold text-gray-800 mb-4">الجدول الأسبوعي</h3>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full table-auto">
+                                <thead>
+                                    <tr class="bg-gray-50">
+                                        <th class="px-4 py-3 text-center text-sm font-medium text-gray-700">الوقت</th>
+                                        <th class="px-4 py-3 text-center text-sm font-medium text-gray-700">الأحد</th>
+                                        <th class="px-4 py-3 text-center text-sm font-medium text-gray-700">الاثنين</th>
+                                        <th class="px-4 py-3 text-center text-sm font-medium text-gray-700">الثلاثاء</th>
+                                        <th class="px-4 py-3 text-center text-sm font-medium text-gray-700">الأربعاء</th>
+                                        <th class="px-4 py-3 text-center text-sm font-medium text-gray-700">الخميس</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="scheduleTableBody">
+                                    <!-- Dynamic content will be loaded here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Notifications Panel -->
+    <div id="notificationsPanel" class="fixed top-16 left-4 w-80 bg-white rounded-lg shadow-lg border border-gray-200 z-40 hidden">
+        <div class="p-4 border-b border-gray-200">
+            <h3 class="text-lg font-semibold text-gray-800">الإشعارات</h3>
+        </div>
+        <div id="notificationsList" class="max-h-96 overflow-y-auto">
+            <!-- Dynamic content will be loaded here -->
+        </div>
+    </div>
+
+    <!-- New Message Modal -->
+    <div id="newMessageModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-md mx-4">
+            <div class="p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-semibold text-gray-800">رسالة جديدة</h3>
+                    <button id="closeModalBtn" class="text-gray-400 hover:text-gray-600">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <form id="newMessageForm">
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">إلى</label>
+                        <select id="recipientSelect" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary">
+                            <option value="">اختر المستقبل</option>
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">الموضوع</label>
+                        <input type="text" id="messageSubject" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">الرسالة</label>
+                        <textarea id="messageBody" rows="4" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
+                    </div>
+                    <div class="flex gap-2">
+                        <button type="submit" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors">
+                            إرسال
+                        </button>
+                        <button type="button" id="cancelMessageBtn" class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition-colors">
+                            إلغاء
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/main.js"></script>
+    <script src="scripts/dashboard.js"></script>
+    <script src="scripts/messaging.js"></script>
+    <script src="scripts/notifications.js"></script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<div class="card">
+    <h2 class="card-title">إعدادات الحساب</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
+        <div>
+            <h3 class="text-xl font-semibold text-gray-700 mb-4 pb-2 border-b border-gray-200">معلومات الحساب</h3>
+            <div class="space-y-5 mt-5">
+                <div>
+                    <label class="block text-sm font-medium text-gray-500 mb-1">اسم المعلم</label>
+                    <p id="teacher-name-display" class="text-lg text-gray-800 bg-gray-50 p-3 rounded-md border border-gray-200">...</p>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-500 mb-1">البريد الإلكتروني</label>
+                    <p id="teacher-email-display" class="text-lg text-gray-800 bg-gray-50 p-3 rounded-md border border-gray-200">...</p>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <h3 class="text-xl font-semibold text-gray-700 mb-4 pb-2 border-b border-gray-200">تغيير كلمة المرور</h3>
+            <form id="changePasswordForm" class="space-y-4 mt-5">
+                <div class="form-group">
+                    <label for="currentPassword" class="form-label">كلمة المرور الحالية</label>
+                    <input type="password" id="currentPassword" name="currentPassword" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="newPassword" class="form-label">كلمة المرور الجديدة</label>
+                    <input type="password" id="newPassword" name="newPassword" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirmNewPassword" class="form-label">تأكيد كلمة المرور الجديدة</label>
+                    <input type="password" id="confirmNewPassword" name="confirmNewPassword" class="form-input" required>
+                </div>
+                <div class="flex justify-end mt-6">
+                    <button type="submit" class="btn btn-primary">
+                        <i data-lucide="save" class="w-4 h-4 ml-2"></i> حفظ التغييرات
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مدارك - لوحة المعلومات</title>
+    <link href="https://fonts.googleapis.com/css?family=Cairo&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Style.css">
+</head>
+<body>
+    <div class="student-header">
+        <!-- زر القائمة الجانبية يظهر دائماً في الديسكتوب والجوال -->
+        <button class="sidebar-toggle" id="sidebarToggle" title="إغلاق/فتح القائمة">&#9776;</button>
+        <div class="student-header-left">
+            <span class="student-title">لوحة  المعلومات</span>
+        </div>
+        <div class="student-header-right">
+            <span class="student-notifications" title="الإشعارات" style="cursor:pointer; font-size: 1.3em; margin: 0 8px; position: relative;">
+                🔔
+                <span id="notification-count" style="display:none; position: absolute; top: -8px; right: -8px; background: red; color: white; border-radius: 50%; padding: 2px 6px; font-size: 0.8em; min-width: 18px; text-align: center;">0</span>
+            </span>
+            <span class="student-messages" title="النقاشات" style="cursor:pointer; font-size: 1.3em; margin-left: 8px; position: relative;" onclick="window.location.href='Student_Discussion.html'">
+                💬
+                <span id="message-count" style="display:none; position: absolute; top: -8px; right: -8px; background: #2196f3; color: white; border-radius: 50%; padding: 2px 6px; font-size: 0.8em; min-width: 18px; text-align: center;">0</span>
+            </span>
+            <span class="student-user">سراج عريبي</span>
+            <button class="logout-btn" title="تسجيل خروج">
+                <span class="icon">🚪</span>
+                <span class="text">تسجيل خروج</span>
+            </button>
+        </div>
+    </div>
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+    <div class="student-sidebar">
+        <h2 class="sidebar-title">مدارِك</h2>
+        <!-- زر القائمة الجانبية للجوال داخل السايدبار -->
+        <button class="sidebar-toggle sidebar-toggle-inside" id="sidebarToggleInside" title="إغلاق القائمة" style="display:none">&#10005;</button>
+        <ul>
+            <li><a href="StudentDashboard.html" id="dashboard-link"><span class="icon">🏠</span> لوحة المعلومات </a></li>
+            <li><a href="Student_Lessons.html" id="courses-link"><span class="icon">📚</span> دروسي </a></li>
+            <li><a href="Student_Homework.html" id="assignments-link"><span class="icon">📝</span> واجباتي </a></li>
+            <li><a href="Student_Grades.html" id="grades-link"><span class="icon">📊</span> درجاتي</a></li>
+            <li><a href="Student_Attendance.html" id="attendance-link"><span class="icon">📅</span> الحضور</a></li>
+            <li><a href="Student_Courses.html" id="courses-link"><span class="icon">👨‍🏫</span> الدورات </a></li>
+        </ul>
+    </div>
+    <div class="student-main" id="student-main-content">
+        <div class="dashboard-container">
+            <div class="dashboard-cards">
+                <div class="dashboard-card animate-card" id="lessons-card" tabindex="0">
+                    <span class="dashboard-icon">📚</span>
+                    <div class="dashboard-info">
+                        <span class="dashboard-title">الدروس النشطة</span>
+                        <span class="dashboard-value" id="lessons-count">0</span>
+                        <div class="dashboard-desc">عدد الدروس التي يجب حضورها هذا الفصل</div>
+                    </div>
+                </div>
+                <div class="dashboard-card animate-card" id="homework-card" tabindex="0">
+                    <span class="dashboard-icon">📝</span>
+                    <div class="dashboard-info">
+                        <span class="dashboard-title">الواجبات المطلوبة</span>
+                        <span class="dashboard-value" id="homework-count">0</span>
+                        <div class="dashboard-desc">عدد الواجبات التي لم تُسلّم بعد</div>
+                    </div>
+                </div>
+                <div class="dashboard-card animate-card" id="grades-card" tabindex="0">
+                    <span class="dashboard-icon">🎯</span>
+                    <div class="dashboard-info">
+                        <span class="dashboard-title">متوسط الدرجات</span>
+                        <span class="dashboard-value" id="grades-count">0</span>
+                        <div class="dashboard-desc">متوسط درجاتك في جميع المواد</div>
+                    </div>
+                </div>
+                <div class="dashboard-card animate-card" id="attendance-card" tabindex="0">
+                    <span class="dashboard-icon">📅</span>
+                    <div class="dashboard-info">
+                        <span class="dashboard-title">أيام الحضور</span>
+                        <span class="dashboard-value" id="attendance-count">0</span>
+                        <div class="dashboard-desc">عدد الأيام التي تم تسجيل حضورك فيها</div>
+                    </div>
+                </div>
+                <div class="dashboard-card animate-card" id="courses-card" tabindex="0">
+                    <span class="dashboard-icon">🧑‍🏫</span>
+                    <div class="dashboard-info">
+                        <span class="dashboard-title">الدورات الإثرائية</span>
+                        <span class="dashboard-value" id="courses-count">0</span>
+                        <div class="dashboard-desc">عدد الدورات المسجل بها حالياً</div>
+                    </div>
+                </div>
+            </div>
+            <div class="dashboard-profile">
+                <div class="profile-avatar">👨‍🎓</div>
+                <div class="profile-info">
+                    <div class="profile-name" id="profile-name">اسم الطالب</div>
+                    <div class="profile-details" id="profile-details">الصف: الثالث الثانوي<br>الشعبة: علوم</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="Script.js"></script>
+    <script>
+    // تحديث بيانات لوحة المعلومات
+    const dashboardData = {
+        lessons: 12,
+        homework: 5,
+        grades: 4,
+        attendance: 30,
+        courses: 2
+    };
+
+    // تحديث الأرقام في لوحة المعلومات
+    document.getElementById('lessons-count').textContent = dashboardData.lessons;
+    document.getElementById('homework-count').textContent = dashboardData.homework;
+    document.getElementById('grades-count').textContent = dashboardData.grades;
+    document.getElementById('attendance-count').textContent = dashboardData.attendance;
+    document.getElementById('courses-count').textContent = dashboardData.courses;
+
+    // ربط البطاقات بالصفحات
+    document.getElementById('lessons-card').onclick = () => location.href = 'Student_Lessons.html';
+    document.getElementById('homework-card').onclick = () => location.href = 'Student_Homework.html';
+    document.getElementById('grades-card').onclick = () => location.href = 'Student_Grades.html';
+    document.getElementById('attendance-card').onclick = () => location.href = 'Student_Attendance.html';
+    document.getElementById('courses-card').onclick = () => location.href = 'Student_Courses.html';
+    document.getElementById('profile-btn').onclick = () => location.href = 'Student_Profile.html';
+    </script>
+</body>
+</html>

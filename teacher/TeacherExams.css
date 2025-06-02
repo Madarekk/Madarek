@@ -1,0 +1,830 @@
+/* الأساسيات */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.exams-body {
+    font-family: 'Cairo', Tahoma, Arial, sans-serif;
+    background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+    direction: rtl;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* الشريط الجانبي */
+.teacher-sidebar {
+    width: 260px;
+    background: linear-gradient(135deg, #4068fc 80%, #43cea2 100%);
+    color: #fff;
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 1.5rem;
+    transition: transform 0.3s ease-in-out;
+    overflow: hidden;
+}
+
+/* زر التبديل */
+.sidebar-toggle {
+    position: absolute;
+    left: -40px;
+    top: 10px;
+    background: #4068fc;
+    border: none;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px 0 0 8px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s;
+}
+
+.sidebar-toggle:hover {
+    background: #43cea2;
+}
+
+/* حالة الإغلاق */
+.teacher-sidebar.collapsed {
+    transform: translateX(260px);
+}
+
+.teacher-sidebar h2 {
+    color: #fff;
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 2.5rem;
+    text-align: center;
+    width: 100%;
+    padding: 0.5rem;
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
+}
+
+.teacher-sidebar ul {
+    width: 100%;
+    list-style: none;
+    padding: 0 0.5rem;
+    margin: 0;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+}
+
+.teacher-sidebar ul::-webkit-scrollbar {
+    width: 6px;
+}
+
+.teacher-sidebar ul::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.teacher-sidebar ul::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+}
+
+.teacher-sidebar li {
+    width: 100%;
+    margin-bottom: 1.2rem;
+}
+
+.teacher-sidebar a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.08rem;
+    display: flex;
+    align-items: center;
+    padding: 0.7rem 1rem;
+    border-radius: 8px;
+    transition: background 0.2s, color 0.2s;
+    font-family: inherit;
+    font-weight: 500;
+    gap: 0.7em;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.teacher-sidebar a .icon {
+    margin-left: 10px;
+    font-size: 1.2em;
+    vertical-align: middle;
+}
+
+.teacher-sidebar a.active,
+.teacher-sidebar a:hover {
+    background: rgba(255,255,255,0.18);
+    color: #43cea2;
+    font-weight: bold;
+    text-shadow: 0 1px 8px rgba(67, 206, 162, 0.10);
+    letter-spacing: 0.5px;
+}
+
+/* الهيدر */
+.teacher-header {
+    width: 100%;
+    height: 64px;
+    background: #fff;
+    box-shadow: 0 2px 12px rgba(67, 206, 162, 0.07);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 110;
+    padding: 0 2rem;
+}
+
+.teacher-header-left {
+    display: flex;
+    align-items: center;
+    margin-right: 300px;
+}
+
+.teacher-header-right {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.teacher-title {
+    color: #4068fc;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding-right: 20px;
+}
+
+.teacher-avatar {
+    font-size: 1.3rem;
+    background: #43cea2;
+    color: #fff;
+    border-radius: 50%;
+    padding: 0.2rem 0.4rem;
+    margin-left: 0.4rem;
+    min-width: 32px;
+    min-height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.teacher-user {
+    font-size: 1.05rem;
+    color: #4068fc;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    font-weight: 500;
+}
+
+.logout-btn {
+    background: #4068fc;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 0.5rem 1.1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.logout-btn:hover {
+    background: #43cea2;
+}
+
+/* الحاوية الرئيسية */
+.exams-container {
+    margin-right: 260px;
+    margin-top: 64px;
+    padding: 2.5rem;
+    background: #fff;
+    min-height: calc(100vh - 64px);
+    transition: margin 0.3s ease-in-out;
+}
+
+/* قسم الإحصائيات */
+.stats-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: transform 0.2s;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+}
+
+.stat-icon {
+    font-size: 2rem;
+    color: #4068fc;
+    background: rgba(64, 104, 252, 0.1);
+    padding: 1rem;
+    border-radius: 50%;
+}
+
+.stat-content h3 {
+    color: #666;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.stat-content p {
+    color: #4068fc;
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+/* رأس الصفحة */
+.exams-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.exams-header h1 {
+    color: #4068fc;
+    font-size: 1.8rem;
+    margin: 0;
+}
+
+.add-btn {
+    background: #43cea2;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 0.7rem 1.2rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.add-btn:hover {
+    background: #4068fc;
+}
+
+/* جدول الاختبارات */
+.exams-table-container {
+    overflow-x: auto;
+    margin-top: 1.5rem;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.exams-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.exams-table th,
+.exams-table td {
+    padding: 1rem;
+    text-align: right;
+    border-bottom: 1px solid #eee;
+}
+
+.exams-table th {
+    background: #4068fc;
+    color: #fff;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.exams-table tr:hover {
+    background: #f8f9fa;
+}
+
+/* حالات الاختبار */
+.status-upcoming {
+    color: #ffc107;
+    font-weight: bold;
+}
+
+.status-completed {
+    color: #28a745;
+    font-weight: bold;
+}
+
+/* النوافذ المنبثقة */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+}
+
+.close-modal {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #4068fc;
+}
+
+/* نموذج إضافة اختبار */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #4068fc;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.7rem;
+    border: 1px solid rgba(67, 206, 162, 0.2);
+    border-radius: 8px;
+    font-family: 'Cairo', sans-serif;
+}
+
+.form-group input[type="file"] {
+    padding: 0.5rem;
+    border: 2px dashed rgba(67, 206, 162, 0.3);
+    background-color: #f8f9fa;
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+
+.form-group input[type="file"]:hover {
+    border-color: #43cea2;
+}
+
+.file-hint {
+    display: block;
+    margin-top: 0.5rem;
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+/* تفاصيل الاختبار */
+.exam-details {
+    margin-top: 1.5rem;
+}
+
+.detail-group {
+    margin-bottom: 1.5rem;
+}
+
+.detail-group label {
+    display: block;
+    color: #4068fc;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.detail-group p {
+    margin: 0;
+    padding: 0.7rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid rgba(67, 206, 162, 0.2);
+}
+
+.students-list {
+    max-height: 200px;
+    overflow-y: auto;
+    padding: 0.7rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid rgba(67, 206, 162, 0.2);
+}
+
+.teacher-notes {
+    width: 100%;
+    min-height: 100px;
+    padding: 0.7rem;
+    border: 1px solid rgba(67, 206, 162, 0.2);
+    border-radius: 8px;
+    font-family: 'Cairo', sans-serif;
+    resize: vertical;
+}
+
+.detail-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.save-btn,
+.download-btn {
+    padding: 0.7rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-family: 'Cairo', sans-serif;
+}
+
+.save-btn {
+    background: #43cea2;
+    color: #fff;
+}
+
+.save-btn:hover {
+    background: #4068fc;
+}
+
+.download-btn {
+    background: #4068fc;
+    color: #fff;
+}
+
+.download-btn:hover {
+    background: #43cea2;
+}
+
+/* قسم التصفية */
+.filters-section {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    margin-bottom: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.filter-group label {
+    color: #4068fc;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.filter-group select {
+    padding: 0.7rem;
+    border: 1px solid rgba(67, 206, 162, 0.2);
+    border-radius: 8px;
+    background: #fff;
+    color: #333;
+    font-family: 'Cairo', sans-serif;
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+
+.filter-group select:hover,
+.filter-group select:focus {
+    border-color: #43cea2;
+}
+
+.search-group input {
+    padding: 0.7rem;
+    border: 1px solid rgba(67, 206, 162, 0.2);
+    border-radius: 8px;
+    background: #fff;
+    color: #333;
+    font-family: 'Cairo', sans-serif;
+    transition: border-color 0.2s;
+    width: 100%;
+}
+
+.search-group input:hover,
+.search-group input:focus {
+    border-color: #43cea2;
+    outline: none;
+}
+
+.search-group input::placeholder {
+    color: #6c757d;
+}
+
+/* الأزرار في الجدول */
+.action-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    margin: 0 0.2rem;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+.view-btn {
+    color: #4068fc;
+}
+
+.edit-btn {
+    color: #43cea2;
+}
+
+.delete-btn {
+    color: #dc3545;
+}
+
+.action-btn:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+/* نظام الإشعارات */
+.feedback-container {
+    position: fixed;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    width: 90%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.feedback {
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    animation: slidein 0.3s ease-in-out;
+    direction: rtl;
+}
+
+.feedback.success {
+    background: #d4edda;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+}
+
+.feedback.error {
+    background: #f8d7da;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
+}
+
+.feedback.warning {
+    background: #fff3cd;
+    border: 1px solid #ffeeba;
+    color: #856404;
+}
+
+.feedback-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.feedback-icon {
+    font-size: 1.2rem;
+}
+
+.feedback-message {
+    font-size: 1rem;
+    margin: 0;
+}
+
+.feedback-close {
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    padding: 5px;
+    font-size: 1.1rem;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.feedback-close:hover {
+    opacity: 1;
+}
+
+@keyframes slidein {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideout {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+}
+
+.feedback.hide {
+    animation: slideout 0.3s ease-in-out forwards;
+}
+
+/* التجاوب مع الشاشات الصغيرة */
+@media (max-width: 768px) {
+    .exams-container {
+        margin-right: 0;
+        padding: 1rem;
+    }
+
+    .exams-header {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .add-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .teacher-header-left {
+        margin-right: 60px;
+    }
+
+    .teacher-header {
+        padding: 0 1rem;
+    }
+
+    .teacher-user {
+        display: none;
+    }
+
+    .modal-content {
+        padding: 1rem;
+    }
+
+    .stats-section {
+        grid-template-columns: 1fr;
+    }
+
+    .filters-section {
+        grid-template-columns: 1fr;
+    }
+}
+
+.students-grades {
+    max-height: 300px;
+    overflow-y: auto;
+    margin: 10px 0;
+}
+
+.grades-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.grades-table th,
+.grades-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: right;
+}
+
+.grades-table th {
+    background-color: #f5f5f5;
+    font-weight: bold;
+}
+
+.grades-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.grades-table tr:hover {
+    background-color: #f0f0f0;
+}
+
+.grade-input {
+    width: 70px;
+    padding: 4px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.grade-note {
+    width: 150px;
+    padding: 4px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.notification-status {
+    font-size: 0.9em;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.notification-sent {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}
+
+.notification-pending {
+    background-color: #fff3e0;
+    color: #ef6c00;
+}
+
+#exam-total-grade {
+    width: 100px;
+    padding: 6px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-top: 5px;
+}
+
+.submit-btn {
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 0 5px;
+}
+
+.submit-btn:hover {
+    background-color: #1976D2;
+}
+
+.grade-hint {
+    display: block;
+    margin-top: 0.5rem;
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+#exam-total-grade-input {
+    width: 120px;
+    padding: 0.7rem;
+    border: 1px solid rgba(67, 206, 162, 0.2);
+    border-radius: 8px;
+    font-family: 'Cairo', sans-serif;
+}
+
+#exam-total-grade-input:focus {
+    border-color: #43cea2;
+    outline: none;
+}
+
+.exam-grade {
+    display: inline-block;
+    margin-top: 5px;
+    color: #4068fc;
+    font-size: 0.9em;
+    background-color: rgba(64, 104, 252, 0.1);
+    padding: 2px 8px;
+    border-radius: 4px;
+} 

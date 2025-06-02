@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إنشاء حساب جديد</title>
+    <link rel="stylesheet" href="signup.css">
+</head>
+<body>
+    <!-- شريط التنقل العلوي -->
+    <nav class="navbar">
+        <div class="navbar-wrapper">
+            <div class="site-title">مدارِك</div>
+            <ul class="navbar-links">
+                <li><a href="#" class="active">الرئيسية</a></li>
+                <li><a href="#">عن المنصة</a></li>
+                <li><a href="#">الخدمات</a></li>
+                <li><a href="#">المعرض</a></li>
+                <li><a href="#">تواصل معنا</a></li>
+            </ul>
+            <a href="#" class="navbar-btn">ابدأ الآن</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="signup-form">
+            <h1>إنشاء حساب جديد</h1>
+            <form id="signupForm" autocomplete="off">
+                <div class="form-group">
+                    <label for="fullName">الاسم الكامل</label>
+                    <input type="text" id="fullName" name="fullName" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">البريد الإلكتروني</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">كلمة المرور</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">تأكيد كلمة المرور</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="nationalId">الرقم الوطني (اختياري)</label>
+                    <input type="text" id="nationalId" name="nationalId" placeholder="إذا لم يكن لديك رقم وطني اترك الحقل فارغًا">
+                </div>
+                <div class="form-group" style="margin-bottom: 10px;">
+                    <label style="display: flex; align-items: center; font-weight: normal;">
+                        <input type="checkbox" id="terms" name="terms" required style="margin-left: 8px;">
+                        أوافق على <a href="#" style="color:#667eea;text-decoration:underline;margin:0 3px;">الشروط والأحكام</a> و <a href="#" style="color:#667eea;text-decoration:underline;margin:0 3px;">سياسة الخصوصية</a>
+                    </label>
+                </div>
+                <button type="submit" class="signup-btn">تسجيل الحساب</button>
+            </form>
+            <p class="login-link">لديك حساب بالفعل؟ <a href="#">سجّل الدخول الآن</a></p>
+        </div>
+    </div>
+</body>
+</html>

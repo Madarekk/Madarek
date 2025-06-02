@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة الحضور - نظام إدارة المدرسة الذكي</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-50 font-cairo">
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <div class="h-8 w-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                            <svg class="h-5 w-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="mr-4">
+                        <h1 class="text-xl font-semibold text-gray-900">إدارة الحضور</h1>
+                    </div>
+                </div>
+                
+                <div class="flex items-center space-x-4 space-x-reverse">
+                    <button class="relative p-2 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 rounded-full">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-3.35-3.35A6.98 6.98 0 0 0 18 11a6 6 0 1 0-12 0c0 2.32 1.13 4.38 2.88 5.65L6 20h5m4 0v1a3 3 0 1 1-6 0v-1m6 0H9"></path>
+                        </svg>
+                        <span class="absolute top-0 right-0 block h-2 w-2 rounded-full bg-red-400 ring-2 ring-white"></span>
+                    </button>
+                    <button class="relative p-2 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 rounded-full">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                        </svg>
+                        <span class="absolute top-0 right-0 block h-2 w-2 rounded-full bg-blue-400 ring-2 ring-white"></span>
+                    </button>
+                    <div class="relative">
+                        <button class="flex items-center max-w-xs bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                            <div class="h-8 w-8 rounded-full bg-gray-300 flex items-center justify-center">
+                                <svg class="h-5 w-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                                </svg>
+                            </div>
+                            <span class="mr-2 text-sm text-gray-700">أ. محمد أحمد</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="flex">
+        <!-- Sidebar -->
+        <nav class="bg-white w-64 min-h-screen shadow-sm border-r border-gray-200">
+            <div class="p-4">
+                <ul class="space-y-2">
+                    <li>
+                        <a href="index.html" class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                            <svg class="text-gray-400 group-hover:text-gray-500 ml-3 h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m8 7l4-4l4 4"></path>
+                            </svg>
+                            لوحة المعلومات
+                        </a>
+                    </li>
+                    <li>
+                        <a href="classes.html" class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                            <svg class="text-gray-400 group-hover:text-gray-500 ml-3 h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                            </svg>
+                            فصولي وموادي
+                        </a>
+                    </li>
+                    <li>
+                        <a href="attendance.html" class="bg-blue-50 text-blue-700 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                            <svg class="text-blue-500 ml-3 h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            إدارة الحضور
+                        </a>
+                    </li>
+                    <li>
+                        <a href="grades.html" class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                            <svg class="text-gray-400 group-hover:text-gray-500 ml-3 h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                            </svg>
+                            إدارة الدرجات
+                        </a>
+                    </li>
+                    <li>
+                        <a href="assignments.html" class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                            <svg class="text-gray-400 group-hover:text-gray-500 ml-3 h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                            </svg>
+                            الواجبات والاختبارات
+                        </a>
+                    </li>
+                    <li>
+                        <a href="communication.html" class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                            <svg class="text-gray-400 group-hover:text-gray-500 ml-3 h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                            </svg>
+                            التواصل
+                        </a>
+                    </li>
+                    <li>
+                        <a href="schedule.html" class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
+                            <svg class="text-gray-400 group-hover:text-gray-500 ml-3 h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                            </svg>
+                            الجدول الدراسي
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="flex-1 p-8">
+            <div class="mb-6">
+                <h2 class="text-2xl font-bold text-gray-900 mb-2">إدارة الحضور</h2>
+                <p class="text-gray-600">تسجيل ومتابعة حضور الطلاب</p>
+            </div>
+
+            <!-- Controls -->
+            <div class="bg-white rounded-lg shadow mb-6 p-6">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">الفصل</label>
+                        <select id="classSelect" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring
+-blue-500 focus:border-blue-500">
+                            <option value="">اختر الفصل</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">التاريخ</label>
+                        <input type="date" id="attendanceDate" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">الحصة</label>
+                        <select id="periodSelect" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                            <option value="">اختر الحصة</option>
+                            <option value="1">الحصة الأولى</option>
+                            <option value="2">الحصة الثانية</option>
+                            <option value="3">الحصة الثالثة</option>
+                            <option value="4">الحصة الرابعة</option>
+                            <option value="5">الحصة الخامسة</option>
+                            <option value="6">الحصة السادسة</option>
+                        </select>
+                    </div>
+                    <div class="flex items-end">
+                        <button id="loadAttendance" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition duration-150 ease-in-out">
+                            تحميل القائمة
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Attendance Table -->
+            <div class="bg-white rounded-lg shadow">
+                <div class="px-6 py-4 border-b border-gray-200">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-lg font-medium text-gray-900">قائمة الحضور</h3>
+                        <div class="flex space-x-2 space-x-reverse">
+                            <button id="markAllPresent" class="bg-green-600 hover:bg-green-700 text-white text-sm font-medium py-1.5 px-3 rounded-md transition duration-150 ease-in-out">
+                                تحديد الكل حاضر
+                            </button>
+                            <button id="saveAttendance" class="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-1.5 px-3 rounded-md transition duration-150 ease-in-out">
+                                حفظ الحضور
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200" id="attendanceTable">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">رقم الطالب</th>
+                                <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">اسم الطالب</th>
+                                <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">حاضر</th>
+                                <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">غائب</th>
+                                <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">متأخر</th>
+                                <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">مستأذن</th>
+                                <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">ملاحظات</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200" id="attendanceTableBody">
+                            <tr>
+                                <td colspan="7" class="px-6 py-4 text-center text-gray-500">
+                                    يرجى اختيار الفصل والتاريخ لتحميل قائمة الطلاب
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script>
+        let currentAttendance = [];
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            loadClasses();
+            setCurrentDate();
+        });
+
+        function loadClasses() {
+            const select = document.getElementById('classSelect');
+            select.innerHTML = '<option value="">اختر الفصل</option>';
+            
+            classes.forEach(classData => {
+                const option = document.createElement('option');
+                option.value = classData.id;
+                option.textContent = `${classData.subject} - ${classData.class}`;
+                select.appendChild(option);
+            });
+        }
+
+        function setCurrentDate() {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('attendanceDate').value = today;
+        }
+
+        function loadAttendanceList() {
+            const classId = document.getElementById('classSelect').value;
+            const date = document.getElementById('attendanceDate').value;
+            const period = document.getElementById('periodSelect').value;
+
+            if (!classId || !date || !period) {
+                alert('يرجى اختيار الفصل والتاريخ والحصة');
+                return;
+            }
+
+            const classData = classes.find(c => c.id == classId);
+            if (!classData) return;
+
+            // Generate attendance list for students
+            const tableBody = document.getElementById('attendanceTableBody');
+            tableBody.innerHTML = '';
+
+            // Get students for this class
+            const classStudents = students.filter(student => 
+                student.classes && student.classes.includes(classData.class)
+            );
+
+            currentAttendance = [];
+
+            classStudents.forEach((student, index) => {
+                const row = document.createElement('tr');
+                row.className = 'hover:bg-gray-50';
+                
+                const attendanceRecord = {
+                    studentId: student.id,
+                    studentName: student.name,
+                    status: 'present',
+                    notes: ''
+                };
+                currentAttendance.push(attendanceRecord);
+
+                row.innerHTML = `
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${student.id}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${student.name}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-center">
+                        <input type="radio" name="attendance_${student.id}" value="present" checked 
+                               onchange="updateAttendance(${student.id}, 'present')"
+                               class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-center">
+                        <input type="radio" name="attendance_${student.id}" value="absent" 
+                               onchange="updateAttendance(${student.id}, 'absent')"
+                               class="h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300">
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-center">
+                        <input type="radio" name="attendance_${student.id}" value="late" 
+                               onchange="updateAttendance(${student.id}, 'late')"
+                               class="h-4 w-4 text-yellow-600 focus:ring-yellow-500 border-gray-300">
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-center">
+                        <input type="radio" name="attendance_${student.id}" value="excused" 
+                               onchange="updateAttendance(${student.id}, 'excused')"
+                               class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300">
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <input type="text" placeholder="ملاحظات..." 
+                               onchange="updateNotes(${student.id}, this.value)"
+                               class="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500">
+                    </td>
+                `;
+                
+                tableBody.appendChild(row);
+            });
+        }
+
+        function updateAttendance(studentId, status) {
+            const record = currentAttendance.find(r => r.studentId === studentId);
+            if (record) {
+                record.status = status;
+            }
+        }
+
+        function updateNotes(studentId, notes) {
+            const record = currentAttendance.find(r => r.studentId === studentId);
+            if (record) {
+                record.notes = notes;
+            }
+        }
+
+        function markAllPresent() {
+            currentAttendance.forEach(record => {
+                record.status = 'present';
+                const radio = document.querySelector(`input[name="attendance_${record.studentId}"][value="present"]`);
+                if (radio) radio.checked = true;
+            });
+        }
+
+        function saveAttendance() {
+            const classId = document.getElementById('classSelect').value;
+            const date = document.getElementById('attendanceDate').value;
+            const period = document.getElementById('periodSelect').value;
+
+            if (!classId || !date || !period) {
+                alert('يرجى التأكد من اختيار الفصل والتاريخ والحصة');
+                return;
+            }
+
+            // Simulate saving attendance
+            const attendanceData = {
+                classId: classId,
+                date: date,
+                period: period,
+                attendance: currentAttendance
+            };
+
+            console.log('Saving attendance:', attendanceData);
+            
+            // Show success message
+            alert('تم حفظ الحضور بنجاح');
+            
+            // You would typically send this data to your backend here
+            // fetch('/api/attendance', { method: 'POST', body: JSON.stringify(attendanceData) })
+        }
+
+        // Event listeners
+        document.getElementById('loadAttendance').addEventListener('click', loadAttendanceList);
+        document.getElementById('markAllPresent').addEventListener('click', markAllPresent);
+        document.getElementById('saveAttendance').addEventListener('click', saveAttendance);
+    </script>
+</body>
+</html>

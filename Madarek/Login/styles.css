@@ -1,0 +1,104 @@
+/* styles.css - Madarek Platform */
+/* Base styles and RTL configuration */
+body {
+    font-family: 'Tajawal', Arial, sans-serif;
+    direction: rtl;
+    text-align: right;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/* Input enhancements for iOS to prevent zoom on focus */
+@media (max-width: 480px) {
+    input[type="text"],
+    input[type="password"],
+    input[type="email"],
+    input[type="number"],
+    select,
+    textarea {
+        font-size: 16px !important; /* iOS zoom fix */
+    }
+}
+
+/* Animation for error messages */
+.error-message {
+    animation: slideInError 0.3s ease-out;
+}
+
+@keyframes slideInError {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Modal Animations (using Tailwind transitions primarily, but can keep for reference) */
+/*
+#messageModal { animation: fadeInModal 0.3s ease-out; }
+#modalDialog { animation: slideUpModal 0.3s ease-out; }
+
+@keyframes fadeInModal {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@keyframes slideUpModal {
+    from { opacity: 0; transform: translateY(20px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+*/
+/* Note: Modal animations are now handled via Tailwind transition classes on #messageModal and #modalDialog for opacity and scale. */
+
+
+/* Accessibility: Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* High contrast mode basic support (Tailwind often handles this well) */
+@media (prefers-contrast: high) {
+    .border-gray-300 { /* Example: Make borders more visible */
+        border-color: currentColor;
+    }
+}
+
+/* Print styles: Basic reset for printing the form */
+@media print {
+    body {
+        background: white !important;
+        color: black !important;
+    }
+    .md\:w-1\/2.lg\:w-2\/5, /* Hide branding panel */
+    button, /* Hide buttons */
+    a[href="forgot-password.html"], /* Hide forgot password link */
+    a[href="contact.html"] /* Hide contact link */
+    {
+        display: none !important;
+    }
+    .md\:w-1\/2.lg\:w-3\/5, /* Form panel full width */
+    .w-full.max-w-md {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-shadow: none !important;
+        border: none !important;
+    }
+    .p-6, .p-8, .p-12, .m-4 {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+    .shadow-xl, .shadow-lg, .shadow-2xl {
+        box-shadow: none !important;
+    }
+}

@@ -1,0 +1,14 @@
+/* styles.css */
+body {
+    font-family: 'Tajawal', Arial, sans-serif;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body > .flex.h-screen {
+    min-height: 100vh; /* Changed from height to min-height */
+}

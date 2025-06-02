@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مدارك - لوحة الطالب</title>
+    <link rel="stylesheet" href="StudentDashboard.css">
+    <link href="https://fonts.googleapis.com/css?family=Cairo&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="student-header">
+        <button class="sidebar-toggle" id="sidebarToggle" title="إغلاق/فتح القائمة">&#9776;</button>
+        <div class="student-header-left">
+            <span class="student-title">مدارك - لوحة المعلومات </span>
+        </div>
+        <div class="student-header-right">
+            <span class="student-avatar">👨‍🎓</span>
+            <span class="student-notifications" title="الإشعارات" style="cursor:pointer; font-size: 1.3em; margin: 0 8px; position: relative;">
+                🔔
+                <span id="notification-count" style="display:none; position: absolute; top: -8px; right: -8px; background: red; color: white; border-radius: 50%; padding: 2px 6px; font-size: 0.8em; min-width: 18px; text-align: center;">0</span>
+            </span>
+            <span class="student-messages" title="المحادثات" style="cursor:pointer; font-size: 1.3em; margin-left: 8px; position: relative;">
+                💬
+                <span id="message-count" style="display:none; position: absolute; top: -8px; right: -8px; background: #2196f3; color: white; border-radius: 50%; padding: 2px 6px; font-size: 0.8em; min-width: 18px; text-align: center;">0</span>
+            </span>
+            <span class="student-user">مرحباً، الطالب</span>
+            <button class="logout-btn">تسجيل خروج</button>
+        </div>
+    </div>
+    <div class="student-sidebar">
+        <h2 class="sidebar-title">لوحة الطالب</h2>
+        <ul>
+            <li><a href="StudentDashboard.html" id="dashboard-link"><span class="icon">🏠</span> لوحة المعلومات </a></li>
+            <li><a href="StudentLessons.html" id="courses-link"><span class="icon">📚</span> دروسي </a></li>
+            <li><a href="#" id="assignments-link"><span class="icon">📝</span> واجباتي </a></li>
+            <li><a href="#" id="grades-link"><span class="icon">📊</span> درجاتي</a></li>
+            <li><a href="#" id="attendance-link"><span class="icon">📅</span> الحضور</a></li>
+            <li><a href="#" id="attendance-link"><span class="icon">👨‍🏫</span> الدورات </a></li>
+            <li><a href="#" id="profile-link"><span class="icon">👤</span> الملف الشخصي</a></li>
+        </ul>
+    </div>
+    <div class="student-main" id="student-main-content">
+        <!-- سيتم تعبئة المحتوى ديناميكياً عبر student.js -->
+    </div>
+    <script src="StudentDashboard.js"></script>
+    <script>
+        // Highlight active sidebar link based on current page
+        window.addEventListener('DOMContentLoaded', function() {
+            var sidebarLinks = document.querySelectorAll('.student-sidebar a');
+            var current = window.location.pathname.split('/').pop();
+            sidebarLinks.forEach(function(link) {
+                var href = link.getAttribute('href');
+                if (href && current && href.toLowerCase() === current.toLowerCase()) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+body {
+            font-family: 'Roboto', sans-serif;
+        }
+        .parent-sidebar {
+            position: fixed;
+            top: 0;
+            right: 0;
+            height: 100vh;
+            width: 220px;
+            background: #4068fc;
+            color: #fff;
+            z-index: 500;
+            padding-top: 10px; /* was 70px */
+        }
+        .parent-sidebar h2 {
+            text-align: center;
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            color: #fff;
+        }
+        .parent-sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .parent-sidebar ul li a {
+            display: flex;
+            align-items: center;
+            color: #fff;
+            text-decoration: none;
+            padding: 0.8rem 1.2rem;
+            font-size: 1.05rem;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            transition: background 0.2s;
+        }
+        .parent-sidebar ul li a.active,
+        .parent-sidebar ul li a:hover {
+            background: rgba(255,255,255,0.18);
+            color: #43cea2;
+        }
+        .parent-header {
+            position: fixed;
+            top: 0;
+            right: 220px;
+            left: 0;
+            height: 64px;
+            background: #fff;
+            box-shadow: 0 2px 12px rgba(67, 206, 162, 0.07);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 110;
+            padding: 0 2rem;
+        }
+        .parent-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #4068fc;
+        }
+        .parent-header-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .parent-user {
+            color: #4068fc;
+            font-weight: 500;
+        }
+        .parent-main {
+            margin-right: 220px;
+            margin-top: 80px;
+            padding: 2rem 1rem 1rem 1rem;
+        }
+        @media (max-width: 991.98px) {
+            .parent-sidebar {
+                transform: translateX(100%);
+                transition: transform 0.3s;
+            }
+            .parent-sidebar.show {
+                transform: translateX(0);
+            }
+            body.sidebar-open {
+                overflow: hidden;
+            }
+            .parent-header {
+                right: 60px;
+            }
+            .parent-main {
+                margin-right: 60px;
+            }
+        }
+        @media (max-width: 575.98px) {
+            .parent-header {
+                padding: 0 0.5rem;
+            }
+            .parent-main {
+                padding: 1rem 0.2rem 0.2rem 0.2rem;
+            }
+        }
+        /* Remove dropdown on hover, keep only on click */
+        
+        .parent-user-dropdown .dropdown-toggle::after {
+            display: none;
+        }

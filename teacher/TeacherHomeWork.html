@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>واجباتي | منصة مدارك</title>
+    <link rel="stylesheet" href="TeacherHomeWork.css">
+    <link href="https://fonts.googleapis.com/css?family=Cairo&display=swap" rel="stylesheet">
+</head>
+<body class="homework-body">
+    <div class="teacher-sidebar">
+        <button id="sidebar-toggle" class="sidebar-toggle">☰</button>
+        <h2>لوحة المعلم</h2>
+        <ul>
+            <li><a href="Teacher's_Dashboard.html" id="dashboard-link"><span class="icon">🏠</span> لوحة المعلومات</a></li>
+            <li><a href="My_students.html" id="my-classes-link"><span class="icon">👨‍🎓</span> طلابي</a></li>
+            <li><a href="TeacherHomeWork.html" id="homework-link" class="active"><span class="icon">📝</span> واجباتي</a></li>
+            <li><a href="TeacherExams.html" id="exams-link"><span class="icon">📋</span> اختباراتي</a></li>
+            <li><a href="TeacherLessons.html" id="lessons-link"><span class="icon">📚</span> دروسي</a></li>
+        </ul>
+    </div>
+
+    <div class="teacher-header">
+        <div class="teacher-header-left">
+            <span class="teacher-title">مدارك - واجباتي</span>
+        </div>
+        <div class="teacher-header-right">
+            <span class="teacher-avatar">👨‍🏫</span>
+            <span class="teacher-user">مرحباً، المعلم</span>
+            <button class="logout-btn">تسجيل خروج</button>
+        </div>
+    </div>
+
+    <div class="homework-container">
+        <!-- إضافة عنصر الإشعارات -->
+        <div id="feedback-container" class="feedback-container"></div>
+        
+        <!-- قسم الإحصائيات -->
+        <div class="stats-section">
+            <div class="stat-card">
+                <div class="stat-icon">📊</div>
+                <div class="stat-content">
+                    <h3>إجمالي الواجبات</h3>
+                    <p id="total-homework">0</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">⏳</div>
+                <div class="stat-content">
+                    <h3>الواجبات قيد الانتظار</h3>
+                    <p id="pending-homework">0</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">✅</div>
+                <div class="stat-content">
+                    <h3>الواجبات المستلمة</h3>
+                    <p id="completed-homework">0</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="homework-header">
+            <h1>قائمة الواجبات</h1>
+            <button id="add-homework-btn" class="add-btn">إضافة واجب جديد <span class="icon">➕</span></button>
+        </div>
+
+        <div class="filters-section">
+            <div class="filter-group">
+                <label for="class-filter">تصفية حسب الفصل:</label>
+                <select id="class-filter">
+                    <option value="all">جميع الفصول</option>
+                    <!-- سيتم تعبئة الخيارات ديناميكياً -->
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="subject-filter">تصفية حسب المادة:</label>
+                <select id="subject-filter">
+                    <option value="all">جميع المواد</option>
+                    <!-- سيتم تعبئة الخيارات ديناميكياً -->
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="status-filter">تصفية حسب الحالة:</label>
+                <select id="status-filter">
+                    <option value="all">جميع الحالات</option>
+                    <option value="pending">قيد الانتظار</option>
+                    <option value="completed">مستلم</option>
+                </select>
+            </div>
+            <div class="search-group">
+                <input type="text" id="search-input" placeholder="بحث عن واجب...">
+            </div>
+        </div>
+
+        <div class="homework-table-container">
+            <table class="homework-table">
+                <thead>
+                    <tr>
+                        <th>المادة</th>
+                        <th>الفصل</th>
+                        <th>عنوان الواجب</th>
+                        <th>تاريخ التسليم</th>
+                        <th>الحالة</th>
+                        <th>الإجراءات</th>
+                    </tr>
+                </thead>
+                <tbody id="homework-list">
+                    <!-- سيتم إضافة الواجبات هنا ديناميكياً -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- نافذة إضافة/تعديل واجب -->
+    <div id="add-homework-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 id="modal-title">إضافة واجب جديد</h2>
+            <form id="add-homework-form">
+                <div class="form-group">
+                    <label for="subject-select">المادة الدراسية:</label>
+                    <select id="subject-select" required>
+                        <option value="">اختر المادة</option>
+                        <!-- سيتم تعبئة الخيارات ديناميكياً -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="class-select">الفصل:</label>
+                    <select id="class-select" required>
+                        <option value="">اختر الفصل</option>
+                        <!-- سيتم تعبئة الخيارات ديناميكياً -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="homework-title">عنوان الواجب:</label>
+                    <input type="text" id="homework-title" required>
+                </div>
+                <div class="form-group">
+                    <label for="homework-description">وصف الواجب:</label>
+                    <textarea id="homework-description" rows="4" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="due-date">تاريخ التسليم:</label>
+                    <input type="datetime-local" id="due-date" required>
+                </div>
+                <div class="form-group">
+                    <label for="homework-file">ملف الواجب (PDF اختياري):</label>
+                    <input type="file" id="homework-file" accept=".pdf">
+                    <small class="file-hint">* يمكنك رفع ملف PDF للواجب (اختياري)</small>
+                    <div id="current-file-info" class="current-file" style="display: none;">
+                        <p>الملف الحالي: <span id="current-filename">لا يوجد ملف</span></p>
+                        <button type="button" class="remove-file-btn" id="remove-file-btn">حذف الملف</button>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="save-btn" id="form-submit-btn">إضافة وإرسال إشعار</button>
+                    <button type="button" class="cancel-btn" id="cancel-add-homework">إلغاء</button>
+                </div>
+                <input type="hidden" id="homework-id">
+            </form>
+        </div>
+    </div>
+
+    <script src="TeacherHomeWork.js"></script>
+</body>
+</html>
+
+/* حالات الواجب */
+.status-pending {
+    color: #ffc107;
+    font-weight: bold;
+}
+
+.status-completed {
+    color: #28a745;
+    font-weight: bold;
+}

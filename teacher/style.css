@@ -1,0 +1,598 @@
+/* === الأساسيات === */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Cairo', Tahoma, Arial, sans-serif;
+    background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+    direction: rtl;
+    margin: 0;
+    padding: 0;
+}
+
+/* === الشريط الجانبي (Sidebar) === */
+.student-sidebar {
+    width: 260px !important;
+    min-width: 260px !important;
+    max-width: 260px !important;
+    background: linear-gradient(135deg, #4068fc 80%, #43cea2 100%);
+    color: #fff;
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 1.5rem;
+    overflow: hidden;
+    transform: translateX(0);
+    transition: transform 0.3s cubic-bezier(.77,0,.18,1), width 0.3s cubic-bezier(.77,0,.18,1);
+}
+
+.student-sidebar.sidebar-collapsed {
+    transform: translateX(260px);
+}
+
+/* زر القائمة الجانبية في الديسكتوب يظهر دائماً */
+.sidebar-toggle {
+    display: flex !important;
+    position: relative;
+    right: 240px;
+    top: 0;
+    margin-right: 0.5rem;
+    background: #4068fc;
+    border: none;
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.7rem;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, right 0.3s ease;
+    z-index: 3001;
+}
+.sidebar-toggle:hover {
+  background: #43cea2;
+}
+@media (max-width: 700px) {
+    .sidebar-toggle {
+        width: 20px !important;
+        height: 20px !important;
+        font-size: 0.8rem !important;
+        right: 0.5rem !important;
+        top: 0.5rem !important;
+    }
+
+    .student-header-left {
+        margin-right: 0;
+        padding-right: 28px;
+    }
+
+    .student-title {
+        font-size: 0.85rem;
+        padding-right: 0;
+        max-width: calc(100vw - 130px);
+    }
+
+    .student-header-right {
+        gap: 0.3rem;
+        margin-right: 28px;
+    }
+}
+@media (max-width: 400px) {
+    .sidebar-toggle {
+        width: 21px !important;
+        height: 21px !important;
+        font-size: 0.75rem !important;
+        right: 0.7rem !important;
+        top: 0.7rem !important;
+    }
+
+    .student-header-left {
+        padding-right: 25px;
+    }
+
+    .student-header-right {
+        margin-right: 25px;
+    }
+}
+
+/* === الهيدر (Header) === */
+.student-header {
+    width: 100%;
+    height: 64px;
+    background: #fff;
+    box-shadow: 0 2px 12px rgba(67, 206, 162, 0.07);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 110;
+    padding: 0 2rem;
+}
+
+.student-header-left {
+    display: flex;
+    align-items: center;
+    margin-right: 300px;
+}
+
+.student-header-right {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.student-title {
+    color: #4068fc;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding-right: 60px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.student-user {
+    font-size: 1.05rem;
+    color: #4068fc;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    font-weight: 500;
+}
+
+/* === زر تسجيل الخروج === */
+.logout-btn {
+    background: #ff3232;
+    color: #fff !important;
+    border: none;
+    border-radius: 8px;
+    padding: 0.5rem 1.1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.logout-btn:hover {
+    background: #43cea2 !important;
+}
+
+.logout-btn .icon {
+    display: none;
+}
+
+@media (max-width: 700px) {
+    .logout-btn {
+        padding: 0.4rem;
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        justify-content: center;
+    }
+
+    .logout-btn .text {
+        display: none;
+    }
+
+    .logout-btn .icon {
+        display: block;
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .logout-btn {
+        width: 32px;
+        height: 32px;
+    }
+
+    .logout-btn .icon {
+        font-size: 1.1rem;
+    }
+}
+
+/* === الصفحة الرئيسية (Main Content) === */
+.student-main {
+    margin-right: 260px;
+    margin-top: 64px;
+    padding: 2.5rem 2.5rem 2.5rem 2rem;
+    flex: 1;
+    background: #ffffff;
+    min-height: 100vh;
+    border-radius: 0;
+    box-shadow: 0 2px 16px rgba(67, 206, 162, 0.07);
+    transition: margin 0.3s cubic-bezier(.77,0,.18,1);
+    overflow-x: auto;
+}
+.student-main.sidebar-collapsed {
+    margin-right: 0 !important;
+}
+
+/* === قائمة الشريط الجانبي === */
+.student-sidebar ul {
+    width: 100%;
+    list-style: none;
+    padding: 0 0.5rem;
+    margin: 0;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+}
+
+.student-sidebar ul::-webkit-scrollbar {
+    width: 6px;
+}
+
+.student-sidebar ul::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.student-sidebar ul::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+}
+
+.student-sidebar li {
+    width: 100%;
+    margin-bottom: 1.2rem;
+}
+
+.student-sidebar a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.08rem;
+    display: flex;
+    align-items: center;
+    padding: 0.7rem 1rem;
+    border-radius: 8px;
+    transition: background 0.2s, color 0.2s;
+    font-family: inherit;
+    font-weight: 500;
+    gap: 0.7em;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.student-sidebar a .icon {
+    margin-left: 10px;
+    font-size: 1.2em;
+    vertical-align: middle;
+}
+
+.student-sidebar a.active,
+.student-sidebar a:hover {
+    background: rgba(255,255,255,0.18);
+    color: #43cea2;
+    font-weight: bold;
+    text-shadow: 0 1px 8px rgba(67, 206, 162, 0.10);
+    letter-spacing: 0.5px;
+}
+
+/* === عنوان الشريط الجانبي === */
+.sidebar-title {
+    color: #fff;
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 2.5rem;
+    text-align: center;
+    width: 100%;
+    padding: 0.5rem;
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
+}
+
+/* === زر الإشعارات (Notifications Button) === */
+.student-notifications.active {
+    background: linear-gradient(135deg, #43cea2 40%, #4068fc 100%);
+    color: #fff;
+    border-radius: 50%;
+    box-shadow: 0 4px 16px rgba(67, 206, 162, 0.18);
+    outline: 3px solid #43cea2;
+    outline-offset: 2px;
+    font-weight: bold;
+    transition: background 0.2s, color 0.2s, outline 0.2s;
+    position: relative;
+}
+
+/* === زر النقاشات (Discussions Button) === */
+.student-messages.active {
+    background: linear-gradient(135deg, #4068fc 40%, #43cea2 100%);
+    color: #fff;
+    border-radius: 50%;
+    box-shadow: 0 4px 16px rgba(67, 206, 162, 0.18);
+    outline: 3px solid #4068fc;
+    outline-offset: 2px;
+    font-weight: bold;
+    transition: background 0.2s, color 0.2s, outline 0.2s;
+    position: relative;
+}
+
+/* === ميديا كويري (Responsive) === */
+@media (max-width: 900px) {
+    .student-sidebar {
+        width: 160px !important;
+        min-width: 160px !important;
+        max-width: 160px !important;
+    }
+    .student-header-left {
+        margin-right: 70px;
+    }
+    .student-main {
+        margin-right: 80px !important;
+        padding: 1.2rem 1rem 1.2rem 1rem;
+    }
+    .sidebar-toggle {
+        position: absolute;
+        right: 1rem;
+        top: 1.1rem;
+        z-index: 3001;
+    }
+}
+
+@media (max-width: 600px) {
+    .student-sidebar {
+        display: none;
+    }
+    .student-header {
+        right: 0;
+        padding: 0 0.2rem;
+    }
+}
+
+/* زر القائمة الجانبية داخل السايدبار للجوال */
+.sidebar-toggle-inside {
+  display: none;
+  position: absolute;
+  top: 1.1rem;
+  left: 1.1rem;
+  background: #4068fc;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  width: 38px;
+  height: 38px;
+  font-size: 1.5rem;
+  z-index: 4002;
+  box-shadow: 0 2px 8px rgba(67, 206, 162, 0.10);
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.sidebar-toggle-inside:hover {
+  background: #43cea2;
+}
+@media (max-width: 700px) {
+  .sidebar-toggle {
+    display: flex !important;
+    position: absolute;
+    right: 1rem;
+    top: 1.1rem;
+    z-index: 3001;
+    background: #4068fc;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    width: 40px;
+    height: 40px;
+    font-size: 1.7rem;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(67, 206, 162, 0.10);
+  }
+  .student-header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 56px;
+    padding: 0 1.2rem;
+  }
+  .student-header-left {
+    margin-right: 0;
+    padding-right: 45px;
+  }
+}
+@media (min-width: 701px) {
+  .sidebar-toggle {
+    display: flex !important;
+    position: relative;
+    right: 230px;
+    top: 0;
+    transition: right 0.3s cubic-bezier(.77,0,.18,1);
+  }
+  .sidebar-toggle.sidebar-collapsed {
+    right: 0 !important;
+  }
+}
+
+@media (max-width: 700px) {
+  .sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0; right: 0; left: 0; bottom: 0;
+    background: rgba(44, 62, 80, 0.25);
+    z-index: 2999;
+    transition: opacity 0.2s;
+  }
+  .student-sidebar {
+    position: fixed;
+    right: -100%;
+    top: 0;
+    height: 100vh;
+    width: 85vw !important;
+    min-width: 0 !important;
+    max-width: 95vw !important;
+    background: linear-gradient(135deg, #4068fc 80%, #43cea2 100%);
+    color: #fff;
+    z-index: 3000;
+    box-shadow: 0 2px 8px rgba(67, 206, 162, 0.10);
+    border-radius: 0 0 0 12px;
+    transition: right 0.3s cubic-bezier(.23,1.12,.72,.98);
+    padding-top: 2.5rem;
+    padding-bottom: 0.5rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .student-sidebar.sidebar-open {
+    right: 0;
+    width: 90vw !important;
+    max-width: 320px !important;
+  }
+  .sidebar-toggle {
+    position: fixed;
+    right: 12px;
+    top: 16px;
+    z-index: 4001;
+    background: #4068fc;
+    border-radius: 8px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(67, 206, 162, 0.10);
+    transition: right 0.2s, top 0.2s;
+  }
+  .student-sidebar.sidebar-open ~ .sidebar-toggle,
+  .sidebar-toggle.sidebar-open {
+    right: auto !important;
+    left: 12px !important;
+    top: 16px !important;
+    z-index: 4002;
+  }
+  .sidebar-overlay.active {
+    display: block;
+  }
+  .student-sidebar ul {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0;
+    margin: 0;
+  }
+  .student-sidebar li {
+    margin-bottom: 0.2rem;
+    width: 100%;
+    text-align: right;
+  }
+  .student-sidebar a {
+    width: auto;
+    max-width: 95%;
+    min-width: 0;
+    font-size: 1rem;
+    padding: 0.5rem 0.7rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.7em;
+    width: 95%;
+    border-radius: 7px;
+    background: rgba(255,255,255,0.08);
+    margin: 0 auto 0.3rem auto;
+    box-sizing: border-box;
+    color: #fff;
+  }
+  .student-sidebar a .icon {
+    margin-left: 10px;
+    font-size: 1.2em;
+  }
+  .sidebar-title {
+    display: block;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    width: 100%;
+  }
+  .student-main {
+    margin-right: 0 !important;
+    border-radius: 0;
+    padding: 1rem 0.5rem;
+    min-width: 0;
+    width: 100vw;
+    max-width: 100vw;
+    box-sizing: border-box;
+  }
+}
+
+/* تحديثات للهاتف المحمول */
+@media (max-width: 700px) {
+    .student-header {
+        height: 48px;
+        padding: 0 0.6rem;
+    }
+
+    .student-header-left {
+        margin-right: 0;
+        padding-right: 35px;
+    }
+
+    .student-title {
+        font-size: 0.85rem;
+        padding-right: 0;
+        max-width: calc(100vw - 160px);
+    }
+
+    .student-header-right {
+        gap: 0.3rem;
+    }
+
+    .student-user {
+        font-size: 0.8rem;
+        margin-left: 0.2rem;
+        margin-right: 0.2rem;
+    }
+
+    .student-notifications,
+    .student-messages {
+        font-size: 1em !important;
+        margin: 0 3px !important;
+    }
+
+    /* تعديل حجم الأيقونات في الهيدر */
+    .student-notifications .icon,
+    .student-messages .icon {
+        font-size: 1.1em;
+    }
+}
+
+/* تحديثات إضافية للهواتف الصغيرة جداً */
+@media (max-width: 400px) {
+    .student-header {
+        height: 44px;
+        padding: 0 0.4rem;
+    }
+
+    .student-title {
+        font-size: 0.8rem;
+        padding-right: 20px;
+        max-width: calc(100vw - 180px);
+    }
+
+    .student-user {
+        font-size: 0.75rem;
+        margin-left: 0.15rem;
+        margin-right: 0.15rem;
+    }
+
+    .logout-btn {
+        padding: 0.35rem 0.7rem;
+        font-size: 0.85rem;
+    }
+}

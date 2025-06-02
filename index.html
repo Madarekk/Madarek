@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة ولي الأمر</title>
+    <link rel="stylesheet" href="parent/css/style.css">
+    <link rel="stylesheet" href="parent/css/bootstrap.min.css">
+    <link rel="stylesheet" href="parent/css/all.min.css">
+    <link rel="stylesheet" href="../bootstrap/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="parent-sidebar d-flex flex-column collapsed-sidebar">
+        <h2 class="d-flex flex-column align-items-center">
+            <i class="fa-solid fa-graduation-cap fa-2x mb-2"></i>
+            مدارٍك
+        </h2>
+        <ul class="nav flex-column">
+            <li class="nav-item mb-2">
+                <a class="nav-link active" href="parent_home.html"><i class="fa-solid fa-house me-2"></i> <span>الرئيسية</span></a>
+            </li>
+            <li class="nav-item mb-2">
+                <a class="nav-link" href="parent_children.html"><i class="fa-solid fa-user-graduate me-2"></i> <span>أبنائي</span></a>
+            </li>
+            <li class="nav-item mb-2">
+                <a class="nav-link" href="student/StudentDashboard.html"><i class="fa-solid fa-chart-line me-2"></i> <span>التقارير</span></a>
+            </li>
+            <li class="nav-item mb-2">
+                <a class="nav-link" href="parent_messages.html"><i class="fa-solid fa-envelope me-2"></i> <span>الرسائل</span></a>
+            </li>
+        </ul>
+    </aside>
+
+    <!-- Header -->
+    <header class="parent-header">
+        <span class="parent-title">لوحة ولي الأمر</span>
+        <div class="parent-header-right">
+            <button class="btn btn-link position-relative p-0 me-2" aria-label="الإشعارات">
+                <i class="fa-regular fa-bell fa-lg text-primary"></i>
+                <span class="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-danger" style="font-size:0.7rem;">
+                    3
+                </span>
+            </button>
+            <button class="btn btn-link position-relative p-0 me-2" aria-label="الرسائل">
+                <i class="fa-regular fa-envelope fa-lg text-primary"></i>
+                <span class="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-success" style="font-size:0.7rem;">
+                    2
+                </span>
+            </button>
+            <!-- User Dropdown -->
+            <div class="dropdown parent-user-dropdown">
+                <a href="#" class="parent-user dropdown-toggle d-flex align-items-center" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa-solid fa-user fa-lg text-primary"></i> <span class="ms-1"></span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end text-end" aria-labelledby="userDropdown">
+                    <li><a class="dropdown-item" href="#">الملف الشخصي</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item text-danger" href="#">تسجيل الخروج</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="parent-main">
+        <div class="container-fluid">
+            <div class="row g-4 mb-4">
+                <div class="col-md-6">
+                    <div class="card shadow-sm">
+                        <div class="card-body d-flex align-items-center">
+                            <i class="fa-solid fa-user-graduate fa-2x text-primary ms-3"></i>
+                            <div>
+                                <h5 class="card-title mb-1">عدد الأبناء</h5>
+                                <p class="card-text fs-5">2</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card shadow-sm">
+                        <div class="card-body d-flex align-items-center">
+                            <i class="fa-solid fa-chart-line fa-2x text-success ms-3"></i>
+                            <div>
+                                <h5 class="card-title mb-1">تقارير جديدة</h5>
+                                <p class="card-text fs-5">1</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-primary text-white">
+                    آخر الرسائل
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">تم تحديث درجات الطالب أحمد.</li>
+                    <li class="list-group-item">موعد اجتماع أولياء الأمور يوم الخميس.</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <button class="btn btn-primary d-lg-none position-fixed top-0 end-0 m-3 z-3" type="button" id="sidebarToggle">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <script src="parent/js/bootstrap.bundle.min.js"></script>
+    <script src="parent/js/all.min.js"></script>
+    <script>
+        const sidebar = document.querySelector('.parent-sidebar');
+        const toggleBtn = document.getElementById('sidebarToggle');
+        toggleBtn.addEventListener('click', function() {
+            sidebar.classList.toggle('show');
+            document.body.classList.toggle('sidebar-open');
+        });
+        // Optional: close sidebar when clicking outside
+        document.addEventListener('click', function(e) {
+            if (window.innerWidth <= 991.98 && sidebar.classList.contains('show')) {
+                if (!sidebar.contains(e.target) && !toggleBtn.contains(e.target)) {
+                    sidebar.classList.remove('show');
+                    document.body.classList.remove('sidebar-open');
+                }
+            }
+        });
+    </script>
+</body>
+</html>

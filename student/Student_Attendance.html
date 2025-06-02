@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مدارك - الحضور</title>
+    <link rel="stylesheet" href="Style.css">
+    <link href="https://fonts.googleapis.com/css?family=Cairo&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+    <script src="https://unpkg.com/jspdf-arabic@1.0.0/dist/jspdf.arabic.min.js"></script>
+    <style>
+        .attendance-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            gap: 1rem;
+        }
+        .attendance-icon {
+            font-size: 2rem;
+            color: #4068fc;
+        }
+        .attendance-title {
+            font-size: 1.5rem;
+            color: #4068fc;
+            font-weight: bold;
+        }
+        .student-info {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .info-label {
+            color: #666;
+            font-weight: 500;
+        }
+        .info-value {
+            color: #4068fc;
+            font-weight: bold;
+        }
+        .filters-container {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .filter-label {
+            color: #666;
+            font-weight: 500;
+        }
+        .filter-input {
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: inherit;
+        }
+        .attendance-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+        }
+        .attendance-table th {
+            background: #4068fc;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            font-weight: 500;
+        }
+        .attendance-table td {
+            padding: 0.8rem;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+        .attendance-table tr:last-child td {
+            border-bottom: none;
+        }
+        .weekend {
+            background: #f8f9fa;
+        }
+        .status-present {
+            color: #28a745;
+        }
+        .status-late {
+            color: #ffc107;
+        }
+        .status-excused {
+            color: #17a2b8;
+        }
+        .attendance-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .summary-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+        }
+        .summary-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #4068fc;
+            margin: 0.5rem 0;
+        }
+        .summary-label {
+            color: #666;
+            font-weight: 500;
+        }
+        .chart-container {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+            max-width: 400px;
+            margin: 0 auto 2rem auto;
+        }
+        .icons-legend {
+            background: white;
+            padding: 1rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .legend-icon {
+            font-size: 1.2rem;
+        }
+        .legend-text {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        .export-btn {
+            background: #4068fc;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+        .export-btn:hover {
+            background: #43cea2;
+        }
+        @media (max-width: 768px) {
+            .student-info {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .filters-container {
+                flex-direction: column;
+            }
+            .attendance-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+        .calendar-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+        }
+        .calendar-table th {
+            background: #4068fc;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            font-weight: 500;
+        }
+        .calendar-table td {
+            padding: 1rem;
+            text-align: center;
+            border: 1px solid #eee;
+            position: relative;
+            min-width: 80px;
+            height: 80px;
+            vertical-align: top;
+        }
+        .calendar-table .weekend {
+            background: #f8f9fa;
+        }
+        .calendar-table .day-number {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        .calendar-table .status-icon {
+            font-size: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .calendar-table .empty-cell {
+            background: #f8f9fa;
+        }
+        .calendar-table .today {
+            background: rgba(64, 104, 252, 0.1);
+            border: 2px solid #4068fc;
+        }
+        .calendar-table .today .day-number {
+            color: #4068fc;
+            font-weight: bold;
+        }
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .calendar-title {
+            font-size: 1.2rem;
+            color: #4068fc;
+            font-weight: bold;
+        }
+        .calendar-nav {
+            display: flex;
+            gap: 1rem;
+        }
+        .calendar-nav-btn {
+            background: #4068fc;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .calendar-nav-btn:hover {
+            background: #43cea2;
+        }
+        .calendar-nav-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div class="student-header">
+        <button class="sidebar-toggle" id="sidebarToggle" title="إغلاق/فتح القائمة">&#9776;</button>
+        <div class="student-header-left">
+            <span class="student-title">الحضور</span>
+        </div>
+        <div class="student-header-right">
+            <span class="student-notifications" title="الإشعارات" style="cursor:pointer; font-size: 1.3em; margin: 0 8px; position: relative;">
+                🔔
+                <span id="notification-count" style="display:none; position: absolute; top: -8px; right: -8px; background: red; color: white; border-radius: 50%; padding: 2px 6px; font-size: 0.8em; min-width: 18px; text-align: center;">0</span>
+            </span>
+            <span class="student-messages" title="النقاشات" style="cursor:pointer; font-size: 1.3em; margin-left: 8px; position: relative;" onclick="window.location.href='Student_Discussion.html'">
+                💬
+                <span id="message-count" style="display:none; position: absolute; top: -8px; right: -8px; background: #2196f3; color: white; border-radius: 50%; padding: 2px 6px; font-size: 0.8em; min-width: 18px; text-align: center;">0</span>
+            </span>
+            <span class="student-user">مرحباً، الطالب</span>
+            <button class="logout-btn">تسجيل خروج</button>
+        </div>
+    </div>
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+    <div class="student-sidebar">
+        <h2 class="sidebar-title">مدارِك</h2>
+        <button class="sidebar-toggle sidebar-toggle-inside" id="sidebarToggleInside" title="إغلاق القائمة" style="display:none">&#10005;</button>
+        <ul>
+            <li><a href="StudentDashboard.html" id="dashboard-link"><span class="icon">🏠</span> لوحة المعلومات </a></li>
+            <li><a href="Student_Lessons.html" id="courses-link"><span class="icon">📚</span> دروسي </a></li>
+            <li><a href="Student_Homework.html" id="assignments-link"><span class="icon">📝</span> واجباتي </a></li>
+            <li><a href="Student_Grades.html" id="grades-link"><span class="icon">📊</span> درجاتي</a></li>
+            <li><a href="Student_Attendance.html" id="attendance-link" class="active"><span class="icon">📅</span> الحضور</a></li>
+            <li><a href="Student_Courses.html" id="courses-link"><span class="icon">👨‍🏫</span> الدورات </a></li>
+        </ul>
+    </div>
+    <div class="student-main" id="student-main-content">
+        <div class="attendance-header">
+            <span class="attendance-icon">📅</span>
+            <span class="attendance-title">سجل الحضور</span>
+        </div>
+
+        <div class="student-info">
+            <div class="info-item">
+                <span class="info-label">اسم الطالب:</span>
+                <span class="info-value" id="student-name">سراج الهادي عريبي</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">الصف:</span>
+                <span class="info-value" id="student-grade">السادس</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">الفصل:</span>
+                <span class="info-value" id="student-class">أ</span>
+            </div>
+        </div>
+
+        <div class="filters-container">
+            <div class="filter-group">
+                <label class="filter-label">الشهر:</label>
+                <select class="filter-input" id="month-filter">
+                    <option value="9-2024">سبتمبر 2024</option>
+                    <option value="10-2024">أكتوبر 2024</option>
+                    <option value="11-2024">نوفمبر 2024</option>
+                    <option value="12-2024">ديسمبر 2024</option>
+                    <option value="1-2025">يناير 2025</option>
+                    <option value="2-2025">فبراير 2025</option>
+                    <option value="3-2025">مارس 2025</option>
+                    <option value="4-2025">أبريل 2025</option>
+                    <option value="5-2025" selected>مايو 2025</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="calendar-header">
+            <div class="calendar-title" id="calendar-title">مايو 2025</div>
+            <div class="calendar-nav">
+                <button class="calendar-nav-btn" onclick="previousMonth()" id="prev-month-btn">الشهر السابق</button>
+                <button class="calendar-nav-btn" onclick="nextMonth()" id="next-month-btn">الشهر التالي</button>
+            </div>
+        </div>
+
+        <div class="icons-legend">
+            <div class="legend-item">
+                <span class="legend-icon">✅</span>
+                <span class="legend-text">حاضر</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-icon">❌</span>
+                <span class="legend-text">غائب</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-icon">⏰</span>
+                <span class="legend-text">متأخر</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-icon">📄</span>
+                <span class="legend-text">بعذر</span>
+            </div>
+        </div>
+
+        <table class="calendar-table">
+            <thead>
+                <tr>
+                    <th>الأحد</th>
+                    <th>الإثنين</th>
+                    <th>الثلاثاء</th>
+                    <th>الأربعاء</th>
+                    <th>الخميس</th>
+                    <th>الجمعة</th>
+                    <th>السبت</th>
+                </tr>
+            </thead>
+            <tbody id="calendar-body">
+                <!-- سيتم تعبئة البيانات ديناميكياً -->
+            </tbody>
+        </table>
+
+        <button class="export-btn" onclick="exportToPDF()">
+            <span>📄</span>
+            <span>تصدير إلى PDF</span>
+        </button>
+
+        <div class="attendance-summary">
+            <div class="summary-card">
+                <div class="summary-value" id="present-days">0</div>
+                <div class="summary-label">أيام الحضور</div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-value" id="absent-days">0</div>
+                <div class="summary-label">أيام الغياب</div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-value" id="late-days">0</div>
+                <div class="summary-label">أيام التأخير</div>
+            </div>
+            <div class="summary-card">
+                <div class="summary-value" id="excused-days">0</div>
+                <div class="summary-label">أيام الغياب بعذر</div>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="attendance-chart"></canvas>
+        </div>
+    </div>
+    <script src="Script.js"></script>
+    <script>
+        /**
+         * توثيق هيكل البيانات والـ API المطلوبة للـ Backend Team
+         * 
+         * 1. هيكل البيانات المطلوب:
+         * 
+         * أ. بيانات الطالب:
+         * {
+         *     id: string,          // معرف الطالب
+         *     name: string,        // الاسم الثلاثي للطالب
+         *     grade: string,       // الصف الدراسي
+         *     class: string        // الفصل
+         * }
+         * 
+         * ب. بيانات الحضور:
+         * {
+         *     date: string,        // تاريخ الحضور (YYYY-MM-DD)
+         *     status: string,      // حالة الحضور (present, absent, late, excused)
+         *     recorded_by: string, // معرف المسؤول
+         *     recorded_at: string, // وقت التسجيل (ISO 8601)
+         *     notes: string        // ملاحظات إضافية
+         * }
+         * 
+         * 2. نقاط نهاية API المطلوبة:
+         * 
+         * أ. جلب بيانات الطالب:
+         * GET /api/students/{studentId}
+         * Response: بيانات الطالب
+         * 
+         * ب. جلب سجل الحضور:
+         * GET /api/attendance/{studentId}
+         * Query Parameters:
+         *   - month: رقم الشهر (1-12)
+         *   - year: السنة
+         * Response: مصفوفة من سجلات الحضور
+         * 
+         * ج. تسجيل حضور جديد:
+         * POST /api/attendance
+         * Body: سجل حضور جديد
+         * Response: سجل الحضور المحدث
+         * 
+         * د. تحديث سجل حضور:
+         * PUT /api/attendance/{attendanceId}
+         * Body: بيانات التحديث
+         * Response: سجل الحضور المحدث
+         * 
+         * 3. متطلبات الأمان:
+         * - يجب التحقق من صلاحيات المستخدم قبل أي عملية
+         * - تشفير البيانات الحساسة
+         * - التحقق من صحة البيانات المدخلة
+         * 
+         * 4. ملاحظات هامة:
+         * - يجب التحقق من أن التواريخ ضمن السنة الدراسية
+         * - يجب التحقق من عدم تكرار تسجيل الحضور لنفس اليوم
+         * - يجب تسجيل وقت وتاريخ كل عملية تعديل
+         * - يجب الاحتفاظ بسجل للتغييرات (audit log)
+         */
+
+        // بيانات تجريبية (يمكن استبدالها ببيانات من الباك إند)
+        function generateMockAttendanceData() {
+            const today = new Date();
+            const currentYear = today.getFullYear();
+            const currentMonth = today.getMonth();
+            const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+            
+            const attendance = [];
+            let absentDay = Math.floor(Math.random() * daysInMonth) + 1;
+            let lateDay = Math.floor(Math.random() * daysInMonth) + 1;
+            let excusedDay = Math.floor(Math.random() * daysInMonth) + 1;
+            
+            // تجنب تكرار الأيام
+            while (lateDay === absentDay) {
+                lateDay = Math.floor(Math.random() * daysInMonth) + 1;
+            }
+            while (excusedDay === absentDay || excusedDay === lateDay) {
+                excusedDay = Math.floor(Math.random() * daysInMonth) + 1;
+            }
+
+            for (let day = 1; day <= daysInMonth; day++) {
+                const date = new Date(currentYear, currentMonth, day);
+                const dayName = date.toLocaleDateString('ar-SA', { weekday: 'long' });
+                
+                // تخطي أيام العطلة (الجمعة والسبت)
+                if (dayName === 'الجمعة' || dayName === 'السبت') {
+                    continue;
+                }
+
+                let status = 'present';
+                if (day === absentDay) {
+                    status = 'absent';
+                } else if (day === lateDay) {
+                    status = 'late';
+                } else if (day === excusedDay) {
+                    status = 'excused';
+                }
+                
+                const record = {
+                    date: `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`,
+                    status: status,
+                    recorded_by: "ADM001",
+                    recorded_at: `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}T08:00:00`,
+                    notes: getStatusNote(status)
+                };
+                
+                attendance.push(record);
+            }
+            
+            return {
+                student: {
+                    id: "STU001",
+                    name: "سراج الهادي عريبي",
+                    grade: "السادس",
+                    class: "أ"
+                },
+                attendance: attendance
+            };
+        }
+
+        function getStatusNote(status) {
+            const notes = {
+                present: "",
+                late: "تأخر " + Math.floor(Math.random() * 20 + 5) + " دقائق",
+                excused: ["عذر طبي", "عذر عائلي", "موعد طبيب", "مناسبة خاصة"][Math.floor(Math.random() * 4)],
+                absent: "غياب بدون عذر"
+            };
+            return notes[status];
+        }
+
+        const mockAttendanceData = generateMockAttendanceData();
+
+        // تحديث معلومات الطالب
+        document.getElementById('student-name').textContent = mockAttendanceData.student.name;
+        document.getElementById('student-grade').textContent = mockAttendanceData.student.grade;
+        document.getElementById('student-class').textContent = mockAttendanceData.student.class;
+
+        /**
+         * دالة تحديث التقويم
+         * 
+         * ملاحظات للـ Backend:
+         * - يجب استبدال البيانات التجريبية بطلب API
+         * - يجب التعامل مع حالات الخطأ (مثل انقطاع الاتصال)
+         * - يجب إضافة مؤشر تحميل أثناء جلب البيانات
+         * - يجب تخزين البيانات مؤقتاً لتحسين الأداء
+         */
+        function updateCalendar() {
+            const tbody = document.getElementById('calendar-body');
+            tbody.innerHTML = '';
+
+            const firstDay = new Date(currentYear, currentMonth, 1);
+            const lastDay = new Date(currentYear, currentMonth + 1, 0);
+            const startingDay = firstDay.getDay();
+            const totalDays = lastDay.getDate();
+            const today = new Date();
+
+            // حساب عدد الصفوف المطلوبة
+            const totalRows = Math.ceil((startingDay + totalDays) / 7);
+
+            // إنشاء الصفوف
+            for (let row = 0; row < totalRows; row++) {
+                const tr = document.createElement('tr');
+                
+                // إنشاء الخلايا في كل صف
+                for (let col = 0; col < 7; col++) {
+                    const td = document.createElement('td');
+                    const dayNumber = row * 7 + col - startingDay + 1;
+
+                    if (dayNumber > 0 && dayNumber <= totalDays) {
+                        // إنشاء خلية لليوم
+                        const currentDate = new Date(currentYear, currentMonth, dayNumber);
+                        const dayName = currentDate.toLocaleDateString('ar-SA', { weekday: 'long' });
+
+                        // تمييز اليوم الحالي
+                        if (currentDate.toDateString() === today.toDateString()) {
+                            td.classList.add('today');
+                        }
+
+                        // تمييز عطلة نهاية الأسبوع
+                        if (dayName === 'الجمعة' || dayName === 'السبت') {
+                            td.classList.add('weekend');
+                        }
+
+                        // إضافة رقم اليوم
+                        const dayNumberDiv = document.createElement('div');
+                        dayNumberDiv.className = 'day-number';
+                        dayNumberDiv.textContent = dayNumber;
+                        td.appendChild(dayNumberDiv);
+
+                        // إضافة حالة الحضور
+                        const attendanceRecord = mockAttendanceData.attendance.find(
+                            a => {
+                                const recordDate = new Date(a.date);
+                                return recordDate.getDate() === dayNumber &&
+                                       recordDate.getMonth() === currentMonth &&
+                                       recordDate.getFullYear() === currentYear;
+                            }
+                        );
+
+                        if (attendanceRecord) {
+                            const statusIcon = document.createElement('div');
+                            statusIcon.className = 'status-icon';
+                            
+                            const statusIconMap = {
+                                present: '✅',
+                                absent: '❌',
+                                late: '⏰',
+                                excused: '📄'
+                            };
+
+                            const statusClassMap = {
+                                present: 'status-present',
+                                absent: 'status-absent',
+                                late: 'status-late',
+                                excused: 'status-excused'
+                            };
+
+                            statusIcon.textContent = statusIconMap[attendanceRecord.status];
+                            statusIcon.classList.add(statusClassMap[attendanceRecord.status]);
+                            td.appendChild(statusIcon);
+                        }
+                    } else {
+                        // إنشاء خلية فارغة
+                        td.classList.add('empty-cell');
+                    }
+                    
+                    tr.appendChild(td);
+                }
+                
+                tbody.appendChild(tr);
+            }
+
+            updateCalendarTitle();
+            updateNavigationButtons();
+            updateMonthFilter();
+        }
+
+        /**
+         * دالة تحديث ملخص الحضور
+         * 
+         * ملاحظات للـ Backend:
+         * - يجب حساب الإحصائيات في الـ Backend
+         * - يجب تخزين الإحصائيات مؤقتاً
+         * - يجب تحديث الإحصائيات تلقائياً عند تغيير البيانات
+         */
+        function updateAttendanceSummary() {
+            // تصفية سجلات الحضور للشهر الحالي فقط
+            const currentMonthAttendance = mockAttendanceData.attendance.filter(record => {
+                const recordDate = new Date(record.date);
+                return recordDate.getMonth() === currentMonth && 
+                       recordDate.getFullYear() === currentYear;
+            });
+
+            const summary = {
+                present: currentMonthAttendance.filter(a => a.status === "present").length,
+                absent: currentMonthAttendance.filter(a => a.status === "absent").length,
+                late: currentMonthAttendance.filter(a => a.status === "late").length,
+                excused: currentMonthAttendance.filter(a => a.status === "excused").length
+            };
+
+            // تحديث الأرقام في البطاقات
+            document.getElementById('present-days').textContent = summary.present;
+            document.getElementById('absent-days').textContent = summary.absent;
+            document.getElementById('late-days').textContent = summary.late;
+            document.getElementById('excused-days').textContent = summary.excused;
+
+            // تحديث الرسم البياني
+            const ctx = document.getElementById('attendance-chart').getContext('2d');
+            
+            if (window.attendanceChart) {
+                window.attendanceChart.destroy();
+            }
+
+            window.attendanceChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ['حاضر', 'غائب', 'متأخر', 'بعذر'],
+                    datasets: [{
+                        data: [summary.present, summary.absent, summary.late, summary.excused],
+                        backgroundColor: ['#28a745', '#dc3545', '#ffc107', '#17a2b8']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        },
+                        title: {
+                            display: true,
+                            text: `إحصائيات الحضور - ${getMonthName(currentMonth)} ${currentYear}`,
+                            font: {
+                                size: 16
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // دالة مساعدة للحصول على اسم الشهر
+        function getMonthName(month) {
+            const monthNames = [
+                "يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو",
+                "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"
+            ];
+            return monthNames[month];
+        }
+
+        /**
+         * دالة تصدير إلى PDF
+         */
+        function exportToPDF() {
+            try {
+                // إنشاء عنصر مؤقت للصفحة الأولى
+                const firstPageDiv = document.createElement('div');
+                firstPageDiv.style.direction = 'rtl';
+                firstPageDiv.style.padding = '20px';
+                firstPageDiv.style.backgroundColor = 'white';
+                firstPageDiv.style.width = '800px';
+                firstPageDiv.style.margin = '0 auto';
+                
+                // إضافة المحتوى للصفحة الأولى
+                firstPageDiv.innerHTML = `
+                    <h1 style="text-align: center; color: #4068fc; margin-bottom: 30px;">مدارك - كشف الحضور والغياب</h1>
+                    <div style="margin: 20px 0; font-size: 16px;">
+                        <p><strong>الطالب:</strong> ${mockAttendanceData.student.name}</p>
+                        <p><strong>الصف:</strong> ${mockAttendanceData.student.grade}</p>
+                        <p><strong>الفصل:</strong> ${mockAttendanceData.student.class}</p>
+                        <p><strong>الشهر:</strong> ${getMonthName(currentMonth)} ${currentYear}</p>
+                    </div>
+                `;
+
+                // إضافة الجداول للصفحة الأولى
+                const currentMonthAttendance = mockAttendanceData.attendance.filter(record => {
+                    const recordDate = new Date(record.date);
+                    return recordDate.getMonth() === currentMonth && 
+                           recordDate.getFullYear() === currentYear;
+                });
+
+                const summary = {
+                    present: currentMonthAttendance.filter(a => a.status === "present").length,
+                    absent: currentMonthAttendance.filter(a => a.status === "absent").length,
+                    late: currentMonthAttendance.filter(a => a.status === "late").length,
+                    excused: currentMonthAttendance.filter(a => a.status === "excused").length
+                };
+
+                firstPageDiv.innerHTML += `
+                    <div style="margin-bottom: 30px;">
+                        <h2 style="color: #4068fc; margin-bottom: 15px;">إحصائيات الحضور</h2>
+                        <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+                            <tr style="background-color: #4068fc; color: white;">
+                                <th style="padding: 12px; border: 1px solid #ddd;">نوع الحضور</th>
+                                <th style="padding: 12px; border: 1px solid #ddd;">عدد الأيام</th>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border: 1px solid #ddd; text-align: center;">حاضر</td>
+                                <td style="padding: 12px; border: 1px solid #ddd; text-align: center;">${summary.present}</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border: 1px solid #ddd; text-align: center;">غائب</td>
+                                <td style="padding: 12px; border: 1px solid #ddd; text-align: center;">${summary.absent}</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border: 1px solid #ddd; text-align: center;">متأخر</td>
+                                <td style="padding: 12px; border: 1px solid #ddd; text-align: center;">${summary.late}</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border: 1px solid #ddd; text-align: center;">بعذر</td>
+                                <td style="padding: 12px; border: 1px solid #ddd; text-align: center;">${summary.excused}</td>
+                            </tr>
+                        </table>
+                    </div>
+                `;
+
+                // إنشاء عنصر مؤقت للصفحة الثانية
+                const secondPageDiv = document.createElement('div');
+                secondPageDiv.style.direction = 'rtl';
+                secondPageDiv.style.padding = '20px';
+                secondPageDiv.style.backgroundColor = 'white';
+                secondPageDiv.style.width = '800px';
+                secondPageDiv.style.margin = '0 auto';
+
+                // تقسيم سجلات الحضور
+                const statusMap = {
+                    'present': 'حاضر',
+                    'absent': 'غائب',
+                    'late': 'متأخر',
+                    'excused': 'بعذر'
+                };
+
+                // الأيام من 1 إلى 10
+                const firstPageRows = currentMonthAttendance
+                    .filter(record => {
+                        const date = new Date(record.date);
+                        return date.getDate() <= 10;
+                    })
+                    .map(record => {
+                        const date = new Date(record.date);
+                        return `
+                            <tr>
+                                <td style="padding: 12px; border: 1px solid #ddd; text-align: center;">${date.getDate()}</td>
+                                <td style="padding: 12px; border: 1px solid #ddd; text-align: center;">${getMonthName(date.getMonth())}</td>
+                                <td style="padding: 12px; border: 1px solid #ddd; text-align: center;">${date.getFullYear()}</td>
+                                <td style="padding: 12px; border: 1px solid #ddd; text-align: center;">${record.status === 'holiday' ? '-' : statusMap[record.status]}</td>
+                                <td style="padding: 12px; border: 1px solid #ddd; text-align: center;">${record.notes || '-'}</td>
+                            </tr>
+                        `;
+                    }).join('');
+
+                // باقي الأيام
+                const secondPageRows = currentMonthAttendance
+                    .filter(record => {
+                        const date = new Date(record.date);
+                        return date.getDate() > 10;
+                    })
+                    .map(record => {
+                        const date = new Date(record.date);
+                        return `
+                            <tr>
+                                <td style="padding: 12px; border: 1px solid #ddd; text-align: center;">${date.getDate()}</td>
+                                <td style="padding: 12px; border: 1px solid #ddd; text-align: center;">${getMonthName(date.getMonth())}</td>
+                                <td style="padding: 12px; border: 1px solid #ddd; text-align: center;">${date.getFullYear()}</td>
+                                <td style="padding: 12px; border: 1px solid #ddd; text-align: center;">${record.status === 'holiday' ? '-' : statusMap[record.status]}</td>
+                                <td style="padding: 12px; border: 1px solid #ddd; text-align: center;">${record.notes || '-'}</td>
+                            </tr>
+                        `;
+                    }).join('');
+
+                // إضافة جدول الأيام من 1 إلى 10 للصفحة الأولى
+                firstPageDiv.innerHTML += `
+                    <div style="margin-bottom: 30px;">
+                        <h2 style="color: #4068fc; margin-bottom: 15px;">تفاصيل الحضور (1-10)</h2>
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <tr style="background-color: #4068fc; color: white;">
+                                <th style="padding: 12px; border: 1px solid #ddd;">اليوم</th>
+                                <th style="padding: 12px; border: 1px solid #ddd;">الشهر</th>
+                                <th style="padding: 12px; border: 1px solid #ddd;">السنة</th>
+                                <th style="padding: 12px; border: 1px solid #ddd;">الحالة</th>
+                                <th style="padding: 12px; border: 1px solid #ddd;">ملاحظات</th>
+                            </tr>
+                            ${firstPageRows}
+                        </table>
+                    </div>
+                `;
+
+                // إضافة جدول باقي الأيام للصفحة الثانية
+                secondPageDiv.innerHTML = `
+                    <h2 style="color: #4068fc; margin-bottom: 15px;">تفاصيل الحضور (11-31)</h2>
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <tr style="background-color: #4068fc; color: white;">
+                            <th style="padding: 12px; border: 1px solid #ddd;">اليوم</th>
+                            <th style="padding: 12px; border: 1px solid #ddd;">الشهر</th>
+                            <th style="padding: 12px; border: 1px solid #ddd;">السنة</th>
+                            <th style="padding: 12px; border: 1px solid #ddd;">الحالة</th>
+                            <th style="padding: 12px; border: 1px solid #ddd;">ملاحظات</th>
+                        </tr>
+                        ${secondPageRows}
+                    </table>
+                    <div style="text-align: center; margin-top: 30px; color: #666; font-size: 14px;">
+                        تم إنشاء هذا التقرير في ${new Date().toLocaleDateString('ar')}
+                    </div>
+                `;
+
+                // إضافة العناصر إلى الصفحة
+                document.body.appendChild(firstPageDiv);
+                document.body.appendChild(secondPageDiv);
+
+                // تحويل الصفحة الأولى إلى صورة
+                html2canvas(firstPageDiv, {
+                    scale: 2,
+                    useCORS: true,
+                    logging: false,
+                    windowWidth: firstPageDiv.scrollWidth,
+                    windowHeight: firstPageDiv.scrollHeight
+                }).then(canvas1 => {
+                    // تحويل الصفحة الثانية إلى صورة
+                    html2canvas(secondPageDiv, {
+                        scale: 2,
+                        useCORS: true,
+                        logging: false,
+                        windowWidth: secondPageDiv.scrollWidth,
+                        windowHeight: secondPageDiv.scrollHeight
+                    }).then(canvas2 => {
+                        const { jsPDF } = window.jspdf;
+                        const pdf = new jsPDF('p', 'mm', 'a4');
+                        const pdfWidth = pdf.internal.pageSize.getWidth();
+                        
+                        // إضافة الصفحة الأولى
+                        const imgData1 = canvas1.toDataURL('image/png');
+                        const pdfHeight1 = (canvas1.height * pdfWidth) / canvas1.width;
+                        pdf.addImage(imgData1, 'PNG', 0, 0, pdfWidth, pdfHeight1);
+                        
+                        // إضافة الصفحة الثانية
+                        const imgData2 = canvas2.toDataURL('image/png');
+                        const pdfHeight2 = (canvas2.height * pdfWidth) / canvas2.width;
+                        pdf.addPage();
+                        pdf.addImage(imgData2, 'PNG', 0, 0, pdfWidth, pdfHeight2);
+
+                        // حفظ الملف
+                        pdf.save(`حضور_${mockAttendanceData.student.name}_${getMonthName(currentMonth)}_${currentYear}.pdf`);
+                        
+                        // إزالة العناصر المؤقتة
+                        document.body.removeChild(firstPageDiv);
+                        document.body.removeChild(secondPageDiv);
+                    });
+                });
+            } catch (error) {
+                console.error('خطأ في إنشاء ملف PDF:', error);
+                alert('حدث خطأ أثناء إنشاء ملف PDF. يرجى المحاولة مرة أخرى.');
+            }
+        }
+
+        // تعريف حدود السنة الدراسية
+        const academicYear = {
+            start: { month: 8, year: 2024 }, // سبتمبر 2024
+            end: { month: 4, year: 2025 }    // مايو 2025
+        };
+
+        let currentMonth = 4; // مايو (0-11)
+        let currentYear = 2025;
+
+        // تحديث عنوان التقويم
+        function updateCalendarTitle() {
+            const monthNames = [
+                "يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو",
+                "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"
+            ];
+            document.getElementById('calendar-title').textContent = 
+                `${monthNames[currentMonth]} ${currentYear}`;
+        }
+
+        // التحقق من حدود السنة الدراسية
+        function isWithinAcademicYear(month, year) {
+            if (year < academicYear.start.year || year > academicYear.end.year) {
+                return false;
+            }
+            if (year === academicYear.start.year && month < academicYear.start.month) {
+                return false;
+            }
+            if (year === academicYear.end.year && month > academicYear.end.month) {
+                return false;
+            }
+            return true;
+        }
+
+        // تحديث حالة أزرار التنقل
+        function updateNavigationButtons() {
+            const prevButton = document.getElementById('prev-month-btn');
+            const nextButton = document.getElementById('next-month-btn');
+            
+            prevButton.disabled = !isWithinAcademicYear(currentMonth - 1, currentYear);
+            nextButton.disabled = !isWithinAcademicYear(currentMonth + 1, currentYear);
+        }
+
+        // الانتقال إلى الشهر السابق
+        function previousMonth() {
+            if (currentMonth === 0) {
+                currentMonth = 11;
+                currentYear--;
+            } else {
+                currentMonth--;
+            }
+            if (isWithinAcademicYear(currentMonth, currentYear)) {
+                updateCalendar();
+                updateMonthFilter();
+            }
+        }
+
+        // الانتقال إلى الشهر التالي
+        function nextMonth() {
+            if (currentMonth === 11) {
+                currentMonth = 0;
+                currentYear++;
+            } else {
+                currentMonth++;
+            }
+            if (isWithinAcademicYear(currentMonth, currentYear)) {
+                updateCalendar();
+                updateMonthFilter();
+            }
+        }
+
+        // تحديث فلتر الشهر
+        function updateMonthFilter() {
+            const monthFilter = document.getElementById('month-filter');
+            const value = `${currentMonth + 1}-${currentYear}`;
+            monthFilter.value = value;
+        }
+
+        // تحديث التقويم عند تغيير الشهر من الفلتر
+        document.getElementById('month-filter').addEventListener('change', function() {
+            const [month, year] = this.value.split('-');
+            const newMonth = parseInt(month) - 1;
+            const newYear = parseInt(year);
+            if (isWithinAcademicYear(newMonth, newYear)) {
+                currentMonth = newMonth;
+                currentYear = newYear;
+                updateCalendar();
+                updateAttendanceSummary();
+            }
+        });
+
+        // تحديث التقويم عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCalendar();
+            updateAttendanceSummary();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<div class="card">
+    <div class="flex justify-between items-center mb-6">
+        <h2 class="card-title">الواجبات الدراسية</h2>
+        <button id="add-assignment-btn" class="btn btn-primary">
+            <i data-lucide="plus-circle" class="w-5 h-5"></i>
+            إضافة واجب جديد
+        </button>
+    </div>
+
+    <div class="mb-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
+        <h3 class="text-md font-semibold text-gray-700 mb-4">فلترة الواجبات</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-end">
+            <div class="filter-input-group flex-grow w-full">
+                <input type="text" id="assignment-search-input" placeholder="البحث بعنوان الواجب أو اسم المادة..." class="form-input w-full">
+                <div class="filter-icon">
+                    <i data-lucide="search" class="w-5 h-5"></i>
+               </div>
+            </div>
+            <div class="flex-grow w-full">
+                <select id="assignment-status-filter" class="form-select w-full">
+                    <option value="">كل الحالات</option>
+                    <option value="upcoming">قادمة</option>
+                    <option value="active">نشطة</option>
+                    <option value="archived">مؤرشفة</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div id="assignments-status-message" class="text-center text-gray-500 py-4 hidden"></div>
+
+    <div class="overflow-x-auto">
+        <table class="custom-table" id="assignments-table">
+            <thead>
+                <tr>
+                    <th>عنوان الواجب</th>
+                    <th>المادة الدراسية</th>
+                    <th>تاريخ التسليم</th>
+                    <th>الحالة</th>
+                    <th>إجراءات</th>
+                </tr>
+            </thead>
+            <tbody id="assignments-table-body">
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="addAssignmentModal" class="modal-backdrop">
+    <div class="modal-content modal-sm max-h-[80vh] flex flex-col">
+        <div class="modal-header">
+            <h3 class="modal-title">إضافة واجب جديد</h3>
+            <button class="modal-close-btn" onclick="closeModal('addAssignmentModal')"><i data-lucide="x"></i></button>
+        </div>
+        <form id="addAssignmentForm" class="flex-grow overflow-y-auto pr-2 space-y-4 py-2">
+            <div class="form-group">
+                <label for="assignmentTitle">عنوان الواجب</label>
+                <input type="text" id="assignmentTitle" name="assignmentTitle" class="form-input" required>
+            </div>
+            <div class="form-group">
+                <label for="assignmentDescription">وصف الواجب</label>
+                <textarea id="assignmentDescription" name="assignmentDescription" class="form-textarea" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="assignmentCourse">المادة الدراسية</label>
+                <select id="assignmentCourse" name="assignmentCourse" class="form-select" required>
+                    <option value="">اختر المادة</option>
+                    <option value="اللغة العربية">اللغة العربية</option>
+                    <option value="التربية الإسلامية">التربية الإسلامية</option>
+                    <option value="اللغة الإنجليزية">اللغة الإنجليزية</option>
+                    <option value="الرياضيات">الرياضيات</option>
+                    <option value="العلوم">العلوم</option>
+                    <option value="التاريخ">التاريخ</option>
+                    <option value="الجغرافيا">الجغرافيا</option>
+                    <option value="الحاسوب">الحاسوب</option>
+                    <option value="التربية الوطنية">التربية الوطنية</option>
+                    <option value="التربية الفنية">التربية الفنية</option>
+                    <option value="التربية الموسيقية">التربية الموسيقية</option>
+                    <option value="التربية البدنية">التربية البدنية</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="assignmentDueDate">تاريخ التسليم</label>
+                <input type="date" id="assignmentDueDate" name="assignmentDueDate" class="form-input" required>
+            </div>
+            <div class="form-group">
+                <label for="assignmentFile">رفع ملف الواجب (اختياري)</label>
+                <input type="file" id="assignmentFile" name="assignmentFile" class="form-input">
+            </div>
+             <div class="form-group">
+                <label for="assignmentNotes">ملاحظات إضافية (اختياري)</label>
+                <textarea id="assignmentNotes" name="assignmentNotes" class="form-textarea" rows="2"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="assignmentMaxScore">الدرجة القصوى (اختياري)</label>
+                <input type="number" id="assignmentMaxScore" name="assignmentMaxScore" class="form-input" min="0">
+            </div>
+            <div class="sticky bottom-0 bg-white py-3 border-t border-gray-200 flex justify-end space-x-3 space-x-reverse">
+                <button type="button" class="btn btn-outline" onclick="closeModal('addAssignmentModal')">إلغاء</button>
+                <button type="submit" class="btn btn-primary">إضافة الواجب</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div id="editAssignmentModal" class="modal-backdrop">
+    <div class="modal-content modal-sm max-h-[80vh] flex flex-col">
+        <div class="modal-header">
+            <h3 class="modal-title">تعديل الواجب</h3>
+            <button class="modal-close-btn" onclick="closeModal('editAssignmentModal')"><i data-lucide="x"></i></button>
+        </div>
+        <form id="editAssignmentForm" class="flex-grow overflow-y-auto pr-2 space-y-4 py-2">
+            <input type="hidden" id="editAssignmentId" name="editAssignmentId">
+            <div class="form-group">
+                <label for="editAssignmentTitle">عنوان الواجب</label>
+                <input type="text" id="editAssignmentTitle" name="editAssignmentTitle" class="form-input" required>
+            </div>
+            <div class="form-group">
+                <label for="editAssignmentDescription">وصف الواجب</label>
+                <textarea id="editAssignmentDescription" name="editAssignmentDescription" class="form-textarea" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="editAssignmentCourse">المادة الدراسية</label>
+                <select id="editAssignmentCourse" name="editAssignmentCourse" class="form-select" required>
+                    <option value="">اختر المادة</option>
+                    <option value="اللغة العربية">اللغة العربية</option>
+                    <option value="التربية الإسلامية">التربية الإسلامية</option>
+                    <option value="اللغة الإنجليزية">اللغة الإنجليزية</option>
+                    <option value="الرياضيات">الرياضيات</option>
+                    <option value="العلوم">العلوم</option>
+                    <option value="التاريخ">التاريخ</option>
+                    <option value="الجغرافيا">الجغرافيا</option>
+                    <option value="الحاسوب">الحاسوب</option>
+                    <option value="التربية الوطنية">التربية الوطنية</option>
+                    <option value="التربية الفنية">التربية الفنية</option>
+                    <option value="التربية الموسيقية">التربية الموسيقية</option>
+                    <option value="التربية البدنية">التربية البدنية</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="editAssignmentDueDate">تاريخ التسليم</label>
+                <input type="date" id="editAssignmentDueDate" name="editAssignmentDueDate" class="form-input" required>
+            </div>
+            <div class="form-group">
+                <label for="editAssignmentFile">رفع ملف الواجب (اختياري)</label>
+                <input type="file" id="editAssignmentFile" name="editAssignmentFile" class="form-input">
+            </div>
+             <div class="form-group">
+                <label for="editAssignmentNotes">ملاحظات إضافية (اختياري)</label>
+                <textarea id="editAssignmentNotes" name="editAssignmentNotes" class="form-textarea" rows="2"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="editAssignmentMaxScore">الدرجة القصوى (اختياري)</label>
+                <input type="number" id="editAssignmentMaxScore" name="editAssignmentMaxScore" class="form-input" min="0">
+            </div>
+            <div class="sticky bottom-0 bg-white py-3 border-t border-gray-200 flex justify-end space-x-3 space-x-reverse">
+                <button type="button" class="btn btn-outline" onclick="closeModal('editAssignmentModal')">إلغاء</button>
+                <button type="submit" class="btn btn-primary">حفظ التعديلات</button>
+            </div>
+        </form>
+    </div>
+</div>

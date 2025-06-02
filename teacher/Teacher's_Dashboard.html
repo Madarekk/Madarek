@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة تحكم المعلم | منصة مدارك</title>
+    <link rel="stylesheet" href="Teacher's_Dashboard.css">
+    <link href="https://fonts.googleapis.com/css?family=Cairo&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="teacher-body">
+    <div class="teacher-sidebar" id="teacher-sidebar">
+        <h2>لوحة المعلم</h2>
+        <ul>
+            <li><a href="Teacher's_Dashboard.html" id="dashboard-link" class="active"><span class="icon">🏠</span> لوحة المعلومات</a></li>
+            <li><a href="My_students.html" id="my-classes-link"><span class="icon">👨‍🎓</span> طلابي</a></li>
+            <li><a href="TeacherHomeWork.html" id="homework-link"><span class="icon">📝</span> واجباتي</a></li>
+            <li><a href="TeacherExams.html" id="exams-link"><span class="icon">📋</span> اختباراتي</a></li>
+            <li><a href="TeacherLessons.html" id="lessons-link"><span class="icon">📚</span> دروسي</a></li>
+        </ul>
+    </div>
+    <div class="teacher-header">
+        <button id="sidebar-toggle" class="sidebar-toggle">☰</button>
+        <div class="teacher-header-left">
+            <span class="teacher-title">مدارك - لوحة تحكم المعلم</span>
+        </div>
+        <div class="teacher-header-right">
+            <span class="teacher-avatar">👨‍🏫</span>
+            <span class="teacher-user">مرحباً، المعلم</span>
+            <button class="logout-btn">تسجيل خروج</button>
+        </div>
+    </div>
+    <div class="teacher-main" id="teacher-main-content">
+        <!-- قسم الإحصائيات السريعة -->
+        <div class="quick-stats">
+            <div class="stat-card">
+                <div class="stat-icon">👨‍🎓</div>
+                <div class="stat-info">
+                    <h3>إجمالي الطلاب</h3>
+                    <p id="total-students">0</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">📚</div>
+                <div class="stat-info">
+                    <h3>المواد الدراسية</h3>
+                    <p id="total-subjects">0</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">📝</div>
+                <div class="stat-info">
+                    <h3>الواجبات النشطة</h3>
+                    <p id="active-homework">0</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">✅</div>
+                <div class="stat-info">
+                    <h3>الواجبات المكتملة</h3>
+                    <p id="completed-homework">0</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- جدول الحصص الأسبوعي -->
+        <div class="schedule-section">
+            <h2>جدول الحصص الأسبوعي</h2>
+            <div class="schedule-table-container">
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th>الوقت / اليوم</th>
+                            <th>الأحد</th>
+                            <th>الإثنين</th>
+                            <th>الثلاثاء</th>
+                            <th>الأربعاء</th>
+                            <th>الخميس</th>
+                        </tr>
+                    </thead>
+                    <tbody id="schedule-body">
+                        <!-- سيتم تعبئة الجدول ديناميكياً -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- إحصائيات تفصيلية -->
+        <div class="detailed-stats">
+            <div class="stats-row">
+                <div class="stats-card">
+                    <h3>إحصائيات الواجبات</h3>
+                    <div style="height: 250px;">
+                        <canvas id="homeworkChart"></canvas>
+                    </div>
+                </div>
+                <div class="stats-card">
+                    <h3>إحصائيات الاختبارات</h3>
+                    <div class="exam-stats">
+                        <div class="exam-stat">
+                            <span class="label">الاختبارات القادمة</span>
+                            <span id="upcoming-exams" class="value">0</span>
+                        </div>
+                        <div class="exam-stat">
+                            <span class="label">الاختبارات المنجزة</span>
+                            <span id="completed-exams" class="value">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="stats-row">
+                <div class="stats-card">
+                    <h3>المواد التي أقوم بتدريسها</h3>
+                    <div id="subjects-list" class="subjects-grid">
+                        <!-- سيتم تعبئة المواد ديناميكياً -->
+                    </div>
+                </div>
+                <div class="stats-card">
+                    <h3>نشاط الدروس</h3>
+                    <div class="lessons-activity">
+                        <div class="lesson-stat">
+                            <span class="label">الدروس المنشورة</span>
+                            <span id="published-lessons" class="value">0</span>
+                        </div>
+                        <div class="lesson-stat">
+                            <span class="label">مشاهدات الطلاب</span>
+                            <span id="lesson-views" class="value">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="Teacher's_Dashboard.js"></script>
+</body>
+</html>

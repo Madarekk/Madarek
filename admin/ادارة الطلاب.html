@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>لوحة المعلومات</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <body class="admin-body">
+    <div class="admin-sidebar" id="admin-sidebar">
+        <h2>لوحة التحكم</h2>
+        <ul>
+            <li><a href="admin.html" id="dashboard-link"><span class="icon">🏠</span> لوحة المعلومات</a></li>
+            <li><a href="ادارة الطلاب.html" id="students-link"><span class="icon">👨‍🎓</span> إدارة الطلاب</a></li>
+            <li><a href="ادارة المعلمين.html" id="teachers-link"><span class="icon">👩‍🏫</span> إدارة المعلمين</a></li>
+            <li><a href="#" id="attendance-link"><span class="icon">📅</span> الحضور والانصراف</a></li>
+            <li><a href="الجداول الدراسية.html" id="schedule-link"><span class="icon">🗓️</span> الجداول الدراسية</a></li>
+            <li><a href="التقارير والاحصائيات.html" id="content-link"><span class="icon">📚</span> المحتوى والاختبارات</a></li>
+            <li><a href="التقارير والاحصائيات.html" id="reports-link"><span class="icon">📊</span> التقارير والإحصائيات</a></li>
+            <li><a href="اعدادات النظام.html" id="settings-link"><span class="icon">⚙️</span> إعدادات النظام</a></li>
+        </ul>
+    </div>
+    <div class="admin-header">
+        <button class="sidebar-toggle" id="sidebar-toggle" title="إغلاق/فتح القائمة">☰</button>
+        <div class="admin-header-left">
+            <span class="admin-title">مدارك - لوحة تحكم الأدمن</span>
+        </div>
+        <div class="admin-header-right">
+            <span class="admin-avatar">👤</span>
+            <span class="admin-user">مرحباً، الأدمن</span>
+            <button class="logout-btn">تسجيل خروج</button>
+        </div>
+    </div>
+    <div class="admin-main" id="admin-main-content">
+        <!-- سيتم تعبئة المحتوى ديناميكياً عبر admin.js -->
+    </div>
+</body>
+</html>
