@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قائمة الطلاب - مدارِك</title>
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        tailwind.config = {
+            content: ["./*.html"],
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'arabic': ['Tajawal', 'Arial', 'sans-serif']
+                    },
+                    colors: {
+                        'primary': '#059669',
+                        'primary-dark': '#047857',
+                        'secondary': '#4F46E5',
+                        'secondary-dark': '#4338CA',
+                        'accent': '#0891b2',
+                        'background': '#f9fafb',
+                        'card': '#ffffff',
+                        'text-primary': '#1f2937',
+                        'text-secondary': '#6b7280',
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="icon" href="https://r2.flowith.net/files/o/1748451765656-Modern_Logo_Design_for_Madarek_School_Management_Platform_index_0@1024x1024.png" type="image/png">
+</head>
+<body class="font-arabic bg-background text-text-primary">
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <nav class="hidden lg:flex lg:flex-shrink-0 bg-card border-l border-gray-200 shadow-md">
+            <div class="flex flex-col w-64">
+                <div class="flex items-center justify-center h-16 border-b border-gray-200 px-4">
+                    <img src="https://r2.flowith.net/files/o/1748451765656-Modern_Logo_Design_for_Madarek_School_Management_Platform_index_0@1024x1024.png" alt="مدارك" class="h-10 w-auto rounded-full">
+                    <span class="mr-3 text-xl font-bold text-primary">مدارِك</span>
+                </div>
+                <div class="flex-grow mt-5 overflow-y-auto">
+                    <nav class="px-3">
+                        <ul class="space-y-1.5">
+                            <li><a href="index.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="layout-dashboard" class="ml-3 h-5 w-5"></i>لوحة التحكم</a></li>
+                            <li><a href="subjects.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="book-open" class="ml-3 h-5 w-5"></i>المواد الدراسية</a></li>
+                            <li><a href="students.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="users" class="ml-3 h-5 w-5"></i>الطلاب</a></li>
+                            <li><a href="grades.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="graduation-cap" class="ml-3 h-5 w-5"></i>الدرجات والتقييمات</a></li>
+                            <li><a href="lessons.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="file-text" class="ml-3 h-5 w-5"></i>الدروس</a></li>
+                            <li><a href="assignments.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="notebook-tabs" class="ml-3 h-5 w-5"></i>الواجبات</a></li>
+                            <li><a href="exams.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="file-signature" class="ml-3 h-5 w-5"></i>الاختبارات</a></li>
+                            <li><a href="discussions.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="message-circle" class="ml-3 h-5 w-5"></i>النقاشات</a></li>
+                            <li><a href="messages.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="mail" class="ml-3 h-5 w-5"></i>الرسائل</a></li>
+                            <li><a href="timetable.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="calendar-days" class="ml-3 h-5 w-5"></i>الجدول الدراسي</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </nav>
+
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <!-- Header (Copied from index.html) -->
+             <header class="bg-card shadow-sm border-b border-gray-200 sticky top-0 z-30">
+                <div class="mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex justify-between h-16">
+                        <div class="flex items-center lg:hidden">
+                            <button id="mobileMenuButton" class="p-2 text-gray-500 hover:text-gray-700">
+                                <i data-lucide="menu" class="h-6 w-6"></i>
+                            </button>
+                        </div>
+                        <div class="flex-1 flex justify-end items-center space-x-4 space-x-reverse">
+                             <button title="الإشعارات" class="p-2 text-gray-500 hover:text-gray-700 relative rounded-full hover:bg-gray-100">
+                                <i data-lucide="bell" class="h-6 w-6"></i>
+                                <span class="absolute top-1 right-1 block h-2.5 w-2.5 rounded-full bg-red-500 ring-2 ring-card"></span>
+                            </button>
+                            <div class="relative">
+                                <button id="userMenuButton" class="flex items-center text-sm rounded-full focus:outline-none">
+                                    <div class="h-9 w-9 rounded-full bg-primary text-white flex items-center justify-center text-sm font-medium">أ</div>
+                                    <span class="mr-2 text-text-primary hidden sm:block">أحمد المعلم</span>
+                                    <i data-lucide="chevron-down" class="w-4 h-4 mr-1 text-gray-500 hidden sm:block"></i>
+                                </button>
+                                <div id="userMenu" class="hidden absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-card ring-1 ring-black ring-opacity-5 z-50">
+                                    <div class="py-1">
+                                        <a href="profile.html" class="block px-4 py-2 text-sm text-text-primary hover:bg-gray-100">الملف الشخصي</a>
+                                        <div class="border-t border-gray-100"></div>
+                                        <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-red-50">تسجيل الخروج</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Mobile Menu Overlay -->
+            <div id="mobileMenuOverlay" class="fixed inset-0 z-40 lg:hidden hidden">
+                <div class="fixed inset-0 bg-gray-600 bg-opacity-75" aria-hidden="true"></div>
+                <nav class="fixed top-0 right-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 bg-card shadow-xl overflow-y-auto">
+                    <div class="px-4 pb-4 flex items-center justify-between border-b">
+                       <div class="flex items-center">
+                            <img src="https://r2.flowith.net/files/o/1748451765656-Modern_Logo_Design_for_Madarek_School_Management_Platform_index_0@1024x1024.png" alt="مدارك" class="h-8 w-auto rounded-full">
+                            <span class="mr-2 text-lg font-bold text-primary">مدارِك</span>
+                        </div>
+                        <button id="closeMobileMenuButton" class="p-2 text-gray-500 hover:text-gray-700">
+                            <i data-lucide="x" class="h-6 w-6"></i>
+                        </button>
+                    </div>
+                    <nav class="mt-5 px-4 flex-1">
+                        <ul class="space-y-1">
+                            <li><a href="index.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="layout-dashboard" class="ml-3 h-5 w-5"></i>لوحة التحكم</a></li>
+                            <li><a href="subjects.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="book-open" class="ml-3 h-5 w-5"></i>المواد الدراسية</a></li>
+                            <li><a href="students.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="users" class="ml-3 h-5 w-5"></i>الطلاب</a></li>
+                            <li><a href="grades.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="graduation-cap" class="ml-3 h-5 w-5"></i>الدرجات والتقييمات</a></li>
+                            <li><a href="lessons.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="file-text" class="ml-3 h-5 w-5"></i>الدروس</a></li>
+                            <li><a href="assignments.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="notebook-tabs" class="ml-3 h-5 w-5"></i>الواجبات</a></li>
+                            <li><a href="exams.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="file-signature" class="ml-3 h-5 w-5"></i>الاختبارات</a></li>
+                            <li><a href="discussions.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="message-circle" class="ml-3 h-5 w-5"></i>النقاشات</a></li>
+                            <li><a href="messages.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="mail" class="ml-3 h-5 w-5"></i>الرسائل</a></li>
+                            <li><a href="timetable.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="calendar-days" class="ml-3 h-5 w-5"></i>الجدول الدراسي</a></li>
+                        </ul>
+                    </nav>
+                </nav>
+            </div>
+
+            <!-- Page content -->
+            <main class="flex-1 overflow-y-auto focus:outline-none p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <div>
+                        <h1 class="text-2xl font-semibold text-text-primary">قائمة الطلاب</h1>
+                        <p class="mt-1 text-sm text-text-secondary">عرض الطلاب المسجلين في فصولك الدراسية.</p>
+                    </div>
+                </div>
+
+                <!-- Filters -->
+                <div class="mb-6 bg-card p-4 shadow rounded-lg border border-gray-200">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <label for="classFilter" class="block text-sm font-medium text-text-secondary mb-1">اختر الفصل الدراسي</label>
+                            <select id="classFilter" class="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm">
+                                <option value="">جميع الفصول</option>
+                                <option value="class1A">الصف الأول (أ) - الرياضيات</option>
+                                <option value="class1B">الصف الأول (ب) - الرياضيات</option>
+                                <option value="class1A_sci">الصف الأول (أ) - العلوم</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="studentSearch" class="block text-sm font-medium text-text-secondary mb-1">البحث عن طالب</label>
+                            <input type="text" id="studentSearch" placeholder="اسم الطالب أو رقم الهوية..." class="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm">
+                        </div>
+                        <div class="flex items-end">
+                            <button class="w-full bg-primary text-white py-2 px-4 rounded-md text-sm font-medium hover:bg-primary-dark transition-colors">
+                                <i data-lucide="search" class="inline-block w-4 h-4 ml-1"></i> بحث
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Students Table -->
+                <div class="bg-card shadow-lg rounded-xl border border-gray-200 overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-text-secondary uppercase tracking-wider">#</th>
+                                    <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-text-secondary uppercase tracking-wider">اسم الطالب</th>
+                                    <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-text-secondary uppercase tracking-wider">رقم الهوية</th>
+                                    <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-text-secondary uppercase tracking-wider">الفصل</th>
+                                    <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-text-secondary uppercase tracking-wider">إجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-card divide-y divide-gray-200" id="studentsTableBody">
+                                <!-- Example Student Row 1 -->
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-text-secondary">1</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-text-primary">خالد وليد الأحمدي</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-text-secondary">1002345678</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-text-secondary">الصف الأول (أ)</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                        <a href="grades.html?studentId=1" class="text-primary hover:text-primary-dark ml-3"><i data-lucide="award" class="inline-block w-4 h-4"></i> الدرجات</a>
+                                        <a href="messages.html?recipientId=p1" class="text-secondary hover:text-secondary-dark"><i data-lucide="mail" class="inline-block w-4 h-4"></i> تواصل</a>
+                                    </td>
+                                </tr>
+                                <!-- Example Student Row 2 -->
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-text-secondary">2</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-text-primary">سارة بنت عبدالله القحطاني</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-text-secondary">1003456789</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-text-secondary">الصف الأول (أ)</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                        <a href="grades.html?studentId=2" class="text-primary hover:text-primary-dark ml-3"><i data-lucide="award" class="inline-block w-4 h-4"></i> الدرجات</a>
+                                        <a href="messages.html?recipientId=p2" class="text-secondary hover:text-secondary-dark"><i data-lucide="mail" class="inline-block w-4 h-4"></i> تواصل</a>
+                                    </td>
+                                </tr>
+                                 <!-- Example Student Row 3 -->
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-text-secondary">3</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-text-primary">محمد بن فهد العتيبي</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-text-secondary">1004567890</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-text-secondary">الصف الأول (ب)</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                        <a href="grades.html?studentId=3" class="text-primary hover:text-primary-dark ml-3"><i data-lucide="award" class="inline-block w-4 h-4"></i> الدرجات</a>
+                                        <a href="messages.html?recipientId=p3" class="text-secondary hover:text-secondary-dark"><i data-lucide="mail" class="inline-block w-4 h-4"></i> تواصل</a>
+                                    </td>
+                                </tr>
+                                 <!-- Placeholder for no students -->
+                                <tr id="noStudentsPlaceholder" class="hidden">
+                                    <td colspan="5" class="px-6 py-10 text-center text-gray-400">
+                                        <i data-lucide="user-x" class="w-12 h-12 mx-auto"></i>
+                                        <p class="mt-2 text-sm">لا يوجد طلاب لعرضهم حسب الفلاتر المختارة.</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- Pagination -->
+                    <div class="px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
+                        <div class="flex-1 flex justify-between sm:hidden">
+                            <button class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">السابق</button>
+                            <button class="mr-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">التالي</button>
+                        </div>
+                        <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+                            <div>
+                                <p class="text-sm text-text-secondary">
+                                    عرض <span class="font-medium">1</span> إلى <span class="font-medium">3</span> من <span class="font-medium">3</span> نتائج
+                                </p>
+                            </div>
+                            <div>
+                                <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+                                    <button class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 cursor-not-allowed"><i data-lucide="chevron-right" class="w-5 h-5"></i></button>
+                                    <button aria-current="page" class="z-10 bg-primary border-primary text-white relative inline-flex items-center px-4 py-2 border text-sm font-medium">1</button>
+                                    <button class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 cursor-not-allowed"><i data-lucide="chevron-left" class="w-5 h-5"></i></button>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    <script src="icons.js"></script>
+    <script type="module" src="script.js"></script>
+</body>
+</html>
+
