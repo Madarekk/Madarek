@@ -47,9 +47,8 @@
     <li><a href="index.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md active"><i data-lucide="layout-dashboard" class="ml-3 h-5 w-5"></i>لوحة الطالب</a></li>
     <li><a href="lessons.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="book-open" class="ml-3 h-5 w-5"></i>الدروس والمواد</a></li>
     <li><a href="assignments.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="notebook-tabs" class="ml-3 h-5 w-5"></i>الواجبات المنزلية</a></li>
-    <li><a href="exams.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="file-check-2" class="ml-3 h-5 w-5"></i>الاختبارات والتقييمات</a></li>
     <li><a href="schedule.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="calendar-days" class="ml-3 h-5 w-5"></i>الجدول الدراسي</a></li>
-    <li><a href="messages.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="mail" class="ml-3 h-5 w-5"></i>التواصل مع المعلمين</a></li>
+    <li><a href="messages.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="mail" class="ml-3 h-5 w-5"></i>النقاشات</a></li>
     <li><a href="academic.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="bar-chart-3" class="ml-3 h-5 w-5"></i>الملف الأكاديمي</a></li>
     <li><a href="profile.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="user" class="ml-3 h-5 w-5"></i>الملف الشخصي</a></li>
 </ul>
@@ -127,50 +126,98 @@
                 <h3 class="text-lg font-semibold mb-2">الحضور</h3>
                 <p>✓ تم الحضور اليوم</p>
             </div>
+
             <div class="bg-card p-6 rounded-xl shadow-lg border border-gray-200">
                 <h3 class="text-lg font-semibold mb-2">الدروس اليوم</h3>
                 <ul class="list-disc pr-5 text-text-secondary space-y-1">
                     <li>رياضيات: الجبر</li>
-                    <li>علوم: التجارب</li>
+                    <li>حاسوب: مكونات الحاسوب</li>
                 </ul>
             </div>
+
             <div class="bg-card p-6 rounded-xl shadow-lg border border-gray-200">
                 <h3 class="text-lg font-semibold mb-2">الواجبات</h3>
                 <p>واجب رياضيات - تسليم اليوم</p>
             </div>
+
+            <div class="bg-card p-6 rounded-xl shadow-lg border border-gray-200">
+                <h3 class="text-lg font-semibold mb-2">الاختبارات</h3>
+                <div class="flex flex-col">
+                    <div class="flex items-center space-x-2 mb-2">
+                        <i data-lucide="calendar" class="w-6 h-6 text-gray-500"></i>
+                        <span class="text-sm text-gray-600">لا يوجد اختبارات</span>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-card p-6 rounded-xl shadow-lg border border-gray-200">
+                <h3 class="text-lg font-semibold mb-2">الاعلانات</h3>
+                <div class="bg-yellow-50 border-r-4 border-yellow-400 p-4 rounded-b">
+                    <div class="flex items-center">
+                        <i data-lucide="info-circle" class="w-6 h-6 mr-2 text-yellow-500"></i>
+                        <div>
+                            <p class="text-sm text-yellow-800">اعلان من معلم الرياضيات</p>
+                            <p class="text-sm text-gray-600">احضرو الالة حاسبة غدا</p>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="bg-yellow-50 border-r-4 border-yellow-400 p-4 rounded-b">
+                    <div class="flex items-center">
+                        <i data-lucide="info-circle" class="w-6 h-6 mr-2 text-yellow-500"></i>
+                        <div>
+                            <p class="text-sm text-yellow-800">معلم اللغة العربية</p>
+                            <p class="text-sm text-gray-600">تم تغيير موعد الامتحانات</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-card p-6 rounded-xl shadow-lg border border-gray-200">
+                <h3 class="text-lg font-semibold mb-2">الرسائل</h3>
+                <p></p>
+            </div>
         </div>
     </section>
-    <section class="notifications mb-8">
-        <h2 class="text-xl font-bold mb-4">الإشعارات</h2>
-        <ul class="space-y-2">
-            <li class="flex items-center gap-2"><i data-lucide="alert-triangle" class="w-4 h-4 text-yellow-500"></i>امتحان علوم غدًا</li>
-            <li class="flex items-center gap-2"><i data-lucide="notebook-pen" class="w-4 h-4 text-primary"></i>واجب لغة عربية جديد</li>
-            <li class="flex items-center gap-2"><i data-lucide="message-square" class="w-4 h-4 text-accent"></i>تنبيه من المعلم: مراجعة الدرس الأخير</li>
-        </ul>
-    </section>
-    <section class="today-classes">
-        <h2 class="text-xl font-bold mb-4">حصص اليوم</h2>
-        <table class="min-w-full divide-y divide-gray-200 bg-card rounded-xl shadow-lg border border-gray-200">
+    
+    <section>
+        <table style="width:100%; border-collapse:collapse; direction:rtl; font-family:Tajawal, Tahoma, Arial, sans-serif; background-color:#f3f6fa; border-radius:14px; overflow:hidden; box-shadow:0 2px 12px #0001;">
             <thead>
-                <tr>
-                    <th class="px-4 py-2 text-right text-xs font-medium text-text-secondary">المادة</th>
-                    <th class="px-4 py-2 text-right text-xs font-medium text-text-secondary">الوقت</th>
-                </tr>
+              <tr style="background-color:#2563eb; color:#fff; font-size:15px;">
+                <th style="padding:14px 28px; min-width:120px; background:#2563eb; color:#fff; font-size:16px;">اليوم</th>
+                <th style="padding:12px 18px;">الحصة الأولى<br><br> 8:00</th>
+                <th style="padding:12px 18px;">الحصة الثانية<br><br> 8:45</th>
+                <th style="padding:12px 18px;">الحصة الثالثة<br><br> 9:30</th>
+                <th style="padding:12px 18px;">استراحة <br> 10:15</th>
+                <th style="padding:12px 18px;">الحصة الرابعة<br><br> 10:30</th>
+                <th style="padding:12px 18px;">الحصة الخامسة<br><br> 11:45</th>
+                <th style="padding:12px 18px;">الحصة السادسة<br><br> 12:30</th>
+                <th style="padding:12px 18px;">الحصة السابعة<br><br> 13:15</th>
+              </tr>
             </thead>
-            <tbody class="divide-y divide-gray-100">
-                <tr>
-                    <td class="px-4 py-2">رياضيات</td>
-                    <td class="px-4 py-2">08:00 - 09:00</td>
-                </tr>
-                <tr>
-                    <td class="px-4 py-2">علوم</td>
-                    <td class="px-4 py-2">09:15 - 10:15</td>
-                </tr>
+            <tbody style="font-size:14px; text-align: center;">
+              <tr style="background-color:#e3eafc;">
+                <td style="padding:13px 0 13px 0; border-bottom:1px solid #cbd5e1; font-weight:bold; font-size:15px; color:#2563eb;"><b>الأحد</b></td>
+                <td style="font-weight: bold; padding:10px;">رياضيات</td><td style="font-weight: bold; padding:10px;">حاسوب</td><td style="font-weight: bold; padding:10px;">لغة عربية</td><td style="font-weight: bold; padding:10px;">-</td><td style="font-weight: bold; padding:10px;">تربية إسلامية</td><td style="font-weight: bold; padding:10px;">اللغة الإنجليزية</td><td style="font-weight: bold; padding:10px;"></td><td style="font-weight: bold; padding:10px;"></td>
+              </tr>
+              <tr style="background-color:#f9fafb;">
+                <td style="padding:13px 0 13px 0; border-bottom:1px solid #cbd5e1; font-weight:bold; font-size:15px; color:#2563eb;"><b>الإثنين</b></td>
+                <td style="font-weight: bold; padding:10px;">حاسوب</td><td style="font-weight: bold; padding:10px;">رياضيات</td><td style="font-weight: bold; padding:10px;">لغة انجليزية</td><td style="font-weight: bold; padding:10px;">-</td><td style="font-weight: bold; padding:10px;">لغة عربية</td><td style="font-weight: bold; padding:10px;">تربية اسلامية</td><td style="font-weight: bold; padding:10px;"></td><td style="font-weight: bold; padding:10px;"></td>
+              </tr>
+              <tr style="background-color:#e3eafc;">
+                <td style="padding:13px 0 13px 0; border-bottom:1px solid #cbd5e1; font-weight:bold; font-size:15px; color:#2563eb;"><b>الثلاثاء</b></td>
+                <td style="font-weight: bold; padding:10px;">لغة انجليزية</td><td style="font-weight: bold; padding:10px;">رياضيات</td><td style="font-weight: bold; padding:10px;">لغة عربية</td><td style="font-weight: bold; padding:10px;">-</td><td style="font-weight: bold; padding:10px;">تربية اسلامية</td><td style="font-weight: bold; padding:10px;">حاسوب</td><td style="font-weight: bold; padding:10px;"></td><td style="font-weight: bold; padding:10px;"></td>
+              </tr>
+              <tr style="background-color:#f9fafb;">
+                <td style="padding:13px 0 13px 0; border-bottom:1px solid #cbd5e1; font-weight:bold; font-size:15px; color:#2563eb;"><b>الإربعاء</b></td>
+                <td style="font-weight: bold; padding:10px;">رياضة</td><td style="font-weight: bold; padding:10px;">رياضيات</td><td style="font-weight: bold; padding:10px;">لغة عربية</td><td style="font-weight: bold; padding:10px;">-</td><td style="font-weight: bold; padding:10px;">تربية اسلامية</td><td style="font-weight: bold; padding:10px;">رسم</td><td style="font-weight: bold; padding:10px;"></td><td style="font-weight: bold; padding:10px;"></td>
+              </tr>
+              <tr style="background-color:#e3eafc;">
+                <td style="padding:13px 0 13px 0; border-bottom:1px solid #cbd5e1; font-weight:bold; font-size:15px; color:#2563eb;"><b>الخميس</b></td>
+                <td style="font-weight: bold; padding:10px;">رياضيات</td><td style="font-weight: bold; padding:10px;">حاسوب</td><td style="font-weight: bold; padding:10px;">لغة عربية</td><td style="font-weight: bold; padding:10px;">-</td><td style="font-weight: bold; padding:10px;">تربية اسلامية</td><td style="font-weight: bold; padding:10px;">رياضة</td><td style="font-weight: bold; padding:10px;"></td><td style="font-weight: bold; padding:10px;"></td>
+              </tr>
             </tbody>
         </table>
-    </section>
+    </section> 
 
-                
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="../ولي الامر/script.js"></script>
     <script>
