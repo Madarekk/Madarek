@@ -8,6 +8,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const addUserForm = document.getElementById('addUserForm');
     const usersTableBody = document.getElementById('usersTableBody');
     const usersTablePlaceholder = document.querySelector('.users-table-placeholder');
+    const userRoleModal = document.getElementById('userRoleModal');
+    const enrollmentIdContainer = document.getElementById('enrollmentIdContainer');
+    const enrollmentIdInput = document.getElementById('enrollmentId');
+    const regenEnrollmentIdBtn = document.getElementById('regenEnrollmentIdBtn');
 
     const toggleModal = (modal, show) => {
         if (modal) {
@@ -38,11 +42,49 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    function getEnrollmentStart(role) {
+        // تسلسل خاص لكل دور
+        switch (role) {
+            case 'student': return 10000;
+            case 'parent': return 20000;
+            case 'teacher': return 30000;
+            case 'admin': return 40000;
+            case 'director': return 50000;
+            case 'external_teacher': return 60000;
+            default: return 90000;
+        }
+    }
+    // حفظ آخر رقم قيد لكل دور في الذاكرة المؤقتة (localStorage)
+    function getNextEnrollmentId(role) {
+        const key = `enrollmentId_${role}`;
+        let last = parseInt(localStorage.getItem(key), 10);
+        if (isNaN(last) || last < getEnrollmentStart(role)) {
+            last = getEnrollmentStart(role);
+        } else {
+            last++;
+        }
+        localStorage.setItem(key, last);
+        return last;
+    }
+    if (userRoleModal && enrollmentIdContainer && enrollmentIdInput) {
+        userRoleModal.addEventListener('change', function() {
+            const role = this.value;
+            if (role) {
+                enrollmentIdContainer.classList.remove('hidden');
+                enrollmentIdInput.value = getNextEnrollmentId(role);
+            } else {
+                enrollmentIdContainer.classList.add('hidden');
+                enrollmentIdInput.value = '';
+            }
+        });
+    }
+
     if (addUserForm) {
         addUserForm.addEventListener('submit', (event) => {
             event.preventDefault();
             const formData = new FormData(addUserForm);
             const userData = Object.fromEntries(formData.entries());
+            userData.enrollmentId = enrollmentIdInput ? enrollmentIdInput.value : '';
             console.log('Add User form submitted:', userData);
             alert(`تم إرسال بيانات المستخدم لإضافته: ${userData.firstName} ${userData.lastName} (اسم المستخدم: ${userData.username}). (سيتم ربطه بالـ backend لاحقاً)`);
             // Backend Note: Send userData (firstName, secondName, lastName, username, phone, userRole) to backend API.
@@ -222,4 +264,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     console.log('users.js loaded. Modals, table actions, filters, search, and quick action trigger initialized.');
+
+    if (regenEnrollmentIdBtn && userRoleModal && enrollmentIdInput) {
+        regenEnrollmentIdBtn.addEventListener('click', function() {
+            const role = userRoleModal.value;
+            if (role) {
+                let newId;
+                let lastId = parseInt(enrollmentIdInput.value, 10);
+                let tryCount = 0;
+                do {
+                    newId = getNextEnrollmentId(role);
+                    tryCount++;
+                } while (newId === lastId && tryCount < 5); // تجنب تكرار نفس الرقم الحالي
+                enrollmentIdInput.value = newId;
+            }
+        });
+    }
 });

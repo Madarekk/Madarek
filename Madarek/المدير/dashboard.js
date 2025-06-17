@@ -100,4 +100,28 @@ document.addEventListener('DOMContentLoaded', () => {
     // This logic is handled within the target pages' JS (e.g., users.js, classes.js)
 
     console.log('dashboard.js loaded. Menus and sidebar active state initialized. Page-specific JS (e.g., users.js, classes.js) handles quick actions via URL parameters.');
+
+    // Notifications Dropdown
+    const notificationButton = document.getElementById('notificationButton');
+    const notificationsDropdown = document.getElementById('notificationsDropdown');
+
+    if (notificationButton && notificationsDropdown) {
+        // Toggle notifications dropdown
+        notificationButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            notificationsDropdown.classList.toggle('hidden');
+        });
+
+        // Close notifications dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!notificationsDropdown.contains(e.target) && !notificationButton.contains(e.target)) {
+                notificationsDropdown.classList.add('hidden');
+            }
+        });
+
+        // Prevent dropdown from closing when clicking inside it
+        notificationsDropdown.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+    }
 });

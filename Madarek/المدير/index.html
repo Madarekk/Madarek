@@ -43,13 +43,79 @@
                 <!-- User Menu -->
                 <div class="flex items-center space-x-4 space-x-reverse">
                     <!-- Notifications -->
-                    <button id="notificationButton" class="p-2 text-gray-400 hover:text-gray-600 relative" onclick="window.location.href='announcements.html'">
-                        <!-- Backend Note: This button navigates to announcements.html. Ensure that page displays notifications. -->
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-5 5v-5zM10.9 18.1a5 5 0 1 1 0-9.2"/>
-                        </svg>
-                        <span class="absolute top-0 right-0 block h-2 w-2 rounded-full bg-red-400 transform translate-x-1/2 -translate-y-1/2"></span>
-                    </button>
+                    <div class="relative">
+                        <button id="notificationButton" class="p-2 text-gray-400 hover:text-gray-600 relative">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-5 5v-5zM10.9 18.1a5 5 0 1 1 0-9.2"/>
+                            </svg>
+                            <span class="absolute top-0 right-0 block h-2 w-2 rounded-full bg-red-400 transform translate-x-1/2 -translate-y-1/2"></span>
+                        </button>
+
+                        <!-- Notifications Dropdown -->
+                        <div id="notificationsDropdown" class="hidden absolute left-0 mt-2 w-80 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50">
+                            <div class="py-1">
+                                <div class="px-4 py-2 border-b border-gray-100">
+                                    <h3 class="text-sm font-medium text-gray-900">الإشعارات</h3>
+                                </div>
+                                <div class="max-h-96 overflow-y-auto">
+                                    <!-- Notification Items -->
+                                    <a href="#" class="block px-4 py-3 hover:bg-gray-50 border-b border-gray-100">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0">
+                                                <div class="w-2 h-2 bg-blue-400 rounded-full mt-2"></div>
+                                            </div>
+                                            <div class="mr-3 flex-1">
+                                                <p class="text-sm font-medium text-gray-900">اجتماع أولياء الأمور</p>
+                                                <p class="text-xs text-gray-500">يوم الخميس الساعة 4:00 مساءً</p>
+                                                <p class="text-xs text-gray-400 mt-1">منذ ساعتين</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="block px-4 py-3 hover:bg-gray-50 border-b border-gray-100">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0">
+                                                <div class="w-2 h-2 bg-green-400 rounded-full mt-2"></div>
+                                            </div>
+                                            <div class="mr-3 flex-1">
+                                                <p class="text-sm font-medium text-gray-900">بداية الفصل الثاني</p>
+                                                <p class="text-xs text-gray-500">يبدأ يوم الأحد القادم</p>
+                                                <p class="text-xs text-gray-400 mt-1">أمس</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="block px-4 py-3 hover:bg-gray-50 border-b border-gray-100">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0">
+                                                <div class="w-2 h-2 bg-yellow-400 rounded-full mt-2"></div>
+                                            </div>
+                                            <div class="mr-3 flex-1">
+                                                <p class="text-sm font-medium text-gray-900">امتحانات نصف الفصل</p>
+                                                <p class="text-xs text-gray-500">تبدأ الأسبوع القادم</p>
+                                                <p class="text-xs text-gray-400 mt-1">منذ 3 أيام</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="block px-4 py-3 hover:bg-gray-50">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0">
+                                                <div class="w-2 h-2 bg-purple-400 rounded-full mt-2"></div>
+                                            </div>
+                                            <div class="mr-3 flex-1">
+                                                <p class="text-sm font-medium text-gray-900">تحديث النظام</p>
+                                                <p class="text-xs text-gray-500">تم تحديث النظام إلى الإصدار الجديد</p>
+                                                <p class="text-xs text-gray-400 mt-1">منذ 5 أيام</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="px-4 py-2 border-t border-gray-100">
+                                    <a href="announcements.html" class="text-primary hover:text-primary-dark text-sm font-medium block text-center">
+                                        عرض جميع الإشعارات
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <!-- User dropdown -->
                     <div class="relative">
@@ -65,7 +131,7 @@
 
                         <div id="userMenu" class="hidden absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50">
                             <div class="py-1">
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">الملف الشخصي</a>
+                                <a href="profile.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">الملف الشخصي</a>
                                 <a href="settings.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">الإعدادات</a>
                                 <div class="border-t border-gray-100"></div>
                                 <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">تسجيل الخروج</a>
