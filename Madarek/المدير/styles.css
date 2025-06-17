@@ -1,0 +1,27 @@
+/* styles.css */
+body {
+    font-family: 'Tajawal', Arial, sans-serif; /* Ensures Tajawal font is applied as per Tailwind config */
+    /* Tailwind CSS handles most styling. This file is for global overrides or styles not covered by Tailwind. */
+}
+
+/* Add any specific global styles or component-specific styles if needed. */
+/* For example, if a very specific component needs styling that's cumbersome with utility classes. */
+
+/* Example: A slightly more visible focus ring for accessibility, if default Tailwind is not prominent enough */
+/*
+*:focus-visible {
+    outline: 2px solid #4F46E5; 
+    outline-offset: 2px;
+}
+*/
+
+/* Ensure html and body can support full height layouts if necessary */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body > .flex.h-screen { /* Targeting the main flex container after body */
+    min-height: 100vh; /* Ensure it takes at least viewport height */
+}
