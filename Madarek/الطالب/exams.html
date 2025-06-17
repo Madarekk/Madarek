@@ -9,6 +9,146 @@
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="icon" href="https://r2.flowith.net/files/o/1748451765656-Modern_Logo_Design_for_Madarek_School_Management_Platform_index_0@1024x1024.png" type="image/png">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            min-height: 100vh;
+            padding: 0;
+        }
+        
+        .main-container {
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        .exam-main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: transparent;
+        }
+        
+        .countdown-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            width: 100%;
+            max-width: 1200px;
+        }
+        
+        .tile {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s;
+        }
+        
+        .tile:hover {
+            transform: translateY(-10px);
+        }
+        
+        .tile-header {
+            padding: 20px;
+            background: #3498db;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .tile-header h3 {
+            font-size: 1.4rem;
+        }
+        
+        .days-left {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+        
+        .tile-body {
+            padding: 25px;
+        }
+        
+        .exam-date {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            color: #7f8c8d;
+        }
+        
+        .countdown-bar {
+            height: 12px;
+            background: #ecf0f1;
+            border-radius: 6px;
+            overflow: hidden;
+            margin: 25px 0;
+        }
+        
+        .progress {
+            height: 100%;
+            border-radius: 6px;
+        }
+        
+        .time-left {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin: 15px 0;
+        }
+        
+        .small-text {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 20px;
+        }
+        
+        .exam-details {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 20px;
+        }
+        
+        .detail-item {
+            display: flex;
+            margin-bottom: 10px;
+        }
+        
+        .detail-label {
+            width: 100px;
+            font-weight: bold;
+            color: #34495e;
+        }
+        
+        .detail-value {
+            flex: 1;
+            color: #7f8c8d;
+        }
+        
+        /* ألوان حسب قرب الاختبار */
+        .tile.urgent .tile-header {
+            background: #e74c3c;
+        }
+        
+        .tile.medium .tile-header {
+            background: #f39c12;
+        }
+        
+        .tile.normal .tile-header {
+            background: #2ecc71;
+        }
+    </style>
     <script>
         tailwind.config = {
             content: ["./*.html"],
@@ -47,9 +187,9 @@
                         <li><a href="index.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="layout-dashboard" class="ml-3 h-5 w-5"></i>لوحة الطالب</a></li>
                         <li><a href="lessons.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="book-open" class="ml-3 h-5 w-5"></i>الدروس والمواد</a></li>
                         <li><a href="assignments.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="notebook-tabs" class="ml-3 h-5 w-5"></i>الواجبات المنزلية</a></li>
-                        <li><a href="exams.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md active"><i data-lucide="file-check-2" class="ml-3 h-5 w-5"></i>الاختبارات والتقييمات</a></li>
+                        <li><a href="exams.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md active"><i data-lucide="file-check-2" class="ml-3 h-5 w-5"></i>الاختبارات</a></li>
                         <li><a href="schedule.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="calendar-days" class="ml-3 h-5 w-5"></i>الجدول الدراسي</a></li>
-                        <li><a href="messages.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="mail" class="ml-3 h-5 w-5"></i>التواصل مع المعلمين</a></li>
+                        <li><a href="messages.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="mail" class="ml-3 h-5 w-5"></i>النقاشات</a></li>
                         <li><a href="academic.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="bar-chart-3" class="ml-3 h-5 w-5"></i>الملف الأكاديمي</a></li>
                         <li><a href="profile.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="user" class="ml-3 h-5 w-5"></i>الملف الشخصي</a></li>
                     </ul>
@@ -92,42 +232,108 @@
     </div>
 </header>
         <main class="flex-1 overflow-y-auto p-8 bg-background">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-card p-6 rounded-xl shadow-lg border border-gray-200">
-                    <h2 class="text-lg font-semibold text-text-primary mb-4 flex items-center"><i data-lucide="calendar-days" class="ml-2 w-5 h-5 text-primary"></i>مواعيد الامتحانات</h2>
-                    <ul class="space-y-2">
-                        <li>امتحان رياضيات: <span class="text-primary font-medium">10 يونيو</span></li>
-                        <li>امتحان علوم: <span class="text-primary font-medium">12 يونيو</span></li>
-                    </ul>
-                    <h2 class="mt-6 text-lg font-semibold text-text-primary mb-4 flex items-center"><i data-lucide="file-check-2" class="ml-2 w-5 h-5 text-accent"></i>تقديم الاختبارات</h2>
-                    <button class="bg-primary text-white px-4 py-2 rounded hover:bg-primary-dark mr-2">بدء اختبار رياضيات</button>
-                    <button class="bg-secondary text-white px-4 py-2 rounded hover:bg-green-700">بدء اختبار علوم</button>
+            <div class="countdown-container">
+                <!-- اختبار عاجل -->
+                <div class="tile urgent">
+                    <div class="tile-header">
+                        <h3>الرياضيات</h3>
+                        <div class="days-left">3 أيام</div>
+                    </div>
+                    <div class="tile-body">
+                        <div class="exam-date">
+                            <i class="far fa-calendar-alt"></i>
+                            <span>الأحد 20 يونيو - 09:00 صباحًا</span>
+                        </div>
+                        
+                        <div class="countdown-bar">
+                            <div class="progress" style="width: 85%; background: #e74c3c;"></div>
+                        </div>
+                        
+                        <div class="time-left">68:42:15</div>
+                        <div class="small-text">ساعة : دقيقة : ثانية</div>
+                        
+                        <div class="exam-details">
+                            <div class="detail-item">
+                                <div class="detail-label">المكان:</div>
+                                <div class="detail-value">القاعة الكبرى (المبنى أ)</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label">المتطلبات:</div>
+                                <div class="detail-value">آلة حاسبة، أقلام رصاص</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label">ملاحظات:</div>
+                                <div class="detail-value">ممنوع استخدام الهاتف</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="bg-card p-6 rounded-xl shadow-lg border border-gray-200">
-                    <h2 class="text-lg font-semibold text-text-primary mb-4 flex items-center"><i data-lucide="bar-chart-3" class="ml-2 w-5 h-5 text-secondary"></i>النتائج</h2>
-                    <table class="min-w-full divide-y divide-gray-200 text-sm">
-                        <thead>
-                            <tr>
-                                <th class="px-4 py-2 text-right">المادة</th>
-                                <th class="px-4 py-2 text-right">الدرجة</th>
-                                <th class="px-4 py-2 text-right">ملاحظات</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="px-4 py-2">رياضيات</td>
-                                <td class="px-4 py-2">18/20</td>
-                                <td class="px-4 py-2">جيد جدًا</td>
-                            </tr>
-                            <tr>
-                                <td class="px-4 py-2">علوم</td>
-                                <td class="px-4 py-2">19/20</td>
-                                <td class="px-4 py-2">ممتاز</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                
+                <!-- اختبار متوسط القرب -->
+                <div class="tile medium">
+                    <div class="tile-header">
+                        <h3>الفيزياء</h3>
+                        <div class="days-left">5 أيام</div>
+                    </div>
+                    <div class="tile-body">
+                        <div class="exam-date">
+                            <i class="far fa-calendar-alt"></i>
+                            <span>الثلاثاء 22 يونيو - 10:30 صباحًا</span>
+                        </div>
+                        
+                        <div class="countdown-bar">
+                            <div class="progress" style="width: 65%; background: #f39c12;"></div>
+                        </div>
+                        
+                        <div class="time-left">116:22:45</div>
+                        <div class="small-text">ساعة : دقيقة : ثانية</div>
+                        
+                        <div class="exam-details">
+                            <div class="detail-item">
+                                <div class="detail-label">المكان:</div>
+                                <div class="detail-value">المعمل 3 (المبنى ب)</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label">المتطلبات:</div>
+                                <div class="detail-value">قوانين الفيزياء (مسموحة)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- اختبار بعيد -->
+                <div class="tile normal">
+                    <div class="tile-header">
+                        <h3>اللغة العربية</h3>
+                        <div class="days-left">7 أيام</div>
+                    </div>
+                    <div class="tile-body">
+                        <div class="exam-date">
+                            <i class="far fa-calendar-alt"></i>
+                            <span>الخميس 24 يونيو - 11:00 صباحًا</span>
+                        </div>
+                        
+                        <div class="countdown-bar">
+                            <div class="progress" style="width: 45%; background: #2ecc71;"></div>
+                        </div>
+                        
+                        <div class="time-left">164:10:30</div>
+                        <div class="small-text">ساعة : دقيقة : ثانية</div>
+                        
+                        <div class="exam-details">
+                            <div class="detail-item">
+                                <div class="detail-label">المكان:</div>
+                                <div class="detail-value">الفصل 203</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label">المتطلبات:</div>
+                                <div class="detail-value">قاموس عربي، أقلام حبر</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+        
         </main>
         <footer class="bg-card border-t border-gray-200 py-4 text-center text-sm text-text-secondary">
             جميع الحقوق محفوظة &copy; منصتي التعليمية
@@ -141,4 +347,3 @@
 </script>
 </body>
 </html>
-
