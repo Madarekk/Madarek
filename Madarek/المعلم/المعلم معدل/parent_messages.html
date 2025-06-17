@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>رسائل أولياء الأمور - مدارِك</title>
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        tailwind.config = {
+            content: ["./*.html"],
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'arabic': ['Tajawal', 'Arial', 'sans-serif']
+                    },
+                    colors: {
+                        'primary': '#059669',
+                        'primary-dark': '#047857',
+                        'secondary': '#4F46E5',
+                        'secondary-dark': '#4338CA',
+                        'accent': '#0891b2',
+                        'background': '#f9fafb',
+                        'card': '#ffffff',
+                        'text-primary': '#1f2937',
+                        'text-secondary': '#6b7280',
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="icon" href="https://r2.flowith.net/files/o/1748451765656-Modern_Logo_Design_for_Madarek_School_Management_Platform_index_0@1024x1024.png" type="image/png">
+</head>
+<body class="font-arabic bg-background text-text-primary">
+    <div class="flex h-screen">
+        <!-- Sidebar (Copied from index.html) -->
+        <nav class="hidden lg:flex lg:flex-shrink-0 bg-card border-l border-gray-200 shadow-md">
+            <div class="flex flex-col w-64">
+                <div class="flex items-center justify-center h-16 border-b border-gray-200 px-4">
+                    <img src="https://r2.flowith.net/files/o/1748451765656-Modern_Logo_Design_for_Madarek_School_Management_Platform_index_0@1024x1024.png" alt="مدارك" class="h-10 w-auto rounded-full">
+                    <span class="mr-3 text-xl font-bold text-primary">مدارِك</span>
+                </div>
+                <div class="flex-grow mt-5 overflow-y-auto">
+                    <nav class="px-3">
+                        <ul class="space-y-1.5">
+                            <li><a href="index.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="layout-dashboard" class="ml-3 h-5 w-5"></i>لوحة التحكم</a></li>
+                            <li><a href="subjects.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="book-open" class="ml-3 h-5 w-5"></i>المواد الدراسية</a></li>
+                            <li><a href="students.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="users" class="ml-3 h-5 w-5"></i>الطلاب</a></li>
+                            <li><a href="grades.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="graduation-cap" class="ml-3 h-5 w-5"></i>الدرجات والتقييمات</a></li>
+                            <li><a href="lessons.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="file-text" class="ml-3 h-5 w-5"></i>الدروس</a></li>
+                            <li><a href="discussions.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="message-circle" class="ml-3 h-5 w-5"></i>النقاشات</a></li>
+                            <li><a href="parent_messages.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="mail" class="ml-3 h-5 w-5"></i>رسائل أولياء الأمور</a></li>
+                            <li><a href="timetable.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="calendar-days" class="ml-3 h-5 w-5"></i>الجدول الدراسي</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </nav>
+
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <!-- Header (Copied from index.html) -->
+             <header class="bg-card shadow-sm border-b border-gray-200 sticky top-0 z-30">
+                <div class="mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex justify-between h-16">
+                        <div class="flex items-center lg:hidden">
+                            <button id="mobileMenuButton" class="p-2 text-gray-500 hover:text-gray-700">
+                                <i data-lucide="menu" class="h-6 w-6"></i>
+                            </button>
+                        </div>
+                        <div class="flex-1 flex justify-end items-center space-x-4 space-x-reverse">
+                             <button title="الإشعارات" class="p-2 text-gray-500 hover:text-gray-700 relative rounded-full hover:bg-gray-100">
+                                <i data-lucide="bell" class="h-6 w-6"></i>
+                                <span class="absolute top-1 right-1 block h-2.5 w-2.5 rounded-full bg-red-500 ring-2 ring-card"></span>
+                            </button>
+                            <div class="relative">
+                                <button id="userMenuButton" class="flex items-center text-sm rounded-full focus:outline-none">
+                                    <div class="h-9 w-9 rounded-full bg-primary text-white flex items-center justify-center text-sm font-medium">أ</div>
+                                    <span class="mr-2 text-text-primary hidden sm:block">أحمد المعلم</span>
+                                    <i data-lucide="chevron-down" class="w-4 h-4 mr-1 text-gray-500 hidden sm:block"></i>
+                                </button>
+                                <div id="userMenu" class="hidden absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-card ring-1 ring-black ring-opacity-5 z-50">
+                                    <div class="py-1">
+                                        <a href="profile.html" class="block px-4 py-2 text-sm text-text-primary hover:bg-gray-100">الملف الشخصي</a>
+                                        <div class="border-t border-gray-100"></div>
+                                        <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-red-50">تسجيل الخروج</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Mobile Menu Overlay (Copied from index.html) -->
+             <div id="mobileMenuOverlay" class="fixed inset-0 z-40 lg:hidden hidden">
+                <div class="fixed inset-0 bg-gray-600 bg-opacity-75" aria-hidden="true"></div>
+                <nav class="fixed top-0 right-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 bg-card shadow-xl overflow-y-auto">
+                    <div class="px-4 pb-4 flex items-center justify-between border-b">
+                       <div class="flex items-center">
+                            <img src="https://r2.flowith.net/files/o/1748451765656-Modern_Logo_Design_for_Madarek_School_Management_Platform_index_0@1024x1024.png" alt="مدارك" class="h-8 w-auto rounded-full">
+                            <span class="mr-2 text-lg font-bold text-primary">مدارِك</span>
+                        </div>
+                        <button id="closeMobileMenuButton" class="p-2 text-gray-500 hover:text-gray-700">
+                            <i data-lucide="x" class="h-6 w-6"></i>
+                        </button>
+                    </div>
+                    <nav class="mt-5 px-4 flex-1">
+                        <ul class="space-y-1">
+                            <li><a href="index.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="layout-dashboard" class="ml-3 h-5 w-5"></i>لوحة التحكم</a></li>
+                            <li><a href="subjects.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="book-open" class="ml-3 h-5 w-5"></i>المواد الدراسية</a></li>
+                            <li><a href="students.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="users" class="ml-3 h-5 w-5"></i>الطلاب</a></li>
+                            <li><a href="grades.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="graduation-cap" class="ml-3 h-5 w-5"></i>الدرجات والتقييمات</a></li>
+                            <li><a href="lessons.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="file-text" class="ml-3 h-5 w-5"></i>الدروس</a></li>
+                            <li><a href="discussions.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="message-circle" class="ml-3 h-5 w-5"></i>النقاشات</a></li>
+                            <li><a href="parent_messages.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="mail" class="ml-3 h-5 w-5"></i>رسائل أولياء الأمور</a></li>
+                            <li><a href="timetable.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="calendar-days" class="ml-3 h-5 w-5"></i>الجدول الدراسي</a></li>
+                        </ul>
+                    </nav>
+                </nav>
+            </div>
+
+            <!-- Page content -->
+            <main class="flex-1 overflow-hidden focus:outline-none flex flex-col">
+                <div class="py-6 px-4 sm:px-6 md:px-8">
+                    <h1 class="text-2xl font-semibold text-text-primary">التواصل مع أولياء الأمور</h1>
+                </div>
+                <div class="flex-1 flex flex-col lg:flex-row gap-6 px-4 sm:px-6 md:px-8 pb-6 overflow-hidden">
+                    <!-- Conversation List -->
+                    <div class="w-full lg:w-1/3 bg-card shadow-lg rounded-xl border border-gray-200 flex flex-col overflow-hidden">
+                        <div class="p-4 border-b border-gray-200">
+                            <div class="relative">
+                                <input type="text" placeholder="البحث عن ولي أمر..." class="w-full px-3 py-2 pr-10 border border-gray-300 rounded-lg shadow-sm focus:ring-primary focus:border-primary sm:text-sm">
+                                <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                  <i data-lucide="search" class="h-5 w-5 text-gray-400"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div id="conversationList" class="flex-1 overflow-y-auto divide-y divide-gray-200 conversation-list">
+                            <!-- Example Conversation -->
+                            <a href="#" class="block p-4 hover:bg-gray-50 transition-colors duration-150 ease-in-out active-chat-item bg-primary/5">
+                                <div class="flex items-center">
+                                    <div class="relative flex-shrink-0">
+                                        <img class="h-10 w-10 rounded-full object-cover" src="https://ui-avatars.com/api/?name=ولي+أمر+خالد&background=4F46E5&color=fff" alt="ولي أمر خالد">
+                                        <span class="absolute bottom-0 right-0 block h-2.5 w-2.5 rounded-full bg-green-400 ring-2 ring-white"></span>
+                                    </div>
+                                    <div class="mr-3 flex-1 min-w-0">
+                                        <p class="text-sm font-medium text-text-primary truncate">ولي أمر الطالب خالد وليد</p>
+                                        <p class="text-xs text-text-secondary truncate">شكراً جزيلاً على التوضيح!</p>
+                                    </div>
+                                    <div class="flex-shrink-0 text-xs text-gray-400 text-left">
+                                        <p>10:32ص</p>
+                                        <span class="mt-1 inline-flex items-center justify-center px-1.5 py-0.5 text-xs font-semibold text-white bg-primary rounded-full">1</span>
+                                    </div>
+                                </div>
+                            </a>
+                             <a href="#" class="block p-4 hover:bg-gray-50 transition-colors duration-150 ease-in-out">
+                                <div class="flex items-center">
+                                     <div class="relative flex-shrink-0">
+                                        <img class="h-10 w-10 rounded-full object-cover" src="https://ui-avatars.com/api/?name=ولي+أمر+سارة&background=059669&color=fff" alt="ولي أمر سارة">
+                                    </div>
+                                    <div class="mr-3 flex-1 min-w-0">
+                                        <p class="text-sm font-medium text-text-primary truncate">ولي أمر الطالبة سارة عبدالله</p>
+                                        <p class="text-xs text-text-secondary truncate">أريد الاستفسار عن واجب اليوم.</p>
+                                    </div>
+                                    <div class="flex-shrink-0 text-xs text-gray-400 text-left">
+                                         <p>أمس</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Chat Area -->
+                    <div class="w-full lg:w-2/3 bg-card shadow-lg rounded-xl border border-gray-200 flex flex-col overflow-hidden">
+                        <!-- Chat Header -->
+                        <div class="px-4 py-3 border-b border-gray-200 flex items-center justify-between sticky top-0 bg-card z-10">
+                            <div class="flex items-center min-w-0">
+                                <img class="h-10 w-10 rounded-full object-cover mr-3" src="https://ui-avatars.com/api/?name=ولي+أمر+خالد&background=4F46E5&color=fff" alt="ولي أمر خالد">
+                                <div class="min-w-0">
+                                    <h3 class="text-md font-semibold text-text-primary truncate">ولي أمر الطالب خالد وليد</h3>
+                                     <p class="text-xs text-green-500 truncate">متصل الآن</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Messages Area -->
+                        <div id="chatMessages" class="flex-1 p-4 space-y-4 overflow-y-auto chat-messages bg-background">
+                            <div class="flex items-start max-w-md lg:max-w-lg">
+                                 <img class="h-8 w-8 rounded-full object-cover mr-2 flex-shrink-0" src="https://ui-avatars.com/api/?name=ولي+أمر+خالد&background=4F46E5&color=fff" alt="ولي أمر">
+                                <div class="bg-gray-200 rounded-tr-lg rounded-bl-lg rounded-br-lg p-3 shadow-sm">
+                                    <p class="text-sm text-text-primary">السلام عليكم أستاذ أحمد، كيف حالك؟</p>
+                                    <p class="mt-1 text-xs text-text-secondary text-left">10:30 صباحاً</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start justify-end">
+                                 <div class="bg-primary text-white rounded-tl-lg rounded-bl-lg rounded-br-lg p-3 shadow-sm max-w-md lg:max-w-lg">
+                                    <p class="text-sm">وعليكم السلام ورحمة الله. بخير الحمد لله، كيف أقدر أساعدك؟</p>
+                                    <p class="mt-1 text-xs text-primary/70 text-left">10:31 صباحاً ✓✓</p>
+                                </div>
+                            </div>
+                             <div class="flex items-start max-w-md lg:max-w-lg">
+                                 <img class="h-8 w-8 rounded-full object-cover mr-2 flex-shrink-0" src="https://ui-avatars.com/api/?name=ولي+أمر+خالد&background=4F46E5&color=fff" alt="ولي أمر">
+                                <div class="bg-gray-200 rounded-tr-lg rounded-bl-lg rounded-br-lg p-3 shadow-sm">
+                                    <p class="text-sm text-text-primary">أردت الاستفسار عن أداء خالد في مادة الرياضيات مؤخراً.</p>
+                                    <p class="mt-1 text-xs text-text-secondary text-left">10:31 صباحاً</p>
+                                </div>
+                            </div>
+                             <div class="flex items-start justify-end">
+                                 <div class="bg-primary text-white rounded-tl-lg rounded-bl-lg rounded-br-lg p-3 shadow-sm max-w-md lg:max-w-lg">
+                                    <p class="text-sm">أداء خالد جيد جداً، يشارك بفعالية في الحصص ويقوم بواجباته. يمكننا مناقشة التفاصيل أكثر في اجتماع أولياء الأمور القادم إن أردت.</p>
+                                    <p class="mt-1 text-xs text-primary/70 text-left">10:32 صباحاً ✓✓</p>
+                                </div>
+                            </div>
+                             <div class="flex items-start max-w-md lg:max-w-lg">
+                                 <img class="h-8 w-8 rounded-full object-cover mr-2 flex-shrink-0" src="https://ui-avatars.com/api/?name=ولي+أمر+خالد&background=4F46E5&color=fff" alt="ولي أمر">
+                                <div class="bg-gray-200 rounded-tr-lg rounded-bl-lg rounded-br-lg p-3 shadow-sm">
+                                    <p class="text-sm text-text-primary">شكراً جزيلاً على التوضيح! هذا مطمئن.</p>
+                                    <p class="mt-1 text-xs text-text-secondary text-left">10:32 صباحاً</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Message Input -->
+                        <div class="px-4 py-3 border-t border-gray-200 bg-card">
+                            <form id="sendMessageForm" class="flex items-center space-x-3 space-x-reverse">
+                                <button type="button" title="إرفاق ملف" class="p-2 text-gray-500 hover:text-gray-700 rounded-full hover:bg-gray-100">
+                                    <i data-lucide="paperclip" class="w-5 h-5"></i>
+                                </button>
+                                <input type="text" id="messageInput" placeholder="اكتب رسالتك هنا..." class="flex-1 px-3 py-2.5 border-gray-300 rounded-lg shadow-sm focus:ring-primary focus:border-primary sm:text-sm" autocomplete="off">
+                                 <button type="submit" class="p-2.5 text-white bg-primary hover:bg-primary-dark rounded-lg transition-colors duration-150 ease-in-out">
+                                    <i data-lucide="send" class="w-5 h-5"></i>
+                                    <span class="sr-only">إرسال</span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    <script src="icons.js"></script>
+    <script type="module" src="script.js"></script>
+    <script type="module">
+        const sendMessageForm = document.getElementById('sendMessageForm');
+        const messageInput = document.getElementById('messageInput');
+        const chatMessagesContainer = document.getElementById('chatMessages');
+
+        if (sendMessageForm) {
+            sendMessageForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const messageText = messageInput.value.trim();
+                if (messageText) {
+                    const sentMessageHTML = `
+                        <div class="flex items-start justify-end">
+                             <div class="bg-primary text-white rounded-tl-lg rounded-bl-lg rounded-br-lg p-3 shadow-sm max-w-md lg:max-w-lg">
+                                <p class="text-sm">${messageText}</p>
+                                <p class="mt-1 text-xs text-primary/70 text-left">${new Date().toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' })} ✓✓</p>
+                            </div>
+                        </div>
+                    `;
+                    chatMessagesContainer.insertAdjacentHTML('beforeend', sentMessageHTML);
+                    messageInput.value = '';
+                    chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
+                }
+            });
+        }
+        
+        if(chatMessagesContainer) {
+            chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
+        }
+    </script>
+</body>
+</html>
+
