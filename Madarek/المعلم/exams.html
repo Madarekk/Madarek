@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة الاختبارات - مدارِك</title>
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        tailwind.config = {
+            content: ["./*.html"],
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'arabic': ['Tajawal', 'Arial', 'sans-serif']
+                    },
+                    colors: {
+                        'primary': '#059669', 
+                        'primary-dark': '#047857', 
+                        'secondary': '#4F46E5', 
+                        'secondary-dark': '#4338CA',
+                        'accent': '#0891b2', 
+                        'background': '#f9fafb', 
+                        'card': '#ffffff', 
+                        'text-primary': '#1f2937', 
+                        'text-secondary': '#6b7280', 
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="icon" href="https://r2.flowith.net/files/o/1748451765656-Modern_Logo_Design_for_Madarek_School_Management_Platform_index_0@1024x1024.png" type="image/png">
+</head>
+<body class="font-arabic bg-background text-text-primary">
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <nav class="hidden lg:flex lg:flex-shrink-0 bg-card border-l border-gray-200 shadow-md">
+            <div class="flex flex-col w-64">
+                <div class="flex items-center justify-center h-16 border-b border-gray-200 px-4">
+                    <img src="https://r2.flowith.net/files/o/1748451765656-Modern_Logo_Design_for_Madarek_School_Management_Platform_index_0@1024x1024.png" alt="مدارك" class="h-10 w-auto rounded-full">
+                    <span class="mr-3 text-xl font-bold text-primary">مدارِك</span>
+                </div>
+                <div class="flex-grow mt-5 overflow-y-auto">
+                    <nav class="px-3">
+                        <ul class="space-y-1.5">
+                            <li><a href="index.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="layout-dashboard" class="ml-3 h-5 w-5"></i>لوحة التحكم</a></li>
+                            <li><a href="subjects.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="book-open" class="ml-3 h-5 w-5"></i>المواد الدراسية</a></li>
+                            <li><a href="students.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="users" class="ml-3 h-5 w-5"></i>الطلاب</a></li>
+                            <li><a href="grades.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="graduation-cap" class="ml-3 h-5 w-5"></i>الدرجات والتقييمات</a></li>
+                            <li><a href="lessons.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="file-text" class="ml-3 h-5 w-5"></i>الدروس</a></li>
+                            <li><a href="assignments.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="notebook-tabs" class="ml-3 h-5 w-5"></i>الواجبات</a></li>
+                            <li><a href="exams.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="file-signature" class="ml-3 h-5 w-5"></i>الاختبارات</a></li>
+                            <li><a href="discussions.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="message-circle" class="ml-3 h-5 w-5"></i>النقاشات</a></li>
+                            <li><a href="messages.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="mail" class="ml-3 h-5 w-5"></i>الرسائل</a></li>
+                            <li><a href="timetable.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="calendar-days" class="ml-3 h-5 w-5"></i>الجدول الدراسي</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </nav>
+
+        <div class="flex-1 flex flex-col overflow-hidden">
+             <!-- Header -->
+            <header class="bg-card shadow-sm border-b border-gray-200 sticky top-0 z-30">
+                 <div class="mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex justify-between h-16">
+                        <div class="flex items-center lg:hidden">
+                            <button id="mobileMenuButton" class="p-2 text-gray-500 hover:text-gray-700">
+                                <i data-lucide="menu" class="h-6 w-6"></i>
+                            </button>
+                        </div>
+                        <div class="flex-1 flex justify-end items-center space-x-4 space-x-reverse">
+                            <div class="relative">
+                                <button id="notificationsButton" title="الإشعارات" class="p-2 text-gray-500 hover:text-gray-700 relative rounded-full hover:bg-gray-100">
+                                    <i data-lucide="bell" class="h-6 w-6"></i>
+                                    <span class="absolute top-1 right-1 block h-2.5 w-2.5 rounded-full bg-red-500 ring-2 ring-card"></span>
+                                </button>
+                                <div id="notificationsDropdown" class="hidden absolute left-0 mt-2 w-72 sm:w-80 md:w-96 rounded-md shadow-lg bg-card ring-1 ring-black ring-opacity-5 z-50">
+                                   <div class="p-3 border-b border-gray-200"><h3 class="text-sm font-medium text-text-primary">الإشعارات</h3></div>
+                                   <div class="py-1 max-h-80 overflow-y-auto">
+                                        <a href="#" class="block px-4 py-3 hover:bg-gray-100 border-b border-gray-100 last:border-b-0">
+                                            <div class="flex justify-between items-start">
+                                                <p class="text-sm font-medium text-text-primary truncate w-3/4">موعد اختبار العلوم</p>
+                                                <span class="text-xs text-text-secondary whitespace-nowrap">منذ 30 د</span>
+                                            </div>
+                                            <p class="text-xs text-text-secondary mt-0.5">تم تحديد موعد اختبار العلوم للصف الأول (أ).</p>
+                                        </a>
+                                         <a href="#" class="block px-4 py-3 hover:bg-gray-100">
+                                            <div class="flex justify-between items-start">
+                                                <p class="text-sm font-medium text-text-primary truncate w-3/4">إشعار هام</p>
+                                                <span class="text-xs text-text-secondary whitespace-nowrap">قبل 1 س</span>
+                                            </div>
+                                            <p class="text-xs text-text-secondary mt-0.5">يرجى مراجعة إعدادات الاختبار النهائي.</p>
+                                        </a>
+                                   </div>
+                                   <div class="p-2 border-t border-gray-200 text-center"><a href="#" class="text-sm font-medium text-primary hover:text-primary-dark">عرض كل الإشعارات</a></div>
+                                </div>
+                            </div>
+                            <div class="relative">
+                                <button id="userMenuButton" class="flex items-center text-sm rounded-full focus:outline-none">
+                                    <div class="h-9 w-9 rounded-full bg-primary text-white flex items-center justify-center text-sm font-medium">أ</div>
+                                    <span class="mr-2 text-text-primary hidden sm:block">أحمد المعلم</span>
+                                    <i data-lucide="chevron-down" class="w-4 h-4 mr-1 text-gray-500 hidden sm:block"></i>
+                                </button>
+                                <div id="userMenu" class="hidden absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-card ring-1 ring-black ring-opacity-5 z-50">
+                                    <div class="py-1">
+                                        <a href="profile.html" class="block px-4 py-2 text-sm text-text-primary hover:bg-gray-100">الملف الشخصي</a>
+                                        <div class="border-t border-gray-100"></div>
+                                        <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-red-50">تسجيل الخروج</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Mobile Menu Overlay -->
+            <div id="mobileMenuOverlay" class="fixed inset-0 z-40 lg:hidden hidden">
+                <div class="fixed inset-0 bg-gray-600 bg-opacity-75" aria-hidden="true"></div>
+                <nav class="fixed top-0 right-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 bg-card shadow-xl overflow-y-auto">
+                    <div class="px-4 pb-4 flex items-center justify-between border-b">
+                       <div class="flex items-center">
+                            <img src="https://r2.flowith.net/files/o/1748451765656-Modern_Logo_Design_for_Madarek_School_Management_Platform_index_0@1024x1024.png" alt="مدارك" class="h-8 w-auto rounded-full">
+                            <span class="mr-2 text-lg font-bold text-primary">مدارِك</span>
+                        </div>
+                        <button id="closeMobileMenuButton" class="p-2 text-gray-500 hover:text-gray-700">
+                            <i data-lucide="x" class="h-6 w-6"></i>
+                        </button>
+                    </div>
+                    <nav class="mt-5 px-4 flex-1">
+                        <ul class="space-y-1">
+                            <li><a href="index.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="layout-dashboard" class="ml-3 h-5 w-5"></i>لوحة التحكم</a></li>
+                            <li><a href="subjects.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="book-open" class="ml-3 h-5 w-5"></i>المواد الدراسية</a></li>
+                            <li><a href="students.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="users" class="ml-3 h-5 w-5"></i>الطلاب</a></li>
+                            <li><a href="grades.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="graduation-cap" class="ml-3 h-5 w-5"></i>الدرجات والتقييمات</a></li>
+                            <li><a href="lessons.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="file-text" class="ml-3 h-5 w-5"></i>الدروس</a></li>
+                            <li><a href="assignments.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="notebook-tabs" class="ml-3 h-5 w-5"></i>الواجبات</a></li>
+                            <li><a href="exams.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="file-signature" class="ml-3 h-5 w-5"></i>الاختبارات</a></li>
+                            <li><a href="discussions.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="message-circle" class="ml-3 h-5 w-5"></i>النقاشات</a></li>
+                            <li><a href="messages.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="mail" class="ml-3 h-5 w-5"></i>الرسائل</a></li>
+                            <li><a href="timetable.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="calendar-days" class="ml-3 h-5 w-5"></i>الجدول الدراسي</a></li>
+                        </ul>
+                    </nav>
+                </nav>
+            </div>
+
+            <!-- Page content -->
+            <main class="flex-1 overflow-y-auto focus:outline-none p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <div>
+                        <h1 class="text-2xl font-semibold text-text-primary">إنشاء وإدارة الاختبارات</h1>
+                        <p class="mt-1 text-sm text-text-secondary">أضف وحرر الاختبارات وقَيّم أداء طلابك.</p>
+                    </div>
+                    <!-- Removed "إضافة اختبار جديد" button
+                    <button id="openCreateExamModal" class="bg-primary text-white py-2 px-4 rounded-lg text-sm font-medium hover:bg-primary-dark transition-colors flex items-center">
+                        <i data-lucide="plus-circle" class="ml-2 w-5 h-5"></i> إضافة اختبار جديد
+                    </button>
+                    -->
+                </div>
+
+                <!-- Exams List -->
+                <div id="examsListContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Example Exam Card -->
+                    <div class="item-card bg-card p-5 shadow-lg rounded-xl border border-gray-200 flex flex-col justify-between" data-id="1">
+                        <div>
+                            <div class="flex items-center mb-3">
+                                <i data-lucide="clipboard-edit" class="w-6 h-6 text-secondary ml-2"></i>
+                                <h3 class="text-lg font-semibold text-text-primary exam-card-title">اختبار منتصف الفصل - الرياضيات</h3>
+                            </div>
+                            <p class="text-sm text-text-secondary mb-1 exam-card-subject-class">المادة: الرياضيات - الصف الأول (أ)</p>
+                            <p class="text-xs text-gray-400 mb-1 exam-card-date">تاريخ الاختبار: 15 يونيو 2025</p>
+                            <p class="text-xs text-gray-400 mb-3 exam-card-duration">المدة: 90 دقيقة</p>
+                            <p class="text-sm text-text-secondary whitespace-pre-line line-clamp-2 mb-4 exam-card-description">اختبار يغطي مواد الفصول 1-3. يرجى الاستعداد جيداً.</p>
+                            <span class="text-xs font-semibold text-blue-600 bg-blue-500/10 px-2 py-0.5 rounded-full inline-block exam-card-location">في المدرسة</span>
+                        </div>
+                        <div class="flex justify-end space-x-2 space-x-reverse mt-auto pt-3">
+                            <button class="text-secondary hover:text-secondary-dark text-sm p-1 action-edit"><i data-lucide="edit" class="w-4 h-4"></i></button>
+                            <button class="text-red-500 hover:text-red-700 text-sm p-1 action-delete"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                            <button class="text-primary hover:text-primary-dark text-sm p-1 action-view"><i data-lucide="eye" class="w-4 h-4"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Create/Edit Exam Modal (Button to open it is removed) -->
+    <div id="examModal" class="fixed inset-0 bg-gray-600 bg-opacity-75 overflow-y-auto h-full w-full flex items-center justify-center hidden z-50 modal">
+        <div class="relative mx-auto p-6 border w-full max-w-3xl shadow-xl rounded-xl bg-card">
+            <div class="flex items-center justify-between mb-4">
+                <h3 id="examModalTitle" class="text-xl font-semibold text-text-primary">إضافة اختبار جديد</h3>
+                <button class="close-modal-btn text-gray-400 hover:text-gray-600">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+            <form id="examForm" class="space-y-4">
+                <input type="hidden" id="examId" name="examId">
+                <div>
+                    <label for="examTitle" class="block text-sm font-medium text-text-secondary">عنوان الاختبار</label>
+                    <input type="text" id="examTitle" name="examTitle" required class="mt-1 block w-full p-2 border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm">
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="examClass" class="block text-sm font-medium text-text-secondary">الفصل الدراسي</label>
+                        <select id="examClass" name="examClass" required class="mt-1 block w-full p-2 border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm">
+                            <option value="">اختر الفصل...</option>
+                            <option value="الصف الأول (أ)">الصف الأول (أ)</option>
+                            <option value="الصف الأول (ب)">الصف الأول (ب)</option>
+                            <option value="الصف الثاني (أ)">الصف الثاني (أ)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="examSubject" class="block text-sm font-medium text-text-secondary">المادة</label>
+                        <select id="examSubject" name="examSubject" required class="mt-1 block w-full p-2 border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm">
+                            <option value="">اختر المادة...</option>
+                            <option value="الرياضيات">الرياضيات</option>
+                            <option value="العلوم">العلوم</option>
+                            <option value="اللغة العربية">اللغة العربية</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label for="examDescription" class="block text-sm font-medium text-text-secondary">وصف الاختبار</label>
+                    <textarea id="examDescription" name="examDescription" rows="3" class="mt-1 block w-full p-2 border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm"></textarea>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="examDate" class="block text-sm font-medium text-text-secondary">تاريخ الاختبار</label>
+                        <input type="date" id="examDate" name="examDate" required class="mt-1 block w-full p-2 border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="examDuration" class="block text-sm font-medium text-text-secondary">مدة الاختبار (مثال: 90 دقيقة)</label>
+                        <input type="text" id="examDuration" name="examDuration" required class="mt-1 block w-full p-2 border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm" placeholder="مثال: 90 دقيقة">
+                    </div>
+                </div>
+                <div>
+                    <label for="examLocation" class="block text-sm font-medium text-text-secondary">مكان إجراء الاختبار</label>
+                    <select id="examLocation" name="examLocation" required class="mt-1 block w-full p-2 border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm">
+                        <option value="in_school">في المدرسة</option>
+                        <option value="online">عبر الموقع</option>
+                    </select>
+                </div>
+                
+                <div id="onlineExamQuestionsSection" class="hidden space-y-4 pt-4 border-t border-gray-200">
+                    <div class="flex justify-between items-center">
+                         <h4 class="text-md font-semibold text-text-primary">أسئلة الاختبار (للاختبارات عبر الموقع)</h4>
+                         <button type="button" id="addQuestionBtn" class="text-sm text-primary hover:text-primary-dark font-medium flex items-center"><i data-lucide="plus" class="w-4 h-4 ml-1"></i> إضافة سؤال</button>
+                    </div>
+                    <div id="questionsContainer" class="space-y-4 max-h-60 overflow-y-auto pr-2">
+                    </div>
+                </div>
+
+                <div class="flex items-center">
+                    <input id="sendExamNotification" name="sendExamNotification" type="checkbox" class="h-4 w-4 text-primary border-gray-300 rounded focus:ring-primary ml-2">
+                    <label for="sendExamNotification" class="text-sm font-medium text-text-secondary">إرسال إشعار للطلاب وأولياء الأمور بموعد الاختبار</label>
+                </div>
+
+                <div class="flex items-center justify-end pt-4 space-x-3 space-x-reverse">
+                    <button type="button" class="cancel-modal-btn bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded-lg">إلغاء</button>
+                    <button type="submit" class="bg-primary hover:bg-primary-dark text-white font-medium py-2 px-4 rounded-lg">حفظ الاختبار</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <template id="questionTemplate">
+        <div class="p-3 border rounded-md bg-background space-y-2 question-item">
+            <div class="flex justify-between items-center">
+                <label class="block text-sm font-medium text-text-secondary">السؤال</label>
+                <button type="button" class="text-red-500 hover:text-red-700 remove-question-btn"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+            </div>
+            <textarea name="questionText" rows="2" required class="block w-full p-2 border-gray-300 rounded-md shadow-sm sm:text-sm"></textarea>
+            <div class="grid grid-cols-2 gap-2">
+                <div>
+                    <label class="block text-xs font-medium text-text-secondary">خيار 1</label>
+                    <input type="text" name="option1" required class="mt-0.5 block w-full p-1.5 border-gray-300 rounded-md shadow-sm sm:text-xs">
+                </div>
+                <div>
+                    <label class="block text-xs font-medium text-text-secondary">خيار 2</label>
+                    <input type="text" name="option2" required class="mt-0.5 block w-full p-1.5 border-gray-300 rounded-md shadow-sm sm:text-xs">
+                </div>
+                <div>
+                    <label class="block text-xs font-medium text-text-secondary">خيار 3</label>
+                    <input type="text" name="option3" class="mt-0.5 block w-full p-1.5 border-gray-300 rounded-md shadow-sm sm:text-xs">
+                </div>
+                <div>
+                    <label class="block text-xs font-medium text-text-secondary">خيار 4</label>
+                    <input type="text" name="option4" class="mt-0.5 block w-full p-1.5 border-gray-300 rounded-md shadow-sm sm:text-xs">
+                </div>
+            </div>
+            <div>
+                <label class="block text-xs font-medium text-text-secondary">الإجابة الصحيحة</label>
+                <select name="correctAnswer" required class="mt-0.5 block w-full p-1.5 border-gray-300 rounded-md shadow-sm sm:text-xs">
+                    <option value="">اختر الإجابة...</option>
+                    <option value="1">خيار 1</option>
+                    <option value="2">خيار 2</option>
+                    <option value="3">خيار 3</option>
+                    <option value="4">خيار 4</option>
+                </select>
+            </div>
+        </div>
+    </template>
+
+    <script src="icons.js"></script>
+    <script type="module" src="script.js"></script>
+    <script type="module">
+        const openModalBtn = document.getElementById('openCreateExamModal'); // This will be null as button is removed
+        const examModal = document.getElementById('examModal');
+        const examForm = document.getElementById('examForm');
+        const examModalTitle = document.getElementById('examModalTitle');
+        const examsListContainer = document.getElementById('examsListContainer');
+        const examLocationSelect = document.getElementById('examLocation');
+        const onlineQuestionsSection = document.getElementById('onlineExamQuestionsSection');
+        const addQuestionBtn = document.getElementById('addQuestionBtn');
+        const questionsContainer = document.getElementById('questionsContainer');
+        const questionTemplate = document.getElementById('questionTemplate');
+        
+        const examIdField = document.getElementById('examId');
+        const examTitleField = document.getElementById('examTitle');
+        const examClassField = document.getElementById('examClass');
+        const examSubjectField = document.getElementById('examSubject');
+        const examDescriptionField = document.getElementById('examDescription');
+        const examDateField = document.getElementById('examDate');
+        const examDurationField = document.getElementById('examDuration');
+        const sendExamNotificationField = document.getElementById('sendExamNotification');
+
+        let questionCounter = 0;
+
+        const defaultExamValues = {
+            id: null, title: '', class: '', subject: '', description: '',
+            date: new Date().toISOString().split('T')[0], 
+            duration: '90 دقيقة', location: 'in_school', 
+            sendNotification: true, questions: []
+        };
+
+        function refreshLucideIcons() {
+            setTimeout(() => {
+                if (typeof lucide !== 'undefined' && lucide.createIcons) {
+                    lucide.createIcons();
+                }
+            }, 50);
+        }
+
+        function setExamModalVisible(isVisible) {
+            if (!examModal) return;
+            examModal.classList.toggle('hidden', !isVisible);
+            document.body.classList.toggle('overflow-hidden', isVisible);
+            if (isVisible) {
+                refreshLucideIcons();
+            }
+        }
+
+        function toggleOnlineQuestionsSection() {
+            if (!examLocationSelect || !onlineQuestionsSection) return;
+            const isOnline = examLocationSelect.value === 'online';
+            onlineQuestionsSection.classList.toggle('hidden', !isOnline);
+            if (!isOnline && questionsContainer) {
+                questionsContainer.innerHTML = ''; 
+                questionCounter = 0;
+            }
+            refreshLucideIcons();
+        }
+
+        function addQuestionToForm(questionData = null) {
+            if (!questionTemplate || !questionsContainer) return;
+            questionCounter++;
+            const newQuestionFragment = questionTemplate.content.cloneNode(true);
+            const questionItem = newQuestionFragment.querySelector('.question-item');
+            if (!questionItem) return;
+            
+            const questionLabel = questionItem.querySelector('label');
+            if (questionLabel) questionLabel.textContent = `السؤال ${questionCounter}`;
+
+            if (questionData) {
+                const questionTextarea = questionItem.querySelector('textarea[name="questionText"]');
+                if(questionTextarea) questionTextarea.value = questionData.text || '';
+                
+                const optionInputs = questionItem.querySelectorAll('input[type="text"]');
+                if(optionInputs.length > 0 && questionData.options) {
+                    optionInputs[0].value = questionData.options[0] || '';
+                    optionInputs[1].value = questionData.options[1] || '';
+                    if (optionInputs.length > 2) optionInputs[2].value = questionData.options[2] || '';
+                    if (optionInputs.length > 3) optionInputs[3].value = questionData.options[3] || '';
+                }
+                const correctAnswerSelect = questionItem.querySelector('select[name="correctAnswer"]');
+                if(correctAnswerSelect) correctAnswerSelect.value = questionData.correct || '';
+            }
+
+            const removeBtn = questionItem.querySelector('.remove-question-btn');
+            if (removeBtn) {
+                removeBtn.addEventListener('click', () => {
+                    questionItem.remove();
+                });
+            }
+            questionsContainer.appendChild(newQuestionFragment);
+            refreshLucideIcons();
+        }
+
+        function populateExamForm(data = defaultExamValues) {
+            if (!examForm) return;
+            examForm.reset();
+            if(examIdField) examIdField.value = data.id || '';
+            if(examTitleField) examTitleField.value = data.title;
+            if(examClassField) examClassField.value = data.class;
+            if(examSubjectField) examSubjectField.value = data.subject;
+            if(examDescriptionField) examDescriptionField.value = data.description;
+            if(examDateField) examDateField.value = data.date;
+            if(examDurationField) examDurationField.value = data.duration;
+            if(examLocationSelect) examLocationSelect.value = data.location;
+            if(sendExamNotificationField) sendExamNotificationField.checked = data.sendNotification;
+            
+            if(questionsContainer) questionsContainer.innerHTML = ''; 
+            questionCounter = 0;
+            if (data.location === 'online' && data.questions && Array.isArray(data.questions)) {
+                data.questions.forEach(q => addQuestionToForm(q)); 
+            }
+            toggleOnlineQuestionsSection(); 
+        }
+
+        // Button to open modal is removed, so openModalBtn will be null.
+        // The following if block will not execute.
+        // if (openModalBtn) {
+        //     openModalBtn.addEventListener('click', () => {
+        //         if(examModalTitle) examModalTitle.textContent = 'إضافة اختبار جديد';
+        //         populateExamForm();
+        //         setExamModalVisible(true);
+        //     });
+        // }
+
+        if (examModal) {
+            const examCloseModalButtons = examModal.querySelectorAll('.close-modal-btn, .cancel-modal-btn');
+            examCloseModalButtons.forEach(btn => {
+                btn.addEventListener('click', () => setExamModalVisible(false));
+            });
+            examModal.addEventListener('click', (event) => {
+                if (event.target === examModal) {
+                    setExamModalVisible(false);
+                }
+            });
+        }
+        
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && examModal && !examModal.classList.contains('hidden')) {
+                setExamModalVisible(false);
+            }
+        });
+
+        if (examLocationSelect) {
+            examLocationSelect.addEventListener('change', toggleOnlineQuestionsSection);
+        }
+
+        if (addQuestionBtn) {
+            addQuestionBtn.addEventListener('click', () => addQuestionToForm());
+        }
+
+        if (examForm) {
+            examForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                if (!examForm) return;
+                const formData = new FormData(examForm);
+                const questions = [];
+                if (formData.get('examLocation') === 'online' && questionsContainer) {
+                    const qItems = questionsContainer.querySelectorAll('.question-item');
+                    qItems.forEach(item => {
+                        const text = item.querySelector('textarea[name="questionText"]')?.value;
+                        const opt1 = item.querySelector('input[name="option1"]')?.value;
+                        const opt2 = item.querySelector('input[name="option2"]')?.value;
+                        const opt3 = item.querySelector('input[name="option3"]')?.value;
+                        const opt4 = item.querySelector('input[name="option4"]')?.value;
+                        const correct = item.querySelector('select[name="correctAnswer"]')?.value;
+                        if(text && opt1 && opt2 && correct) { // Basic validation
+                             questions.push({ text, options: [opt1, opt2, opt3, opt4], correct });
+                        }
+                    });
+                }
+
+                const examData = {
+                    id: formData.get('examId') || Date.now().toString(),
+                    title: formData.get('examTitle'),
+                    class: formData.get('examClass'),
+                    subject: formData.get('examSubject'),
+                    description: formData.get('examDescription'),
+                    date: new Date(formData.get('examDate')).toLocaleDateString('ar-EG', { day: 'numeric', month: 'long', year: 'numeric' }),
+                    duration: formData.get('examDuration'),
+                    location: formData.get('examLocation'),
+                    locationText: formData.get('examLocation') === 'online' ? 'عبر الموقع' : 'في المدرسة',
+                    sendNotification: formData.get('sendExamNotification') === 'on',
+                    questions: questions
+                };
+                
+                const existingCard = examsListContainer ? examsListContainer.querySelector(`.item-card[data-id="${examData.id}"]`) : null;
+                if (existingCard && formData.get('examId')) { 
+                    updateExamCard(existingCard, examData);
+                    alert('تم تعديل الاختبار بنجاح.');
+                } else if (examsListContainer) { 
+                    const examCardHTML = createExamCardHTML(examData);
+                    examsListContainer.insertAdjacentHTML('beforeend', examCardHTML);
+                    alert('تم حفظ الاختبار بنجاح (محاكاة - زر الاضافة الرئيسي محذوف).');
+                }
+
+                if (examData.sendNotification) {
+                    alert('سيتم إرسال إشعار للطلاب وأولياء الأمور (محاكاة).');
+                }
+                
+                refreshLucideIcons();
+                setExamModalVisible(false);
+                populateExamForm(); 
+            });
+        }
+        
+        function createExamCardHTML(exam) {
+            const descriptionText = exam.description.length > 100 ? exam.description.substring(0,100) + '...' : exam.description;
+            return `<div class="item-card bg-card p-5 shadow-lg rounded-xl border border-gray-200 flex flex-col justify-between" data-id="${exam.id}">
+                    <div>
+                        <div class="flex items-center mb-3">
+                            <i data-lucide="clipboard-edit" class="w-6 h-6 text-secondary ml-2"></i>
+                            <h3 class="text-lg font-semibold text-text-primary exam-card-title">${exam.title}</h3>
+                        </div>
+                        <p class="text-sm text-text-secondary mb-1 exam-card-subject-class">المادة: ${exam.subject} - ${exam.class}</p>
+                        <p class="text-xs text-gray-400 mb-1 exam-card-date">تاريخ الاختبار: ${exam.date}</p>
+                        <p class="text-xs text-gray-400 mb-3 exam-card-duration">المدة: ${exam.duration}</p>
+                        <p class="text-sm text-text-secondary whitespace-pre-line line-clamp-2 mb-4 exam-card-description">${descriptionText}</p>
+                        <span class="text-xs font-semibold ${exam.location === 'online' ? 'text-accent bg-accent/10' : 'text-blue-600 bg-blue-500/10'} px-2 py-0.5 rounded-full inline-block exam-card-location">${exam.locationText}</span>
+                         ${exam.location === 'online' && exam.questions.length > 0 ? `<p class="text-xs text-gray-500 mt-2"><i data-lucide="list-checks" class="inline-block w-3 h-3 ml-1"></i>${exam.questions.length} أسئلة</p>` : ''}
+                    </div>
+                    <div class="flex justify-end space-x-2 space-x-reverse mt-auto pt-3">
+                        <button class="text-secondary hover:text-secondary-dark text-sm p-1 action-edit"><i data-lucide="edit" class="w-4 h-4"></i></button>
+                        <button class="text-red-500 hover:text-red-700 text-sm p-1 action-delete"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                        <button class="text-primary hover:text-primary-dark text-sm p-1 action-view"><i data-lucide="eye" class="w-4 h-4"></i></button>
+                    </div>
+                </div>`;
+        }
+
+        function updateExamCard(cardElement, exam) {
+            if(!cardElement) return;
+            const descriptionText = exam.description.length > 100 ? exam.description.substring(0,100) + '...' : exam.description;
+            
+            const titleEl = cardElement.querySelector('.exam-card-title');
+            if(titleEl) titleEl.textContent = exam.title;
+
+            const subjectClassEl = cardElement.querySelector('.exam-card-subject-class');
+            if(subjectClassEl) subjectClassEl.textContent = `المادة: ${exam.subject} - ${exam.class}`;
+            
+            const dateEl = cardElement.querySelector('.exam-card-date');
+            if(dateEl) dateEl.textContent = `تاريخ الاختبار: ${exam.date}`;
+            
+            const durationEl = cardElement.querySelector('.exam-card-duration');
+            if(durationEl) durationEl.textContent = `المدة: ${exam.duration}`;
+            
+            const descriptionEl = cardElement.querySelector('.exam-card-description');
+            if(descriptionEl) descriptionEl.textContent = descriptionText;
+
+            const locationEl = cardElement.querySelector('.exam-card-location');
+            if(locationEl) {
+                locationEl.textContent = exam.locationText;
+                locationEl.className = `text-xs font-semibold ${exam.location === 'online' ? 'text-accent bg-accent/10' : 'text-blue-600 bg-blue-500/10'} px-2 py-0.5 rounded-full inline-block exam-card-location`;
+            }
+           
+            const questionsCountP = cardElement.querySelector('p > i[data-lucide="list-checks"]')?.parentElement;
+            if (questionsCountP) questionsCountP.remove();
+            if (exam.location === 'online' && exam.questions.length > 0 && locationEl) {
+                const newQuestionsHTML = `<p class="text-xs text-gray-500 mt-2"><i data-lucide="list-checks" class="inline-block w-3 h-3 ml-1"></i>${exam.questions.length} أسئلة</p>`;
+                locationEl.insertAdjacentHTML('afterend', newQuestionsHTML);
+            }
+            refreshLucideIcons();
+        }
+
+        if (examsListContainer) {
+            examsListContainer.addEventListener('click', function(event) {
+                const target = event.target;
+                const card = target.closest('.item-card');
+                if (!card) return;
+
+                const examId = card.dataset.id;
+                const title = card.querySelector('.exam-card-title')?.textContent || '';
+                const subjectClassText = card.querySelector('.exam-card-subject-class')?.textContent || '';
+                const description = card.querySelector('.exam-card-description')?.textContent || '';
+                const duration = card.querySelector('.exam-card-duration')?.textContent.replace('المدة: ','') || defaultExamValues.duration;
+                const location = card.querySelector('.exam-card-location')?.textContent.includes('الموقع') ? 'online' : 'in_school';
+
+                let classVal = defaultExamValues.class;
+                let subjectVal = defaultExamValues.subject;
+
+                if(subjectClassText.includes(' - ')) {
+                    const parts = subjectClassText.split(' - ');
+                    subjectVal = parts[0].replace('المادة: ','');
+                    classVal = parts[1];
+                }
+
+                if (target.closest('.action-edit')) {
+                    if (examModalTitle) examModalTitle.textContent = 'تعديل الاختبار';
+                    // For simplicity, questions are not pre-filled on edit.
+                    // A real implementation would fetch or store question data associated with the exam.
+                    const examDataToEdit = {
+                        id: examId,
+                        title: title,
+                        class: classVal,
+                        subject: subjectVal,
+                        description: description,
+                        date: defaultExamValues.date, 
+                        duration: duration,
+                        location: location,
+                        sendNotification: true,
+                        questions: [] // Reset questions on edit for simplicity in this version
+                    };
+                    populateExamForm(examDataToEdit);
+                    setExamModalVisible(true);
+                } else if (target.closest('.action-delete')) {
+                    if (confirm('هل أنت متأكد من حذف هذا الاختبار؟')) {
+                        card.remove();
+                        alert('تم حذف الاختبار.');
+                    }
+                } else if (target.closest('.action-view')) {
+                    alert(`عرض تفاصيل الاختبار (محاكاة): ${title}`);
+                }
+            });
+        }
+        
+        // Removed: JavaScript logic that automatically clicks openModalBtn if action=create is in URL
+        // if (openModalBtn && new URLSearchParams(window.location.search).get('action') === 'create') {
+        //      openModalBtn.click();
+        // }
+    </script>
+</body>
+</html>
