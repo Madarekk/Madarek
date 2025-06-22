@@ -268,10 +268,10 @@
                     <div class="md:flex md:items-center md:justify-between">
                         <div class="flex-1 min-w-0">
                              <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">
-                                الإعلانات والإشعارات
+                                الإعلانات
                             </h2>
                             <p class="mt-1 text-sm text-gray-500">
-                                عرض جميع الإعلانات والمنشورات الهامة على مستوى المدرسة. (ملاحظة: هذه الصفحة هي وجهة زر الإشعارات في الهيدر)
+                                عرض جميع الإعلانات والمنشورات الهامة على مستوى المدرسة.
                             </p>
                         </div>
                          <div class="mt-4 flex md:mt-0 md:mr-4">
@@ -288,19 +288,43 @@
                     <div class="mt-4 bg-white shadow sm:rounded-lg">
                         <div class="px-4 py-5 sm:p-6">
                             <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
-                                <div>
-                                    <label for="announcementType" class="block text-sm font-medium text-gray-700">نوع الإعلان</label>
-                                    <select id="announcementType" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md">
-                                        <option>الكل</option>
-                                        <option>عام</option>
-                                        <option>أكاديمي</option>
-                                        <option>فعاليات</option>
-                                        <option>إشعارات هامة</option>
-                                    </select>
+                                <div class="relative">
+                                    <button id="toggleRolesFilterBtn" type="button" class="w-full flex justify-between items-center px-3 py-2 border border-gray-300 bg-white rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition">
+                                        <span>تحديد الأدوار</span>
+                                        <svg id="rolesFilterChevron" class="w-4 h-4 ml-2 text-gray-400 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                                    </button>
+                                    <div id="rolesFilterBox" class="absolute right-0 mt-2 w-full z-20 flex flex-col space-y-2 bg-white rounded-md p-3 border border-gray-200 shadow-lg hidden">
+                                        <label class="inline-flex items-center">
+                                            <input type="checkbox" class="form-checkbox text-primary focus:ring-primary" name="roles[]" value="الإداريين">
+                                            <span class="mr-2">الإداريين</span>
+                                        </label>
+                                        <label class="inline-flex items-center">
+                                            <input type="checkbox" class="form-checkbox text-primary focus:ring-primary" name="roles[]" value="المعلمين">
+                                            <span class="mr-2">المعلمين</span>
+                                        </label>
+                                        <label class="inline-flex items-center">
+                                            <input type="checkbox" class="form-checkbox text-primary focus:ring-primary" name="roles[]" value="المعلمين الخارجيين">
+                                            <span class="mr-2">المعلمين الخارجيين</span>
+                                        </label>
+                                        <label class="inline-flex items-center">
+                                            <input type="checkbox" class="form-checkbox text-primary focus:ring-primary" name="roles[]" value="الطلاب">
+                                            <span class="mr-2">الطلاب</span>
+                                        </label>
+                                        <label class="inline-flex items-center">
+                                            <input type="checkbox" class="form-checkbox text-primary focus:ring-primary" name="roles[]" value="أولياء الأمور">
+                                            <span class="mr-2">أولياء الأمور</span>
+                                        </label>
+                                    </div>
                                 </div>
-                                <div>
-                                    <label for="dateRange" class="block text-sm font-medium text-gray-700">النطاق الزمني</label>
-                                    <input type="date" id="dateRange" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm">
+                                <div class="grid grid-cols-2 gap-2">
+                                    <div>
+                                        <label for="dateFrom" class="block text-sm font-medium text-gray-700">من</label>
+                                        <input type="date" id="dateFrom" name="dateFrom" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm">
+                                    </div>
+                                    <div>
+                                        <label for="dateTo" class="block text-sm font-medium text-gray-700">إلى</label>
+                                        <input type="date" id="dateTo" name="dateTo" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm">
+                                    </div>
                                 </div>
                                 <div class="flex items-end">
                                     <button class="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-md text-sm font-medium border border-gray-300">
@@ -543,6 +567,47 @@
                         noAnnouncementsPlaceholder.classList.add('hidden');
                     }
                 }, 0);
+            }
+
+            // Toggle roles filter visibility
+            const toggleRolesFilterBtn = document.getElementById('toggleRolesFilterBtn');
+            const rolesFilterBox = document.getElementById('rolesFilterBox');
+            const rolesFilterChevron = document.getElementById('rolesFilterChevron');
+            if (toggleRolesFilterBtn && rolesFilterBox && rolesFilterChevron) {
+                toggleRolesFilterBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    rolesFilterBox.classList.toggle('hidden');
+                    rolesFilterChevron.classList.toggle('rotate-180');
+                });
+                document.addEventListener('click', function(e) {
+                    if (!rolesFilterBox.contains(e.target) && !toggleRolesFilterBtn.contains(e.target)) {
+                        rolesFilterBox.classList.add('hidden');
+                        rolesFilterChevron.classList.remove('rotate-180');
+                    }
+                });
+            }
+            // --- فلترة الإعلانات حسب الأدوار ---
+            const filterBtn = document.querySelector('.bg-gray-100, .hover\:bg-gray-200'); // زر تطبيق الفلتر
+            if (filterBtn) {
+                filterBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const checkedRoles = Array.from(document.querySelectorAll('input[name="roles[]"]:checked')).map(cb => cb.value);
+                    // إرسال البيانات للباك إند (مثال endpoint وهمي)
+                    fetch('/api/announcements/filter', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ roles: checkedRoles })
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        // هنا يمكنك تحديث قائمة الإعلانات بناءً على النتائج
+                        console.log('نتائج الفلترة:', data);
+                        alert('تم إرسال الأدوار المختارة للباك إند: ' + checkedRoles.join(', '));
+                    })
+                    .catch(err => {
+                        console.error('خطأ في الفلترة:', err);
+                    });
+                });
             }
         });
     </script>
