@@ -39,12 +39,143 @@
                     </div>
                 </div>
                 <div class="flex items-center space-x-4 space-x-reverse">
-                    <button id="notificationButton" class="p-2 text-gray-400 hover:text-gray-600 relative" onclick="window.location.href='announcements.html'">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-5 5v-5zM10.9 18.1a5 5 0 1 1 0-9.2"/>
-                        </svg>
-                        <span class="absolute top-0 right-0 block h-2 w-2 rounded-full bg-red-400 transform translate-x-1/2 -translate-y-1/2"></span>
-                    </button>
+                    <div class="relative">
+                        <button id="notificationButton" class="p-2 text-gray-400 hover:text-gray-600 relative">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                            </svg>
+                            <span class="absolute top-0 right-0 block h-2 w-2 rounded-full bg-red-400 transform translate-x-1/2 -translate-y-1/2"></span>
+                        </button>
+                        <div id="notificationsDropdown" class="hidden absolute left-0 mt-2 w-80 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50">
+                            <div class="py-1">
+                                <div class="px-4 py-2 border-b border-gray-100">
+                                    <h3 class="text-sm font-medium text-gray-900">الإشعارات</h3>
+                                </div>
+                                <div class="max-h-96 overflow-y-auto">
+                                    <a href="#" class="block px-4 py-3 hover:bg-gray-50 border-b border-gray-100">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0">
+                                                <div class="w-2 h-2 bg-blue-400 rounded-full mt-2"></div>
+                                            </div>
+                                            <div class="mr-3 flex-1">
+                                                <p class="text-sm font-medium text-gray-900">اجتماع أولياء الأمور</p>
+                                                <p class="text-xs text-gray-500">يوم الخميس الساعة 4:00 مساءً</p>
+                                                <p class="text-xs text-gray-400 mt-1">منذ ساعتين</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="block px-4 py-3 hover:bg-gray-50 border-b border-gray-100">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0">
+                                                <div class="w-2 h-2 bg-green-400 rounded-full mt-2"></div>
+                                            </div>
+                                            <div class="mr-3 flex-1">
+                                                <p class="text-sm font-medium text-gray-900">بداية الفصل الثاني</p>
+                                                <p class="text-xs text-gray-500">يبدأ يوم الأحد القادم</p>
+                                                <p class="text-xs text-gray-400 mt-1">أمس</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="block px-4 py-3 hover:bg-gray-50 border-b border-gray-100">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0">
+                                                <div class="w-2 h-2 bg-yellow-400 rounded-full mt-2"></div>
+                                            </div>
+                                            <div class="mr-3 flex-1">
+                                                <p class="text-sm font-medium text-gray-900">امتحانات نصف الفصل</p>
+                                                <p class="text-xs text-gray-500">تبدأ الأسبوع القادم</p>
+                                                <p class="text-xs text-gray-400 mt-1">منذ 3 أيام</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="block px-4 py-3 hover:bg-gray-50 border-b border-gray-100">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0">
+                                                <div class="w-2 h-2 bg-purple-400 rounded-full mt-2"></div>
+                                            </div>
+                                            <div class="mr-3 flex-1">
+                                                <p class="text-sm font-medium text-gray-900">تحديث النظام</p>
+                                                <p class="text-xs text-gray-500">تم تحديث النظام إلى الإصدار الجديد</p>
+                                                <p class="text-xs text-gray-400 mt-1">منذ 5 أيام</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="block px-4 py-3 hover:bg-gray-50 border-b border-gray-100">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0">
+                                                <div class="w-2 h-2 bg-red-400 rounded-full mt-2"></div>
+                                            </div>
+                                            <div class="mr-3 flex-1">
+                                                <p class="text-sm font-medium text-gray-900">تنبيه هام: صيانة النظام</p>
+                                                <p class="text-xs text-gray-500">سيتم إيقاف النظام للصيانة يوم الجمعة</p>
+                                                <p class="text-xs text-gray-400 mt-1">منذ 6 أيام</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="block px-4 py-3 hover:bg-gray-50 border-b border-gray-100">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0">
+                                                <div class="w-2 h-2 bg-cyan-400 rounded-full mt-2"></div>
+                                            </div>
+                                            <div class="mr-3 flex-1">
+                                                <p class="text-sm font-medium text-gray-900">إعلان: رحلة مدرسية</p>
+                                                <p class="text-xs text-gray-500">الرحلة يوم الإثنين القادم</p>
+                                                <p class="text-xs text-gray-400 mt-1">منذ أسبوع</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="block px-4 py-3 hover:bg-gray-50 border-b border-gray-100">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0">
+                                                <div class="w-2 h-2 bg-orange-400 rounded-full mt-2"></div>
+                                            </div>
+                                            <div class="mr-3 flex-1">
+                                                <p class="text-sm font-medium text-gray-900">تهنئة: نجاح الطلاب</p>
+                                                <p class="text-xs text-gray-500">مبروك لجميع الناجحين</p>
+                                                <p class="text-xs text-gray-400 mt-1">منذ أسبوعين</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="block px-4 py-3 hover:bg-gray-50 border-b border-gray-100">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0">
+                                                <div class="w-2 h-2 bg-pink-400 rounded-full mt-2"></div>
+                                            </div>
+                                            <div class="mr-3 flex-1">
+                                                <p class="text-sm font-medium text-gray-900">تنويه: تحديث بيانات الطلاب</p>
+                                                <p class="text-xs text-gray-500">يرجى تحديث البيانات قبل نهاية الشهر</p>
+                                                <p class="text-xs text-gray-400 mt-1">منذ 3 أسابيع</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="block px-4 py-3 hover:bg-gray-50 border-b border-gray-100">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0">
+                                                <div class="w-2 h-2 bg-gray-400 rounded-full mt-2"></div>
+                                            </div>
+                                            <div class="mr-3 flex-1">
+                                                <p class="text-sm font-medium text-gray-900">إشعار: انتهاء الفصل الدراسي</p>
+                                                <p class="text-xs text-gray-500">انتهاء الفصل الدراسي الحالي</p>
+                                                <p class="text-xs text-gray-400 mt-1">منذ شهر</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="block px-4 py-3 hover:bg-gray-50">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0">
+                                                <div class="w-2 h-2 bg-lime-400 rounded-full mt-2"></div>
+                                            </div>
+                                            <div class="mr-3 flex-1">
+                                                <p class="text-sm font-medium text-gray-900">تنويه: بداية التسجيل للعام الجديد</p>
+                                                <p class="text-xs text-gray-500">التسجيل متاح الآن عبر المنصة</p>
+                                                <p class="text-xs text-gray-400 mt-1">اليوم</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="relative">
                         <button id="userMenuButton" class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
                             <div class="h-8 w-8 rounded-full bg-primary text-white flex items-center justify-center text-sm font-medium">أ</div>
@@ -81,7 +212,6 @@
                                 <li><a href="schedules.html" class="text-gray-700 hover:text-gray-900 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md"><svg class="text-gray-400 group-hover:text-gray-500 ml-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>الجداول الدراسية</a></li>
                                 <li><a href="attendance.html" class="text-gray-700 hover:text-gray-900 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md"><svg class="text-gray-400 group-hover:text-gray-500 ml-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>الحضور والغياب</a></li>
                                 <li><a href="grades.html" class="text-gray-700 hover:text-gray-900 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md"><svg class="text-gray-400 group-hover:text-gray-500 ml-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>الدرجات والتقارير</a></li>
-                                <li><a href="رصد الدرجات.html" class="text-gray-700 hover:text-gray-900 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md"><svg class="text-gray-400 group-hover:text-gray-500 ml-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>رصد الدرجات</a></li>
                                 <li><a href="messages.html" class="text-gray-700 hover:text-gray-900 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md"><svg class="text-gray-400 group-hover:text-gray-500 ml-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-.55.55c-.1.1-.2.15-.35.15s-.25-.05-.35-.15L8 16z"/></svg>المحادثات</a></li>
                                 <li><a href="announcements.html" class="text-gray-700 hover:text-gray-900 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md"><svg class="text-gray-400 group-hover:text-gray-500 ml-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"/></svg>الإعلانات</a></li>
                                 <li><a href="settings.html" class="bg-primary text-white group flex items-center px-3 py-2 text-sm font-medium rounded-md"><svg class="text-white ml-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>إعدادات النظام</a></li>
@@ -122,7 +252,6 @@
                          <li><a href="schedules.html" class="text-gray-700 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md">الجداول الدراسية</a></li>
                          <li><a href="attendance.html" class="text-gray-700 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md">الحضور والغياب</a></li>
                          <li><a href="grades.html" class="text-gray-700 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md">الدرجات والتقارير</a></li>
-                         <li><a href="رصد الدرجات.html" class="text-gray-700 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md">رصد الدرجات</a></li>
                          <li><a href="messages.html" class="text-gray-700 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md">المحادثات</a></li>
                          <li><a href="announcements.html" class="text-gray-700 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md">الإعلانات</a></li>
                          <li><a href="settings.html" class="bg-primary text-white group flex items-center px-3 py-2 text-sm font-medium rounded-md">إعدادات النظام</a></li>
@@ -256,59 +385,5 @@
     </div>
 
     <script src="dashboard.js"></script>
-    <script>
-        const closeMobileMenuButtonSettings = document.getElementById('closeMobileMenuButtonSettings');
-        const mobileMenuOverlayInstance = document.getElementById('mobileMenuOverlay');
-        if (closeMobileMenuButtonSettings && mobileMenuOverlayInstance) {
-            closeMobileMenuButtonSettings.addEventListener('click', () => {
-                mobileMenuOverlayInstance.classList.add('hidden');
-            });
-        }
-         
-         document.addEventListener('DOMContentLoaded', () => {
-            const settingsForm = document.getElementById('settingsForm');
-            const saveAllSettingsBtn = document.getElementById('saveAllSettingsBtn'); // Also the one in the header
-            const schoolLogoInput = document.getElementById('schoolLogoInput');
-            const currentSchoolLogo = document.getElementById('currentSchoolLogo');
-
-            if (settingsForm) {
-                 settingsForm.addEventListener('submit', (event) => {
-                     event.preventDefault();
-                     const formData = new FormData(settingsForm);
-                     const settingsData = Object.fromEntries(formData.entries());
-                     // If file input, handle it separately (formData will contain the File object if selected)
-                     if (schoolLogoInput.files && schoolLogoInput.files[0]) {
-                        settingsData.schoolLogoFile = schoolLogoInput.files[0];
-                        console.log("New logo selected:", schoolLogoInput.files[0].name);
-                     }
-                     console.log('Settings form submitted:', settingsData);
-                     alert('تم حفظ الإعدادات بنجاح (محاكاة). سيتم ربط هذا بالـ backend لتخزين البيانات.');
-                     // Backend Note: Send settingsData (including file if any) to the backend API.
-                 });
-            }
-            
-            // Also trigger form submission if the header button is clicked.
-             if(saveAllSettingsBtn && settingsForm){
-                 saveAllSettingsBtn.addEventListener('click', (e) => {
-                     if(e.target.id === 'saveAllSettingsBtn') { // ensure it's the header button specifically if needed, or just let form button handle it.
-                        settingsForm.requestSubmit(); // Modern way to submit form via JS
-                     }
-                 });
-             }
-
-            if (schoolLogoInput && currentSchoolLogo) {
-                schoolLogoInput.addEventListener('change', function() {
-                    const file = this.files[0];
-                    if (file) {
-                        const reader = new FileReader();
-                        reader.onload = function(e) {
-                            currentSchoolLogo.src = e.target.result;
-                        }
-                        reader.readAsDataURL(file);
-                    }
-                });
-            }
-         });
-    </script>
 </body>
 </html>
