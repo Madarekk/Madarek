@@ -1,0 +1,23 @@
+.sidebar-link {
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    color: #636e72; /* text-secondary */
+}
+
+.sidebar-link:hover {
+    background-color: #f3f4f6; /* gray-100 */
+    color: #2d3436; /* text-primary */
+}
+
+.sidebar-link.active {
+    background-color: #eaf5ff; /* A light blue, custom */
+    color: #0984e3; /* primary */
+    font-weight: 700; /* bold */
+}
+
+.sidebar-link.active i {
+    color: #0984e3; /* primary */
+}
+
+.sidebar-link:hover i {
+     color: #0984e3; /* primary */
+}

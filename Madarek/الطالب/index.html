@@ -3,113 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>لوحة تحكم الطالب - مدارِك</title>
+    <title>لوحة التحكم - مدارِك</title>
     <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
-    <link rel="stylesheet" href="../ولي الامر/styles.css">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
-            content: ["./*.html"],
             theme: {
                 extend: {
                     fontFamily: {
-                        'arabic': ['Tajawal', 'Arial', 'sans-serif']
+                        'arabic': ['Cairo', 'Arial', 'sans-serif']
                     },
                     colors: {
-                        'primary': '#4F46E5',
-                        'primary-dark': '#4338CA',
-                        'secondary': '#059669',
-                        'accent': '#0891b2',
-                        'background': '#f9fafb',
+                        'primary': '#0984e3',
+                        'primary-dark': '#74b9ff',
+                        'secondary': '#00b894',
+                        'accent': '#6c5ce7',
+                        'success': '#55efc4',
+                        'warning': '#fdcb6e',
+                        'danger': '#e17055',
+                        'pink': '#fd79a8',
+                        'info': '#00cec9',
+                        'purple': '#a29bfe',
+                        'orange': '#ff7675',
+                        'background': '#f8f9fa',
                         'card': '#ffffff',
-                        'text-primary': '#1f2937',
-                        'text-secondary': '#6b7280',
+                        'text-primary': '#2d3436',
+                        'text-secondary': '#636e72',
+                        'border': '#ddd',
                     }
                 }
             }
         }
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="icon" href="https://r2.flowith.net/files/o/1748451765656-Modern_Logo_Design_for_Madarek_School_Management_Platform_index_0@1024x1024.png" type="image/png">
 </head>
-<body class="font-arabic bg-background text-text-primary">
+<body class="font-arabic bg-background text-text-primary antialiased">
     <div class="flex h-screen">
         <!-- Sidebar -->
-        <nav class="hidden lg:flex lg:flex-shrink-0 bg-card border-l border-gray-200 shadow-md" id="sidebarNav">
+        <aside class="hidden lg:flex lg:flex-shrink-0 bg-card border-l border-gray-200 shadow-sm" id="sidebarNav">
             <div class="flex flex-col w-64">
-                <div class="flex items-center justify-center h-16 border-b border-gray-200 px-4">
+                <div class="flex items-center justify-center h-20 border-b border-gray-200 px-4">
                     <img src="https://r2.flowith.net/files/o/1748451765656-Modern_Logo_Design_for_Madarek_School_Management_Platform_index_0@1024x1024.png" alt="مدارك" class="h-10 w-auto rounded-full">
-                    <span class="mr-3 text-xl font-bold text-primary">مدارِك</span>
+                    <span class="mr-3 text-2xl font-bold text-primary">مدارِك</span>
                 </div>
                 <div class="flex-grow mt-5 overflow-y-auto">
-                    <nav class="px-3">
-                        <ul class="space-y-1.5">
-    <li><a href="index.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md active"><i data-lucide="layout-dashboard" class="ml-3 h-5 w-5"></i>لوحة الطالب</a></li>
-    <li><a href="lessons.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="book-open" class="ml-3 h-5 w-5"></i>الدروس والمواد</a></li>
-    <li><a href="assignments.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="notebook-tabs" class="ml-3 h-5 w-5"></i>الواجبات المنزلية</a></li>
-    <li><a href="schedule.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="calendar-days" class="ml-3 h-5 w-5"></i>الجدول الدراسي</a></li>
-    <li><a href="messages.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="mail" class="ml-3 h-5 w-5"></i>النقاشات</a></li>
-    <li><a href="academic.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="bar-chart-3" class="ml-3 h-5 w-5"></i>الملف الأكاديمي</a></li>
-    <li><a href="profile.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="user" class="ml-3 h-5 w-5"></i>الملف الشخصي</a></li>
-</ul>
+                    <nav class="px-4">
+                        <ul class="space-y-2">
+                            <li><a href="index.html" class="sidebar-link group flex items-center px-3 py-3 text-base font-semibold rounded-lg active"><i data-lucide="layout-dashboard" class="ml-3 h-5 w-5"></i>لوحة التحكم</a></li>
+                            <li><a href="lessons.html" class="sidebar-link group flex items-center px-3 py-3 text-base rounded-lg"><i data-lucide="book-open" class="ml-3 h-5 w-5"></i>الدروس والمواد</a></li>
+                            <li><a href="assignments.html" class="sidebar-link group flex items-center px-3 py-3 text-base rounded-lg"><i data-lucide="notebook-tabs" class="ml-3 h-5 w-5"></i>الواجبات</a></li>
+                            <li><a href="schedule.html" class="sidebar-link group flex items-center px-3 py-3 text-base rounded-lg"><i data-lucide="calendar-days" class="ml-3 h-5 w-5"></i>الجدول الدراسي</a></li>
+                            <li><a href="messages.html" class="sidebar-link group flex items-center px-3 py-3 text-base rounded-lg"><i data-lucide="mail" class="ml-3 h-5 w-5"></i>الرسائل</a></li>
+                            <li><a href="academic.html" class="sidebar-link group flex items-center px-3 py-3 text-base rounded-lg"><i data-lucide="bar-chart-3" class="ml-3 h-5 w-5"></i>التقدم الأكاديمي</a></li>
+                            <li><a href="profile.html" class="sidebar-link group flex items-center px-3 py-3 text-base rounded-lg"><i data-lucide="user" class="ml-3 h-5 w-5"></i>الملف الشخصي</a></li>
+                        </ul>
                     </nav>
                 </div>
             </div>
-        </nav>
+        </aside>
+        
         <!-- Main content area -->
         <div class="flex-1 flex flex-col overflow-hidden">
             <!-- Header -->
             <header class="bg-card shadow-sm border-b border-gray-200 sticky top-0 z-30">
                 <div class="mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="flex justify-between h-16">
-                        <div class="flex items-center lg:hidden">
-                            <button id="mobileMenuButton" class="p-2 text-gray-500 hover:text-gray-700">
+                    <div class="flex justify-between h-20">
+                         <div class="flex items-center">
+                            <button id="mobileMenuButton" class="p-2 text-text-secondary hover:text-text-primary lg:hidden">
                                 <i data-lucide="menu" class="h-6 w-6"></i>
                             </button>
+                             <h1 class="text-2xl font-bold text-text-primary hidden lg:block">مرحباً بعودتك، يا طالب!</h1>
                         </div>
-                        <!-- Mobile sidebar overlay -->
-                        <div id="mobileMenuOverlay" class="fixed inset-0 z-40 lg:hidden hidden">
-                            <div class="fixed inset-0 bg-gray-600 bg-opacity-75" aria-hidden="true"></div>
-                            <nav class="fixed top-0 right-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 bg-card shadow-xl overflow-y-auto">
-                                <div class="px-4 pb-4 flex items-center justify-between border-b">
-                                    <div class="flex items-center">
-                                        <img src="https://r2.flowith.net/files/o/1748451765656-Modern_Logo_Design_for_Madarek_School_Management_Platform_index_0@1024x1024.png" alt="مدارك" class="h-8 w-auto rounded-full">
-                                        <span class="mr-2 text-lg font-bold text-primary">مدارِك</span>
-                                    </div>
-                                    <button id="closeMobileMenuButton" class="p-2 text-gray-500 hover:text-gray-700">
-                                        <i data-lucide="x" class="h-6 w-6"></i>
-                                    </button>
-                                </div>
-                                <nav class="mt-5 px-4 flex-1">
-                                    <ul class="space-y-1">
-                                        <li><a href="index.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md active"><i data-lucide="layout-dashboard" class="ml-3 h-5 w-5"></i>لوحة الطالب</a></li>
-                                        <li><a href="academic.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="bar-chart-3" class="ml-3 h-5 w-5"></i>الملف الأكاديمي</a></li>
-                                        <li><a href="lessons.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="book-open" class="ml-3 h-5 w-5"></i>الدروس والمواد</a></li>
-                                        <li><a href="exams.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="calendar-check" class="ml-3 h-5 w-5"></i>الاختبارات</a></li>
-                                        <li><a href="messages.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="mail" class="ml-3 h-5 w-5"></i>التواصل مع المعلمين</a></li>
-                                        <li><a href="assignments.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="notebook-tabs" class="ml-3 h-5 w-5"></i>الواجبات المنزلية</a></li>
-                                        <li><a href="schedule.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="calendar-days" class="ml-3 h-5 w-5"></i>الجدول الدراسي</a></li>
-                                        <li><a href="profile.html" class="sidebar-link group flex items-center px-3 py-2.5 text-sm font-medium rounded-md"><i data-lucide="user" class="ml-3 h-5 w-5"></i>الملف الشخصي</a></li>
-                                    </ul>
-                                </nav>
-                            </nav>
-                        </div>
-                        <div class="flex-1 flex justify-end items-center space-x-4 space-x-reverse">
-                            <button title="الإشعارات" class="p-2 text-gray-500 hover:text-gray-700 relative rounded-full hover:bg-gray-100">
-                                <i data-lucide="bell" class="h-6 w-6"></i>
-                                <span class="absolute top-1 right-1 block h-2.5 w-2.5 rounded-full bg-red-500 ring-2 ring-card"></span>
-                            </button>
+                        
+                        <div class="flex items-center space-x-4 space-x-reverse">
+                             <!-- Notification Dropdown -->
                             <div class="relative">
-                                <button id="userMenuButton" class="flex items-center text-sm rounded-full focus:outline-none">
-                                    <div class="h-9 w-9 rounded-full bg-primary text-white flex items-center justify-center text-sm font-medium">ط</div>
-                                    <span class="mr-2 text-text-primary hidden sm:block">الطالب</span>
-                                    <i data-lucide="chevron-down" class="w-4 h-4 mr-1 text-gray-500 hidden sm:block"></i>
+                                <button id="notificationButton" title="الإشعارات" class="p-2 text-text-secondary hover:text-text-primary relative rounded-full hover:bg-gray-100 transition-colors">
+                                    <i data-lucide="bell" class="h-6 w-6"></i>
+                                    <span class="absolute top-2 right-2 block h-2.5 w-2.5 rounded-full bg-danger ring-2 ring-card"></span>
+                                </button>
+                                <div id="notificationMenu" class="hidden absolute left-0 mt-2 w-80 rounded-md shadow-lg bg-card ring-1 ring-black ring-opacity-5 z-50">
+                                    <div class="p-3 font-bold text-text-primary border-b border-gray-100">
+                                        الإشعارات
+                                    </div>
+                                    <div class="py-1 max-h-80 overflow-y-auto">
+                                        <a href="#" class="flex items-start px-4 py-3 text-sm text-text-primary hover:bg-gray-100 transition-colors">
+                                            <div class="p-2 bg-primary bg-opacity-10 rounded-full ml-3">
+                                                <i data-lucide="notebook-tabs" class="w-5 h-5 text-primary"></i>
+                                            </div>
+                                            <div>
+                                                <p class="font-semibold">تم إضافة واجب منزلي جديد في مادة الرياضيات.</p>
+                                                <span class="text-xs text-text-secondary">منذ 5 دقائق</span>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="flex items-start px-4 py-3 text-sm text-text-primary hover:bg-gray-100 transition-colors">
+                                            <div class="p-2 bg-accent bg-opacity-10 rounded-full ml-3">
+                                                <i data-lucide="message-square" class="w-5 h-5 text-accent"></i>
+                                            </div>
+                                            <div>
+                                                <p class="font-semibold">رسالة جديدة من <span class="text-accent">المعلم أحمد</span>.</p>
+                                                <span class="text-xs text-text-secondary">منذ 20 دقيقة</span>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="flex items-start px-4 py-3 text-sm text-text-primary hover:bg-gray-100 transition-colors">
+                                             <div class="p-2 bg-warning bg-opacity-10 rounded-full ml-3">
+                                                <i data-lucide="calendar-check" class="w-5 h-5 text-orange"></i>
+                                            </div>
+                                            <div>
+                                                <p class="font-semibold">تذكير باختبار العلوم غدًا.</p>
+                                                 <span class="text-xs text-text-secondary">أمس، 8:00م</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="border-t border-gray-100">
+                                        <a href="#" class="block py-2 text-sm text-center text-primary hover:bg-gray-50 font-semibold">
+                                            عرض كل الإشعارات
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="relative">
+                                <button id="userMenuButton" class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
+                                    <div class="h-10 w-10 rounded-full bg-primary text-white flex items-center justify-center text-lg font-bold">ط</div>
+                                    <span class="mr-3 text-text-primary font-semibold hidden sm:block">الطالب</span>
+                                    <i data-lucide="chevron-down" class="w-4 h-4 mr-1 text-text-secondary hidden sm:block"></i>
                                 </button>
                                 <div id="userMenu" class="hidden absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-card ring-1 ring-black ring-opacity-5 z-50">
                                     <div class="py-1">
-                                        <a href="profile.html" class="block px-4 py-2 text-sm text-text-primary hover:bg-gray-100">الملف الشخصي</a>
+                                        <a href="#" class="block px-4 py-2 text-sm text-text-primary hover:bg-gray-100">الملف الشخصي</a>
                                         <div class="border-t border-gray-100"></div>
-                                        <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-red-50">تسجيل الخروج</a>
+                                        <a href="#" class="block px-4 py-2 text-sm text-danger hover:bg-red-50">تسجيل الخروج</a>
                                     </div>
                                 </div>
                             </div>
@@ -117,111 +143,175 @@
                     </div>
                 </div>
             </header>
+
+            <!-- Mobile Sidebar -->
+            <div id="mobileMenuOverlay" class="fixed inset-0 z-40 lg:hidden hidden">
+                <div class="fixed inset-0 bg-gray-600 bg-opacity-75" aria-hidden="true"></div>
+                <nav class="fixed top-0 right-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 bg-card shadow-xl overflow-y-auto">
+                    <div class="px-4 pb-4 flex items-center justify-between border-b">
+                        <div class="flex items-center">
+                            <img src="https://r2.flowith.net/files/o/1748451765656-Modern_Logo_Design_for_Madarek_School_Management_Platform_index_0@1024x1024.png" alt="مدارك" class="h-8 w-auto rounded-full">
+                            <span class="mr-2 text-lg font-bold text-primary">مدارِك</span>
+                        </div>
+                        <button id="closeMobileMenuButton" class="p-2 text-text-secondary hover:text-text-primary">
+                            <i data-lucide="x" class="h-6 w-6"></i>
+                        </button>
+                    </div>
+                    <nav class="mt-5 px-4 flex-1">
+                         <ul class="space-y-2">
+                            <li><a href="#" class="sidebar-link group flex items-center px-3 py-3 text-base font-semibold rounded-lg active"><i data-lucide="layout-dashboard" class="ml-3 h-5 w-5"></i>لوحة التحكم</a></li>
+                            <li><a href="#" class="sidebar-link group flex items-center px-3 py-3 text-base rounded-lg"><i data-lucide="book-open" class="ml-3 h-5 w-5"></i>الدروس والمواد</a></li>
+                            <li><a href="#" class="sidebar-link group flex items-center px-3 py-3 text-base rounded-lg"><i data-lucide="notebook-tabs" class="ml-3 h-5 w-5"></i>الواجبات</a></li>
+                            <li><a href="#" class="sidebar-link group flex items-center px-3 py-3 text-base rounded-lg"><i data-lucide="calendar-days" class="ml-3 h-5 w-5"></i>الجدول الدراسي</a></li>
+                            <li><a href="#" class="sidebar-link group flex items-center px-3 py-3 text-base rounded-lg"><i data-lucide="mail" class="ml-3 h-5 w-5"></i>الرسائل</a></li>
+                            <li><a href="#" class="sidebar-link group flex items-center px-3 py-3 text-base rounded-lg"><i data-lucide="bar-chart-3" class="ml-3 h-5 w-5"></i>التقدم الأكاديمي</a></li>
+                            <li><a href="#" class="sidebar-link group flex items-center px-3 py-3 text-base rounded-lg"><i data-lucide="user" class="ml-3 h-5 w-5"></i>الملف الشخصي</a></li>
+                        </ul>
+                    </nav>
+                </nav>
+            </div>
+            
             <!-- Page content -->
-            <main class="flex-1 overflow-y-auto focus:outline-none p-6">
-    <section class="dashboard mb-8">
-        <h2 class="text-xl font-bold mb-4">ملخص اليوم</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="bg-card p-6 rounded-xl shadow-lg border border-gray-200">
-                <h3 class="text-lg font-semibold mb-2">الحضور</h3>
-                <p>✓ تم الحضور اليوم</p>
-            </div>
+            <main class="flex-1 overflow-y-auto focus:outline-none p-6 lg:p-8">
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold mb-5">ملخص اليوم</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                        
+                        <div class="bg-gradient-to-br from-primary to-primary-dark p-5 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                            <div class="flex items-center mb-3">
+                                <div class="bg-white bg-opacity-20 p-2 rounded-full ml-3"><i data-lucide="clipboard-list" class="h-5 w-5 text-white"></i></div>
+                                <h3 class="text-lg font-semibold text-white">الواجبات القادمة</h3>
+                            </div>
+                            <div class="space-y-2">
+                                <div class="flex items-center justify-between bg-white bg-opacity-15 p-2.5 rounded-lg backdrop-blur-sm">
+                                    <span class="text-white text-opacity-90">واجب رياضيات</span>
+                                    <span class="font-bold text-white bg-warning text-yellow-800 px-2 py-1 rounded-md text-xs">تسليم اليوم</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gradient-to-br from-accent to-purple p-5 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                            <div class="flex items-center mb-3">
+                                <div class="bg-white bg-opacity-20 p-2 rounded-full ml-3"><i data-lucide="book-open" class="h-5 w-5 text-white"></i></div>
+                                <h3 class="text-lg font-semibold text-white">آخر الدروس</h3>
+                            </div>
+                            <div class="space-y-2">
+                                <div class="flex items-center bg-white bg-opacity-15 p-2.5 rounded-lg backdrop-blur-sm">
+                                    <i data-lucide="calculator" class="h-4 w-4 ml-3 text-white"></i>
+                                    <div>
+                                        <div class="font-medium text-white">رياضيات: درس جديد في الجبر</div>
+                                        <div class="text-sm text-white text-opacity-80">أ. محمد</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-            <div class="bg-card p-6 rounded-xl shadow-lg border border-gray-200">
-                <h3 class="text-lg font-semibold mb-2">الدروس اليوم</h3>
-                <ul class="list-disc pr-5 text-text-secondary space-y-1">
-                    <li>رياضيات: الجبر</li>
-                    <li>حاسوب: مكونات الحاسوب</li>
-                </ul>
-            </div>
+                        <div class="bg-gradient-to-br from-success to-secondary p-5 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                            <div class="flex items-center mb-3">
+                                <div class="bg-white bg-opacity-20 p-2 rounded-full ml-3"><i data-lucide="trophy" class="h-5 w-5 text-white"></i></div>
+                                <h3 class="text-lg font-semibold text-white">آخر الدرجات</h3>
+                            </div>
+                            <div class="space-y-2">
+                                <div class="flex items-center justify-between bg-white bg-opacity-15 p-2.5 rounded-lg backdrop-blur-sm">
+                                    <span class="text-white text-opacity-90">رياضيات (اختبار)</span>
+                                    <span class="font-bold text-white bg-white bg-opacity-20 px-2 py-1 rounded">95/100</span>
+                                </div>
+                            </div>
+                        </div>
 
-            <div class="bg-card p-6 rounded-xl shadow-lg border border-gray-200">
-                <h3 class="text-lg font-semibold mb-2">الواجبات</h3>
-                <p>واجب رياضيات - تسليم اليوم</p>
-            </div>
-
-            <div class="bg-card p-6 rounded-xl shadow-lg border border-gray-200">
-                <h3 class="text-lg font-semibold mb-2">الاختبارات</h3>
-                <div class="flex flex-col">
-                    <div class="flex items-center space-x-2 mb-2">
-                        <i data-lucide="calendar" class="w-6 h-6 text-gray-500"></i>
-                        <span class="text-sm text-gray-600">لا يوجد اختبارات</span>
-                    </div>
-                </div>
-            </div>
-            <div class="bg-card p-6 rounded-xl shadow-lg border border-gray-200">
-                <h3 class="text-lg font-semibold mb-2">الاعلانات</h3>
-                <div class="bg-yellow-50 border-r-4 border-yellow-400 p-4 rounded-b">
-                    <div class="flex items-center">
-                        <i data-lucide="info-circle" class="w-6 h-6 mr-2 text-yellow-500"></i>
-                        <div>
-                            <p class="text-sm text-yellow-800">اعلان من معلم الرياضيات</p>
-                            <p class="text-sm text-gray-600">احضرو الالة حاسبة غدا</p>
+                         <div class="bg-gradient-to-br from-warning to-orange p-5 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                            <div class="flex items-center mb-3">
+                                <div class="bg-white bg-opacity-20 p-2 rounded-full ml-3"><i data-lucide="megaphone" class="h-5 w-5 text-white"></i></div>
+                                <h3 class="text-lg font-semibold text-white">الإعلانات</h3>
+                            </div>
+                             <div class="bg-white bg-opacity-15 p-2.5 rounded-lg backdrop-blur-sm">
+                                <p class="text-white text-opacity-90 text-sm">تم تغيير موعد امتحان العلوم إلى الأسبوع القادم.</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <br>
-                <div class="bg-yellow-50 border-r-4 border-yellow-400 p-4 rounded-b">
-                    <div class="flex items-center">
-                        <i data-lucide="info-circle" class="w-6 h-6 mr-2 text-yellow-500"></i>
-                        <div>
-                            <p class="text-sm text-yellow-800">معلم اللغة العربية</p>
-                            <p class="text-sm text-gray-600">تم تغيير موعد الامتحانات</p>
+                </section>
+                
+                <section>
+                    <div class="flex items-center mb-5">
+                        <div class="bg-gradient-to-r from-primary to-accent p-2 rounded-full ml-3 shadow-md">
+                            <i data-lucide="calendar" class="h-6 w-6 text-white"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold text-text-primary">الجدول الدراسي لهذا الأسبوع</h2>
+                    </div>
+                    <div class="w-full overflow-hidden rounded-xl shadow-lg border border-gray-200">
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-sm text-center text-text-secondary">
+                                <thead class="text-xs text-white uppercase bg-primary">
+                                    <tr>
+                                        <th scope="col" class="px-6 py-4 font-bold text-base">اليوم</th>
+                                        <th scope="col" class="px-4 py-3">الحصة الأولى<br><span class="font-normal text-xs opacity-80">8:00</span></th>
+                                        <th scope="col" class="px-4 py-3">الحصة الثانية<br><span class="font-normal text-xs opacity-80">8:45</span></th>
+                                        <th scope="col" class="px-4 py-3">الحصة الثالثة<br><span class="font-normal text-xs opacity-80">9:30</span></th>
+                                        <th scope="col" class="px-4 py-3 bg-black bg-opacity-10">استراحة<br><span class="font-normal text-xs opacity-80">10:15</span></th>
+                                        <th scope="col" class="px-4 py-3">الحصة الرابعة<br><span class="font-normal text-xs opacity-80">10:30</span></th>
+                                        <th scope="col" class="px-4 py-3">الحصة الخامسة<br><span class="font-normal text-xs opacity-80">11:15</span></th>
+                                        <th scope="col" class="px-4 py-3">الحصة السادسة<br><span class="font-normal text-xs opacity-80">12:00</span></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="bg-card border-b border-gray-100">
+                                        <th scope="row" class="px-6 py-4 font-bold text-primary whitespace-nowrap">الأحد</th>
+                                        <td class="px-6 py-4 font-semibold">رياضيات</td>
+                                        <td class="px-6 py-4 font-semibold">حاسوب</td>
+                                        <td class="px-6 py-4 font-semibold">لغة عربية</td>
+                                        <td class="px-6 py-4 font-semibold text-gray-400 bg-gray-50">-</td>
+                                        <td class="px-6 py-4 font-semibold">تربية إسلامية</td>
+                                        <td class="px-6 py-4 font-semibold">لغة إنجليزية</td>
+                                        <td class="px-6 py-4 font-semibold">علوم</td>
+                                    </tr>
+                                    <tr class="bg-background border-b border-gray-100">
+                                        <th scope="row" class="px-6 py-4 font-bold text-primary whitespace-nowrap">الإثنين</th>
+                                        <td class="px-6 py-4 font-semibold">حاسوب</td>
+                                        <td class="px-6 py-4 font-semibold">رياضيات</td>
+                                        <td class="px-6 py-4 font-semibold">لغة انجليزية</td>
+                                        <td class="px-6 py-4 font-semibold text-gray-400 bg-gray-50">-</td>
+                                        <td class="px-6 py-4 font-semibold">لغة عربية</td>
+                                        <td class="px-6 py-4 font-semibold">تربية اسلامية</td>
+                                        <td class="px-6 py-4 font-semibold">تاريخ</td>
+                                    </tr>
+                                    <tr class="bg-card border-b border-gray-100">
+                                        <th scope="row" class="px-6 py-4 font-bold text-primary whitespace-nowrap">الثلاثاء</th>
+                                        <td class="px-6 py-4 font-semibold">لغة انجليزية</td>
+                                        <td class="px-6 py-4 font-semibold">رياضيات</td>
+                                        <td class="px-6 py-4 font-semibold">لغة عربية</td>
+                                        <td class="px-6 py-4 font-semibold text-gray-400 bg-gray-50">-</td>
+                                        <td class="px-6 py-4 font-semibold">تربية اسلامية</td>
+                                        <td class="px-6 py-4 font-semibold">حاسوب</td>
+                                        <td class="px-6 py-4 font-semibold">فيزياء</td>
+                                    </tr>
+                                    <tr class="bg-background border-b border-gray-100">
+                                        <th scope="row" class="px-6 py-4 font-bold text-primary whitespace-nowrap">الأربعاء</th>
+                                        <td class="px-6 py-4 font-semibold">علوم</td>
+                                        <td class="px-6 py-4 font-semibold">لغة عربية</td>
+                                        <td class="px-6 py-4 font-semibold">رياضيات</td>
+                                        <td class="px-6 py-4 font-semibold text-gray-400 bg-gray-50">-</td>
+                                        <td class="px-6 py-4 font-semibold">لغة إنجليزية</td>
+                                        <td class="px-6 py-4 font-semibold">تاريخ</td>
+                                        <td class="px-6 py-4 font-semibold">تربية فنية</td>
+                                    </tr>
+                                    <tr class="bg-card">
+                                        <th scope="row" class="px-6 py-4 font-bold text-primary whitespace-nowrap">الخميس</th>
+                                        <td class="px-6 py-4 font-semibold">فيزياء</td>
+                                        <td class="px-6 py-4 font-semibold">لغة إنجليزية</td>
+                                        <td class="px-6 py-4 font-semibold">رياضيات</td>
+                                        <td class="px-6 py-4 font-semibold text-gray-400 bg-gray-50">-</td>
+                                        <td class="px-6 py-4 font-semibold">حاسوب</td>
+                                        <td class="px-6 py-4 font-semibold">لغة عربية</td>
+                                        <td class="px-6 py-4 font-semibold">نشاط رياضي</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="bg-card p-6 rounded-xl shadow-lg border border-gray-200">
-                <h3 class="text-lg font-semibold mb-2">النقاشات</h3>
-                <p></p>
-            </div>
+                </section>
+            </main>
         </div>
-    </section>
-    
-    <section>
-        <table style="width:100%; border-collapse:collapse; direction:rtl; font-family:Tajawal, Tahoma, Arial, sans-serif; background-color:#f3f6fa; border-radius:14px; overflow:hidden; box-shadow:0 2px 12px #0001;">
-            <thead>
-              <tr style="background-color:#2563eb; color:#fff; font-size:15px;">
-                <th style="padding:14px 28px; min-width:120px; background:#2563eb; color:#fff; font-size:16px;">اليوم</th>
-                <th style="padding:12px 18px;">الحصة الأولى<br><br> 8:00</th>
-                <th style="padding:12px 18px;">الحصة الثانية<br><br> 8:45</th>
-                <th style="padding:12px 18px;">الحصة الثالثة<br><br> 9:30</th>
-                <th style="padding:12px 18px;">استراحة <br> 10:15</th>
-                <th style="padding:12px 18px;">الحصة الرابعة<br><br> 10:30</th>
-                <th style="padding:12px 18px;">الحصة الخامسة<br><br> 11:45</th>
-                <th style="padding:12px 18px;">الحصة السادسة<br><br> 12:30</th>
-                <th style="padding:12px 18px;">الحصة السابعة<br><br> 13:15</th>
-              </tr>
-            </thead>
-            <tbody style="font-size:14px; text-align: center;">
-              <tr style="background-color:#e3eafc;">
-                <td style="padding:13px 0 13px 0; border-bottom:1px solid #cbd5e1; font-weight:bold; font-size:15px; color:#2563eb;"><b>الأحد</b></td>
-                <td style="font-weight: bold; padding:10px;">رياضيات</td><td style="font-weight: bold; padding:10px;">حاسوب</td><td style="font-weight: bold; padding:10px;">لغة عربية</td><td style="font-weight: bold; padding:10px;">-</td><td style="font-weight: bold; padding:10px;">تربية إسلامية</td><td style="font-weight: bold; padding:10px;">اللغة الإنجليزية</td><td style="font-weight: bold; padding:10px;"></td><td style="font-weight: bold; padding:10px;"></td>
-              </tr>
-              <tr style="background-color:#f9fafb;">
-                <td style="padding:13px 0 13px 0; border-bottom:1px solid #cbd5e1; font-weight:bold; font-size:15px; color:#2563eb;"><b>الإثنين</b></td>
-                <td style="font-weight: bold; padding:10px;">حاسوب</td><td style="font-weight: bold; padding:10px;">رياضيات</td><td style="font-weight: bold; padding:10px;">لغة انجليزية</td><td style="font-weight: bold; padding:10px;">-</td><td style="font-weight: bold; padding:10px;">لغة عربية</td><td style="font-weight: bold; padding:10px;">تربية اسلامية</td><td style="font-weight: bold; padding:10px;"></td><td style="font-weight: bold; padding:10px;"></td>
-              </tr>
-              <tr style="background-color:#e3eafc;">
-                <td style="padding:13px 0 13px 0; border-bottom:1px solid #cbd5e1; font-weight:bold; font-size:15px; color:#2563eb;"><b>الثلاثاء</b></td>
-                <td style="font-weight: bold; padding:10px;">لغة انجليزية</td><td style="font-weight: bold; padding:10px;">رياضيات</td><td style="font-weight: bold; padding:10px;">لغة عربية</td><td style="font-weight: bold; padding:10px;">-</td><td style="font-weight: bold; padding:10px;">تربية اسلامية</td><td style="font-weight: bold; padding:10px;">حاسوب</td><td style="font-weight: bold; padding:10px;"></td><td style="font-weight: bold; padding:10px;"></td>
-              </tr>
-              <tr style="background-color:#f9fafb;">
-                <td style="padding:13px 0 13px 0; border-bottom:1px solid #cbd5e1; font-weight:bold; font-size:15px; color:#2563eb;"><b>الإربعاء</b></td>
-                <td style="font-weight: bold; padding:10px;">رياضة</td><td style="font-weight: bold; padding:10px;">رياضيات</td><td style="font-weight: bold; padding:10px;">لغة عربية</td><td style="font-weight: bold; padding:10px;">-</td><td style="font-weight: bold; padding:10px;">تربية اسلامية</td><td style="font-weight: bold; padding:10px;">رسم</td><td style="font-weight: bold; padding:10px;"></td><td style="font-weight: bold; padding:10px;"></td>
-              </tr>
-              <tr style="background-color:#e3eafc;">
-                <td style="padding:13px 0 13px 0; border-bottom:1px solid #cbd5e1; font-weight:bold; font-size:15px; color:#2563eb;"><b>الخميس</b></td>
-                <td style="font-weight: bold; padding:10px;">رياضيات</td><td style="font-weight: bold; padding:10px;">حاسوب</td><td style="font-weight: bold; padding:10px;">لغة عربية</td><td style="font-weight: bold; padding:10px;">-</td><td style="font-weight: bold; padding:10px;">تربية اسلامية</td><td style="font-weight: bold; padding:10px;">رياضة</td><td style="font-weight: bold; padding:10px;"></td><td style="font-weight: bold; padding:10px;"></td>
-              </tr>
-            </tbody>
-        </table>
-    </section> 
-
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <script src="../ولي الامر/script.js"></script>
-    <script>
-        lucide.createIcons();
-    </script>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
