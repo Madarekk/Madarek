@@ -3,6 +3,10 @@
     color: #636e72; /* text-secondary */
 }
 
+#sidebarNav, aside#sidebarNav {
+    background-color: #92e0ff50 !important; /* Sky Blue */
+}
+
 .sidebar-link:hover {
     background-color: #f3f4f6; /* gray-100 */
     color: #2d3436; /* text-primary */
