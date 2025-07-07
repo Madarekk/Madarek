@@ -1,0 +1,20 @@
+.sidebar-link {
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    color: #d1d5db;
+}
+
+.sidebar-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+}
+
+.sidebar-link.active {
+    background-color: #0984e3;
+    color: #ffffff;
+    font-weight: 700;
+}
+
+#notification-list-container {
+    max-height: 300px;
+    overflow-y: auto;
+}

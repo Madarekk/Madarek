@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدرجات - منصة مدارك التعليمية</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        tailwind.config = {
+            content: ["./*.html"],
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'arabic': ['Tajawal', 'Arial', 'sans-serif']
+                    },
+                    colors: {
+                        'primary': '#4F46E5', // indigo-600
+                        'primary-dark': '#4338CA', // indigo-700
+                        'secondary': '#059669', // green-600
+                        'accent': '#0891b2'   // cyan-600
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="https://r2.flowith.net/files/o/1748451765656-Modern_Logo_Design_for_Madarek_School_Management_Platform_index_0@1024x1024.png" type="image/png">
+    <style>
+        /* إخفاء زر السايدبار مع الحفاظ على وظيفته */
+        #mobileMenuButton {
+            opacity: 0 !important;
+            pointer-events: auto !important;
+        }
+        
+        /* إخفاء الزر في جميع الحالات */
+        #mobileMenuButton,
+        #mobileMenuButton:hover,
+        #mobileMenuButton:focus,
+        #mobileMenuButton:active {
+            opacity: 0 !important;
+            pointer-events: auto !important;
+        }
+        
+        /* إخفاء الزر حتى عندما يكون السايدبار مفتوح */
+        #mobileMenuOverlay:not(.hidden) #mobileMenuButton {
+            opacity: 0 !important;
+        }
+    </style>
+</head>
+<body class="font-arabic bg-gray-50">
+    <!-- الهيدر -->
+    <header class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-40">
+        <div class="mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <!-- Logo -->
+                    <div class="flex-shrink-0 flex items-center">
+                        <img src="https://r2.flowith.net/files/o/1748451765656-Modern_Logo_Design_for_Madarek_School_Management_Platform_index_0@1024x1024.png" alt="مدارك" class="h-10 w-10 rounded-full">
+                        <span class="mr-3 text-xl font-bold text-gray-800">مدارك</span>
+                    </div>
+                </div>
+
+                <!-- User Menu -->
+                <div class="flex items-center space-x-4 space-x-reverse">
+                    <!-- Notifications -->
+                    <div class="relative">
+                        <button id="notificationButton" class="p-2 text-gray-400 hover:text-gray-600 relative">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                            </svg>
+                            <span class="absolute top-0 right-0 block h-2 w-2 rounded-full bg-red-400 transform translate-x-1/2 -translate-y-1/2"></span>
+                        </button>
+
+                        <!-- Notifications Dropdown -->
+                        <div id="notificationsDropdown" class="hidden absolute left-0 mt-2 w-80 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50">
+                            <div class="py-1">
+                                <div class="px-4 py-2 border-b border-gray-100">
+                                    <h3 class="text-sm font-medium text-gray-900">الإشعارات</h3>
+                                </div>
+                                <div class="max-h-96 overflow-y-auto" style="max-height: 400px;">
+                                    <!-- Notification Items -->
+                                    <a href="#" class="block px-4 py-3 hover:bg-gray-50 border-b border-gray-100">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0">
+                                                <div class="w-2 h-2 bg-blue-400 rounded-full mt-2"></div>
+                                            </div>
+                                            <div class="mr-3 flex-1">
+                                                <p class="text-sm font-medium text-gray-900">اجتماع أولياء الأمور</p>
+                                                <p class="text-xs text-gray-500">يوم الخميس الساعة 4:00 مساءً</p>
+                                                <p class="text-xs text-gray-400 mt-1">منذ ساعتين</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="block px-4 py-3 hover:bg-gray-50 border-b border-gray-100">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0">
+                                                <div class="w-2 h-2 bg-green-400 rounded-full mt-2"></div>
+                                            </div>
+                                            <div class="mr-3 flex-1">
+                                                <p class="text-sm font-medium text-gray-900">بداية الفصل الثاني</p>
+                                                <p class="text-xs text-gray-500">يبدأ يوم الأحد القادم</p>
+                                                <p class="text-xs text-gray-400 mt-1">أمس</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="block px-4 py-3 hover:bg-gray-50 border-b border-gray-100">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0">
+                                                <div class="w-2 h-2 bg-yellow-400 rounded-full mt-2"></div>
+                                            </div>
+                                            <div class="mr-3 flex-1">
+                                                <p class="text-sm font-medium text-gray-900">امتحانات نصف الفصل</p>
+                                                <p class="text-xs text-gray-500">تبدأ الأسبوع القادم</p>
+                                                <p class="text-xs text-gray-400 mt-1">منذ 3 أيام</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="block px-4 py-3 hover:bg-gray-50 border-b border-gray-100">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0">
+                                                <div class="w-2 h-2 bg-purple-400 rounded-full mt-2"></div>
+                                            </div>
+                                            <div class="mr-3 flex-1">
+                                                <p class="text-sm font-medium text-gray-900">تحديث النظام</p>
+                                                <p class="text-xs text-gray-500">تم تحديث النظام إلى الإصدار الجديد</p>
+                                                <p class="text-xs text-gray-400 mt-1">منذ 5 أيام</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <!-- More dummy notifications -->
+                                    <a href="#" class="block px-4 py-3 hover:bg-gray-50 border-b border-gray-100">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0">
+                                                <div class="w-2 h-2 bg-red-400 rounded-full mt-2"></div>
+                                            </div>
+                                            <div class="mr-3 flex-1">
+                                                <p class="text-sm font-medium text-gray-900">تنبيه هام</p>
+                                                <p class="text-xs text-gray-500">يرجى تحديث بيانات الطلاب</p>
+                                                <p class="text-xs text-gray-400 mt-1">منذ 6 أيام</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="block px-4 py-3 hover:bg-gray-50 border-b border-gray-100">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0">
+                                                <div class="w-2 h-2 bg-gray-400 rounded-full mt-2"></div>
+                                            </div>
+                                            <div class="mr-3 flex-1">
+                                                <p class="text-sm font-medium text-gray-900">إشعار: انتهاء الفصل الدراسي</p>
+                                                <p class="text-xs text-gray-500">انتهاء الفصل الدراسي الحالي</p>
+                                                <p class="text-xs text-gray-400 mt-1">منذ شهر</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="block px-4 py-3 hover:bg-gray-50 border-b border-gray-100">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0">
+                                                <div class="w-2 h-2 bg-blue-400 rounded-full mt-2"></div>
+                                            </div>
+                                            <div class="mr-3 flex-1">
+                                                <p class="text-sm font-medium text-gray-900">إعلان جديد</p>
+                                                <p class="text-xs text-gray-500">تم إضافة إعلان جديد للطلاب</p>
+                                                <p class="text-xs text-gray-400 mt-1">منذ شهرين</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="block px-4 py-3 hover:bg-gray-50 border-b border-gray-100">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0">
+                                                <div class="w-2 h-2 bg-green-400 rounded-full mt-2"></div>
+                                            </div>
+                                            <div class="mr-3 flex-1">
+                                                <p class="text-sm font-medium text-gray-900">تهنئة بالنجاح</p>
+                                                <p class="text-xs text-gray-500">مبروك للطلاب الناجحين</p>
+                                                <p class="text-xs text-gray-400 mt-1">منذ 3 أشهر</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="block px-4 py-3 hover:bg-gray-50 border-b border-gray-100">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0">
+                                                <div class="w-2 h-2 bg-yellow-400 rounded-full mt-2"></div>
+                                            </div>
+                                            <div class="mr-3 flex-1">
+                                                <p class="text-sm font-medium text-gray-900">جدول الامتحانات</p>
+                                                <p class="text-xs text-gray-500">تم نشر جدول الامتحانات النهائية</p>
+                                                <p class="text-xs text-gray-400 mt-1">منذ 4 أشهر</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- User dropdown -->
+                    <div class="relative">
+                        <button id="userMenuButton" class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
+                            <div class="h-8 w-8 rounded-full bg-primary text-white flex items-center justify-center text-sm font-medium">
+                                أ
+                            </div>
+                            <span class="mr-2 header-username hidden sm:block">أحمد المدير</span>
+                            <svg class="w-4 h-4 mr-1 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+
+                        <div id="userMenu" class="hidden absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50">
+                            <div class="py-1">
+                                <a href="profile.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">الملف الشخصي</a>
+                                <div class="border-t border-gray-100"></div>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">تسجيل الخروج</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="flex h-screen bg-gray-50">
+        <!-- Sidebar -->
+        <nav class="hidden lg:flex lg:flex-shrink-0">
+            <div class="flex flex-col w-64">
+                <div class="flex flex-col flex-grow bg-white border-l border-gray-200 pt-5 pb-4 overflow-y-auto">
+                    <div class="flex-grow mt-5">
+                        <nav class="px-3">
+                            <ul class="space-y-1">
+                                <li>
+                                    <a href="index.html" class="text-gray-700 hover:text-gray-900 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md">
+                                        <svg class="text-gray-400 group-hover:text-gray-500 ml-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"/>
+                                        </svg>
+                                        لوحة التحكم
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="users.html" class="text-gray-700 hover:text-gray-900 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md">
+                                        <svg class="text-gray-400 group-hover:text-gray-500 ml-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"/>
+                                        </svg>
+                                        إدارة المستخدمين
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="schedules.html" class="text-gray-700 hover:text-gray-900 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md">
+                                        <svg class="text-gray-400 group-hover:text-gray-500 ml-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                        </svg>
+                                        الجداول الدراسية
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="attendance.html" class="text-gray-700 hover:text-gray-900 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md">
+                                        <svg class="text-gray-400 group-hover:text-gray-500 ml-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+                                        </svg>
+                                        الحضور والغياب
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="marks.html" class="bg-gradient-to-r from-amber-400 to-orange-500 text-slate-800 group flex items-center px-3 py-2 text-sm font-medium rounded-md shadow-lg">
+                                        <svg class="text-slate-800 ml-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                                        </svg>
+                                        الدرجات والتقارير
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="messages.html" class="text-gray-700 hover:text-gray-900 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md">
+                                        <svg class="text-gray-400 group-hover:text-gray-500 ml-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-.55.55c-.1.1-.2.15-.35.15s-.25-.05-.35-.15L8 16z"/>
+                                        </svg>
+                                        الرسائل
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Mobile menu button -->
+        <div class="lg:hidden">
+            <button id="mobileMenuButton" class="fixed top-4 right-4 z-50 p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary">
+                <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile menu overlay -->
+        <div id="mobileMenuOverlay" class="fixed inset-0 z-40 lg:hidden hidden">
+            <div class="fixed inset-0 bg-gray-600 bg-opacity-75" aria-hidden="true"></div>
+            <nav class="fixed top-0 right-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 bg-white shadow-xl overflow-y-auto">
+                <div class="px-4 pb-4 flex items-center justify-between">
+                    <div>
+                        <img src="https://r2.flowith.net/files/o/1748451765656-Modern_Logo_Design_for_Madarek_School_Management_Platform_index_0@1024x1024.png" alt="مدارك" class="h-8 w-8 rounded-full inline-block">
+                        <span class="mr-2 text-lg font-bold text-white">مدارك</span>
+                    </div>
+                    <button id="closeMobileMenuButtonMarks" class="p-2 text-gray-500 hover:text-gray-700 lg:hidden">
+                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
+                </div>
+                <nav class="mt-5 px-4 flex-1">
+                    <ul class="space-y-1">
+                        <li><a href="index.html" class="text-gray-700 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md">لوحة التحكم</a></li>
+                        <li><a href="users.html" class="text-gray-700 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md">إدارة المستخدمين</a></li>
+                        <li><a href="schedules.html" class="text-gray-700 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md">الجداول الدراسية</a></li>
+                        <li><a href="attendance.html" class="text-gray-700 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md">الحضور والغياب</a></li>
+                        <li><a href="marks.html" class="bg-gradient-to-r from-amber-400 to-orange-500 text-slate-800 group flex items-center px-3 py-2 text-sm font-medium rounded-md shadow-lg">الدرجات والتقارير</a></li>
+                        <li><a href="messages.html" class="text-gray-700 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md">الرسائل</a></li>
+                    </ul>
+                </nav>
+            </nav>
+        </div>
+
+        <!-- المحتوى الرئيسي -->
+        <main class="flex-1 overflow-y-auto focus:outline-none">
+            <div class="py-6">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+                    <!-- Page header -->
+                    <div class="md:flex md:items-center md:justify-between">
+                        <div class="flex-1 min-w-0">
+                            <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">
+                                نظام تسجيل درجات الطلاب
+                            </h2>
+                            <p class="mt-1 text-sm text-gray-500">
+                                قم باختيار الصف والفصل الدراسي أولاً، ثم ابدأ في إدخال درجات الطلاب
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- أدوات التحكم -->
+                    <div class="mt-8 bg-gradient-to-br from-blue-50 to-indigo-100 shadow rounded-lg">
+                        <div class="px-4 py-5 sm:p-6">
+                            <div class="grid grid-cols-1 gap-6 sm:grid-cols-3">
+                                <div>
+                                    <label for="grade-level" class="block text-sm font-medium text-gray-700 mb-2">اختر الصف</label>
+                                    <select id="grade-level" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm">
+                                        <option value="">-- اختر الصف --</option>
+                                        <option value="1">الصف الأول الابتدائي</option>
+                                        <option value="2">الصف الثاني الابتدائي</option>
+                                        <option value="3">الصف الثالث الابتدائي</option>
+                                        <option value="4">الصف الرابع الابتدائي</option>
+                                        <option value="5">الصف الخامس الابتدائي</option>
+                                        <option value="6">الصف السادس الابتدائي</option>
+                                        <option value="7">الصف الأول اعدادي</option>
+                                        <option value="8">الصف الثاني اعدادي</option>
+                                        <option value="9">الصف الثالث اعدادي</option>
+                                    </select>
+                                </div>
+                                
+                                <div>
+                                    <label for="semester" class="block text-sm font-medium text-gray-700 mb-2">اختر الفصل الدراسي</label>
+                                    <select id="semester" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm">
+                                        <option value="">-- اختر الفصل --</option>
+                                        <option value="1">الفصل الدراسي الأول</option>
+                                        <option value="2">الفصل الدراسي الثاني</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="flex items-end">
+                                    <button id="load-students" class="w-full bg-primary hover:bg-primary-dark text-white font-medium py-2 px-4 rounded-md transition-colors duration-200 flex items-center justify-center">
+                                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                                        </svg>
+                                        تحميل قائمة الطلاب
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <!-- جدول الدرجات -->
+                    <div class="mt-8 bg-gradient-to-br from-blue-50 to-indigo-100 shadow rounded-lg overflow-hidden">
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-white/30">
+                                    <tr>
+                                        <th scope="col" class="px-12 py-3 text-right text-xs font-medium text-gray-700 uppercase tracking-wider" rowspan="2">اسم الطالب</th>
+                                        <th scope="col" class="px-12 py-3 text-center text-xs font-medium text-gray-700 uppercase tracking-wider">
+                                            <div class="font-semibold">التربية الإسلامية</div>
+                                            <div class="text-xs text-gray-500 mt-1">الأعمال 12 | الامتحان 8 | المجموع 20</div>
+                                        </th>
+                                        <th scope="col" class="px-12 py-3 text-center text-xs font-medium text-gray-700 uppercase tracking-wider">
+                                            <div class="font-semibold">اللغة العربية</div>
+                                            <div class="text-xs text-gray-500 mt-1">الأعمال 24 | الامتحان 16 | المجموع 40</div>
+                                        </th>
+                                        <th scope="col" class="px-12 py-3 text-center text-xs font-medium text-gray-700 uppercase tracking-wider">
+                                            <div class="font-semibold">اللغة الإنجليزية</div>
+                                            <div class="text-xs text-gray-500 mt-1">الأعمال 24 | الامتحان 16 | المجموع 40</div>
+                                        </th>
+                                        <th scope="col" class="px-12 py-3 text-center text-xs font-medium text-gray-700 uppercase tracking-wider">
+                                            <div class="font-semibold">الرياضيات</div>
+                                            <div class="text-xs text-gray-500 mt-1">الأعمال 36 | الامتحان 24 | المجموع 60</div>
+                                        </th>
+                                        <th scope="col" class="px-12 py-3 text-center text-xs font-medium text-gray-700 uppercase tracking-wider">
+                                            <div class="font-semibold">العلوم</div>
+                                            <div class="text-xs text-gray-500 mt-1">الأعمال 36 | الامتحان 24 | المجموع 60</div>
+                                        </th>
+                                        <th scope="col" class="px-12 py-3 text-center text-xs font-medium text-gray-700 uppercase tracking-wider">
+                                            <div class="font-semibold">التاريخ</div>
+                                            <div class="text-xs text-gray-500 mt-1">الأعمال 12 | الامتحان 8 | المجموع 20</div>
+                                        </th>
+                                        <th scope="col" class="px-12 py-3 text-center text-xs font-medium text-gray-700 uppercase tracking-wider">
+                                            <div class="font-semibold">الجغرافيا</div>
+                                            <div class="text-xs text-gray-500 mt-1">الأعمال 12 | الامتحان 8 | المجموع 20</div>
+                                        </th>
+                                        <th scope="col" class="px-12 py-3 text-center text-xs font-medium text-gray-700 uppercase tracking-wider">
+                                            <div class="font-semibold">الحاسوب</div>
+                                            <div class="text-xs text-gray-500 mt-1">الأعمال 12 | الامتحان 8 | المجموع 20</div>
+                                        </th>
+                                        <th scope="col" class="px-12 py-3 text-center text-xs font-medium text-gray-700 uppercase tracking-wider" rowspan="2">المجموع</th>
+                                        <th scope="col" class="px-12 py-3 text-center text-xs font-medium text-gray-700 uppercase tracking-wider" rowspan="2">الإجراءات</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-200">
+                                    <tr class="hover:bg-white/20">
+                                        <td class="px-12 py-4 whitespace-nowrap text-sm font-medium text-gray-900">محمد علي القصبي</td>
+                                        
+                                        <!-- التربية الإسلامية -->
+                                        <td class="px-12 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            <div class="grid grid-cols-2 gap-8">
+                                                <div>
+                                                    <label class="block text-xs text-gray-500 mb-1">الأعمال</label>
+                                                    <input type="number" class="w-16 px-2 py-1 text-sm border border-gray-300 rounded focus:ring-primary focus:border-primary" min="0" max="12" value="10">
+                                                </div>
+                                                <div>
+                                                    <label class="block text-xs text-gray-500 mb-1">الامتحان</label>
+                                                    <input type="number" class="w-16 px-2 py-1 text-sm border border-gray-300 rounded focus:ring-primary focus:border-primary" min="0" max="8" value="8">
+                                                </div>
+                                            </div>
+                                        </td>
+
+                                        <!-- اللغة العربية -->
+                                        <td class="px-12 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            <div class="grid grid-cols-2 gap-8">
+                                                <div>
+                                                    <label class="block text-xs text-gray-500 mb-1">الأعمال</label>
+                                                    <input type="number" class="w-16 px-2 py-1 text-sm border border-gray-300 rounded focus:ring-primary focus:border-primary" min="0" max="24" value="25">
+                                                </div>
+                                                <div>
+                                                    <label class="block text-xs text-gray-500 mb-1">الامتحان</label>
+                                                    <input type="number" class="w-16 px-2 py-1 text-sm border border-gray-300 rounded focus:ring-primary focus:border-primary" min="0" max="16" value="25">
+                                                </div>
+                                            </div>
+                                        </td>
+                                        
+                                        <!-- اللغة الإنجليزية -->
+                                        <td class="px-12 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            <div class="grid grid-cols-2 gap-8">
+                                                <div>
+                                                    <label class="block text-xs text-gray-500 mb-1">الأعمال</label>
+                                                    <input type="number" class="w-16 px-2 py-1 text-sm border border-gray-300 rounded focus:ring-primary focus:border-primary" min="0" max="24" value="18">
+                                                </div>
+                                                <div>
+                                                    <label class="block text-xs text-gray-500 mb-1">الامتحان</label>
+                                                    <input type="number" class="w-16 px-2 py-1 text-sm border border-gray-300 rounded focus:ring-primary focus:border-primary" min="0" max="16" value="27">
+                                                </div>
+                                            </div>
+                                        </td>
+
+                                        <!-- الرياضيات -->
+                                        <td class="px-12 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            <div class="grid grid-cols-2 gap-8">
+                                                <div>
+                                                    <label class="block text-xs text-gray-500 mb-1">الأعمال</label>
+                                                    <input type="number" class="w-16 px-2 py-1 text-sm border border-gray-300 rounded focus:ring-primary focus:border-primary" min="0" max="36" value="18">
+                                                </div>
+                                                <div>
+                                                    <label class="block text-xs text-gray-500 mb-1">الامتحان</label>
+                                                    <input type="number" class="w-16 px-2 py-1 text-sm border border-gray-300 rounded focus:ring-primary focus:border-primary" min="0" max="24" value="25">
+                                                </div>
+                                            </div>
+                                        </td>
+                                        
+                                        <!-- العلوم -->
+                                        <td class="px-12 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            <div class="grid grid-cols-2 gap-8">
+                                                <div>
+                                                    <label class="block text-xs text-gray-500 mb-1">الأعمال</label>
+                                                    <input type="number" class="w-16 px-2 py-1 text-sm border border-gray-300 rounded focus:ring-primary focus:border-primary" min="0" max="36" value="17">
+                                                </div>
+                                                <div>
+                                                    <label class="block text-xs text-gray-500 mb-1">الامتحان</label>
+                                                    <input type="number" class="w-16 px-2 py-1 text-sm border border-gray-300 rounded focus:ring-primary focus:border-primary" min="0" max="24" value="21">
+                                                </div>
+                                            </div>
+                                        </td>
+                                        
+                                        <!-- التاريخ -->
+                                        <td class="px-12 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            <div class="grid grid-cols-2 gap-8">
+                                                <div>
+                                                    <label class="block text-xs text-gray-500 mb-1">الأعمال</label>
+                                                    <input type="number" class="w-16 px-2 py-1 text-sm border border-gray-300 rounded focus:ring-primary focus:border-primary" min="0" max="12" value="10">
+                                                </div>
+                                                <div>
+                                                    <label class="block text-xs text-gray-500 mb-1">الامتحان</label>
+                                                    <input type="number" class="w-16 px-2 py-1 text-sm border border-gray-300 rounded focus:ring-primary focus:border-primary" min="0" max="8" value="7">
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <!-- الجغرافيا -->
+                                        <td class="px-12 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            <div class="grid grid-cols-2 gap-8">
+                                                <div>
+                                                    <label class="block text-xs text-gray-500 mb-1">الأعمال</label>
+                                                    <input type="number" class="w-16 px-2 py-1 text-sm border border-gray-300 rounded focus:ring-primary focus:border-primary" min="0" max="12" value="9">
+                                                </div>
+                                                <div>
+                                                    <label class="block text-xs text-gray-500 mb-1">الامتحان</label>
+                                                    <input type="number" class="w-16 px-2 py-1 text-sm border border-gray-300 rounded focus:ring-primary focus:border-primary" min="0" max="8" value="8">
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <!-- الحاسوب -->
+                                        <td class="px-12 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            <div class="grid grid-cols-2 gap-8">
+                                                <div>
+                                                    <label class="block text-xs text-gray-500 mb-1">الأعمال</label>
+                                                    <input type="number" class="w-16 px-2 py-1 text-sm border border-gray-300 rounded focus:ring-primary focus:border-primary" min="0" max="12" value="11">
+                                                </div>
+                                                <div>
+                                                    <label class="block text-xs text-gray-500 mb-1">الامتحان</label>
+                                                    <input type="number" class="w-16 px-2 py-1 text-sm border border-gray-300 rounded focus:ring-primary focus:border-primary" min="0" max="8" value="8">
+                                                </div>
+                                            </div>
+                                        </td>
+                                        
+                                        <td class="px-12 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">268</span>
+                                        </td>
+                                        
+                                        <td class="px-12 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            <button class="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded text-xs font-medium transition-colors duration-200">
+                                                حفظ
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr class="hover:bg-white/20">
+                                        <td class="px-12 py-4 whitespace-nowrap text-sm font-medium text-gray-900">سارة خالد محمد</td>
+                                        
+                                        <!-- التربية الإسلامية -->
+                                        <td class="px-12 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            <div class="grid grid-cols-2 gap-8">
+                                                <div>
+                                                    <label class="block text-xs text-gray-500 mb-1">الأعمال</label>
+                                                    <input type="number" class="w-16 px-2 py-1 text-sm border border-gray-300 rounded focus:ring-primary focus:border-primary" min="0" max="12" value="11">
+                                                </div>
+                                                <div>
+                                                    <label class="block text-xs text-gray-500 mb-1">الامتحان</label>
+                                                    <input type="number" class="w-16 px-2 py-1 text-sm border border-gray-300 rounded focus:ring-primary focus:border-primary" min="0" max="8" value="7">
+                                                </div>
+                                            </div>
+                                        </td>
+
+                                        <!-- اللغة العربية -->
+                                        <td class="px-12 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            <div class="grid grid-cols-2 gap-8">
+                                                <div>
+                                                    <label class="block text-xs text-gray-500 mb-1">الأعمال</label>
+                                                    <input type="number" class="w-16 px-2 py-1 text-sm border border-gray-300 rounded focus:ring-primary focus:border-primary" min="0" max="24" value="28">
+                                                </div>
+                                                <div>
+                                                    <label class="block text-xs text-gray-500 mb-1">الامتحان</label>
+                                                    <input type="number" class="w-16 px-2 py-1 text-sm border border-gray-300 rounded focus:ring-primary focus:border-primary" min="0" max="16" value="45">
+                                                </div>
+                                            </div>
+                                        </td>
+                                        
+                                        <!-- اللغة الإنجليزية -->
+                                        <td class="px-12 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            <div class="grid grid-cols-2 gap-8">
+                                                <div>
+                                                    <label class="block text-xs text-gray-500 mb-1">الأعمال</label>
+                                                    <input type="number" class="w-16 px-2 py-1 text-sm border border-gray-300 rounded focus:ring-primary focus:border-primary" min="0" max="24" value="19">
+                                                </div>
+                                                <div>
+                                                    <label class="block text-xs text-gray-500 mb-1">الامتحان</label>
+                                                    <input type="number" class="w-16 px-2 py-1 text-sm border border-gray-300 rounded focus:ring-primary focus:border-primary" min="0" max="16" value="38">
+                                                </div>
+                                            </div>
+                                        </td>
+
+                                        <!-- الرياضيات -->
+                                        <td class="px-12 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            <div class="grid grid-cols-2 gap-8">
+                                                <div>
+                                                    <label class="block text-xs text-gray-500 mb-1">الأعمال</label>
+                                                    <input type="number" class="w-16 px-2 py-1 text-sm border border-gray-300 rounded focus:ring-primary focus:border-primary" min="0" max="36" value="18">
+                                                </div>
+                                                <div>
+                                                    <label class="block text-xs text-gray-500 mb-1">الامتحان</label>
+                                                    <input type="number" class="w-16 px-2 py-1 text-sm border border-gray-300 rounded focus:ring-primary focus:border-primary" min="0" max="24" value="27">
+                                                </div>
+                                            </div>
+                                        </td>
+                                        
+                                        <!-- العلوم -->
+                                        <td class="px-12 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            <div class="grid grid-cols-2 gap-8">
+                                                <div>
+                                                    <label class="block text-xs text-gray-500 mb-1">الأعمال</label>
+                                                    <input type="number" class="w-16 px-2 py-1 text-sm border border-gray-300 rounded focus:ring-primary focus:border-primary" min="0" max="36" value="14">
+                                                </div>
+                                                <div>
+                                                    <label class="block text-xs text-gray-500 mb-1">الامتحان</label>
+                                                    <input type="number" class="w-16 px-2 py-1 text-sm border border-gray-300 rounded focus:ring-primary focus:border-primary" min="0" max="24" value="23">
+                                                </div>
+                                            </div>
+                                        </td>
+                                        
+                                        <!-- التاريخ -->
+                                        <td class="px-12 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            <div class="grid grid-cols-2 gap-8">
+                                                <div>
+                                                    <label class="block text-xs text-gray-500 mb-1">الأعمال</label>
+                                                    <input type="number" class="w-16 px-2 py-1 text-sm border border-gray-300 rounded focus:ring-primary focus:border-primary" min="0" max="12" value="11">
+                                                </div>
+                                                <div>
+                                                    <label class="block text-xs text-gray-500 mb-1">الامتحان</label>
+                                                    <input type="number" class="w-16 px-2 py-1 text-sm border border-gray-300 rounded focus:ring-primary focus:border-primary" min="0" max="8" value="8">
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <!-- الجغرافيا -->
+                                        <td class="px-12 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            <div class="grid grid-cols-2 gap-8">
+                                                <div>
+                                                    <label class="block text-xs text-gray-500 mb-1">الأعمال</label>
+                                                    <input type="number" class="w-16 px-2 py-1 text-sm border border-gray-300 rounded focus:ring-primary focus:border-primary" min="0" max="12" value="10">
+                                                </div>
+                                                <div>
+                                                    <label class="block text-xs text-gray-500 mb-1">الامتحان</label>
+                                                    <input type="number" class="w-16 px-2 py-1 text-sm border border-gray-300 rounded focus:ring-primary focus:border-primary" min="0" max="8" value="7">
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <!-- الحاسوب -->
+                                        <td class="px-12 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            <div class="grid grid-cols-2 gap-8">
+                                                <div>
+                                                    <label class="block text-xs text-gray-500 mb-1">الأعمال</label>
+                                                    <input type="number" class="w-16 px-2 py-1 text-sm border border-gray-300 rounded focus:ring-primary focus:border-primary" min="0" max="12" value="12">
+                                                </div>
+                                                <div>
+                                                    <label class="block text-xs text-gray-500 mb-1">الامتحان</label>
+                                                    <input type="number" class="w-16 px-2 py-1 text-sm border border-gray-300 rounded focus:ring-primary focus:border-primary" min="0" max="8" value="8">
+                                                </div>
+                                            </div>
+                                        </td>
+                                        
+                                        <td class="px-12 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">285</span>
+                                        </td>
+                                        
+                                        <td class="px-12 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            <button class="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded text-xs font-medium transition-colors duration-200">
+                                                حفظ
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <!-- التذييل -->
+                    <div class="mt-8 bg-white shadow rounded-lg">
+                        <div class="px-4 py-5 sm:p-6">
+                            <div class="flex justify-between items-center">
+                                <button class="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200 flex items-center">
+                                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                    </svg>
+                                    حفظ جميع التغييرات
+                                </button>
+                                
+                                <button class="bg-primary hover:bg-primary-dark text-white font-medium py-2 px-4 rounded-md transition-colors duration-200 flex items-center">
+                                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                    </svg>
+                                    تصدير الدرجات إلى ملف Excel
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // اختيار الصف والفصل الدراسي
+            const gradeLevel = document.getElementById('grade-level');
+            const semester = document.getElementById('semester');
+            const loadBtn = document.getElementById('load-students');
+            
+            // تفاعل زر تحميل الطلاب
+            loadBtn.addEventListener('click', function() {
+                if(!gradeLevel.value || !semester.value) {
+                    alert('الرجاء اختيار الصف والفصل الدراسي أولاً');
+                    return;
+                }
+                
+                const gradeName = gradeLevel.options[gradeLevel.selectedIndex].text;
+                const semesterName = semester.options[semester.selectedIndex].text;
+                
+                // إظهار رسالة نجاح
+                showNotification(`تم تحميل قائمة طلاب ${gradeName} للفصل الدراسي ${semesterName}`, 'success');
+            });
+            
+            // تفاعل حقول إدخال الدرجات
+            const scoreInputs = document.querySelectorAll('input[type="number"]');
+            scoreInputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    const row = this.closest('tr');
+                    updateTotalScore(row);
+                });
+                
+                input.addEventListener('blur', function() {
+                    const max = parseInt(this.max);
+                    const min = parseInt(this.min);
+                    const value = parseInt(this.value) || 0;
+                    
+                    if(value > max) {
+                        this.value = max;
+                        showNotification(`الدرجة القصوى المسموحة: ${max}`, 'warning');
+                    }
+                    
+                    if(value < min) {
+                        this.value = min;
+                        showNotification(`الدرجة الصغرى المسموحة: ${min}`, 'warning');
+                    }
+                });
+            });
+            
+            // تحديث المجموع
+            function updateTotalScore(row) {
+                let total = 0;
+                const inputs = row.querySelectorAll('input[type="number"]');
+                
+                inputs.forEach(input => {
+                    total += parseInt(input.value) || 0;
+                });
+                
+                const totalElement = row.querySelector('td:nth-last-child(2) span');
+                if(totalElement) {
+                    totalElement.textContent = total;
+                    
+                    // تحديد لون المجموع حسب الأداء
+                    totalElement.className = 'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium';
+                    if(total < 150) {
+                        totalElement.classList.add('bg-red-100', 'text-red-800');
+                    } else if(total >= 150 && total < 200) {
+                        totalElement.classList.add('bg-yellow-100', 'text-yellow-800');
+                    } else {
+                        totalElement.classList.add('bg-green-100', 'text-green-800');
+                    }
+                }
+            }
+            
+            // تفاعل أزرار الحفظ
+            const saveBtns = document.querySelectorAll('button');
+            saveBtns.forEach(btn => {
+                if(btn.textContent.trim() === 'حفظ') {
+                    btn.addEventListener('click', function() {
+                        const row = this.closest('tr');
+                        const studentName = row.querySelector('td:first-child').textContent;
+                        
+                        // تحديث المجموع قبل الحفظ
+                        updateTotalScore(row);
+                        
+                        // إظهار رسالة نجاح
+                        showNotification(`تم حفظ درجات الطالب ${studentName}`, 'success');
+                    });
+                }
+            });
+            
+            // تحديث المجاميع عند التحميل
+            document.querySelectorAll('tbody tr').forEach(row => {
+                updateTotalScore(row);
+            });
+            
+            // دالة إظهار الإشعارات
+            function showNotification(message, type = 'info') {
+                const notification = document.createElement('div');
+                notification.className = `fixed top-4 left-4 z-50 p-4 rounded-md shadow-lg max-w-sm transform transition-all duration-300 translate-x-0`;
+                
+                let bgColor, textColor, icon;
+                switch(type) {
+                    case 'success':
+                        bgColor = 'bg-green-500';
+                        textColor = 'text-white';
+                        icon = '✓';
+                        break;
+                    case 'warning':
+                        bgColor = 'bg-yellow-500';
+                        textColor = 'text-white';
+                        icon = '⚠';
+                        break;
+                    case 'error':
+                        bgColor = 'bg-red-500';
+                        textColor = 'text-white';
+                        icon = '✗';
+                        break;
+                    default:
+                        bgColor = 'bg-blue-500';
+                        textColor = 'text-white';
+                        icon = 'ℹ';
+                }
+                
+                notification.className += ` ${bgColor} ${textColor}`;
+                notification.innerHTML = `
+                    <div class="flex items-center">
+                        <span class="text-lg mr-2">${icon}</span>
+                        <span>${message}</span>
+                    </div>
+                `;
+                
+                document.body.appendChild(notification);
+                
+                // إخفاء الإشعار بعد 3 ثواني
+                setTimeout(() => {
+                    notification.style.transform = 'translateX(-100%)';
+                    setTimeout(() => notification.remove(), 300);
+                }, 3000);
+            }
+            
+            // سايدبار الجوال - تبسيط الكود
+            const mobileMenuButton = document.getElementById('mobileMenuButton');
+            const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+            const closeMobileMenuButtonMarks = document.getElementById('closeMobileMenuButtonMarks');
+
+            console.log('Mobile menu elements:', { mobileMenuButton, mobileMenuOverlay, closeMobileMenuButtonMarks });
+
+            if (mobileMenuButton && mobileMenuOverlay) {
+                mobileMenuButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.log('Mobile menu button clicked');
+                    mobileMenuOverlay.classList.remove('hidden');
+                });
+                
+                if (closeMobileMenuButtonMarks) {
+                    closeMobileMenuButtonMarks.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        console.log('Close button clicked');
+                        mobileMenuOverlay.classList.add('hidden');
+                    });
+                }
+                
+                // إغلاق عند الضغط على الخلفية
+                mobileMenuOverlay.addEventListener('click', function(e) {
+                    if (e.target === mobileMenuOverlay) {
+                        console.log('Background clicked');
+                        mobileMenuOverlay.classList.add('hidden');
+                    }
+                });
+                
+                // إغلاق عند الضغط على الروابط
+                const mobileNavLinks = mobileMenuOverlay.querySelectorAll('nav a');
+                mobileNavLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        setTimeout(() => {
+                            mobileMenuOverlay.classList.add('hidden');
+                        }, 100);
+                    });
+                });
+            } else {
+                console.error('Mobile menu elements not found');
+            }
+        });
+    </script>
+    
+    <!-- إضافة الوظائف المطلوبة من dashboard.js -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // User Menu Toggle
+            const userMenuButton = document.getElementById('userMenuButton');
+            const userMenu = document.getElementById('userMenu');
+
+            if (userMenuButton && userMenu) {
+                userMenuButton.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                    userMenu.classList.toggle('hidden');
+                });
+
+                document.addEventListener('click', (event) => {
+                    if (userMenu && !userMenu.classList.contains('hidden')) {
+                        if (!userMenuButton.contains(event.target) && !userMenu.contains(event.target)) {
+                            userMenu.classList.add('hidden');
+                        }
+                    }
+                });
+            }
+
+            // Notifications Dropdown
+            const notificationButton = document.getElementById('notificationButton');
+            const notificationsDropdown = document.getElementById('notificationsDropdown');
+
+            if (notificationButton && notificationsDropdown) {
+                notificationButton.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    notificationsDropdown.classList.toggle('hidden');
+                });
+
+                document.addEventListener('click', (e) => {
+                    if (!notificationsDropdown.contains(e.target) && !notificationButton.contains(e.target)) {
+                        notificationsDropdown.classList.add('hidden');
+                    }
+                });
+
+                notificationsDropdown.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                });
+            }
+        });
+    </script>
+</body>
+</html>

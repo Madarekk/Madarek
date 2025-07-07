@@ -1,0 +1,62 @@
+<div class="card">
+    <div class="flex flex-col md:flex-row justify-between md:items-center mb-6 gap-4">
+        <h2 class="card-title mb-0">قائمة الطلاب</h2>
+    </div>
+
+    <div class="mb-6 flex flex-col sm:flex-row gap-4 items-center p-4 bg-gray-50 rounded-lg border border-gray-200">
+        <div class="filter-input-group flex-grow w-full sm:w-auto">
+            <input type="text" id="student-search-input" placeholder="البحث بالاسم أو المعرف..." class="form-input w-full">
+            <div class="filter-icon">
+                 <i data-lucide="search" class="w-5 h-5"></i>
+            </div>
+        </div>
+        <div class="flex-grow w-full sm:w-auto">
+            <select id="student-subject-filter" class="form-select w-full">
+                <option value="">كل المواد</option>
+                <option value="برمجة">البرمجة</option>
+                <option value="تصميم">التصميم الجرافيكي</option>
+                <option value="إنجليزية">اللغة الإنجليزية</option>
+                <option value="رياضيات">الرياضيات</option> 
+                <option value="علوم">العلوم</option>
+            </select>
+        </div>
+    </div>
+
+    <div id="students-status-message" class="text-center py-4 text-gray-500 hidden"></div>
+
+    <div class="overflow-x-auto">
+        <table id="students-table" class="custom-table">
+            <thead>
+                <tr>
+                    <th>الاسم</th>
+                    <th>المعرف</th>
+                    <th>الدورة المسجل بها</th>
+                    <th>الحالة</th>
+                    <th>حالة المدفوعات</th>
+                    <th>إجراءات</th>
+                </tr>
+            </thead>
+            <tbody id="students-table-body">
+                <!-- Student data will be populated here by JavaScript -->
+            </tbody>
+        </table>
+    </div>
+    <div class="mt-6 flex justify-center">
+        <nav aria-label="Pagination">
+          <ul class="inline-flex items-center -space-x-px">
+            <li>
+              <a href="#" class="py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700">السابق</a>
+            </li>
+            <li>
+              <a href="#" aria-current="page" class="py-2 px-3 text-primary bg-primary-light border border-gray-300 hover:bg-blue-100 hover:text-blue-700">1</a>
+            </li>
+            <li>
+              <a href="#" class="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">2</a>
+            </li>
+            <li>
+              <a href="#" class="py-2 px-3 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700">التالي</a>
+            </li>
+          </ul>
+        </nav>
+    </div>
+</div>

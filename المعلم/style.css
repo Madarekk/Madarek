@@ -1,0 +1,19 @@
+.sidebar-link {
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    color: #d1d5db; /* gray-300 */
+}
+
+.sidebar-link:hover {
+    background-color: #374151; /* gray-700 */
+    color: #ffffff;
+}
+
+.sidebar-link.active {
+    background-color: #0984e3;
+    color: #ffffff;
+    font-weight: 700;
+}
+
+#mobileMenu.show {
+    transform: translateX(0);
+}

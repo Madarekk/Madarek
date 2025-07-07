@@ -1,0 +1,605 @@
+/* styles.css */
+body {
+    font-family: 'Tajawal', Arial, sans-serif; /* Ensures Tajawal font is applied as per Tailwind config */
+    /* Tailwind CSS handles most styling. This file is for global overrides or styles not covered by Tailwind. */
+    overflow: hidden;
+}
+
+/* تخصيص سكرول بار المحتوى الرئيسي */
+main.flex-1.overflow-y-auto {
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 #f1f5f9;
+    max-height: 100vh;
+    overflow-y: auto !important;
+}
+
+/* تخصيص سكرول بار المحتوى للويب كيت (Chrome, Safari, Edge) */
+main.flex-1.overflow-y-auto::-webkit-scrollbar {
+    width: 12px;
+}
+
+main.flex-1.overflow-y-auto::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 6px;
+    margin: 4px;
+}
+
+main.flex-1.overflow-y-auto::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #cbd5e1 0%, #94a3b8 100%);
+    border-radius: 6px;
+    border: 2px solid #f1f5f9;
+    min-height: 40px;
+}
+
+main.flex-1.overflow-y-auto::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #94a3b8 0%, #64748b 100%);
+}
+
+main.flex-1.overflow-y-auto::-webkit-scrollbar-corner {
+    background: #f1f5f9;
+}
+
+/* تخصيص سكرول بار السايدبار */
+nav.overflow-y-auto {
+    scrollbar-width: thin;
+    scrollbar-color: #475569 #1e293b;
+}
+
+nav.overflow-y-auto::-webkit-scrollbar {
+    width: 8px;
+}
+
+nav.overflow-y-auto::-webkit-scrollbar-track {
+    background: #1e293b;
+    border-radius: 4px;
+    margin: 2px;
+}
+
+nav.overflow-y-auto::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #475569 0%, #64748b 100%);
+    border-radius: 4px;
+    border: 1px solid #334155;
+    min-height: 30px;
+}
+
+nav.overflow-y-auto::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #64748b 0%, #94a3b8 100%);
+}
+
+/* تخصيصات الهيدر */
+/* تغيير لون خلفية الهيدر */
+header.bg-white {
+    background: linear-gradient(270deg, #1a2b4a 0%, #2d4a7a 50%, #4a6fa5 100%) !important;
+    border-bottom: 1px solid #2d4a7a !important;
+    box-shadow: 0 2px 10px rgba(26, 43, 74, 0.2) !important;
+}
+
+/* تغيير لون النص في الهيدر */
+header .text-gray-800 {
+    color: #ffffff !important;
+    font-weight: bold;
+}
+
+/* تغيير لون الأيقونات في الهيدر */
+header svg {
+    color: #e2e8f0 !important;
+    transition: color 0.3s ease;
+}
+
+/* تأثير التمرير على الأيقونات */
+header button:hover svg {
+    color: #ffffff !important;
+}
+
+/* تغيير لون النص في الأزرار */
+header .text-gray-400 {
+    color: #060505 !important;
+}
+
+header .text-gray-500 {
+    color: #070707 !important;
+}
+
+header .text-gray-700 {
+    color: #0d0b0b !important;
+}
+
+/* تأثير التمرير على الأزرار */
+header button:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    border-radius: 6px;
+}
+
+/* تخصيص زر المستخدم */
+header .bg-primary {
+    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%) !important;
+    color: #1e293b !important;
+    box-shadow: 0 2px 8px rgba(251, 191, 36, 0.3);
+}
+
+/* تخصيصات السايدبار - محددات مبسطة وفعالة */
+/* تغيير لون خلفية السايدبار */
+.flex.flex-col.flex-grow.bg-white {
+    background: linear-gradient(180deg, #1a2b4a 0%, #2d4a7a 50%, #4a6fa5 100%) !important;
+    border-left: 1px solid #2d4a7a !important;
+}
+
+/* تغيير لون النص في السايدبار */
+nav a {
+    color: #e2e8f0 !important;
+    transition: all 0.3s ease;
+}
+
+/* تأثير التمرير على الروابط */
+nav a:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    color: #ffffff !important;
+    transform: translateX(-5px);
+}
+
+/* تغيير لون الأيقونات */
+nav svg {
+    color: #cbd5e1 !important;
+    transition: color 0.3s ease;
+}
+
+/* تأثير التمرير على الأيقونات */
+nav a:hover svg {
+    color: #ffffff !important;
+}
+
+/* تخصيص الرابط النشط - محددات أكثر تحديداً */
+nav a.bg-primary,
+nav a.bg-primary:active,
+nav a.bg-primary:focus,
+nav a.bg-primary:visited,
+.hidden.lg\\:flex.lg\\:flex-shrink-0 nav a.bg-primary,
+.hidden.lg\\:flex.lg\\:flex-shrink-0 nav a.bg-primary:active,
+.hidden.lg\\:flex.lg\\:flex-shrink-0 nav a.bg-primary:focus,
+.hidden.lg\\:flex.lg\\:flex-shrink-0 nav a.bg-primary:visited {
+    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%) !important;
+    color: #1e293b !important;
+    box-shadow: 0 4px 12px rgba(251, 191, 36, 0.3) !important;
+    transform: none !important;
+    border: none !important;
+    text-decoration: none !important;
+}
+
+nav a.bg-primary:hover,
+.hidden.lg\\:flex.lg\\:flex-shrink-0 nav a.bg-primary:hover {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
+    color: #1e293b !important;
+    transform: none !important;
+    border: none !important;
+    text-decoration: none !important;
+}
+
+nav a.bg-primary svg,
+nav a.bg-primary:active svg,
+nav a.bg-primary:focus svg,
+nav a.bg-primary:visited svg,
+.hidden.lg\\:flex.lg\\:flex-shrink-0 nav a.bg-primary svg,
+.hidden.lg\\:flex.lg\\:flex-shrink-0 nav a.bg-primary:active svg,
+.hidden.lg\\:flex.lg\\:flex-shrink-0 nav a.bg-primary:focus svg,
+.hidden.lg\\:flex.lg\\:flex-shrink-0 nav a.bg-primary:visited svg {
+    color: #1e293b !important;
+}
+
+nav a.bg-primary:hover svg,
+.hidden.lg\\:flex.lg\\:flex-shrink-0 nav a.bg-primary:hover svg {
+    color: #1e293b !important;
+}
+
+/* منع تداخل CSS آخر */
+nav a.bg-primary *,
+.hidden.lg\\:flex.lg\\:flex-shrink-0 nav a.bg-primary * {
+    color: #1e293b !important;
+}
+
+/* تخصيص قائمة الجوال */
+#mobileMenuOverlay nav {
+    background: linear-gradient(180deg, #1a2b4a 0%, #2d4a7a 50%, #4a6fa5 100%) !important;
+}
+
+#mobileMenuOverlay a {
+    color: #e2e8f0 !important;
+    transition: all 0.3s ease;
+}
+
+#mobileMenuOverlay a:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    color: #ffffff !important;
+}
+
+#mobileMenuOverlay a.bg-primary {
+    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%) !important;
+    color: #1e293b !important;
+}
+
+/* إضافة تأثيرات إضافية */
+nav.hidden.lg\\:flex.lg\\:flex-shrink-0 {
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* تحسين مظهر القائمة */
+nav ul {
+    padding: 0.5rem;
+}
+
+nav li {
+    margin-bottom: 0.25rem;
+}
+
+/* محددات إضافية لضمان التطبيق */
+/* استهداف السايدبار الرئيسي */
+.hidden.lg\\:flex.lg\\:flex-shrink-0 .flex.flex-col.flex-grow.bg-white {
+    background: linear-gradient(180deg, #1a2b4a 0%, #2d4a7a 50%, #4a6fa5 100%) !important;
+    border-left: 1px solid #2d4a7a !important;
+}
+
+/* استهداف الروابط في السايدبار */
+.hidden.lg\\:flex.lg\\:flex-shrink-0 nav a {
+    color: #e2e8f0 !important;
+    transition: all 0.3s ease;
+}
+
+.hidden.lg\\:flex.lg\\:flex-shrink-0 nav a:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    color: #ffffff !important;
+    transform: translateX(-5px);
+}
+
+.hidden.lg\\:flex.lg\\:flex-shrink-0 nav svg {
+    color: #cbd5e1 !important;
+    transition: color 0.3s ease;
+}
+
+.hidden.lg\\:flex.lg\\:flex-shrink-0 nav a:hover svg {
+    color: #ffffff !important;
+}
+
+.hidden.lg\\:flex.lg\\:flex-shrink-0 nav a.bg-primary {
+    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%) !important;
+    color: #1e293b !important;
+    box-shadow: 0 4px 12px rgba(251, 191, 36, 0.3) !important;
+    transform: none !important;
+}
+
+.hidden.lg\\:flex.lg\\:flex-shrink-0 nav a.bg-primary:hover {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
+    color: #1e293b !important;
+    transform: none !important;
+}
+
+.hidden.lg\\:flex.lg\\:flex-shrink-0 nav a.bg-primary svg {
+    color: #1e293b !important;
+}
+
+.hidden.lg\\:flex.lg\\:flex-shrink-0 nav a.bg-primary:hover svg {
+    color: #1e293b !important;
+}
+
+/* Add any specific global styles or component-specific styles if needed. */
+/* For example, if a very specific component needs styling that's cumbersome with utility classes. */
+
+/* Example: A slightly more visible focus ring for accessibility, if default Tailwind is not prominent enough */
+/*
+*:focus-visible {
+    outline: 2px solid #4F46E5; 
+    outline-offset: 2px;
+}
+*/
+
+/* Ensure html and body can support full height layouts if necessary */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body > .flex.h-screen { /* Targeting the main flex container after body */
+    min-height: 100vh; /* Ensure it takes at least viewport height */
+    overflow: hidden;
+}
+
+/* ضمان عدم تداخل CSS آخر مع التنسيق المميز */
+nav a.bg-primary,
+nav a.bg-primary:link,
+nav a.bg-primary:visited,
+nav a.bg-primary:hover,
+nav a.bg-primary:active,
+nav a.bg-primary:focus,
+.hidden.lg\\\\:flex.lg\\\\:flex-shrink-0 nav a.bg-primary,
+.hidden.lg\\\\:flex.lg\\\\:flex-shrink-0 nav a.bg-primary:link,
+.hidden.lg\\\\:flex.lg\\\\:flex-shrink-0 nav a.bg-primary:visited,
+.hidden.lg\\\\:flex.lg\\\\:flex-shrink-0 nav a.bg-primary:hover,
+.hidden.lg\\\\:flex.lg\\\\:flex-shrink-0 nav a.bg-primary:active,
+.hidden.lg\\\\:flex.lg\\\\:flex-shrink-0 nav a.bg-primary:focus {
+    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%) !important;
+    color: #1e293b !important;
+    box-shadow: 0 4px 12px rgba(251, 191, 36, 0.3) !important;
+    transform: none !important;
+    border: none !important;
+    text-decoration: none !important;
+    outline: none !important;
+}
+
+nav a.bg-primary:hover,
+.hidden.lg\\\\:flex.lg\\\\:flex-shrink-0 nav a.bg-primary:hover {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
+    color: #1e293b !important;
+    transform: none !important;
+    border: none !important;
+    text-decoration: none !important;
+    outline: none !important;
+}
+
+nav a.bg-primary svg,
+nav a.bg-primary:link svg,
+nav a.bg-primary:visited svg,
+nav a.bg-primary:hover svg,
+nav a.bg-primary:active svg,
+nav a.bg-primary:focus svg,
+.hidden.lg\\\\:flex.lg\\\\:flex-shrink-0 nav a.bg-primary svg,
+.hidden.lg\\\\:flex.lg\\\\:flex-shrink-0 nav a.bg_primary:link svg,
+.hidden.lg\\\\:flex.lg\\\\:flex-shrink-0 nav a.bg-primary:visited svg,
+.hidden.lg\\\\:flex.lg\\\\:flex-shrink-0 nav a.bg-primary:hover svg,
+.hidden.lg\\\\:flex.lg\\\\:flex-shrink-0 nav a.bg-primary:active svg,
+.hidden.lg\\\\:flex.lg\\\\:flex-shrink-0 nav a.bg-primary:focus svg {
+    color: #1e293b !important;
+}
+
+/* منع أي تداخل من CSS آخر */
+nav a.bg-primary *,
+nav a.bg-primary:link *,
+nav a.bg-primary:visited *,
+nav a.bg-primary:hover *,
+nav a.bg-primary:active *,
+nav a.bg-primary:focus *,
+.hidden.lg\\\\:flex.lg\\\\:flex-shrink-0 nav a.bg-primary *,
+.hidden.lg\\\\:flex.lg\\\\:flex-shrink-0 nav a.bg-primary:link *,
+.hidden.lg\\\\:flex.lg\\\\:flex-shrink-0 nav a.bg-primary:visited *,
+.hidden.lg\\\\:flex.lg\\\\:flex-shrink-0 nav a.bg-primary:hover *,
+.hidden.lg\\\\:flex.lg\\\\:flex-shrink-0 nav a.bg-primary:active *,
+.hidden.lg\\\\:flex.lg\\\\:flex-shrink-0 nav a.bg-primary:focus * {
+    color: #1e293b !important;
+}
+
+/* CSS نهائي لضمان عدم تداخل CSS آخر مع التنسيق المميز */
+html body nav a.bg-primary,
+html body .hidden.lg\\\\:flex.lg\\\\:flex-shrink-0 nav a.bg-primary {
+    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%) !important;
+    color: #1e293b !important;
+    box-shadow: 0 4px 12px rgba(251, 191, 36, 0.3) !important;
+    transform: none !important;
+    border: none !important;
+    text-decoration: none !important;
+    outline: none !important;
+    position: relative !important;
+    z-index: 10 !important;
+}
+
+html body nav a.bg-primary:hover,
+html body .hidden.lg\\\\:flex.lg\\\\:flex-shrink-0 nav a.bg-primary:hover {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
+    color: #1e293b !important;
+    transform: none !important;
+    border: none !important;
+    text-decoration: none !important;
+    outline: none !important;
+    position: relative !important;
+    z-index: 10 !important;
+}
+
+html body nav a.bg-primary svg,
+html body .hidden.lg\\\\:flex.lg\\\\:flex-shrink-0 nav a.bg-primary svg {
+    color: #1e293b !important;
+}
+
+html body nav a.bg-primary:hover svg,
+html body .hidden.lg\\\\:flex.lg\\\\:flex-shrink-0 nav a.bg-primary:hover svg {
+    color: #1e293b !important;
+}
+
+html body nav a.bg-primary *,
+html body .hidden.lg\\\\:flex.lg\\\\:flex-shrink-0 nav a.bg-primary * {
+    color: #1e293b !important;
+}
+
+/* منع أي تداخل من CSS آخر */
+html body nav a.bg-primary,
+html body nav a.bg-primary:link,
+html body nav a.bg-primary:visited,
+html body nav a.bg-primary:hover,
+html body nav a.bg-primary:active,
+html body nav a.bg-primary:focus,
+html body .hidden.lg\\\\:flex.lg\\\\:flex-shrink-0 nav a.bg-primary,
+html body .hidden.lg\\\\:flex.lg\\\\:flex-shrink-0 nav a.bg_primary:link,
+html body .hidden.lg\\\\:flex.lg\\\\:flex-shrink-0 nav a.bg-primary:visited,
+html body .hidden.lg\\\\:flex.lg\\\\:flex-shrink-0 nav a.bg-primary:hover,
+html body .hidden.lg\\\\:flex.lg\\\\:flex-shrink-0 nav a.bg_primary:active,
+html body .hidden.lg\\\\:flex.lg\\\\:flex-shrink-0 nav a.bg-primary:focus {
+    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%) !important;
+    color: #1e293b !important;
+    box-shadow: 0 4px 12px rgba(251, 191, 36, 0.3) !important;
+    transform: none !important;
+    border: none !important;
+    text-decoration: none !important;
+    outline: none !important;
+    position: relative !important;
+    z-index: 10 !important;
+}
+
+html body nav a.bg-primary:hover,
+html body .hidden.lg\\\\:flex.lg\\\\:flex-shrink-0 nav a.bg-primary:hover {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
+    color: #1e293b !important;
+    transform: none !important;
+    border: none !important;
+    text-decoration: none !important;
+    outline: none !important;
+    position: relative !important;
+    z-index: 10 !important;
+}
+
+html body nav a.bg-primary svg,
+html body nav a.bg-primary:link svg,
+html body nav a.bg-primary:visited svg,
+html body nav a.bg-primary:hover svg,
+html body nav a.bg-primary:active svg,
+html body nav a.bg-primary:focus svg,
+html body .hidden.lg\\\\:flex.lg\\\\:flex-shrink-0 nav a.bg-primary svg,
+html body .hidden.lg\\\\:flex.lg\\\\:flex-shrink-0 nav a.bg_primary:link svg,
+html body .hidden.lg\\\\:flex.lg\\\\:flex-shrink-0 nav a.bg-primary:visited svg,
+html body .hidden.lg\\\\:flex.lg\\\\:flex-shrink-0 nav a.bg-primary:hover svg,
+html body .hidden.lg\\\\:flex.lg\\\\:flex-shrink-0 nav a.bg_primary:active svg,
+html body .hidden.lg\\\\:flex.lg\\\\:flex-shrink-0 nav a.bg_primary:focus svg {
+    color: #1e293b !important;
+}
+
+/* منع أي تداخل من CSS آخر */
+html body nav a.bg-primary *,
+html body nav a.bg-primary:link *,
+html body nav a.bg-primary:visited *,
+html body nav a.bg-primary:hover *,
+html body nav a.bg-primary:active *,
+html body nav a.bg-primary:focus *,
+html body .hidden.lg\\\\:flex.lg\\\\:flex-shrink-0 nav a.bg-primary *,
+html body .hidden.lg\\\\:flex.lg\\\\:flex-shrink-0 nav a.bg_primary:link *,
+html body .hidden.lg\\\\:flex.lg\\\\:flex-shrink-0 nav a.bg-primary:visited *,
+html body .hidden.lg\\\\:flex.lg\\\\:flex-shrink-0 nav a.bg-primary:hover *,
+html body .hidden.lg\\\\:flex.lg\\\\:flex-shrink-0 nav a.bg_primary:active *,
+html body .hidden.lg\\\\:flex.lg\\\\:flex-shrink-0 nav a.bg_primary:focus * {
+    color: #1e293b !important;
+}
+
+/* منع تداخل Tailwind CSS مع التنسيق المميز */
+nav a.bg-primary.text-white,
+nav a.bg-primary.text-white:hover,
+nav a.bg-primary.text-white:focus,
+nav a.bg-primary.text-white:active,
+.hidden.lg\\\\:flex.lg\\\\:flex-shrink-0 nav a.bg-primary.text-white,
+.hidden.lg\\\\:flex.lg\\\\:flex-shrink-0 nav a.bg-primary.text-white:hover,
+.hidden.lg\\\\:flex.lg\\\\:flex-shrink-0 nav a.bg-primary.text-white:focus,
+.hidden.lg\\\\:flex.lg\\\\:flex-shrink-0 nav a.bg-primary.text-white:active {
+    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%) !important;
+    color: #1e293b !important;
+    box-shadow: 0 4px 12px rgba(251, 191, 36, 0.3) !important;
+    transform: none !important;
+    border: none !important;
+    text-decoration: none !important;
+    outline: none !important;
+    position: relative !important;
+    z-index: 10 !important;
+}
+
+nav a.bg-primary.text-white svg,
+nav a.bg-primary.text-white:hover svg,
+nav a.bg-primary.text-white:focus svg,
+nav a.bg-primary.text-white:active svg,
+.hidden.lg\\\\:flex.lg\\\\:flex-shrink-0 nav a.bg-primary.text-white svg,
+.hidden.lg\\\\:flex.lg\\\\:flex-shrink-0 nav a.bg-primary.text-white:hover svg,
+.hidden.lg\\\\:flex.lg\\\\:flex-shrink-0 nav a.bg-primary.text-white:focus svg,
+.hidden.lg\\\\:flex.lg\\\\:flex-shrink-0 nav a.bg-primary.text-white:active svg {
+    color: #1e293b !important;
+}
+
+nav a.bg-primary.text-white *,
+nav a.bg-primary.text-white:hover *,
+nav a.bg-primary.text-white:focus *,
+nav a.bg-primary.text-white:active *,
+.hidden.lg\\\\:flex.lg\\\\:flex-shrink-0 nav a.bg-primary.text-white *,
+.hidden.lg\\\\:flex.lg\\\\:flex-shrink-0 nav a.bg-primary.text-white:hover *,
+.hidden.lg\\\\:flex.lg\\\\:flex-shrink-0 nav a.bg-primary.text-white:focus *,
+.hidden.lg\\\\:flex.lg\\\\:flex-shrink-0 nav a.bg-primary.text-white:active * {
+    color: #1e293b !important;
+}
+
+/* تغيير لون اسم أحمد المدير في الهيدر إلى الأبيض في جميع الصفحات */
+.header-username {
+    color: #fff !important;
+}
+
+/* تخصيص سكرول بار الجداول والمناطق الأخرى */
+.overflow-x-auto,
+.overflow-y-auto,
+.max-h-96,
+.max-h-60 {
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 #f1f5f9;
+}
+
+.overflow-x-auto::-webkit-scrollbar,
+.overflow-y-auto::-webkit-scrollbar,
+.max-h-96::-webkit-scrollbar,
+.max-h-60::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.overflow-x-auto::-webkit-scrollbar-track,
+.overflow-y-auto::-webkit-scrollbar-track,
+.max-h-96::-webkit-scrollbar-track,
+.max-h-60::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 4px;
+    margin: 2px;
+}
+
+.overflow-x-auto::-webkit-scrollbar-thumb,
+.overflow-y-auto::-webkit-scrollbar-thumb,
+.max-h-96::-webkit-scrollbar-thumb,
+.max-h-60::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #cbd5e1 0%, #94a3b8 100%);
+    border-radius: 4px;
+    border: 1px solid #e2e8f0;
+    min-height: 20px;
+}
+
+.overflow-x-auto::-webkit-scrollbar-thumb:hover,
+.overflow-y-auto::-webkit-scrollbar-thumb:hover,
+.max-h-96::-webkit-scrollbar-thumb:hover,
+.max-h-60::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #94a3b8 0%, #64748b 100%);
+}
+
+/* تخصيص سكرول بار القوائم المنسدلة */
+#notificationsDropdown .max-h-96,
+#userMenu {
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 #f1f5f9;
+}
+
+#notificationsDropdown .max-h-96::-webkit-scrollbar,
+#userMenu::-webkit-scrollbar {
+    width: 6px;
+}
+
+#notificationsDropdown .max-h-96::-webkit-scrollbar-track,
+#userMenu::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 3px;
+    margin: 1px;
+}
+
+#notificationsDropdown .max-h-96::-webkit-scrollbar-thumb,
+#userMenu::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #cbd5e1 0%, #94a3b8 100%);
+    border-radius: 3px;
+    min-height: 15px;
+}
+
+#notificationsDropdown .max-h-96::-webkit-scrollbar-thumb:hover,
+#userMenu::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #94a3b8 0%, #64748b 100%);
+}
+
+/* إضافة قواعد إضافية لضمان ظهور السكرول بار */
+.flex.h-screen {
+    overflow: hidden;
+}
+
+main.flex-1 {
+    overflow-y: auto !important;
+    height: calc(100vh - 64px); /* ارتفاع الشاشة ناقص ارتفاع الهيدر */
+}

@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الإعلانات - مدارِك</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        tailwind.config = {
+            content: ["./*.html", "./*.js"], // تأكد من تضمين جميع ملفات HTML وJS التي تحتوي على كود Tailwind
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'arabic': ['Tajawal', 'Arial', 'sans-serif']
+                    },
+                    colors: {
+                        'primary': '#4F46E5',
+                        'primary-dark': '#4338CA',
+                        'secondary': '#059669',
+                        'accent': '#0891b2'
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="https://r2.flowith.net/files/o/1748451765656-Modern_Logo_Design_for_Madarek_School_Management_Platform_index_0@1024x1024.png" type="image/png">
+    <style>
+        /* إخفاء زر السايدبار مع الحفاظ على وظيفته */
+        #mobileMenuButton {
+            opacity: 0 !important;
+            pointer-events: auto !important;
+        }
+        
+        /* إخفاء الزر في جميع الحالات */
+        #mobileMenuButton,
+        #mobileMenuButton:hover,
+        #mobileMenuButton:focus,
+        #mobileMenuButton:active {
+            opacity: 0 !important;
+            pointer-events: auto !important;
+        }
+        
+        /* إخفاء الزر حتى عندما يكون السايدبار مفتوح */
+        #mobileMenuOverlay:not(.hidden) #mobileMenuButton {
+            opacity: 0 !important;
+        }
+    </style>
+</head>
+<body class="font-arabic bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-40">
+        <div class="mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <img src="https://r2.flowith.net/files/o/1748451765656-Modern_Logo_Design_for_Madarek_School_Management_Platform_index_0@1024x1024.png" alt="مدارك" class="h-10 w-10 rounded-full">
+                        <span class="mr-3 text-xl font-bold text-gray-800">مدارك</span>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4 space-x-reverse">
+                    <div class="relative">
+                        <button id="notificationButton" class="p-2 text-gray-400 hover:text-gray-600 relative">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                            </svg>
+                            <span class="absolute top-0 right-0 block h-2 w-2 rounded-full bg-red-400 transform translate-x-1/2 -translate-y-1/2"></span>
+                        </button>
+                        <!-- Notifications Dropdown -->
+                        <div id="notificationsDropdown" class="hidden absolute left-0 mt-2 w-80 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50">
+                            <div class="py-1">
+                                <div class="px-4 py-2 border-b border-gray-100">
+                                    <h3 class="text-sm font-medium text-gray-900">الإشعارات</h3>
+                                </div>
+                                <div class="max-h-96 overflow-y-auto">
+                                    <!-- Notification Items -->
+                                    <a href="#" class="block px-4 py-3 hover:bg-gray-50 border-b border-gray-100">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0">
+                                                <div class="w-2 h-2 bg-blue-400 rounded-full mt-2"></div>
+                                            </div>
+                                            <div class="mr-3 flex-1">
+                                                <p class="text-sm font-medium text-gray-900">اجتماع أولياء الأمور</p>
+                                                <p class="text-xs text-gray-500">يوم الخميس الساعة 4:00 مساءً</p>
+                                                <p class="text-xs text-gray-400 mt-1">منذ ساعتين</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="block px-4 py-3 hover:bg-gray-50 border-b border-gray-100">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0">
+                                                <div class="w-2 h-2 bg-green-400 rounded-full mt-2"></div>
+                                            </div>
+                                            <div class="mr-3 flex-1">
+                                                <p class="text-sm font-medium text-gray-900">بداية الفصل الثاني</p>
+                                                <p class="text-xs text-gray-500">يبدأ يوم الأحد القادم</p>
+                                                <p class="text-xs text-gray-400 mt-1">أمس</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="block px-4 py-3 hover:bg-gray-50 border-b border-gray-100">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0">
+                                                <div class="w-2 h-2 bg-yellow-400 rounded-full mt-2"></div>
+                                            </div>
+                                            <div class="mr-3 flex-1">
+                                                <p class="text-sm font-medium text-gray-900">امتحانات نصف الفصل</p>
+                                                <p class="text-xs text-gray-500">تبدأ الأسبوع القادم</p>
+                                                <p class="text-xs text-gray-400 mt-1">منذ 3 أيام</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="block px-4 py-3 hover:bg-gray-50 border-b border-gray-100">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0">
+                                                <div class="w-2 h-2 bg-purple-400 rounded-full mt-2"></div>
+                                            </div>
+                                            <div class="mr-3 flex-1">
+                                                <p class="text-sm font-medium text-gray-900">تحديث النظام</p>
+                                                <p class="text-xs text-gray-500">تم تحديث النظام إلى الإصدار الجديد</p>
+                                                <p class="text-xs text-gray-400 mt-1">منذ 5 أيام</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <!-- إشعارات إضافية للتجربة -->
+                                    <a href="#" class="block px-4 py-3 hover:bg-gray-50 border-b border-gray-100">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0">
+                                                <div class="w-2 h-2 bg-red-400 rounded-full mt-2"></div>
+                                            </div>
+                                            <div class="mr-3 flex-1">
+                                                <p class="text-sm font-medium text-gray-900">تنبيه هام: صيانة النظام</p>
+                                                <p class="text-xs text-gray-500">سيتم إيقاف النظام للصيانة يوم الجمعة</p>
+                                                <p class="text-xs text-gray-400 mt-1">منذ 6 أيام</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="block px-4 py-3 hover:bg-gray-50 border-b border-gray-100">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0">
+                                                <div class="w-2 h-2 bg-pink-400 rounded-full mt-2"></div>
+                                            </div>
+                                            <div class="mr-3 flex-1">
+                                                <p class="text-sm font-medium text-gray-900">إعلان: رحلة مدرسية</p>
+                                                <p class="text-xs text-gray-500">الرحلة يوم الإثنين القادم</p>
+                                                <p class="text-xs text-gray-400 mt-1">منذ أسبوع</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="block px-4 py-3 hover:bg-gray-50 border-b border-gray-100">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0">
+                                                <div class="w-2 h-2 bg-indigo-400 rounded-full mt-2"></div>
+                                            </div>
+                                            <div class="mr-3 flex-1">
+                                                <p class="text-sm font-medium text-gray-900">تهنئة: نجاح الطلاب</p>
+                                                <p class="text-xs text-gray-500">مبروك لجميع الناجحين في الفصل الأول</p>
+                                                <p class="text-xs text-gray-400 mt-1">منذ أسبوعين</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="block px-4 py-3 hover:bg-gray-50 border-b border-gray-100">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0">
+                                                <div class="w-2 h-2 bg-gray-400 rounded-full mt-2"></div>
+                                            </div>
+                                            <div class="mr-3 flex-1">
+                                                <p class="text-sm font-medium text-gray-900">تنويه: تحديث بيانات الطلاب</p>
+                                                <p class="text-xs text-gray-500">يرجى من الجميع تحديث بياناتهم الشخصية</p>
+                                                <p class="text-xs text-gray-400 mt-1">منذ شهر</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="block px-4 py-3 hover:bg-gray-50 border-b border-gray-100">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0">
+                                                <div class="w-2 h-2 bg-teal-400 rounded-full mt-2"></div>
+                                            </div>
+                                            <div class="mr-3 flex-1">
+                                                <p class="text-sm font-medium text-gray-900">إشعار: فتح باب التسجيل</p>
+                                                <p class="text-xs text-gray-500">التسجيل متاح الآن للعام الجديد</p>
+                                                <p class="text-xs text-gray-400 mt-1">منذ شهر</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="block px-4 py-3 hover:bg-gray-50">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0">
+                                                <div class="w-2 h-2 bg-orange-400 rounded-full mt-2"></div>
+                                            </div>
+                                            <div class="mr-3 flex-1">
+                                                <p class="text-sm font-medium text-gray-900">ملاحظة: تغيير مواعيد الدوام</p>
+                                                <p class="text-xs text-gray-500">تم تعديل مواعيد الدوام الشتوي</p>
+                                                <p class="text-xs text-gray-400 mt-1">منذ شهرين</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <button id="userMenuButton" class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
+                            <div class="h-8 w-8 rounded-full bg-primary text-white flex items-center justify-center text-sm font-medium">أ</div>
+                            <span class="mr-2 header-username hidden sm:block">أحمد المدير</span>
+                            <svg class="w-4 h-4 mr-1 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div id="userMenu" class="hidden absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50">
+                            <div class="py-1">
+                                <a href="profile.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">الملف الشخصي</a>
+                                <a href="settings.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">الإعدادات</a>
+                                <div class="border-t border-gray-100"></div>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">تسجيل الخروج</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="flex h-screen bg-gray-50">
+        <!-- Sidebar -->
+        <nav class="hidden lg:flex lg:flex-shrink-0">
+            <div class="flex flex-col w-64">
+                <div class="flex flex-col flex-grow bg-white border-l border-gray-200 pt-5 pb-4 overflow-y-auto">
+                    <div class="flex-grow mt-5">
+                        <nav class="px-3">
+                            <ul class="space-y-1">
+                                <li><a href="index.html" class="text-gray-700 hover:text-gray-900 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md"><svg class="text-gray-400 group-hover:text-gray-500 ml-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"/></svg>لوحة التحكم</a></li>
+                                <li><a href="users.html" class="text-gray-700 hover:text-gray-900 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md"><svg class="text-gray-400 group-hover:text-gray-500 ml-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"/></svg>إدارة المستخدمين</a></li>
+                                <li><a href="classes.html" class="text-gray-700 hover:text-gray-900 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md"><svg class="text-gray-400 group-hover:text-gray-500 ml-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>الصفوف والفصول</a></li>
+                                <li><a href="schedules.html" class="text-gray-700 hover:text-gray-900 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md"><svg class="text-gray-400 group-hover:text-gray-500 ml-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>الجداول الدراسية</a></li>
+                                <li><a href="attendance.html" class="text-gray-700 hover:text-gray-900 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md"><svg class="text-gray-400 group-hover:text-gray-500 ml-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>الحضور والغياب</a></li>
+                                <li><a href="marks.html" class="text-gray-700 hover:text-gray-900 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md"><svg class="text-gray-400 group-hover:text-gray-500 ml-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>الدرجات والتقارير</a></li>
+                                <li><a href="messages.html" class="text-gray-700 hover:text-gray-900 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md"><svg class="text-gray-400 group-hover:text-gray-500 ml-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-.55.55c-.1.1-.2.15-.35.15s-.25-.05-.35-.15L8 16z"/></svg>الرسائل</a></li>
+                                <li>
+                                    <a href="announcements.html" class="bg-gradient-to-r from-amber-400 to-orange-500 text-slate-800 group flex items-center px-3 py-2 text-sm font-medium rounded-md shadow-lg">
+                                        <svg class="text-slate-800 ml-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"/>
+                                        </svg>
+                                        الإعلانات
+                                    </a>
+                                </li>
+                                <li><a href="settings.html" class="text-gray-700 hover:text-gray-900 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md"><svg class="text-gray-400 group-hover:text-gray-500 ml-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>إعدادات النظام</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="lg:hidden">
+            <button id="mobileMenuButton" class="fixed top-4 right-4 z-50 p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary">
+                <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+        </div>
+
+        <div id="mobileMenuOverlay" class="fixed inset-0 z-40 lg:hidden hidden">
+             <div class="fixed inset-0 bg-gray-600 bg-opacity-75" aria-hidden="true"></div>
+             <nav class="fixed top-0 right-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 bg-white shadow-xl overflow-y-auto">
+                 <div class="px-4 pb-4 flex items-center justify-between">
+                    <div>
+                        <img src="https://r2.flowith.net/files/o/1748451765656-Modern_Logo_Design_for_Madarek_School_Management_Platform_index_0@1024x1024.png" alt="مدارك" class="h-8 w-8 rounded-full inline-block">
+                        <span class="mr-2 text-lg font-bold text-white">مدارك</span>
+                    </div>
+                    <button id="closeMobileMenuButtonAnnouncements" class="p-2 text-gray-500 hover:text-gray-700 lg:hidden">
+                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
+                 </div>
+                 <nav class="mt-5 px-4 flex-1">
+                     <ul class="space-y-1">
+                         <li><a href="index.html" class="text-gray-700 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md">لوحة التحكم</a></li>
+                         <li><a href="users.html" class="text-gray-700 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md">إدارة المستخدمين</a></li>
+                         <li><a href="classes.html" class="text-gray-700 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md">الصفوف والفصول</a></li>
+                         <li><a href="schedules.html" class="text-gray-700 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md">الجداول الدراسية</a></li>
+                         <li><a href="attendance.html" class="text-gray-700 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md">الحضور والغياب</a></li>
+                         <li><a href="marks.html" class="text-gray-700 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md">الدرجات والتقارير</a></li>
+                         <li><a href="messages.html" class="text-gray-700 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md">الرسائل</a></li>
+                         <li><a href="announcements.html" class="bg-gradient-to-r from-amber-400 to-orange-500 text-slate-800 group flex items-center px-3 py-2 text-sm font-medium rounded-md shadow-lg">الإعلانات</a></li>
+                         <li><a href="settings.html" class="text-gray-700 hover:bg-gray-50 group flex items-center px-3 py-2 text-sm font-medium rounded-md">إعدادات النظام</a></li>
+                     </ul>
+                 </nav>
+             </nav>
+         </div>
+
+        <!-- Main content -->
+        <main class="flex-1 overflow-y-auto focus:outline-none">
+            <div class="py-6">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+                    <div class="md:flex md:items-center md:justify-between">
+                        <div class="flex-1 min-w-0">
+                             <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:truncate">
+                                الإعلانات
+                            </h2>
+                            <p class="mt-1 text-sm text-gray-500">
+                                عرض جميع الإعلانات والمنشورات الهامة على مستوى المدرسة.
+                            </p>
+                        </div>
+                         <div class="mt-4 flex md:mt-0 md:mr-4">
+                            <button id="addAnnouncementBtn" class="bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-md text-sm font-medium shadow-sm">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block ml-1" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
+                                </svg>
+                                إضافة إعلان جديد
+                            </button>
+                         </div>
+                    </div>
+
+                    <!-- Announcements Filter/Search -->
+                    <div class="mt-4 bg-white shadow sm:rounded-lg">
+                        <div class="px-4 py-5 sm:p-6">
+                            <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+                                <div class="relative">
+                                    <button id="toggleRolesFilterBtn" type="button" class="w-full flex justify-between items-center px-3 py-2 border border-gray-300 bg-white rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition">
+    <!-- تأكد من أن زر الفلترة له معرف واضح -->
+                                        <span>تحديد الأدوار</span>
+                                        <svg id="rolesFilterChevron" class="w-4 h-4 ml-2 text-gray-400 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                                    </button>
+                                    <div id="rolesFilterBox" class="absolute right-0 mt-2 w-full z-20 flex flex-col space-y-2 bg-white rounded-md p-3 border border-gray-200 shadow-lg hidden">
+                                        <label class="inline-flex items-center">
+                                            <input type="checkbox" class="form-checkbox text-primary focus:ring-primary" name="roles[]" value="الإداريين">
+                                            <span class="mr-2">الإداريين</span>
+                                        </label>
+                                        <label class="inline-flex items-center">
+                                            <input type="checkbox" class="form-checkbox text-primary focus:ring-primary" name="roles[]" value="المعلمين">
+                                            <span class="mr-2">المعلمين</span>
+                                        </label>
+                                        <label class="inline-flex items-center">
+                                            <input type="checkbox" class="form-checkbox text-primary focus:ring-primary" name="roles[]" value="المعلمين الخارجيين">
+                                            <span class="mr-2">المعلمين الخارجيين</span>
+                                        </label>
+                                        <label class="inline-flex items-center">
+                                            <input type="checkbox" class="form-checkbox text-primary focus:ring-primary" name="roles[]" value="الطلاب">
+                                            <span class="mr-2">الطلاب</span>
+                                        </label>
+                                        <label class="inline-flex items-center">
+                                            <input type="checkbox" class="form-checkbox text-primary focus:ring-primary" name="roles[]" value="أولياء الأمور">
+                                            <span class="mr-2">أولياء الأمور</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <div>
+                                        <label for="dateFrom" class="block text-sm font-medium text-gray-700">من</label>
+                                        <input type="date" id="dateFrom" name="dateFrom" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm">
+                                    </div>
+                                    <div>
+                                        <label for="dateTo" class="block text-sm font-medium text-gray-700">إلى</label>
+                                        <input type="date" id="dateTo" name="dateTo" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm">
+                                    </div>
+                                </div>
+                                <div class="flex items-end">
+                                    <button class="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-md text-sm font-medium border border-gray-300">
+                                        تطبيق الفلتر
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Announcements List -->
+                    <div class="mt-6 bg-white shadow rounded-lg overflow-hidden">
+                         <ul id="announcementsListContainer" class="divide-y divide-gray-200">
+                            <!-- Backend Note: Loop through announcements data here. Each <li> is an announcement. -->
+                            <li class="px-4 py-4 sm:px-6 hover:bg-gray-50 transition-colors duration-150 ease-in-out">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex-1 min-w-0">
+                                        <p class="text-sm font-semibold text-primary truncate">إعلان هام بخصوص الامتحانات النهائية للفصل الدراسي الثاني</p>
+                                        <div class="mt-1 flex items-center text-xs text-gray-500">
+                                            <svg class="flex-shrink-0 mr-1.5 h-4 w-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd" />
+                                            </svg>
+                                            <span>نشر في: 2 أغسطس 2024</span>
+                                            <span class="mx-2">|</span>
+                                            <span class="text-green-600 font-medium">عام</span>
+                                        </div>
+                                    </div>
+                                    <div class="mr-4 flex-shrink-0 text-xs text-gray-400">
+                                        منذ 3 ساعات
+                                    </div>
+                                </div>
+                                <div class="mt-2 text-sm text-gray-700 prose prose-sm max-w-none">
+                                     <p>يرجى من جميع الطلاب وأولياء الأمور الكرام العلم بأنه سيتم نشر جدول الامتحانات النهائية للفصل الدراسي الثاني يوم الأحد القادم الموافق 4 أغسطس 2024 على الموقع الرسمي للمدرسة ولوحة الإعلانات الرئيسية. نتمنى لجميع طلابنا التوفيق والنجاح.</p>
+                                </div>
+                                <div class="mt-3 text-left space-x-2 space-x-reverse">
+                                    <button class="edit-announcement-btn bg-primary text-white text-xs font-medium py-1 px-3 rounded hover:bg-primary-dark">تعديل</button>
+                                    <button class="delete-announcement-btn bg-red-600 text-white text-xs font-medium py-1 px-3 rounded hover:bg-red-800">حذف</button>
+                                </div>
+                            </li>
+                             
+                            <li class="px-4 py-4 sm:px-6 hover:bg-gray-50 transition-colors duration-150 ease-in-out">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex-1 min-w-0">
+                                        <p class="text-sm font-semibold text-secondary truncate">ورشة عمل تطوير مهارات المعلمين</p>
+                                         <div class="mt-1 flex items-center text-xs text-gray-500">
+                                            <svg class="flex-shrink-0 mr-1.5 h-4 w-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd" /></svg>
+                                            <span>نشر في: 1 أغسطس 2024</span>
+                                            <span class="mx-2">|</span>
+                                            <span class="text-accent-dark font-medium">فعاليات</span>
+                                        </div>
+                                    </div>
+                                    <div class="mr-4 flex-shrink-0 text-xs text-gray-400">
+                                        يوم أمس
+                                    </div>
+                                </div>
+                                <div class="mt-2 text-sm text-gray-700 prose prose-sm max-w-none">
+                                     <p>ندعو جميع المعلمين الكرام لحضور ورشة عمل بعنوان "استراتيجيات التدريس الحديثة وتوظيف التكنولوجيا في التعليم" يوم الثلاثاء القادم في تمام الساعة العاشرة صباحاً بقاعة الاجتماعات الرئيسية. حضوركم هام ومقدر.</p>
+                                </div>
+                                <div class="mt-3 text-left space-x-2 space-x-reverse">
+                                    <button class="edit-announcement-btn bg-primary text-white text-xs font-medium py-1 px-3 rounded hover:bg-primary-dark">تعديل</button>
+                                    <button class="delete-announcement-btn bg-red-600 text-white text-xs font-medium py-1 px-3 rounded hover:bg-red-800">حذف</button>
+                                </div>
+                            </li>
+                            <!-- Placeholder for no announcements -->
+                            <li id="noAnnouncementsPlaceholder" class="hidden px-4 py-10 sm:px-6 text-center">
+                                <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"></path></svg>
+                                <h3 class="mt-2 text-sm font-medium text-gray-900">لا توجد إعلانات حالياً</h3>
+                                <p class="mt-1 text-sm text-gray-500">حاول تغيير الفلاتر أو تحقق مرة أخرى لاحقاً.</p>
+                            </li>
+                         </ul>
+                         <div class="px-4 py-3 bg-gray-50 text-center sm:px-6 border-t border-gray-200">
+                            <a href="#" class="text-sm font-medium text-primary hover:text-primary-dark">تحميل المزيد من الإعلانات...</a>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add Announcement Modal -->
+    <div id="addAnnouncementModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden z-50">
+        <div class="relative top-10 md:top-20 mx-auto p-5 border w-11/12 md:max-w-md shadow-lg rounded-md bg-white">
+            <div class="mt-3">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-medium text-gray-900">إضافة إعلان جديد</h3>
+                    <button class="close-modal-btn text-gray-400 hover:text-gray-600" data-modal-id="addAnnouncementModal">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                 <form id="addAnnouncementForm" class="space-y-4">
+                    <div>
+                        <label for="announcementTitle" class="block text-sm font-medium text-gray-700">عنوان الإعلان</label>
+                        <input type="text" id="announcementTitle" name="announcementTitle" required class="mt-1 block w-full border border-primary focus:border-primary rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="announcementContent" class="block text-sm font-medium text-gray-700">محتوى الإعلان</label>
+                        <textarea id="announcementContent" name="announcementContent" rows="4" required class="mt-1 block w-full border border-primary focus:border-primary rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">تحديد الأدوار</label>
+                        <div class="flex flex-col space-y-2 bg-gray-50 p-3 rounded-md border border-gray-200">
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" class="form-checkbox text-primary focus:ring-primary" name="roles[]" value="الإداريين">
+                                <span class="mr-2">الإداريين</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" class="form-checkbox text-primary focus:ring-primary" name="roles[]" value="المعلمين">
+                                <span class="mr-2">المعلمين</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" class="form-checkbox text-primary focus:ring-primary" name="roles[]" value="المعلمين الخارجيين">
+                                <span class="mr-2">المعلمين الخارجيين</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" class="form-checkbox text-primary focus:ring-primary" name="roles[]" value="الطلاب">
+                                <span class="mr-2">الطلاب</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" class="form-checkbox text-primary focus:ring-primary" name="roles[]" value="أولياء الأمور">
+                                <span class="mr-2">أولياء الأمور</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-end pt-4 space-x-2 space-x-reverse">
+                        <button type="button" class="cancel-modal-btn bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded-md" data-modal-id="addAnnouncementModal">
+                            إلغاء
+                        </button>
+                        <button type="submit" class="bg-primary hover:bg-primary-dark text-white font-medium py-2 px-4 rounded-md">
+                            نشر الإعلان
+                        </button>
+                    </div>
+                 </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Announcement Modal -->
+    <div id="editAnnouncementModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden z-50">
+        <div class="relative top-10 md:top-20 mx-auto p-5 border w-11/12 md:max-w-md shadow-lg rounded-md bg-white">
+            <div class="mt-3">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-medium text-gray-900">تعديل الإعلان</h3>
+                    <button class="close-modal-btn text-gray-400 hover:text-gray-600" data-modal-id="editAnnouncementModal">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                 <form id="editAnnouncementForm" class="space-y-4">
+                    <div>
+                        <label for="editAnnouncementTitle" class="block text-sm font-medium text-gray-700">عنوان الإعلان</label>
+                        <input type="text" id="editAnnouncementTitle" name="editAnnouncementTitle" required class="mt-1 block w-full border border-primary focus:border-primary rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="editAnnouncementContent" class="block text-sm font-medium text-gray-700">محتوى الإعلان</label>
+                        <textarea id="editAnnouncementContent" name="editAnnouncementContent" rows="4" required class="mt-1 block w-full border border-primary focus:border-primary rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">تحديد الأدوار</label>
+                        <div class="flex flex-col space-y-2 bg-gray-50 p-3 rounded-md border border-gray-200">
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" class="form-checkbox text-primary focus:ring-primary" name="editRoles[]" value="الإداريين">
+                                <span class="mr-2">الإداريين</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" class="form-checkbox text-primary focus:ring-primary" name="editRoles[]" value="المعلمين">
+                                <span class="mr-2">المعلمين</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" class="form-checkbox text-primary focus:ring-primary" name="editRoles[]" value="المعلمين الخارجيين">
+                                <span class="mr-2">المعلمين الخارجيين</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" class="form-checkbox text-primary focus:ring-primary" name="editRoles[]" value="الطلاب">
+                                <span class="mr-2">الطلاب</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" class="form-checkbox text-primary focus:ring-primary" name="editRoles[]" value="أولياء الأمور">
+                                <span class="mr-2">أولياء الأمور</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-end pt-4 space-x-2 space-x-reverse">
+                        <button type="button" class="cancel-modal-btn bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded-md" data-modal-id="editAnnouncementModal">
+                            إلغاء
+                        </button>
+                        <button type="submit" class="bg-primary hover:bg-primary-dark text-white font-medium py-2 px-4 rounded-md">
+                            حفظ التعديلات
+                        </button>
+                    </div>
+                 </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="dashboard.js"></script>
+     <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile menu close button specific to announcements.html
+            const closeMobileMenuButtonAnnouncements = document.getElementById('closeMobileMenuButtonAnnouncements');
+            const mobileMenuOverlayInstance = document.getElementById('mobileMenuOverlay'); 
+            if (closeMobileMenuButtonAnnouncements && mobileMenuOverlayInstance) {
+                closeMobileMenuButtonAnnouncements.addEventListener('click', () => {
+                    mobileMenuOverlayInstance.classList.add('hidden');
+                });
+            }
+
+            // --- Add Announcement Modal Functionality ---
+            const addAnnouncementBtn = document.getElementById('addAnnouncementBtn');
+            const addAnnouncementModal = document.getElementById('addAnnouncementModal');
+            const addAnnouncementForm = document.getElementById('addAnnouncementForm');
+
+            const toggleModal = (modal, show) => {
+                if (modal) {
+                    modal.classList.toggle('hidden', !show);
+                }
+            };
+
+            // Open Modal Button
+            if (addAnnouncementBtn) {
+                addAnnouncementBtn.addEventListener('click', () => {
+                    toggleModal(addAnnouncementModal, true);
+                    if (addAnnouncementForm) addAnnouncementForm.reset();
+                });
+            }
+
+            // Close Modal Buttons (using event delegation or explicit buttons)
+            document.querySelectorAll('.close-modal-btn, .cancel-modal-btn').forEach(button => {
+                // Check if the button is specifically for THIS modal
+                if (button.dataset.modalId === 'addAnnouncementModal') {
+                    button.addEventListener('click', () => {
+                        toggleModal(addAnnouncementModal, false);
+                    });
+                }
+            });
+            
+            // Close modal when clicking outside
+            if (addAnnouncementModal) {
+                addAnnouncementModal.addEventListener('click', (event) => {
+                    if (event.target === addAnnouncementModal) { // Check if the click is on the overlay itself
+                        toggleModal(addAnnouncementModal, false);
+                    }
+                });
+            }
+
+            // Add Announcement Form Submission
+            if (addAnnouncementForm) {
+                addAnnouncementForm.addEventListener('submit', (event) => {
+                    event.preventDefault();
+                    const formData = new FormData(addAnnouncementForm);
+                    const announcementData = Object.fromEntries(formData.entries());
+                    console.log('Add Announcement form submitted:', announcementData);
+                    alert(`تم إرسال بيانات الإعلان: "${announcementData.announcementTitle}" من نوع "${announcementData.roles.join(', ')}". (سيتم ربطه بالـ backend لاحقاً)`);
+                    // Backend Note: Send announcementData to backend API for creation. On success, refresh the announcements list.
+                    
+                    // Simulate adding a new announcement to the list (for frontend demo)
+                    const newAnnouncementHTML = `
+                        <li class="px-4 py-4 sm:px-6 hover:bg-gray-50 transition-colors duration-150 ease-in-out">
+                            <div class="flex items-center justify-between">
+                                <div class="flex-1 min-w-0">
+                                    <p class="text-sm font-semibold text-primary truncate">${announcementData.announcementTitle}</p>
+                                    <div class="mt-1 flex items-center text-xs text-gray-500">
+                                        <svg class="flex-shrink-0 mr-1.5 h-4 w-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                            <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd" />
+                                        </svg>
+                                        <span>نشر في: ${new Date().toLocaleDateString('ar-EG')}</span>
+                                        <span class="mx-2">|</span>
+                                        <span class="text-green-600 font-medium">${announcementData.roles.join(', ')}</span>
+                                    </div>
+                                </div>
+                                <div class="mr-4 flex-shrink-0 text-xs text-gray-400">
+                                    الآن
+                                </div>
+                            </div>
+                            <div class="mt-2 text-sm text-gray-700 prose prose-sm max-w-none">
+                                <p>${announcementData.announcementContent.replace(/\n/g, '<br>')}</p> <!-- Basic newline handling -->
+                            </div>
+                        </li>
+                    `;
+                    const announcementsList = document.getElementById('announcementsListContainer');
+                    const noAnnouncementsPlaceholder = document.getElementById('noAnnouncementsPlaceholder');
+
+                    if (noAnnouncementsPlaceholder && announcementsList && noAnnouncementsPlaceholder.parentNode === announcementsList) {
+                        noAnnouncementsPlaceholder.classList.add('hidden');
+                    }
+                    if(announcementsList) {
+                        announcementsList.insertAdjacentHTML('afterbegin', newAnnouncementHTML);
+                    }
+
+                    toggleModal(addAnnouncementModal, false);
+                    addAnnouncementForm.reset();
+                });
+            }
+
+            // Example: Check if announcements list is empty and show placeholder
+            const announcementsList = document.getElementById('announcementsListContainer');
+            const noAnnouncementsPlaceholder = document.getElementById('noAnnouncementsPlaceholder');
+            if (announcementsList && noAnnouncementsPlaceholder) {
+                // Initial check: If list has only the placeholder, show it. Otherwise hide it.
+                // This timeout allows dynamically added content (if any from other sources) to render first.
+                setTimeout(() => {
+                    if (announcementsList.querySelectorAll('li:not(#noAnnouncementsPlaceholder)').length === 0) {
+                        noAnnouncementsPlaceholder.classList.remove('hidden');
+                    } else {
+                        noAnnouncementsPlaceholder.classList.add('hidden');
+                    }
+                }, 0);
+            }
+
+            // Toggle roles filter visibility
+            const toggleRolesFilterBtn = document.getElementById('toggleRolesFilterBtn');
+            const rolesFilterBox = document.getElementById('rolesFilterBox');
+            const rolesFilterChevron = document.getElementById('rolesFilterChevron');
+            if (toggleRolesFilterBtn && rolesFilterBox && rolesFilterChevron) {
+                toggleRolesFilterBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    rolesFilterBox.classList.toggle('hidden');
+                    rolesFilterChevron.classList.toggle('rotate-180');
+                });
+                document.addEventListener('click', function(e) {
+                    if (!rolesFilterBox.contains(e.target) && !toggleRolesFilterBtn.contains(e.target)) {
+                        rolesFilterBox.classList.add('hidden');
+                        rolesFilterChevron.classList.remove('rotate-180');
+                    }
+                });
+            }
+            // --- فلترة الإعلانات حسب الأدوار ---
+            // استخدم معرف واضح لزر الفلترة بدلاً من الكلاسات
+            const filterBtn = document.getElementById('applyRolesFilterBtn'); // زر تطبيق الفلتر
+            if (filterBtn) {
+                filterBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const checkedRoles = Array.from(document.querySelectorAll('input[name="roles[]"]:checked')).map(cb => cb.value);
+                    // إرسال البيانات للباك إند (مثال endpoint وهمي)
+                    // ملاحظة: هذا endpoint وهمي، يجب تعديله عند ربط الباك إند الحقيقي
+                    fetch('/api/announcements/filter', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ roles: checkedRoles })
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        // هنا يمكنك تحديث قائمة الإعلانات بناءً على النتائج
+                        console.log('نتائج الفلترة:', data);
+                        alert('تم إرسال الأدوار المختارة للباك إند: ' + checkedRoles.join(', '));
+                    })
+                    .catch(err => {
+                        console.error('خطأ في الفلترة:', err);
+                        alert('حدث خطأ أثناء الاتصال بالخادم. يرجى المحاولة لاحقاً.');
+                    });
+                });
+            }
+
+            // Edit Announcement Functionality
+            const editAnnouncementModal = document.getElementById('editAnnouncementModal');
+            const editAnnouncementForm = document.getElementById('editAnnouncementForm');
+            let editingAnnouncementLi = null;
+
+            // Toggle edit modal
+            document.getElementById('announcementsListContainer').addEventListener('click', function(e) {
+                const editBtn = e.target.closest('.edit-announcement-btn');
+                if (editBtn) {
+                    const li = editBtn.closest('li');
+                    editingAnnouncementLi = li;
+                    // Extract data
+                    const title = li.querySelector('p.text-sm.font-semibold')?.textContent.trim() || '';
+                    const content = li.querySelector('.prose p')?.innerHTML.replace(/<br>/g, '\n') || '';
+                    let roles = [];
+                    const rolesSpan = li.querySelector('span.text-green-600, span.text-accent-dark, span.text-accent, span.text-secondary');
+                    if (rolesSpan) roles = rolesSpan.textContent.split(',').map(r => r.trim());
+                    // Populate form
+                    document.getElementById('editAnnouncementTitle').value = title;
+                    document.getElementById('editAnnouncementContent').value = content;
+                    editAnnouncementForm.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+                    roles.forEach(role => {
+                        const cb = Array.from(editAnnouncementForm.querySelectorAll('input[type="checkbox"]')).find(c => c.value === role);
+                        if (cb) cb.checked = true;
+                    });
+                    showModal(editAnnouncementModal);
+                }
+                // تفعيل زر "حذف"
+                const deleteBtn = e.target.closest('.delete-announcement-btn');
+                if (deleteBtn) {
+                    const li = deleteBtn.closest('li');
+                    if (confirm('هل أنت متأكد أنك تريد حذف هذا الإعلان؟')) {
+                        li.remove();
+                    }
+                }
+            });
+
+            // Close edit modal
+            document.querySelectorAll('.close-modal-btn, .cancel-modal-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    hideModal(editAnnouncementModal);
+                });
+            });
+            if (editAnnouncementModal) {
+                editAnnouncementModal.addEventListener('click', function(e) {
+                    if (e.target === editAnnouncementModal) hideModal(editAnnouncementModal);
+                });
+            }
+
+            // Save changes
+            if (editAnnouncementForm) {
+                editAnnouncementForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    if (!editingAnnouncementLi) return;
+                    const formData = new FormData(editAnnouncementForm);
+                    const announcementData = Object.fromEntries(formData.entries());
+                    announcementData.roles = formData.getAll('editRoles[]');
+                    editingAnnouncementLi.querySelector('p.text-sm.font-semibold').textContent = announcementData.editAnnouncementTitle;
+                    editingAnnouncementLi.querySelector('.prose p').innerHTML = announcementData.editAnnouncementContent.replace(/\n/g, '<br>');
+                    let rolesSpan = editingAnnouncementLi.querySelector('span.text-green-600, span.text-accent-dark, span.text-accent, span.text-secondary');
+                    if (rolesSpan) rolesSpan.textContent = announcementData.roles.join(', ');
+                    hideModal(editAnnouncementModal);
+                    editingAnnouncementLi = null;
+                });
+            }
+
+            function showModal(modal) {
+                if (modal) modal.classList.remove('hidden');
+            }
+            function hideModal(modal) {
+                if (modal) modal.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>

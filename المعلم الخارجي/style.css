@@ -1,0 +1,404 @@
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap');
+
+:root {
+    --primary-color: #4A90E2; /* Blue */
+    --primary-light-color: #EAF2FB; /* Light Blue */
+    --secondary-color: #50E3C2; /* Green */
+    --secondary-light-color: #E0FBF6; /* Light Green */
+    --text-color: #333333;
+    --text-light-color: #555555;
+    --bg-color: #F7F9FA;
+    --border-color: #E0E0E0;
+    --card-bg-color: #FFFFFF;
+    --shadow-color: rgba(0, 0, 0, 0.05);
+}
+
+body {
+    font-family: 'Tajawal', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    direction: rtl;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevent horizontal scroll on body */
+}
+
+/* Sidebar */
+#sidebar {
+    background-color: var(--card-bg-color);
+    box-shadow: 0 0 15px var(--shadow-color);
+}
+
+#sidebar .text-primary {
+    color: var(--primary-color);
+}
+
+.nav-link {
+    color: var(--text-light-color);
+    font-weight: 500;
+}
+
+.nav-link i {
+    color: var(--text-light-color);
+    transition: color 0.2s;
+}
+
+.nav-link:hover i,
+.nav-link.active-link i {
+    color: var(--primary-color);
+}
+
+.nav-link.active-link {
+    background-color: var(--primary-light-color);
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.nav-link.active-link span {
+    color: var(--primary-color);
+}
+
+.nav-link:hover {
+    background-color: var(--primary-light-color);
+    color: var(--primary-color);
+}
+
+/* Header */
+header {
+    background-color: var(--card-bg-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+header .text-primary {
+    color: var(--primary-color);
+}
+
+/* Main Content Area */
+#content-area {
+    background-color: var(--bg-color);
+}
+
+/* Page Title in Header */
+#page-title {
+    color: var(--text-color);
+}
+
+/* Cards */
+.card {
+    background-color: var(--card-bg-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px var(--shadow-color);
+    padding: 1.5rem;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.card-content {
+    font-size: 1rem;
+    color: var(--text-light-color);
+}
+
+/* Tables */
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--card-bg-color);
+    box-shadow: 0 2px 8px var(--shadow-color);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.custom-table th, .custom-table td {
+    padding: 12px 15px;
+    text-align: right;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.custom-table th {
+    background-color: var(--primary-light-color);
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+.custom-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.custom-table tbody tr:hover {
+    background-color: var(--bg-color);
+}
+
+/* Buttons */
+.btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    line-height: 1.25; /* Ensure text and icon align well */
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #3a7bc8; /* Darker blue */
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #40c0a8; /* Darker green */
+    transform: translateY(-1px);
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+}
+
+.btn-outline:hover {
+    background-color: var(--primary-light-color);
+}
+
+.btn-danger {
+    background-color: #E74C3C;
+    color: white;
+}
+.btn-danger:hover {
+    background-color: #C0392B;
+}
+
+.btn-sm {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem; /* text-sm */
+}
+.btn-sm i[data-lucide] {
+    width: 1rem; /* w-4 h-4, 16px */
+    height: 1rem;
+}
+
+
+/* Forms */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.form-input, .form-textarea, .form-select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background-color: white;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-input:focus, .form-textarea:focus, .form-select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px var(--primary-light-color);
+}
+
+.form-textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* Filter input specific styling for RTL */
+.filter-input-group {
+    position: relative;
+}
+.filter-input-group .form-input {
+    padding-right: 2.5rem; /* Space for icon on the physical right */
+}
+.filter-input-group .filter-icon {
+    position: absolute;
+    right: 0.75rem; /* Position icon on the physical right */
+    left: auto;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #9CA3AF; /* gray-400 */
+    pointer-events: none; /* So it doesn't interfere with input clicks */
+}
+
+
+/* Modals */
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal-backdrop.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 500px;
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+}
+
+.modal-content.modal-sm {
+    max-width: 420px;
+}
+
+
+.modal-backdrop.active .modal-content {
+    transform: scale(1);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.modal-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.modal-close-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-light-color);
+    padding: 0.25rem; /* Ensure it's easily clickable */
+    line-height: 1; /* Align icon better */
+}
+.modal-close-btn:hover {
+    color: var(--primary-color);
+}
+
+/* Header Dropdowns/Popups */
+#notifications-popup, #user-menu-dropdown {
+    animation: fadeInScaleUp 0.2s ease-out;
+}
+
+@keyframes fadeInScaleUp {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    #sidebar {
+        position: fixed;
+        right: 0; /* For RTL */
+        left: auto;
+        transform: translateX(100%); /* For RTL, sidebar slides out to the right */
+        z-index: 1000; /* Needs to be higher than other content like header */
+        height: 100vh;
+    }
+    #sidebar.active {
+        transform: translateX(0);
+    }
+    #menu-toggle { /* Ensure menu toggle is part of md:hidden in HTML */
+        display: block;
+    }
+    .modal-content, .modal-content.modal-sm {
+        width: 95%;
+        padding: 1.5rem;
+    }
+    #notifications-popup {
+        width: calc(100vw - 2rem); /* Full width minus some padding */
+        max-width: 300px; /* Still cap it */
+    }
+
+    .btn {
+        padding: 0.6rem 1.2rem; 
+        font-size: 0.9rem; 
+    }
+    .btn i[data-lucide] { 
+        width: 1.1rem; 
+        height: 1.1rem;
+    }
+
+    .btn-sm {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+    .btn-sm i[data-lucide] {
+        width: 0.9rem; 
+        height: 0.9rem;
+    }
+
+    .card-title {
+        font-size: 1.1rem; 
+    }
+    .modal-title {
+        font-size: 1.25rem;
+    }
+    .custom-table th, .custom-table td {
+        padding: 10px 12px; 
+    }
+    .custom-table th {
+        font-size: 0.85rem;
+    }
+}
+
+/* Utilities */
+.text-primary { color: var(--primary-color); }
+.bg-primary-light { background-color: var(--primary-light-color); }
+.text-secondary { color: var(--secondary-color); }
+.bg-secondary-light { background-color: var(--secondary-light-color); }
