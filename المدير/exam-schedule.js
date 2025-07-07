@@ -25,6 +25,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const examScheduleTitle = document.getElementById('examScheduleTitle');
     const saveExamBtn = document.getElementById('saveExamScheduleChanges');
     const noExamScheduleSelected = document.getElementById('noExamScheduleSelected');
+    const period1TimeInput = document.getElementById('examPeriod1Time');
+    const period2TimeInput = document.getElementById('examPeriod2Time');
     // LocalStorage helpers
     const EXAM_SCHEDULE_KEY = 'examsScheduleData2';
     const getExamScheduleData = () => {
@@ -70,9 +72,11 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!classId || !startDate) return;
         const examDays = getExamDays(startDate);
         // Header
+        const period1Time = period1TimeInput.value || '08:15';
+        const period2Time = period2TimeInput.value || '10:30';
         let headerHTML = '<tr><th class="py-3 px-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider border-b">اليوم/التاريخ</th>';
-        headerHTML += '<th class="py-3 px-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border-b">الفترة الأولى (8:15)</th>';
-        headerHTML += '<th class="py-3 px-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border-b">الفترة الثانية (10:30)</th>';
+        headerHTML += `<th class="py-3 px-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border-b">الفترة الأولى (${period1Time})</th>`;
+        headerHTML += `<th class="py-3 px-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border-b">الفترة الثانية (${period2Time})</th>`;
         headerHTML += '</tr>';
         examScheduleThead.innerHTML = headerHTML;
         // Get saved data
@@ -154,6 +158,17 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         saveExamScheduleData(allExamData);
         alert('تم حفظ جدول الامتحانات بنجاح!');
+    });
+    // إعادة رسم الجدول عند تغيير توقيت الفترات
+    period1TimeInput.addEventListener('change', () => {
+        const classId = examClassSelector.value;
+        const startDate = examStartDateInput.value;
+        if (classId && startDate) renderExamScheduleTable(classId, startDate);
+    });
+    period2TimeInput.addEventListener('change', () => {
+        const classId = examClassSelector.value;
+        const startDate = examStartDateInput.value;
+        if (classId && startDate) renderExamScheduleTable(classId, startDate);
     });
     // تهيئة الصفحة
     populateExamClassSelector();
