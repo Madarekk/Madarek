@@ -66,11 +66,20 @@ document.addEventListener('DOMContentLoaded', () => {
             examClassSelector.innerHTML = '<option value="">لا توجد بيانات صفوف، يرجى إضافتها أولاً.</option>';
             return;
         }
+        // فقط الصفوف من الرابع إلى التاسع
+        const allowedNames = [
+            'الرابع', 'الصف الرابع', 'رابع', '4', 'خامس', 'الخامس', 'الصف الخامس', '5',
+            'سادس', 'الصف السادس', '6', 'سابع', 'الصف السابع', '7',
+            'ثامن', 'الصف الثامن', '8', 'تاسع', 'الصف التاسع', '9'
+        ];
         schoolData.forEach(cls => {
-            const option = document.createElement('option');
-            option.value = cls.id;
-            option.textContent = cls.name;
-            examClassSelector.appendChild(option);
+            // يتحقق إذا كان اسم الصف يحتوي على أحد الكلمات المسموحة
+            if (allowedNames.some(n => cls.name.replace(/\s/g, '').includes(n.replace(/\s/g, '')))) {
+                const option = document.createElement('option');
+                option.value = cls.id;
+                option.textContent = cls.name;
+                examClassSelector.appendChild(option);
+            }
         });
     };
 
@@ -116,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 schedule: {}
             };
             examDays.forEach(day => {
-                classExam.schedule[day.dayKey] = [[], []]; // [period1, period2]
+                classExam.schedule[day.dayKey] = ["", ""]; // [period1, period2]
             });
         }
         // Render rows
@@ -124,18 +133,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const row = document.createElement('tr');
             let cellsHTML = `<td class="p-2 border-t border-gray-200 align-middle font-medium text-sm text-gray-700">${day.dayName}<br><span class="text-xs text-gray-400">${day.date}</span></td>`;
             for (let period = 0; period < 2; period++) {
-                // Allow up to 2 subjects per period
-                const selectedSubjects = classExam.schedule[day.dayKey][period] || [];
-                let selectsHTML = '';
-                for (let s = 0; s < 2; s++) {
-                    selectsHTML += `<select data-day="${day.dayKey}" data-period="${period}" data-index="${s}" class="exam-subject-select block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-xs py-1 mb-1">`;
-                    selectsHTML += '<option value="">اختر المادة...</option>';
-                    allSubjects.forEach(subj => {
-                        selectsHTML += `<option value="${subj}" ${(selectedSubjects[s] === subj) ? 'selected' : ''}>${subj || 'فارغ'}</option>`;
-                    });
-                    selectsHTML += '</select>';
-                }
-                cellsHTML += `<td class="p-1 align-top border-t border-l border-gray-200">${selectsHTML}</td>`;
+                const selectedSubject = classExam.schedule[day.dayKey][period] || "";
+                let selectHTML = `<select data-day="${day.dayKey}" data-period="${period}" class="exam-subject-select block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-xs py-1 mb-1">`;
+                selectHTML += '<option value="">اختر المادة...</option>';
+                allSubjects.forEach(subj => {
+                    selectHTML += `<option value="${subj}" ${(selectedSubject === subj) ? 'selected' : ''}>${subj || 'فارغ'}</option>`;
+                });
+                selectHTML += '</select>';
+                cellsHTML += `<td class="p-1 align-top border-t border-l border-gray-200">${selectHTML}</td>`;
             }
             row.innerHTML = cellsHTML;
             examScheduleGridBody.appendChild(row);
@@ -328,12 +333,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // Build schedule
         const schedule = {};
         examDays.forEach(day => {
-            schedule[day.dayKey] = [[], []];
+            schedule[day.dayKey] = ["", ""];
             for (let period = 0; period < 2; period++) {
-                for (let s = 0; s < 2; s++) {
-                    const select = examScheduleGridBody.querySelector(`.exam-subject-select[data-day="${day.dayKey}"][data-period="${period}"][data-index="${s}"]`);
-                    schedule[day.dayKey][period][s] = select ? select.value : '';
-                }
+                const select = examScheduleGridBody.querySelector(`.exam-subject-select[data-day="${day.dayKey}"][data-period="${period}"]`);
+                schedule[day.dayKey][period] = select ? select.value : "";
             }
         });
         // Save
@@ -347,6 +350,22 @@ document.addEventListener('DOMContentLoaded', () => {
         saveExamScheduleData(allExamData);
         alert('تم حفظ جدول الامتحانات بنجاح!');
     });
+
+    // --- إضافة بيانات وهمية للصفوف من الرابع إلى التاسع إذا لم تكن موجودة ---
+    (function addFakeClassesIfNeeded() {
+        const schoolData = getSchoolData();
+        if (!schoolData || schoolData.length === 0) {
+            const fakeClasses = [
+                { id: '4', name: 'الصف الرابع', sections: [], schedule: {} },
+                { id: '5', name: 'الصف الخامس', sections: [], schedule: {} },
+                { id: '6', name: 'الصف السادس', sections: [], schedule: {} },
+                { id: '7', name: 'الصف السابع', sections: [], schedule: {} },
+                { id: '8', name: 'الصف الثامن', sections: [], schedule: {} },
+                { id: '9', name: 'الصف التاسع', sections: [], schedule: {} }
+            ];
+            saveSchoolData(fakeClasses);
+        }
+    })();
 
     // --- INITIALIZATION ---
     populateClassSelector();
