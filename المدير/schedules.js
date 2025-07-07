@@ -40,6 +40,111 @@ document.addEventListener('DOMContentLoaded', () => {
     const saveBtn = document.getElementById('saveScheduleChanges');
     const placeholder = document.getElementById('noScheduleSelected');
 
+    // --- Exam Schedule Logic ---
+    const EXAM_SCHEDULE_KEY = 'examsScheduleData';
+    const examClassSelector = document.getElementById('examClassSelector');
+    const examStartDateInput = document.getElementById('examStartDate');
+    const examScheduleDisplayContainer = document.getElementById('examScheduleDisplayContainer');
+    const examScheduleGridBody = document.getElementById('examScheduleGridBody');
+    const examScheduleThead = document.getElementById('examScheduleThead');
+    const examScheduleTitle = document.getElementById('examScheduleTitle');
+    const saveExamBtn = document.getElementById('saveExamScheduleChanges');
+    const noExamScheduleSelected = document.getElementById('noExamScheduleSelected');
+
+    const getExamScheduleData = () => {
+        const data = localStorage.getItem(EXAM_SCHEDULE_KEY);
+        return data ? JSON.parse(data) : [];
+    };
+    const saveExamScheduleData = (data) => {
+        localStorage.setItem(EXAM_SCHEDULE_KEY, JSON.stringify(data));
+    };
+
+    const populateExamClassSelector = () => {
+        const schoolData = getSchoolData();
+        examClassSelector.innerHTML = '<option value="">اختر الصف الدراسي...</option>';
+        if (schoolData.length === 0) {
+            examClassSelector.innerHTML = '<option value="">لا توجد بيانات صفوف، يرجى إضافتها أولاً.</option>';
+            return;
+        }
+        schoolData.forEach(cls => {
+            const option = document.createElement('option');
+            option.value = cls.id;
+            option.textContent = cls.name;
+            examClassSelector.appendChild(option);
+        });
+    };
+
+    function getExamDays(startDate) {
+        // Returns array of {date, dayName, week, dayKey}
+        const result = [];
+        let date = new Date(startDate);
+        // Ensure start is Sunday
+        while (date.getDay() !== 0) date.setDate(date.getDate() + 1);
+        for (let week = 1; week <= 2; week++) {
+            for (let i = 0; i < 5; i++) { // Sunday to Thursday
+                const d = new Date(date);
+                d.setDate(date.getDate() + i + (week - 1) * 7);
+                result.push({
+                    date: d.toISOString().slice(0, 10),
+                    dayName: days[i].name + ' (الأسبوع ' + week + ')',
+                    week,
+                    dayKey: days[i].key + '_w' + week
+                });
+            }
+        }
+        return result;
+    }
+
+    function renderExamScheduleTable(classId, startDate) {
+        examScheduleGridBody.innerHTML = '';
+        examScheduleThead.innerHTML = '';
+        if (!classId || !startDate) return;
+        const examDays = getExamDays(startDate);
+        // Header
+        let headerHTML = '<tr><th class="py-3 px-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider border-b">اليوم/التاريخ</th>';
+        headerHTML += '<th class="py-3 px-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border-b">الفترة الأولى (8:15)</th>';
+        headerHTML += '<th class="py-3 px-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border-b">الفترة الثانية (10:30)</th>';
+        headerHTML += '</tr>';
+        examScheduleThead.innerHTML = headerHTML;
+        // Get saved data
+        const allExamData = getExamScheduleData();
+        let classExam = allExamData.find(e => e.classId === classId && e.startDate === startDate);
+        if (!classExam) {
+            classExam = {
+                classId,
+                startDate,
+                schedule: {}
+            };
+            examDays.forEach(day => {
+                classExam.schedule[day.dayKey] = [[], []]; // [period1, period2]
+            });
+        }
+        // Render rows
+        examDays.forEach(day => {
+            const row = document.createElement('tr');
+            let cellsHTML = `<td class="p-2 border-t border-gray-200 align-middle font-medium text-sm text-gray-700">${day.dayName}<br><span class="text-xs text-gray-400">${day.date}</span></td>`;
+            for (let period = 0; period < 2; period++) {
+                // Allow up to 2 subjects per period
+                const selectedSubjects = classExam.schedule[day.dayKey][period] || [];
+                let selectsHTML = '';
+                for (let s = 0; s < 2; s++) {
+                    selectsHTML += `<select data-day="${day.dayKey}" data-period="${period}" data-index="${s}" class="exam-subject-select block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-xs py-1 mb-1">`;
+                    selectsHTML += '<option value="">اختر المادة...</option>';
+                    allSubjects.forEach(subj => {
+                        selectsHTML += `<option value="${subj}" ${(selectedSubjects[s] === subj) ? 'selected' : ''}>${subj || 'فارغ'}</option>`;
+                    });
+                    selectsHTML += '</select>';
+                }
+                cellsHTML += `<td class="p-1 align-top border-t border-l border-gray-200">${selectsHTML}</td>`;
+            }
+            row.innerHTML = cellsHTML;
+            examScheduleGridBody.appendChild(row);
+        });
+        examScheduleTitle.textContent = 'جدول امتحانات الصف';
+        examScheduleDisplayContainer.classList.remove('hidden');
+        noExamScheduleSelected.classList.add('hidden');
+    }
+
     // --- FUNCTIONS ---
 
     const populateClassSelector = () => {
@@ -193,6 +298,57 @@ document.addEventListener('DOMContentLoaded', () => {
 
     saveBtn.addEventListener('click', handleSaveChanges);
 
+    // --- Exam Schedule Event Listeners ---
+    examClassSelector.addEventListener('change', () => {
+        const classId = examClassSelector.value;
+        const startDate = examStartDateInput.value;
+        if (classId && startDate) {
+            renderExamScheduleTable(classId, startDate);
+        } else {
+            examScheduleDisplayContainer.classList.add('hidden');
+            noExamScheduleSelected.classList.remove('hidden');
+        }
+    });
+    examStartDateInput.addEventListener('change', () => {
+        const classId = examClassSelector.value;
+        const startDate = examStartDateInput.value;
+        if (classId && startDate) {
+            renderExamScheduleTable(classId, startDate);
+        } else {
+            examScheduleDisplayContainer.classList.add('hidden');
+            noExamScheduleSelected.classList.remove('hidden');
+        }
+    });
+
+    saveExamBtn && saveExamBtn.addEventListener('click', () => {
+        const classId = examClassSelector.value;
+        const startDate = examStartDateInput.value;
+        if (!classId || !startDate) return;
+        const examDays = getExamDays(startDate);
+        // Build schedule
+        const schedule = {};
+        examDays.forEach(day => {
+            schedule[day.dayKey] = [[], []];
+            for (let period = 0; period < 2; period++) {
+                for (let s = 0; s < 2; s++) {
+                    const select = examScheduleGridBody.querySelector(`.exam-subject-select[data-day="${day.dayKey}"][data-period="${period}"][data-index="${s}"]`);
+                    schedule[day.dayKey][period][s] = select ? select.value : '';
+                }
+            }
+        });
+        // Save
+        let allExamData = getExamScheduleData();
+        const idx = allExamData.findIndex(e => e.classId === classId && e.startDate === startDate);
+        if (idx > -1) {
+            allExamData[idx].schedule = schedule;
+        } else {
+            allExamData.push({ classId, startDate, schedule });
+        }
+        saveExamScheduleData(allExamData);
+        alert('تم حفظ جدول الامتحانات بنجاح!');
+    });
+
     // --- INITIALIZATION ---
     populateClassSelector();
+    populateExamClassSelector();
 });
