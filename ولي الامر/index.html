@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>لوحة التحكم - مدارِك</title>
     <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
-    <link rel="stylesheet" href="../الطالب/style.css">
+    <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
@@ -41,7 +41,7 @@
     <link rel="icon"
         href="https://r2.flowith.net/files/o/1748451765656-Modern_Logo_Design_for_Madarek_School_Management_Platform_index_0@1024x1024.png"
         type="image/png">
-    <link rel="stylesheet" href="../الطالب/scrollbar-hide.css">
+    <link rel="stylesheet" href="scrollbar-hide.css">
 </head>
 
 <body class="min-h-screen flex flex-col font-arabic bg-background text-text-primary antialiased">
@@ -126,10 +126,60 @@
                                 class="p-2 text-text-secondary hover:text-text-primary lg:hidden">
                                 <i data-lucide="menu" class="h-6 w-6"></i>
                             </button>
-                            <h1 class="truncate max-w-[120px] sm:max-w-[220px] text-2xl font-bold text-text-primary lg:block">مدرسة الصديقة</h1>
+                            <h1 class="text-2xl font-bold text-text-primary lg:block">مدرسة الصِّدِيقة</h1>
                         </div>
 
                         <div class="flex items-center space-x-4 space-x-reverse">
+                            <!-- Student Selector Dropdown - Best Tailwind Style -->
+                            <div class="relative w-40">
+                                <div id="studentDropdown" class="relative w-full">
+                                    <button id="studentDropdownBtn" type="button"
+                                        class="w-full flex justify-between items-center bg-white text-right text-gray-800 text-[15px] font-medium py-2.5 px-4 pr-10 rounded-xl shadow-sm border border-gray-300 hover:border-blue-400 focus:outline-none">
+                                        <span id="selectedStudent">اختر الطالب</span>
+                                        <svg class="w-5 h-5 text-gray-400 transition-transform duration-200"
+                                            id="dropdownArrow" fill="none" stroke="currentColor" stroke-width="2"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                                        </svg>
+                                    </button>
+                                    <ul id="studentOptions"
+                                        class="absolute right-0 z-10 mt-2 w-full bg-white border border-gray-200 rounded-xl shadow-lg py-1 text-right hidden">
+                                        <li class="px-4 py-2 cursor-pointer hover:bg-blue-50" data-value="ahmad">أحمد
+                                            محمد</li>
+                                        <li class="px-4 py-2 cursor-pointer hover:bg-blue-50" data-value="sara">سارة
+                                            محمد</li>
+                                        <li class="px-4 py-2 cursor-pointer hover:bg-blue-50" data-value="yousef">يوسف
+                                            محمد</li>
+                                    </ul>
+                                </div>
+
+
+                                <!-- هذا الكود لفهم الفكرة وتوضيحها... سيتم ازالته بعد الشغل على الباك اند -->
+                                <script>
+                                    studentDropdownBtn.onclick = e => {
+                                        e.stopPropagation();
+                                        studentOptions.classList.toggle('hidden');
+                                        dropdownArrow.style.transform = studentOptions.classList.contains('hidden') ? '' : 'rotate(180deg)';
+                                    };
+                                    studentOptions.onclick = e => {
+                                        if (e.target.tagName === 'LI') {
+                                            selectedStudent.textContent = e.target.textContent;
+                                            studentOptions.classList.add('hidden');
+                                            dropdownArrow.style.transform = '';
+                                            if (typeof renderAllCards === 'function') {
+                                                renderAllCards(e.target.getAttribute('data-value'));
+                                            }
+                                        }
+                                    };
+                                    document.addEventListener('click', () => {
+                                        studentOptions.classList.add('hidden');
+                                        dropdownArrow.style.transform = '';
+                                    });
+                                </script>
+
+
+                            </div>
+
                             <!-- Notification Dropdown -->
                             <div class="relative">
                                 <button id="notificationButton" title="الإشعارات"
@@ -228,10 +278,10 @@
             </header>
 
 
-            <main class="flex-1 min-h-0 overflow-y-auto focus:outline-none p-4 sm:p-6 lg:p-8">
+            <main class="flex-2 min-h-0 overflow-y-auto focus:outline-none p-12 sm:p-12 lg:p-12">
                 <section class="mb-8">
                     <h2 class="text-2xl font-bold mb-5">الصفحة الرئيسية</h2>
-                    <div class="grid gap-4 [grid-template-columns:repeat(auto-fill,minmax(240px,1fr))]">
+                    <div class="grid gap-6 [grid-template-columns:repeat(auto-fill,minmax(200px,1fr))]">
                         <!-- البطاقة 1 -->
                         <div
                             class="bg-gradient-to-br from-primary to-primary-dark p-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
@@ -469,12 +519,141 @@
                     </div>
                 </section>
 
-                <!-- باقي المحتوى مثل الجدول الدراسي يبقى كما هو بدون تعديل -->
+                <!-- باقي المحتوى مثل الجدول الدراسي يبقى اهني -->
             </main>
 
         </div>
     </div>
-    <script src="../الطالب/script.js"></script>
+    <script src="script.js"></script>
+
+
+    <!-- هذا الكود فقط للتجربة سيتم حذفه بعدين عند استخدام الباك اند-->
+    <script id="student-cards-dynamic-script">
+        // بيانات تجريبية لكل ابن
+        const studentsData = {
+            "ahmad": {
+                assignments: [
+                    { title: "واجب الجمع", subject: "رياضيات" },
+                    { title: "واجب رسم الخلية", subject: "علوم" },
+                    { title: "واجب في درس القراءة", subject: "لغة عربية" },
+                    { title: "واجب رقم ٣", subject: "علوم" },
+                    { title: "واجب رقم ٣", subject: "لغة عربية" },
+                    { title: "واجب رقم ٣", subject: "لغة انجليزية" },
+                    { title: "الدولة العثمانية", subject: "تاريخ" },
+                    { title: "واجب في درس الحاسب", subject: "حاسوب" },
+                    { title: "واجب في درس الزكاة", subject: "تربية إسلامية" },
+                ],
+                exams: [
+                    { title: "اختبار رياضيات", status: "غدًا", color: "warning" },
+                    { title: "اختبار علوم", status: "بعد غد", color: "info" }
+                ],
+                grades: [
+                    { title: "رياضيات (اختبار)", grade: "95/100" },
+                    { title: "علوم (واجب)", grade: "18/20" }
+                ],
+                announcement: "تم تغيير موعد امتحان العلوم إلى الأسبوع القادم."
+            },
+            "sara": {
+                assignments: [
+                    { title: "واجب القسمة", subject: "رياضيات" },
+                    { title: "واجب النباتات", subject: "علوم" }
+                ],
+                exams: [
+                    { title: "اختبار لغة عربية", status: "تم الاستعداد", color: "success" }
+                ],
+                grades: [
+                    { title: "لغة عربية (اختبار)", grade: "98/100" },
+                    { title: "حاسوب (مشروع)", grade: "19/20" }
+                ],
+                announcement: "تمت إضافة نشاط جديد في مادة الحاسوب."
+            },
+            "yousef": {
+                assignments: [
+                    { title: "واجب القراءة", subject: "لغة عربية" }
+                ],
+                exams: [
+                    { title: "اختبار حاسوب", status: "الأسبوع القادم", color: "warning" }
+                ],
+                grades: [
+                    { title: "حاسوب (مشروع)", grade: "20/20" },
+                    { title: "جغرافيا (واجب)", grade: "18/20" }
+                ],
+                announcement: "يرجى متابعة واجبات اللغة العربية."
+            }
+        };
+        function renderAssignments(studentKey) {
+            // البطاقة الأولى في الشبكة
+            const assignmentsCard = document.querySelector('.grid > div:nth-child(1) .space-y-2');
+            const data = studentsData[studentKey]?.assignments || [];
+            if (assignmentsCard) {
+                assignmentsCard.innerHTML = data.map(a => `
+                <div class='flex items-center justify-between bg-white bg-opacity-15 p-2.5 rounded-lg backdrop-blur-sm'>
+                    <span class='text-white text-opacity-90'>${a.title}
+                        <span class='inline-block bg-white bg-opacity-20 text-xs text-white px-2 py-0.5 rounded ml-2'>${a.subject}</span>
+                    </span>
+                </div>
+            `).join('') || '<div class="text-white text-opacity-60">لا توجد واجبات حالياً</div>';
+            }
+        }
+        function renderExams(studentKey) {
+            // البطاقة الثانية
+            const examsCard = document.querySelector('.grid > div:nth-child(2) .space-y-2');
+            const data = studentsData[studentKey]?.exams || [];
+            if (examsCard) {
+                examsCard.innerHTML = data.map(e => `
+                <div class='flex items-center justify-between bg-white bg-opacity-15 p-2.5 rounded-lg backdrop-blur-sm'>
+                    <span class='text-white text-opacity-90'>${e.title}</span>
+                    <span class='font-bold text-white bg-${e.color} text-xs px-2 py-1 rounded-md'>${e.status}</span>
+                </div>
+            `).join('') || '<div class="text-white text-opacity-60">لا توجد اختبارات حالياً</div>';
+            }
+        }
+        function renderGrades(studentKey) {
+            // البطاقة الثالثة
+            const gradesCard = document.querySelector('.grid > div:nth-child(3) .space-y-2');
+            const data = studentsData[studentKey]?.grades || [];
+            if (gradesCard) {
+                gradesCard.innerHTML = data.map(g => `
+                <div class='flex items-center justify-between bg-white bg-opacity-15 p-2.5 rounded-lg backdrop-blur-sm'>
+                    <span class='text-white text-opacity-90'>${g.title}</span>
+                    <span class='font-bold text-white bg-white bg-opacity-20 px-2 py-1 rounded'>${g.grade}</span>
+                </div>
+            `).join('') || '<div class="text-white text-opacity-60">لا توجد درجات حالياً</div>';
+            }
+        }
+        function renderAnnouncement(studentKey) {
+            // البطاقة الرابعة
+            const annCard = document.querySelector('.grid > div:nth-child(4) .bg-white.bg-opacity-15 p');
+            const text = studentsData[studentKey]?.announcement || 'لا توجد إعلانات حالياً';
+            if (annCard) {
+                annCard.textContent = text;
+            }
+        }
+        function renderAllCards(studentKey) {
+            renderAssignments(studentKey);
+            renderExams(studentKey);
+            renderGrades(studentKey);
+            renderAnnouncement(studentKey);
+        }
+        // عند تحميل الصفحة لأول مرة، اجعل جميع البطاقات تعرض الرسائل الافتراضية
+window.addEventListener('DOMContentLoaded', function () {
+    // واجبات
+    const assignmentsCard = document.querySelector('.grid > div:nth-child(1) .space-y-2');
+    if (assignmentsCard) assignmentsCard.innerHTML = '<div class="text-white text-opacity-60">لا توجد واجبات حالياً</div>';
+    // اختبارات
+    const examsCard = document.querySelector('.grid > div:nth-child(2) .space-y-2');
+    if (examsCard) examsCard.innerHTML = '<div class="text-white text-opacity-60">لا توجد اختبارات حالياً</div>';
+    // درجات
+    const gradesCard = document.querySelector('.grid > div:nth-child(3) .space-y-2');
+    if (gradesCard) gradesCard.innerHTML = '<div class="text-white text-opacity-60">لا توجد درجات حالياً</div>';
+    // إعلان
+    const annCard = document.querySelector('.grid > div:nth-child(4) .bg-white.bg-opacity-15 p');
+    if (annCard) annCard.textContent = 'لا توجد إعلانات حالياً';
+});
+// عند اختيار ابن من القائمة يتم استدعاء renderAllCards (موجود بالفعل في كود القائمة المخصصة)
+
+    </script>
+    <!-- نهاية الكود الديناميكي -->
 </body>
 
 </html>
