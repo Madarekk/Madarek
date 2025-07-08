@@ -131,23 +131,53 @@
 
                         <div class="flex items-center space-x-4 space-x-reverse">
                             <!-- Student Selector Dropdown - Best Tailwind Style -->
-                            <div class="relative w-52">
-                                <select id="studentSelector"
-                                    class="w-full appearance-none bg-white text-right text-gray-800 text-[15px] font-medium py-2.5 px-4 pr-10 rounded-xl shadow-sm border border-gray-300 hover:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
-                                    <option disabled selected hidden>اختر الطالب</option>
-                                    <option value="ahmad">أحمد محمد</option>
-                                    <option value="sara">سارة محمد</option>
-                                    <option value="yousef">يوسف محمد</option>
-                                </select>
-
-                                <!-- سهم مخصص -->
-                                <div
-                                    class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-400">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
-                                        viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                                    </svg>
+                            <div class="relative w-40">
+                                <div id="studentDropdown" class="relative w-full">
+                                    <button id="studentDropdownBtn" type="button"
+                                        class="w-full flex justify-between items-center bg-white text-right text-gray-800 text-[15px] font-medium py-2.5 px-4 pr-10 rounded-xl shadow-sm border border-gray-300 hover:border-blue-400 focus:outline-none">
+                                        <span id="selectedStudent">اختر الطالب</span>
+                                        <svg class="w-5 h-5 text-gray-400 transition-transform duration-200"
+                                            id="dropdownArrow" fill="none" stroke="currentColor" stroke-width="2"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                                        </svg>
+                                    </button>
+                                    <ul id="studentOptions"
+                                        class="absolute right-0 z-10 mt-2 w-full bg-white border border-gray-200 rounded-xl shadow-lg py-1 text-right hidden">
+                                        <li class="px-4 py-2 cursor-pointer hover:bg-blue-50" data-value="ahmad">أحمد
+                                            محمد</li>
+                                        <li class="px-4 py-2 cursor-pointer hover:bg-blue-50" data-value="sara">سارة
+                                            محمد</li>
+                                        <li class="px-4 py-2 cursor-pointer hover:bg-blue-50" data-value="yousef">يوسف
+                                            محمد</li>
+                                    </ul>
                                 </div>
+
+
+                                <!-- هذا الكود لفهم الفكرة وتوضيحها... سيتم ازالته بعد الشغل على الباك اند -->
+                                <script>
+                                    studentDropdownBtn.onclick = e => {
+                                        e.stopPropagation();
+                                        studentOptions.classList.toggle('hidden');
+                                        dropdownArrow.style.transform = studentOptions.classList.contains('hidden') ? '' : 'rotate(180deg)';
+                                    };
+                                    studentOptions.onclick = e => {
+                                        if (e.target.tagName === 'LI') {
+                                            selectedStudent.textContent = e.target.textContent;
+                                            studentOptions.classList.add('hidden');
+                                            dropdownArrow.style.transform = '';
+                                            if (typeof renderAllCards === 'function') {
+                                                renderAllCards(e.target.getAttribute('data-value'));
+                                            }
+                                        }
+                                    };
+                                    document.addEventListener('click', () => {
+                                        studentOptions.classList.add('hidden');
+                                        dropdownArrow.style.transform = '';
+                                    });
+                                </script>
+
+
                             </div>
 
                             <!-- Notification Dropdown -->
@@ -489,7 +519,7 @@
                     </div>
                 </section>
 
-                <!-- باقي المحتوى مثل الجدول الدراسي يبقى كما هو بدون تعديل -->
+                <!-- باقي المحتوى مثل الجدول الدراسي يبقى اهني -->
             </main>
 
         </div>
@@ -505,7 +535,13 @@
                 assignments: [
                     { title: "واجب الجمع", subject: "رياضيات" },
                     { title: "واجب رسم الخلية", subject: "علوم" },
-                    { title: "واجب رقم ٣", subject: "لغة عربية" }
+                    { title: "واجب في درس القراءة", subject: "لغة عربية" },
+                    { title: "واجب رقم ٣", subject: "علوم" },
+                    { title: "واجب رقم ٣", subject: "لغة عربية" },
+                    { title: "واجب رقم ٣", subject: "لغة انجليزية" },
+                    { title: "الدولة العثمانية", subject: "تاريخ" },
+                    { title: "واجب في درس الحاسب", subject: "حاسوب" },
+                    { title: "واجب في درس الزكاة", subject: "تربية إسلامية" },
                 ],
                 exams: [
                     { title: "اختبار رياضيات", status: "غدًا", color: "warning" },
@@ -599,16 +635,23 @@
             renderGrades(studentKey);
             renderAnnouncement(studentKey);
         }
-        // عند تحميل الصفحة أو تغيير الطالب
-        const studentSelector = document.getElementById('studentSelector');
-        if (studentSelector) {
-            // عرض بيانات الطالب المختار في البداية
-            renderAllCards(studentSelector.value);
-            // عند تغيير الاختيار
-            studentSelector.addEventListener('change', function () {
-                renderAllCards(this.value);
-            });
-        }
+        // عند تحميل الصفحة لأول مرة، اجعل جميع البطاقات تعرض الرسائل الافتراضية
+window.addEventListener('DOMContentLoaded', function () {
+    // واجبات
+    const assignmentsCard = document.querySelector('.grid > div:nth-child(1) .space-y-2');
+    if (assignmentsCard) assignmentsCard.innerHTML = '<div class="text-white text-opacity-60">لا توجد واجبات حالياً</div>';
+    // اختبارات
+    const examsCard = document.querySelector('.grid > div:nth-child(2) .space-y-2');
+    if (examsCard) examsCard.innerHTML = '<div class="text-white text-opacity-60">لا توجد اختبارات حالياً</div>';
+    // درجات
+    const gradesCard = document.querySelector('.grid > div:nth-child(3) .space-y-2');
+    if (gradesCard) gradesCard.innerHTML = '<div class="text-white text-opacity-60">لا توجد درجات حالياً</div>';
+    // إعلان
+    const annCard = document.querySelector('.grid > div:nth-child(4) .bg-white.bg-opacity-15 p');
+    if (annCard) annCard.textContent = 'لا توجد إعلانات حالياً';
+});
+// عند اختيار ابن من القائمة يتم استدعاء renderAllCards (موجود بالفعل في كود القائمة المخصصة)
+
     </script>
     <!-- نهاية الكود الديناميكي -->
 </body>
