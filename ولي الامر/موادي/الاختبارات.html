@@ -133,7 +133,7 @@
                             <!-- Notification Dropdown -->
                             <div class="relative">
                                 <button id="notificationButton" title="الإشعارات"
-                                    class="p-2 text-text-secondary hover:text-text-primary relative rounded-full hover:bg-gray-100 transition-colors">
+                                    class="p-2 text-text-secondary hover:text-text-primary relative rounded-full hover:bg-gray-100 ">
                                     <i data-lucide="bell" class="h-6 w-6"></i>
                                     <span
                                         class="absolute top-2 right-2 block h-2.5 w-2.5 rounded-full bg-danger ring-2 ring-card"></span>
@@ -145,7 +145,7 @@
                                     </div>
                                     <div id="notification-list-container" class="py-1">
                                         <a href="#"
-                                            class="flex items-start px-4 py-3 text-sm text-text-primary hover:bg-gray-100 transition-colors">
+                                            class="flex items-start px-4 py-3 text-sm text-text-primary hover:bg-gray-100 ">
                                             <div class="p-2 bg-primary bg-opacity-10 rounded-full ml-3">
                                                 <i data-lucide="notebook-tabs" class="w-5 h-5 text-primary"></i>
                                             </div>
@@ -155,7 +155,7 @@
                                             </div>
                                         </a>
                                         <a href="#"
-                                            class="flex items-start px-4 py-3 text-sm text-text-primary hover:bg-gray-100 transition-colors">
+                                            class="flex items-start px-4 py-3 text-sm text-text-primary hover:bg-gray-100 ">
                                             <div class="p-2 bg-accent bg-opacity-10 rounded-full ml-3">
                                                 <i data-lucide="message-square" class="w-5 h-5 text-accent"></i>
                                             </div>
@@ -166,7 +166,7 @@
                                             </div>
                                         </a>
                                         <a href="#"
-                                            class="flex items-start px-4 py-3 text-sm text-text-primary hover:bg-gray-100 transition-colors">
+                                            class="flex items-start px-4 py-3 text-sm text-text-primary hover:bg-gray-100 ">
                                             <div class="p-2 bg-warning bg-opacity-10 rounded-full ml-3">
                                                 <i data-lucide="calendar-check" class="w-5 h-5 text-orange"></i>
                                             </div>
@@ -176,7 +176,7 @@
                                             </div>
                                         </a>
                                         <a href="#"
-                                            class="flex items-start px-4 py-3 text-sm text-text-primary hover:bg-gray-100 transition-colors">
+                                            class="flex items-start px-4 py-3 text-sm text-text-primary hover:bg-gray-100 ">
                                             <div class="p-2 bg-primary bg-opacity-10 rounded-full ml-3">
                                                 <i data-lucide="notebook-tabs" class="w-5 h-5 text-primary"></i>
                                             </div>
@@ -186,7 +186,7 @@
                                             </div>
                                         </a>
                                         <a href="#"
-                                            class="flex items-start px-4 py-3 text-sm text-text-primary hover:bg-gray-100 transition-colors">
+                                            class="flex items-start px-4 py-3 text-sm text-text-primary hover:bg-gray-100 ">
                                             <div class="p-2 bg-accent bg-opacity-10 rounded-full ml-3">
                                                 <i data-lucide="message-square" class="w-5 h-5 text-accent"></i>
                                             </div>
@@ -238,14 +238,14 @@
                             </a>
                         </li>
                         <li>
-                            <a href="الدروس.html"
-                                class="flex items-center bg-primary text-white font-bold rounded-lg px-4 py-2 shadow-lg scale-105">
+                            <a href="الدروس.html" class="flex items-center hover:text-primary">
                                 <i data-lucide="layers" class="ml-2 h-5 w-5"></i>
                                 <span class="hidden sm:inline">الدروس</span>
                             </a>
                         </li>
                         <li>
-                            <a href="الاختبارات.html" class="flex items-center hover:text-primary">
+                            <a href="الاختبارات.html"
+                                class="flex items-center bg-primary text-white font-bold rounded-lg px-4 py-2 shadow-lg scale-105">
                                 <i data-lucide="file-check-2" class="ml-2 h-5 w-5"></i>
                                 <span class="hidden sm:inline">الاختبارات</span>
                             </a>
@@ -256,40 +256,98 @@
                                 <span class="hidden sm:inline">الواجبات</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="الدرجات.html" class="flex items-center hover:text-primary">
+                                <i data-lucide="bar-chart-3" class="ml-2 h-5 w-5"></i>
+                                <span class="hidden sm:inline">الدرجات</span>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
 
+
                 <div>
-                    <div class="bg-white rounded-lg shadow-md p-8 mb-8">
-                        <div class="text-center mb-2 text-sm text-gray-400">حساب</div><!--هنا اسم المادة-->
-                        <h2 class="text-xl font-bold text-center mb-6">الجمع</h2><!--هنا اسم الدرس-->
-                        <div class="mb-6">
-                            سندرس كيفية الجمع تابعوا مقطع الفيديو التالي... <!-- محتوى الدرس -->
-                        </div>
-                        <div class="flex flex-col items-center gap-6">
-                            <div class="w-full flex justify-center"> <!-- هنا مقطع فيديو بالاسفل-->
-                                <iframe class="rounded-lg shadow" width="360" height="215"
-                                    src="https://www.youtube.com/embed/1g1kQpKpK1k" title="تعلم الجمع للأطفال"
-                                    frameborder="0" allowfullscreen></iframe>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+                        <!-- بطاقة اختبار 1 -->
+                        <a href="عرض الاختبار.html" class="block max-w-2xl w-full mx-auto">
+                            <div
+                                class="bg-gradient-to-br from-primary to-accent p-5 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                                <div class="flex items-center mb-3">
+                                    <div class="bg-white bg-opacity-20 p-2 rounded-full ml-3">
+                                        <i data-lucide="file-check-2" class="h-5 w-5 text-white"></i>
+                                    </div>
+                                    <h3 class="text-lg font-semibold text-white">اختبار شهر 1</h3>
+                                </div>
+                                <div class="bg-white bg-opacity-15 p-3 rounded-lg backdrop-blur-sm">
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-white text-opacity-90">موعد الاختبار: <span
+                                                class="font-bold">2025-01-23</span></span>
+                                        <span
+                                            class="text-xs bg-white bg-opacity-30 text-white px-2 py-1 rounded-full">*/10</span>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="bg-white rounded-lg shadow-md p-8 mb-8">
-                        <div class="text-center mb-2 text-sm text-gray-400">ملفات الدرس</div>
-                        <h2 class="text-lg font-bold text-center mb-6">الملفات المرفقة</h2>
-                        <div class="flex flex-col items-center gap-6">
-                            <div class="w-full flex justify-center"><!--رابط الدرس للتحميل-->
-                                <a href="/files/جمع.pdf" download
-                                    class="flex items-center gap-3 p-4 bg-gray-50 rounded-lg border border-gray-200 hover:bg-gray-100 transition w-full max-w-xs justify-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                        stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-red-500">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M19.5 14.25v2.25A2.25 2.25 0 0 1 17.25 18.75H6.75A2.25 2.25 0 0 1 4.5 16.5V14.25m15 0L12 21m0 0l-7.5-6.75M12 21V3" />
-                                    </svg>
-                                    <span class="text-gray-700 font-semibold">الجمع - PDF</span>
-                                </a>
+                        </a>
+                        <!-- بطاقة اختبار 2 -->
+                        <a href="عرض الاختبار.html" class="block max-w-2xl w-full mx-auto">
+                            <div
+                                class="bg-gradient-to-br from-secondary to-success p-5 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                                <div class="flex items-center mb-3">
+                                    <div class="bg-white bg-opacity-20 p-2 rounded-full ml-3">
+                                        <i data-lucide="file-check-2" class="h-5 w-5 text-white"></i>
+                                    </div>
+                                    <h3 class="text-lg font-semibold text-white">اختبار شهر فبراير</h3>
+                                </div>
+                                <div class="bg-white bg-opacity-15 p-3 rounded-lg backdrop-blur-sm">
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-white text-opacity-90">موعد الاختبار: <span
+                                                class="font-bold">2025-02-15</span></span>
+                                        <span
+                                            class="text-xs bg-white bg-opacity-30 text-white px-2 py-1 rounded-full">20/20</span>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        </a>
+                        <!-- بطاقة اختبار 3 -->
+                        <a href="عرض الاختبار.html" class="block max-w-2xl w-full mx-auto">
+                            <div
+                                class="bg-gradient-to-br from-purple to-accent p-5 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                                <div class="flex items-center mb-3">
+                                    <div class="bg-white bg-opacity-20 p-2 rounded-full ml-3">
+                                        <i data-lucide="file-check-2" class="h-5 w-5 text-white"></i>
+                                    </div>
+                                    <h3 class="text-lg font-semibold text-white">اختبار قصير</h3>
+                                </div>
+                                <div class="bg-white bg-opacity-15 p-3 rounded-lg backdrop-blur-sm">
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-white text-opacity-90">موعد الاختبار: <span
+                                                class="font-bold">2025-07-20</span></span>
+                                        <span
+                                            class="text-xs bg-white bg-opacity-30 text-white px-2 py-1 rounded-full">10/7</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <!-- بطاقة اختبار 4 -->
+                        <a href="عرض الاختبار.html" class="block max-w-2xl w-full mx-auto">
+                            <div
+                                class="bg-gradient-to-br from-secondary to-success p-5 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                                <div class="flex items-center mb-3">
+                                    <div class="bg-white bg-opacity-20 p-2 rounded-full ml-3">
+                                        <i data-lucide="file-check-2" class="h-5 w-5 text-white"></i>
+                                    </div>
+                                    <h3 class="text-lg font-semibold text-white">اختبار شهر مارس</h3>
+                                </div>
+                                <div class="bg-white bg-opacity-15 p-3 rounded-lg backdrop-blur-sm">
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-white text-opacity-90">موعد الاختبار: <span
+                                                class="font-bold">2025-03-15</span></span>
+                                        <span
+                                            class="text-xs bg-white bg-opacity-30 text-white px-2 py-1 rounded-full">20/20</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </main>

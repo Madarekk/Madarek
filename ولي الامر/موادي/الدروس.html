@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدروس  - مدارِك</title>
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'arabic': ['Cairo', 'Arial', 'sans-serif']
+                    },
+                    colors: {
+                        'primary': '#0984e3',
+                        'primary-dark': '#74b9ff',
+                        'secondary': '#00b894',
+                        'accent': '#6c5ce7',
+                        'success': '#55efc4',
+                        'warning': '#fdcb6e',
+                        'danger': '#e17055',
+                        'pink': '#fd79a8',
+                        'info': '#00cec9',
+                        'purple': '#a29bfe',
+                        'orange': '#ff7675',
+                        'background': '#f8f9fa',
+                        'card': '#ffffff',
+                        'text-primary': '#2d3436',
+                        'text-secondary': '#636e72',
+                        'border': '#ddd',
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="icon" href="https://r2.flowith.net/files/o/1.748452e+12-Modern_Logo_Design_for_Madarek_School_Management_Platform_index_0@1024x1024.png" type="image/png">
+</head>
+<body class="font-arabic bg-background text-text-primary antialiased">
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <nav class="hidden lg:flex lg:flex-shrink-0 shadow-sm" id="sidebarNav" style="background-color: #1a2b4a;">
+            <div class="flex flex-col w-64">
+                <div class="flex items-center justify-center h-20 border-b border-white/10 px-4">
+                    <img src="https://r2.flowith.net/files/o/1748451765656-Modern_Logo_Design_for_Madarek_School_Management_Platform_index_0@1024x1024.png" alt="مدارك" class="h-10 w-auto rounded-full">
+                    <span class="mr-3 text-2xl font-bold text-white">مدارِك</span>
+                </div>
+                <div class="flex-grow mt-5 overflow-y-auto">
+                    <nav class="px-4">
+                        <ul class="space-y-1">
+                            <li><a href="../index.html" class="sidebar-link group flex items-center px-3 py-3 text-base font-semibold rounded-lg"><i data-lucide="layout-dashboard" class="ml-3 h-5 w-5"></i>لوحة التحكم</a></li>
+                            <li><a href="../lessons.html" class="sidebar-link group flex items-center px-3 py-3 text-base rounded-lg active"><i data-lucide="book-open" class="ml-3 h-5 w-5"></i>الدروس والمواد</a></li>
+                            <li><a href="../schedule.html" class="sidebar-link group flex items-center px-3 py-3 text-base rounded-lg"><i data-lucide="calendar-days" class="ml-3 h-5 w-5"></i>الجدول الدراسي</a></li>
+                            <li><a href="../grades.html" class="sidebar-link group flex items-center px-3 py-3 text-base rounded-lg"><i data-lucide="bar-chart-3" class="ml-3 h-5 w-5"></i>الدرجات</a></li>
+                            <li><a href="../profile.html" class="sidebar-link group flex items-center px-3 py-3 text-base rounded-lg"><i data-lucide="user" class="ml-3 h-5 w-5"></i>الملف الشخصي</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </nav>
+        
+        <!-- Mobile Sidebar -->
+        <div id="mobileMenuOverlay" class="fixed inset-0 z-40 lg:hidden hidden">
+            <div class="fixed inset-0 bg-gray-600 bg-opacity-75" aria-hidden="true"></div>
+            <nav class="fixed top-0 right-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 shadow-xl overflow-y-auto" style="background-color: #1a2b4a;">
+                <div class="px-4 pb-4 flex items-center justify-between border-b border-white/10">
+                    <div class="flex items-center">
+                        <img src="https://r2.flowith.net/files/o/1748451765656-Modern_Logo_Design_for_Madarek_School_Management_Platform_index_0@1024x1024.png" alt="مدارك" class="h-8 w-auto rounded-full">
+                        <span class="mr-2 text-lg font-bold text-white">مدارِك</span>
+                    </div>
+                    <button id="closeMobileMenuButton" class="p-2 text-text-secondary hover:text-text-primary">
+                        <i data-lucide="x" class="h-6 w-6"></i>
+                    </button>
+                </div>
+                <nav class="mt-5 px-4 flex-1">
+                     <ul class="space-y-1">
+                        <li><a href="../index.html" class="sidebar-link group flex items-center px-3 py-3 text-base font-semibold rounded-lg"><i data-lucide="layout-dashboard" class="ml-3 h-5 w-5"></i>لوحة التحكم</a></li>
+                        <li><a href="../lessons.html" class="sidebar-link group flex items-center px-3 py-3 text-base rounded-lg active"><i data-lucide="book-open" class="ml-3 h-5 w-5"></i>الدروس والمواد</a></li>                        
+                        <li><a href="../schedule.html" class="sidebar-link group flex items-center px-3 py-3 text-base rounded-lg"><i data-lucide="calendar-days" class="ml-3 h-5 w-5"></i>الجدول الدراسي</a></li>
+                        <li><a href="../grades.html" class="sidebar-link group flex items-center px-3 py-3 text-base rounded-lg"><i data-lucide="bar-chart-3" class="ml-3 h-5 w-5"></i>الدرجات</a></li>
+                        <li><a href="../profile.html" class="sidebar-link group flex items-center px-3 py-3 text-base rounded-lg"><i data-lucide="user" class="ml-3 h-5 w-5"></i>الملف الشخصي</a></li>
+                    </ul>
+                </nav>
+            </nav>
+        </div>
+
+        <!-- Main content area -->
+        <div class="flex-1 flex flex-col">
+            <!-- Header -->
+            <header class="bg-card shadow-sm border-b border-gray-200 sticky top-0 z-30">
+                <div class="mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex justify-between h-20">
+                         <div class="flex items-center">
+                            <button id="mobileMenuButton" class="p-2 text-text-secondary hover:text-text-primary lg:hidden">
+                                <i data-lucide="menu" class="h-6 w-6"></i>
+                            </button>
+                             <h1 class="text-2xl font-bold text-text-primary hidden lg:block">مدرسة الصِّدِيقة</h1>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4 space-x-reverse">
+                             <!-- Notification Dropdown -->
+                            <div class="relative">
+                                <button id="notificationButton" title="الإشعارات" class="p-2 text-text-secondary hover:text-text-primary relative rounded-full hover:bg-gray-100 ">
+                                    <i data-lucide="bell" class="h-6 w-6"></i>
+                                    <span class="absolute top-2 right-2 block h-2.5 w-2.5 rounded-full bg-danger ring-2 ring-card"></span>
+                                </button>
+                                <div id="notificationMenu" class="hidden absolute left-0 mt-2 w-80 rounded-md shadow-lg bg-card ring-1 ring-black ring-opacity-5 z-50">
+                                    <div class="p-3 font-bold text-text-primary border-b border-gray-100">
+                                        الإشعارات
+                                    </div>
+                                    <div id="notification-list-container" class="py-1">
+                                        <a href="#" class="flex items-start px-4 py-3 text-sm text-text-primary hover:bg-gray-100 ">
+                                            <div class="p-2 bg-primary bg-opacity-10 rounded-full ml-3">
+                                                <i data-lucide="notebook-tabs" class="w-5 h-5 text-primary"></i>
+                                            </div>
+                                            <div>
+                                                <p class="font-semibold">تم إضافة واجب منزلي جديد في مادة الرياضيات.</p>
+                                                <span class="text-xs text-text-secondary">منذ 5 دقائق</span>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="flex items-start px-4 py-3 text-sm text-text-primary hover:bg-gray-100 ">
+                                            <div class="p-2 bg-accent bg-opacity-10 rounded-full ml-3">
+                                                <i data-lucide="message-square" class="w-5 h-5 text-accent"></i>
+                                            </div>
+                                            <div>
+                                                <p class="font-semibold">رسالة جديدة من <span class="text-accent">المعلم أحمد</span>.</p>
+                                                <span class="text-xs text-text-secondary">منذ 20 دقيقة</span>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="flex items-start px-4 py-3 text-sm text-text-primary hover:bg-gray-100 ">
+                                             <div class="p-2 bg-warning bg-opacity-10 rounded-full ml-3">
+                                                <i data-lucide="calendar-check" class="w-5 h-5 text-orange"></i>
+                                            </div>
+                                            <div>
+                                                <p class="font-semibold">تذكير باختبار العلوم غدًا.</p>
+                                                 <span class="text-xs text-text-secondary">أمس، 8:00م</span>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="flex items-start px-4 py-3 text-sm text-text-primary hover:bg-gray-100 ">
+                                            <div class="p-2 bg-primary bg-opacity-10 rounded-full ml-3">
+                                                <i data-lucide="notebook-tabs" class="w-5 h-5 text-primary"></i>
+                                            </div>
+                                            <div>
+                                                <p class="font-semibold">تم إضافة واجب منزلي جديد في مادة الرياضيات.</p>
+                                                <span class="text-xs text-text-secondary">منذ 5 دقائق</span>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="flex items-start px-4 py-3 text-sm text-text-primary hover:bg-gray-100 ">
+                                            <div class="p-2 bg-accent bg-opacity-10 rounded-full ml-3">
+                                                <i data-lucide="message-square" class="w-5 h-5 text-accent"></i>
+                                            </div>
+                                            <div>
+                                                <p class="font-semibold">رسالة جديدة من <span class="text-accent">المعلم أحمد</span>.</p>
+                                                <span class="text-xs text-text-secondary">منذ 20 دقيقة</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="relative">
+                                <button id="userMenuButton" class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
+                                    <div class="h-10 w-10 rounded-full bg-primary text-white flex items-center justify-center text-lg font-bold">و</div>
+                                    <span class="mr-3 text-text-primary font-semibold hidden sm:block">ولي الامر</span>
+                                    <i data-lucide="chevron-down" class="w-4 h-4 mr-1 text-text-secondary hidden sm:block"></i>
+                                </button>
+                                <div id="userMenu" class="hidden absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-card ring-1 ring-black ring-opacity-5 z-50">
+                                    <div class="py-1">
+                                        <a href="profile.html" class="block px-4 py-2 text-sm text-text-primary hover:bg-gray-100">الملف الشخصي</a>
+                                        <div class="border-t border-gray-100"></div>
+                                        <a href="#" class="block px-4 py-2 text-sm text-danger hover:bg-red-50">تسجيل الخروج</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page content -->
+            <main class="flex-1 overflow-y-auto p-6 lg:p-8">
+                <nav class="bg-white p-4 mb-6 rounded-lg shadow-sm">
+                    <ul class="flex flex-wrap items-center gap-4 text-sm font-medium text-text-secondary">
+                        <li>
+                            <a href="الرئيسية.html" class="flex items-center hover:text-primary">
+                                <i data-lucide="home" class="ml-2 h-5 w-5"></i>
+                                <span class="hidden sm:inline">الرئيسية</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="الدروس.html" class="flex items-center bg-primary text-white font-bold rounded-lg px-4 py-2 shadow-lg scale-105">
+                                <i data-lucide="layers" class="ml-2 h-5 w-5"></i>
+                                <span class="hidden sm:inline">الدروس</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="الاختبارات.html" class="flex items-center hover:text-primary">
+                                <i data-lucide="file-check-2" class="ml-2 h-5 w-5"></i>
+                                <span class="hidden sm:inline">الاختبارات</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="الواجبات.html" class="flex items-center hover:text-primary">
+                                <i data-lucide="notebook-tabs" class="ml-2 h-5 w-5"></i>
+                                <span class="hidden sm:inline">الواجبات</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="الدرجات.html" class="flex items-center hover:text-primary">
+                                <i data-lucide="bar-chart-3" class="ml-2 h-5 w-5"></i>
+                                <span class="hidden sm:inline">الدرجات</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                
+                
+             
+                    
+                <div>
+                    <div class="flex flex-col gap-5">
+                        <!-- بطاقة اختبار 1 -->
+                        <a href="عرض الدرس.html" class="block max-w-2xl w-full mx-auto h-full">
+                            <div
+                                class="bg-gradient-to-br from-primary to-accent p-5 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 h-full flex flex-col">
+                                <div class="flex items-center mb-3">
+                                    
+                                    <h3 class="text-lg font-extrabold text-white">الباب الاول - الاعداد</h3>
+                                </div>
+                                <div class="bg-white bg-opacity-20 rounded-lg px-4 py-2 mb-4 mt-1 text-white text-base font-semibold shadow-sm">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim, odio officiis aperiam temporibus porro, sed animi expedita, natus possimus earum magnam sunt laborum quasi maxime nostrum vero nihil repudiandae eaque!</div>
+                                <div class="flex items-center gap-2 text-white text-opacity-90 mt-2 mb-2"><i data-lucide="calendar" class="h-4 w-4"></i><span class="font-bold">2025-01-23</span></div>
+                            </div>
+                        </a>
+                        <!-- بطاقة اختبار 2 -->
+                        <a href="عرض الدرس.html" class="block max-w-2xl w-full mx-auto h-full">
+                            <div
+                                class="bg-gradient-to-br from-secondary to-success p-5 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 h-full flex flex-col">
+                                <div class="flex items-center mb-3">
+                                    
+                                    <h3 class="text-lg font-extrabold text-white">درس الطرح</h3>
+                                </div>
+                                <div class="bg-white bg-opacity-20 rounded-lg px-4 py-2 mb-4 mt-1 text-white text-base font-semibold shadow-sm">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim, odio officiis aperiam temporibus porro, sed animi expedita, natus possimus earum magnam sunt laborum quasi maxime nostrum vero nihil repudiandae eaque!</div>
+                                <div class="flex items-center gap-2 text-white text-opacity-90 mt-2 mb-2"><i data-lucide="calendar" class="h-4 w-4"></i><span class="font-bold">2025-02-15</span></div>
+                            </div>
+                        </a>
+                        <!-- بطاقة اختبار 3 -->
+                        <a href="عرض الدرس.html" class="block max-w-2xl w-full mx-auto h-full">
+                            <div
+                                class="bg-gradient-to-br from-purple to-accent p-5 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 h-full flex flex-col">
+                                <div class="flex items-center mb-3">
+                                    
+                                    <h3 class="text-lg font-extrabold text-white">الباب الثاني - الاعداد</h3>
+                                </div>
+                                <div class="bg-white bg-opacity-20 rounded-lg px-4 py-2 mb-4 mt-1 text-white text-base font-semibold shadow-sm">سنتطرق إلى الأسس في هذا الدرس.</div>
+                                <div class="flex items-center gap-2 text-white text-opacity-90 mt-2 mb-2"><i data-lucide="calendar" class="h-4 w-4"></i><span class="font-bold">2025-07-20</span></div>
+                            </div>
+                        </a>
+                        <!-- بطاقة اختبار 4 -->
+                        <a href="عرض الدرس.html" class="block max-w-2xl w-full mx-auto h-full">
+                            <div
+                                class="bg-gradient-to-br from-secondary to-success p-5 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 h-full flex flex-col">
+                                <div class="flex items-center mb-3">
+                                    
+                                    <h3 class="text-lg font-extrabold text-white">الباب الثالث - الاعداد بلبلب بل نعم اجل لا نجرب</h3>
+                                </div>
+                                <div class="bg-white bg-opacity-20 rounded-lg px-4 py-2 mb-4 mt-1 text-white text-base font-semibold shadow-sm">سنتطرق إلى الأسس في هذا الدرس.</div>
+                                <div class="flex items-center gap-2 text-white text-opacity-90 mt-2 mb-2"><i data-lucide="calendar" class="h-4 w-4"></i><span class="font-bold">2025-03-15</span></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="../script.js"></script>
+</body>
+</html>
