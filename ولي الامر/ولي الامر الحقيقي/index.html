@@ -68,7 +68,7 @@
                                         data-lucide="calendar-days" class="ml-3 h-5 w-5"></i>الجدول الدراسي</a></li>
                             <li><a href="grades.html"
                                     class="sidebar-link group flex items-center px-3 py-3 text-base rounded-lg"><i
-                                        data-lucide="bar-chart-3" class="ml-3 h-5 w-5"></i>الصحيفة</a></li>
+                                        data-lucide="bar-chart-3" class="ml-3 h-5 w-5"></i>الدرجات</a></li>
                             <li><a href="profile.html"
                                     class="sidebar-link group flex items-center px-3 py-3 text-base rounded-lg"><i
                                         data-lucide="user" class="ml-3 h-5 w-5"></i>الملف الشخصي</a></li>
@@ -106,7 +106,7 @@
                                     data-lucide="calendar-days" class="ml-3 h-5 w-5"></i>الجدول الدراسي</a></li>
                         <li><a href="grades.html"
                                 class="sidebar-link group flex items-center px-3 py-3 text-base rounded-lg"><i
-                                    data-lucide="bar-chart-3" class="ml-3 h-5 w-5"></i>الصحيفة</a></li>
+                                    data-lucide="bar-chart-3" class="ml-3 h-5 w-5"></i>الدرجات</a></li>
                         <li><a href="profile.html"
                                 class="sidebar-link group flex items-center px-3 py-3 text-base rounded-lg"><i
                                     data-lucide="user" class="ml-3 h-5 w-5"></i>الملف الشخصي</a></li>
@@ -130,6 +130,26 @@
                         </div>
 
                         <div class="flex items-center space-x-4 space-x-reverse">
+                            <!-- Student Selector Dropdown - Best Tailwind Style -->
+                            <div class="relative w-52">
+                                <select id="studentSelector"
+                                    class="w-full appearance-none bg-white text-right text-gray-800 text-[15px] font-medium py-2.5 px-4 pr-10 rounded-xl shadow-sm border border-gray-300 hover:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200">
+                                    <option disabled selected hidden>اختر الطالب</option>
+                                    <option value="ahmad">أحمد محمد</option>
+                                    <option value="sara">سارة محمد</option>
+                                    <option value="yousef">يوسف محمد</option>
+                                </select>
+
+                                <!-- سهم مخصص -->
+                                <div
+                                    class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-400">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </div>
+                            </div>
+
                             <!-- Notification Dropdown -->
                             <div class="relative">
                                 <button id="notificationButton" title="الإشعارات"
@@ -205,8 +225,8 @@
                                     class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
                                     <div
                                         class="h-10 w-10 rounded-full bg-primary text-white flex items-center justify-center text-lg font-bold">
-                                        ط</div>
-                                    <span class="mr-3 text-text-primary font-semibold hidden sm:block">الطالب</span>
+                                        و</div>
+                                    <span class="mr-3 text-text-primary font-semibold hidden sm:block">ولي الامر</span>
                                     <i data-lucide="chevron-down"
                                         class="w-4 h-4 mr-1 text-text-secondary hidden sm:block"></i>
                                 </button>
@@ -230,7 +250,7 @@
 
             <main class="flex-2 min-h-0 overflow-y-auto focus:outline-none p-12 sm:p-12 lg:p-12">
                 <section class="mb-8">
-                    <h2 class="text-2xl font-bold mb-5">ملخص اليوم</h2>
+                    <h2 class="text-2xl font-bold mb-5">الصفحة الرئيسية</h2>
                     <div class="grid gap-6 [grid-template-columns:repeat(auto-fill,minmax(200px,1fr))]">
                         <!-- البطاقة 1 -->
                         <div
@@ -475,6 +495,122 @@
         </div>
     </div>
     <script src="script.js"></script>
+
+
+    <!-- هذا الكود فقط للتجربة سيتم حذفه بعدين عند استخدام الباك اند-->
+    <script id="student-cards-dynamic-script">
+        // بيانات تجريبية لكل ابن
+        const studentsData = {
+            "ahmad": {
+                assignments: [
+                    { title: "واجب الجمع", subject: "رياضيات" },
+                    { title: "واجب رسم الخلية", subject: "علوم" },
+                    { title: "واجب رقم ٣", subject: "لغة عربية" }
+                ],
+                exams: [
+                    { title: "اختبار رياضيات", status: "غدًا", color: "warning" },
+                    { title: "اختبار علوم", status: "بعد غد", color: "info" }
+                ],
+                grades: [
+                    { title: "رياضيات (اختبار)", grade: "95/100" },
+                    { title: "علوم (واجب)", grade: "18/20" }
+                ],
+                announcement: "تم تغيير موعد امتحان العلوم إلى الأسبوع القادم."
+            },
+            "sara": {
+                assignments: [
+                    { title: "واجب القسمة", subject: "رياضيات" },
+                    { title: "واجب النباتات", subject: "علوم" }
+                ],
+                exams: [
+                    { title: "اختبار لغة عربية", status: "تم الاستعداد", color: "success" }
+                ],
+                grades: [
+                    { title: "لغة عربية (اختبار)", grade: "98/100" },
+                    { title: "حاسوب (مشروع)", grade: "19/20" }
+                ],
+                announcement: "تمت إضافة نشاط جديد في مادة الحاسوب."
+            },
+            "yousef": {
+                assignments: [
+                    { title: "واجب القراءة", subject: "لغة عربية" }
+                ],
+                exams: [
+                    { title: "اختبار حاسوب", status: "الأسبوع القادم", color: "warning" }
+                ],
+                grades: [
+                    { title: "حاسوب (مشروع)", grade: "20/20" },
+                    { title: "جغرافيا (واجب)", grade: "18/20" }
+                ],
+                announcement: "يرجى متابعة واجبات اللغة العربية."
+            }
+        };
+        function renderAssignments(studentKey) {
+            // البطاقة الأولى في الشبكة
+            const assignmentsCard = document.querySelector('.grid > div:nth-child(1) .space-y-2');
+            const data = studentsData[studentKey]?.assignments || [];
+            if (assignmentsCard) {
+                assignmentsCard.innerHTML = data.map(a => `
+                <div class='flex items-center justify-between bg-white bg-opacity-15 p-2.5 rounded-lg backdrop-blur-sm'>
+                    <span class='text-white text-opacity-90'>${a.title}
+                        <span class='inline-block bg-white bg-opacity-20 text-xs text-white px-2 py-0.5 rounded ml-2'>${a.subject}</span>
+                    </span>
+                </div>
+            `).join('') || '<div class="text-white text-opacity-60">لا توجد واجبات حالياً</div>';
+            }
+        }
+        function renderExams(studentKey) {
+            // البطاقة الثانية
+            const examsCard = document.querySelector('.grid > div:nth-child(2) .space-y-2');
+            const data = studentsData[studentKey]?.exams || [];
+            if (examsCard) {
+                examsCard.innerHTML = data.map(e => `
+                <div class='flex items-center justify-between bg-white bg-opacity-15 p-2.5 rounded-lg backdrop-blur-sm'>
+                    <span class='text-white text-opacity-90'>${e.title}</span>
+                    <span class='font-bold text-white bg-${e.color} text-xs px-2 py-1 rounded-md'>${e.status}</span>
+                </div>
+            `).join('') || '<div class="text-white text-opacity-60">لا توجد اختبارات حالياً</div>';
+            }
+        }
+        function renderGrades(studentKey) {
+            // البطاقة الثالثة
+            const gradesCard = document.querySelector('.grid > div:nth-child(3) .space-y-2');
+            const data = studentsData[studentKey]?.grades || [];
+            if (gradesCard) {
+                gradesCard.innerHTML = data.map(g => `
+                <div class='flex items-center justify-between bg-white bg-opacity-15 p-2.5 rounded-lg backdrop-blur-sm'>
+                    <span class='text-white text-opacity-90'>${g.title}</span>
+                    <span class='font-bold text-white bg-white bg-opacity-20 px-2 py-1 rounded'>${g.grade}</span>
+                </div>
+            `).join('') || '<div class="text-white text-opacity-60">لا توجد درجات حالياً</div>';
+            }
+        }
+        function renderAnnouncement(studentKey) {
+            // البطاقة الرابعة
+            const annCard = document.querySelector('.grid > div:nth-child(4) .bg-white.bg-opacity-15 p');
+            const text = studentsData[studentKey]?.announcement || 'لا توجد إعلانات حالياً';
+            if (annCard) {
+                annCard.textContent = text;
+            }
+        }
+        function renderAllCards(studentKey) {
+            renderAssignments(studentKey);
+            renderExams(studentKey);
+            renderGrades(studentKey);
+            renderAnnouncement(studentKey);
+        }
+        // عند تحميل الصفحة أو تغيير الطالب
+        const studentSelector = document.getElementById('studentSelector');
+        if (studentSelector) {
+            // عرض بيانات الطالب المختار في البداية
+            renderAllCards(studentSelector.value);
+            // عند تغيير الاختيار
+            studentSelector.addEventListener('change', function () {
+                renderAllCards(this.value);
+            });
+        }
+    </script>
+    <!-- نهاية الكود الديناميكي -->
 </body>
 
 </html>

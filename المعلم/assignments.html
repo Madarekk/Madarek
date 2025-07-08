@@ -409,6 +409,14 @@
     <script src="icons.js"></script>
     <script src="script.js"></script>
     <script type="module">
+      // بيانات الطلاب
+      const studentsList = [
+          { name: 'محمد أحمد', attended: true },
+          { name: 'سارة علي', attended: false },
+          { name: 'خالد يوسف', attended: true },
+          { name: 'ليان محمد', attended: true }
+      ];
+
       // كود أزرار الواجبات والمودالات فقط (بدون أي تداخل مع القوائم المنسدلة)
       // فتح مودال إضافة واجب جديد
       document.getElementById('openCreateAssignmentModal')?.addEventListener('click', function() {
@@ -476,20 +484,52 @@
       });
       // تفعيل زر إدخال الدرجات من تفاصيل الواجب
       document.getElementById('openGradesModalBtn')?.addEventListener('click', function() {
-        document.getElementById('assignmentGradesModal').classList.remove('hidden');
-        document.body.style.overflow = 'hidden';
+        showAssignmentGradesModal();
       });
       // تفعيل أزرار إدخال الدرجات من الكروت
       document.querySelectorAll('.action-grades').forEach(btn => {
         btn.addEventListener('click', function() {
-          document.getElementById('assignmentGradesModal').classList.remove('hidden');
-          document.body.style.overflow = 'hidden';
+          showAssignmentGradesModal();
         });
       });
       // إغلاق مودال الدرجات
       document.getElementById('closeGradesModalBtn')?.addEventListener('click', function() {
         document.getElementById('assignmentGradesModal').classList.add('hidden');
         document.body.style.overflow = 'auto';
+      });
+      // دالة عرض مودال الدرجات مع تعبئة بيانات الطلاب
+      function showAssignmentGradesModal() {
+        const gradesTableBody = document.getElementById('gradesTableBody');
+        if (gradesTableBody) {
+          // استخراج الدرجة القصوى من الكارد
+          let maxGradeValue = 100;
+          const activeCard = document.querySelector('.item-card:focus-within') || 
+                           document.querySelector('.item-card:hover') ||
+                           document.querySelector('.item-card');
+          if (activeCard) {
+            const maxGradeSpan = activeCard.querySelector('.assignment-card-title span');
+            if (maxGradeSpan) {
+              const match = maxGradeSpan.textContent.match(/(\d+)/);
+              if (match) {
+                maxGradeValue = parseInt(match[1], 10);
+              }
+            }
+          }
+          
+          // تعبئة جدول الطلاب
+          gradesTableBody.innerHTML = studentsList.map(s =>
+            `<tr><td class='py-2 px-3'>${s.name}</td><td class='py-2 px-3'><input type='number' min='0' max='${maxGradeValue}' class='border rounded p-1 w-24' name='grade_${s.name.replace(/\s/g, "_")}' placeholder='الدرجة (حتى ${maxGradeValue})'></td></tr>`
+          ).join('');
+        }
+        document.getElementById('assignmentGradesModal').classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      }
+      // تفعيل نموذج الدرجات
+      document.getElementById('gradesForm')?.addEventListener('submit', function(e) {
+        e.preventDefault();
+        document.getElementById('assignmentGradesModal').classList.add('hidden');
+        document.body.style.overflow = 'auto';
+        alert('تم حفظ الدرجات بنجاح!');
       });
       // إغلاق المودالات عند الضغط خارجها
       document.querySelectorAll('.modal').forEach(modal => {

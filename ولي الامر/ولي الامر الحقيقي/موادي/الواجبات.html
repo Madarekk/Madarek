@@ -67,7 +67,7 @@
                                         data-lucide="calendar-days" class="ml-3 h-5 w-5"></i>الجدول الدراسي</a></li>
                             <li><a href="../grades.html"
                                     class="sidebar-link group flex items-center px-3 py-3 text-base rounded-lg"><i
-                                        data-lucide="bar-chart-3" class="ml-3 h-5 w-5"></i>الصحيفة</a></li>
+                                        data-lucide="bar-chart-3" class="ml-3 h-5 w-5"></i>الدرجات</a></li>
                             <li><a href="../profile.html"
                                     class="sidebar-link group flex items-center px-3 py-3 text-base rounded-lg"><i
                                         data-lucide="user" class="ml-3 h-5 w-5"></i>الملف الشخصي</a></li>
@@ -105,7 +105,7 @@
                                     data-lucide="calendar-days" class="ml-3 h-5 w-5"></i>الجدول الدراسي</a></li>
                         <li><a href="../grades.html"
                                 class="sidebar-link group flex items-center px-3 py-3 text-base rounded-lg"><i
-                                    data-lucide="bar-chart-3" class="ml-3 h-5 w-5"></i>الصحيفة</a></li>
+                                    data-lucide="bar-chart-3" class="ml-3 h-5 w-5"></i>الدرجات</a></li>
                         <li><a href="../profile.html"
                                 class="sidebar-link group flex items-center px-3 py-3 text-base rounded-lg"><i
                                     data-lucide="user" class="ml-3 h-5 w-5"></i>الملف الشخصي</a></li>
@@ -144,19 +144,69 @@
                                         الإشعارات
                                     </div>
                                     <div id="notification-list-container" class="py-1">
-                                        <!-- إشعارات ستضاف هنا -->
+                                        <a href="#"
+                                            class="flex items-start px-4 py-3 text-sm text-text-primary hover:bg-gray-100 ">
+                                            <div class="p-2 bg-primary bg-opacity-10 rounded-full ml-3">
+                                                <i data-lucide="notebook-tabs" class="w-5 h-5 text-primary"></i>
+                                            </div>
+                                            <div>
+                                                <p class="font-semibold">تم إضافة واجب منزلي جديد في مادة الرياضيات.</p>
+                                                <span class="text-xs text-text-secondary">منذ 5 دقائق</span>
+                                            </div>
+                                        </a>
+                                        <a href="#"
+                                            class="flex items-start px-4 py-3 text-sm text-text-primary hover:bg-gray-100 ">
+                                            <div class="p-2 bg-accent bg-opacity-10 rounded-full ml-3">
+                                                <i data-lucide="message-square" class="w-5 h-5 text-accent"></i>
+                                            </div>
+                                            <div>
+                                                <p class="font-semibold">رسالة جديدة من <span class="text-accent">المعلم
+                                                        أحمد</span>.</p>
+                                                <span class="text-xs text-text-secondary">منذ 20 دقيقة</span>
+                                            </div>
+                                        </a>
+                                        <a href="#"
+                                            class="flex items-start px-4 py-3 text-sm text-text-primary hover:bg-gray-100 ">
+                                            <div class="p-2 bg-warning bg-opacity-10 rounded-full ml-3">
+                                                <i data-lucide="calendar-check" class="w-5 h-5 text-orange"></i>
+                                            </div>
+                                            <div>
+                                                <p class="font-semibold">تذكير باختبار العلوم غدًا.</p>
+                                                <span class="text-xs text-text-secondary">أمس، 8:00م</span>
+                                            </div>
+                                        </a>
+                                        <a href="#"
+                                            class="flex items-start px-4 py-3 text-sm text-text-primary hover:bg-gray-100 ">
+                                            <div class="p-2 bg-primary bg-opacity-10 rounded-full ml-3">
+                                                <i data-lucide="notebook-tabs" class="w-5 h-5 text-primary"></i>
+                                            </div>
+                                            <div>
+                                                <p class="font-semibold">تم إضافة واجب منزلي جديد في مادة الرياضيات.</p>
+                                                <span class="text-xs text-text-secondary">منذ 5 دقائق</span>
+                                            </div>
+                                        </a>
+                                        <a href="#"
+                                            class="flex items-start px-4 py-3 text-sm text-text-primary hover:bg-gray-100 ">
+                                            <div class="p-2 bg-accent bg-opacity-10 rounded-full ml-3">
+                                                <i data-lucide="message-square" class="w-5 h-5 text-accent"></i>
+                                            </div>
+                                            <div>
+                                                <p class="font-semibold">رسالة جديدة من <span class="text-accent">المعلم
+                                                        أحمد</span>.</p>
+                                                <span class="text-xs text-text-secondary">منذ 20 دقيقة</span>
+                                            </div>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- User Menu -->
                             <div class="relative">
                                 <button id="userMenuButton"
                                     class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
                                     <div
                                         class="h-10 w-10 rounded-full bg-primary text-white flex items-center justify-center text-lg font-bold">
-                                        ط</div>
-                                    <span class="mr-3 text-text-primary font-semibold hidden sm:block">الطالب</span>
+                                        و</div>
+                                    <span class="mr-3 text-text-primary font-semibold hidden sm:block">ولي الامر</span>
                                     <i data-lucide="chevron-down"
                                         class="w-4 h-4 mr-1 text-text-secondary hidden sm:block"></i>
                                 </button>
@@ -179,8 +229,6 @@
 
             <!-- Page content -->
             <main class="flex-1 overflow-y-auto p-6 lg:p-8">
-                <!-- المحتوى الرئيسي يوضع هنا -->
-                <!-- Page content -->
                 <nav class="bg-white p-4 mb-6 rounded-lg shadow-sm">
                     <ul class="flex flex-wrap items-center gap-4 text-sm font-medium text-text-secondary">
                         <li>
@@ -208,53 +256,49 @@
                                 <span class="hidden sm:inline">الواجبات</span>
                             </a>
                         </li>
-                        <li>
-                            <a href="الدرجات.html"
-                                class="flex items-center bg-primary text-white font-bold rounded-lg px-4 py-2 shadow-lg scale-105">
-                                <i data-lucide="notebook-tabs" class="ml-2 h-5 w-5"></i>
-                                <span class="hidden sm:inline">الدرجات</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="النقاشات.html" class="flex items-center hover:text-primary">
-                                <i data-lucide="message-square" class="ml-2 h-5 w-5"></i>
-                                <span class="hidden sm:inline">النقاشات</span>
-                            </a>
-                        </li>
                     </ul>
                 </nav>
 
-                <div>
-    <div class="bg-white rounded-lg shadow-md p-8 mb-8">
-        <div class="text-center mb-2 text-sm text-gray-400">اسم المادة اهني</div>
-        <h2 class="text-xl font-bold text-center mb-6">واجب الجمع</h2>
-        <div class="mb-6 text-center">
-            قم بحل التمارين من 1 إلى 5 في صفحة 12 من الكتاب المدرسي.
-        </div>
-        <div class="pt-2 text-sm text-text-secondary text-left flex items-center justify-start gap-1">
-            <i data-lucide="calendar" class="w-4 h-4"></i>
-            <span class="font-semibold">آخر موعد للتسليم: 2025-07-10</span>
-        </div>
-    </div>
-    <div class="bg-white rounded-lg shadow-md p-8 mb-8">
-        <div class="text-center mb-2 text-sm text-gray-400">ملفات الواجب</div>
-        <h2 class="text-lg font-bold text-center mb-6">الملفات المرفقة</h2>
-        <div class="flex flex-col items-center gap-6">
-            <div class="w-full flex justify-center">
-                <a href="/files/واجب_الجمع.pdf" download
-                    class="flex items-center gap-3 p-4 bg-gray-50 rounded-lg border border-gray-200 hover:bg-gray-100 transition w-full max-w-xs justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-red-500">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v2.25A2.25 2.25 0 0 1 17.25 18.75H6.75A2.25 2.25 0 0 1 4.5 16.5V14.25m15 0L12 21m0 0l-7.5-6.75M12 21V3" />
-                    </svg>
-                    <span class="text-gray-700 font-semibold">واجب الجمع - PDF</span>
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
+
+                <div class="flex flex-col gap-5">
+                    <!-- بطاقة واجب 1 -->
+                    <a href="عرض الواجب.html" class="block max-w-2xl w-full mx-auto h-full">
+                        <div
+                            class="bg-gradient-to-br from-primary to-accent p-5 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 h-full flex flex-col">
+                            <div class="flex items-center mb-3 justify-between">
+                                <h3 class="text-lg font-extrabold text-white">واجب الجمع</h3>
+                                <span
+                                    class="bg-white bg-opacity-30 text-white font-bold px-4 py-1 rounded-lg text-base shadow-sm ml-2">10/10</span>
+                            </div>
+                            <div
+                                class="bg-white bg-opacity-20 rounded-lg px-4 py-2 mb-4 mt-1 text-white text-base font-semibold shadow-sm">
+                                يجب تسليم الواجب في الحصة القادمة, وايضا يجب ان Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae exercitationem facilis maiores impedit tenetur expedita, pariatur neque dicta mollitia, vel nobis cupiditate ut consequatur et placeat. Qui ab unde vitae.</div>
+                            <div class="flex items-center gap-2 text-white text-opacity-90 mt-2 mb-2">
+                                <i data-lucide="calendar" class="h-4 w-4"></i>
+                                <span class="font-bold">2025-07-05</span>
+                            </div>
+                        </div>
+                    </a>
+                    <!-- بطاقة واجب 2 -->
+                    <a href="عرض الواجب.html" class="block max-w-2xl w-full mx-auto h-full">
+                        <div
+                            class="bg-gradient-to-br from-secondary to-success p-5 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 h-full flex flex-col">
+                            <div class="flex items-center mb-3 justify-between">
+                                <h3 class="text-lg font-extrabold text-white">واجب الطرح</h3>
+                                <span
+                                    class="bg-white bg-opacity-30 text-white font-bold px-4 py-1 rounded-lg text-base shadow-sm ml-2">*/10</span>
+                            </div>
+                            <div
+                                class="bg-white bg-opacity-20 rounded-lg px-4 py-2 mb-4 mt-1 text-white text-base font-semibold shadow-sm">
+                                يجب تسليم الواجب في الحصة القادمة</div>
+                            <div class="flex items-center gap-2 text-white text-opacity-90 mt-2 mb-2">
+                                <i data-lucide="calendar" class="h-4 w-4"></i>
+                                <span class="font-bold">2025-07-10</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
             </main>
-
-
         </div>
     </div>
 

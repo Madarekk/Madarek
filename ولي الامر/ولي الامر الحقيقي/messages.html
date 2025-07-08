@@ -54,8 +54,8 @@
                       <li><a href="index.html" class="sidebar-link group flex items-center px-3 py-3 text-base font-semibold rounded-lg"><i data-lucide="layout-dashboard" class="ml-3 h-5 w-5"></i>لوحة التحكم</a></li>
                       <li><a href="lessons.html" class="sidebar-link group flex items-center px-3 py-3 text-base rounded-lg"><i data-lucide="book-open" class="ml-3 h-5 w-5"></i>الدروس والمواد</a></li>
                       <li><a href="schedule.html" class="sidebar-link group flex items-center px-3 py-3 text-base rounded-lg"><i data-lucide="calendar-days" class="ml-3 h-5 w-5"></i>الجدول الدراسي</a></li>
-                      <li><a href="grades.html" class="sidebar-link group flex items-center px-3 py-3 text-base rounded-lg"><i data-lucide="bar-chart-3" class="ml-3 h-5 w-5"></i>الصحيفة</a></li>
-                      <li><a href="profile.html" class="sidebar-link group flex items-center px-3 py-3 text-base rounded-lg active"><i data-lucide="user" class="ml-3 h-5 w-5"></i>الملف الشخصي</a></li>
+                      <li><a href="grades.html" class="sidebar-link group flex items-center px-3 py-3 text-base rounded-lg"><i data-lucide="bar-chart-3" class="ml-3 h-5 w-5"></i>الدرجات</a></li>
+                      <li><a href="profile.html" class="sidebar-link group flex items-center px-3 py-3 text-base rounded-lg"><i data-lucide="user" class="ml-3 h-5 w-5"></i>الملف الشخصي</a></li>
                   </ul>
               </nav>
           </div>
@@ -79,13 +79,15 @@
                <ul class="space-y-1">
                   <li><a href="index.html" class="sidebar-link group flex items-center px-3 py-3 text-base font-semibold rounded-lg"><i data-lucide="layout-dashboard" class="ml-3 h-5 w-5"></i>لوحة التحكم</a></li>
                   <li><a href="lessons.html" class="sidebar-link group flex items-center px-3 py-3 text-base rounded-lg"><i data-lucide="book-open" class="ml-3 h-5 w-5"></i>الدروس والمواد</a></li>
+                  
                   <li><a href="schedule.html" class="sidebar-link group flex items-center px-3 py-3 text-base rounded-lg"><i data-lucide="calendar-days" class="ml-3 h-5 w-5"></i>الجدول الدراسي</a></li>
-                  <li><a href="grades.html" class="sidebar-link group flex items-center px-3 py-3 text-base rounded-lg"><i data-lucide="bar-chart-3" class="ml-3 h-5 w-5"></i>الصحيفة</a></li>
-                  <li><a href="profile.html" class="sidebar-link group flex items-center px-3 py-3 text-base rounded-lg active"><i data-lucide="user" class="ml-3 h-5 w-5"></i>الملف الشخصي</a></li>
+                  <li><a href="grades.html" class="sidebar-link group flex items-center px-3 py-3 text-base rounded-lg"><i data-lucide="bar-chart-3" class="ml-3 h-5 w-5"></i>الدرجات</a></li>
+                  <li><a href="profile.html" class="sidebar-link group flex items-center px-3 py-3 text-base rounded-lg"><i data-lucide="user" class="ml-3 h-5 w-5"></i>الملف الشخصي</a></li>
               </ul>
           </nav>
       </nav>
   </div>
+  
     <!-- Main content area -->
     <div class="flex-1 flex flex-col overflow-hidden">
         <!-- Header -->
@@ -162,8 +164,8 @@
 
                       <div class="relative">
                           <button id="userMenuButton" class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
-                              <div class="h-10 w-10 rounded-full bg-primary text-white flex items-center justify-center text-lg font-bold">ط</div>
-                              <span class="mr-3 text-text-primary font-semibold hidden sm:block">الطالب</span>
+                              <div class="h-10 w-10 rounded-full bg-primary text-white flex items-center justify-center text-lg font-bold">و</div>
+                              <span class="mr-3 text-text-primary font-semibold hidden sm:block">ولي الامر</span>
                               <i data-lucide="chevron-down" class="w-4 h-4 mr-1 text-text-secondary hidden sm:block"></i>
                           </button>
                           <div id="userMenu" class="hidden absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-card ring-1 ring-black ring-opacity-5 z-50">
@@ -179,75 +181,49 @@
           </div>
       </header>
         <main class="flex-1 overflow-y-auto p-8 bg-background">
-          <div class="flex flex-col lg:flex-row gap-6">
-            <!-- البطاقات الجانبية -->
-            <div class="flex flex-col gap-6 w-full lg:w-1/3 order-2 lg:order-1">
-              <!-- بطاقة المستخدم -->
-              <div class="bg-white rounded-lg shadow p-6 flex flex-col items-center">
-                <div class="w-28 h-28 rounded-full bg-primary text-white flex items-center justify-center text-6xl font-bold mb-4">ط</div>
-                <div class="text-center">
-                  <div class="text-lg font-semibold mb-1">اسم الطالب</div>
-                  <div class="text-sm text-text-secondary mb-2">طالب في المدرسة</div>
-                  <a href="#" class="text-accent text-xs hover:underline">تغيير الصورة</a>
-                </div>
-              </div>
-              <!-- بطاقة معلومات إضافية -->
-              <div class="bg-white rounded-lg shadow p-6">
-                <div class="text-base font-semibold mb-4">معلومات إضافية</div>
-                <div class="flex flex-col gap-2 text-sm">
-                  <div class="flex justify-between border-b pb-1"><span class="text-text-secondary">رقم الهاتف</span><span>0920000000</span></div>
-                  <div class="flex justify-between"><span class="text-text-secondary">معرف المستخدم</span><span>50001</span></div>
-                </div>
-              </div>
+            <div class="mb-8">
+                <h2 class="text-xl font-semibold mb-4">صندوق الرسائل</h2>
+                <ul class="space-y-4">
+                  <li class="bg-white rounded-lg shadow p-4 flex justify-between items-center">
+                    <div class="flex items-center gap-2">
+                      <i data-lucide="user"></i>
+                      <span class="font-bold">المعلم أحمد:</span>
+                      <span>الرجاء مراجعة درس الجبر.</span>
+                    </div>
+                    <button class="bg-blue-100 text-blue-700 rounded px-3 py-1 flex items-center gap-1 hover:bg-blue-200"><i data-lucide="reply"></i>رد</button>
+                  </li>
+                  <li class="bg-white rounded-lg shadow p-4 flex justify-between items-center">
+                    <div class="flex items-center gap-2">
+                      <i data-lucide="user"></i>
+                      <span class="font-bold">المعلمة سارة:</span>
+                      <span>تم تصحيح الواجب الأخير.</span>
+                    </div>
+                    <button class="bg-blue-100 text-blue-700 rounded px-3 py-1 flex items-center gap-1 hover:bg-blue-200"><i data-lucide="reply"></i>رد</button>
+                  </li>
+                </ul>
             </div>
-            <!-- البطاقة الرئيسية -->
-            <div class="flex-1 order-1 lg:order-2">
-              <form class="flex flex-col gap-6" autocomplete="off">
-                <!-- تعديل معلومات الحساب -->
-                <div class="bg-white rounded-lg shadow p-6">
-                  <div class="text-xl font-semibold mb-4 flex items-center gap-2"><i data-lucide="edit"></i>تعديل معلومات الحساب</div>
-                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <label class="block mb-1">الاسم الكامل:</label>
-                      <input type="text" name="name" value="اسم الطالب" class="w-full border rounded p-2 focus:outline-blue-400">
-                    </div>
-                    <div>
-                      <label class="block mb-1">رقم الهاتف:</label>
-                      <input type="text" name="phone" value="0920000000" class="w-full border rounded p-2 focus:outline-blue-400">
-                    </div>
+            <div class="bg-white rounded-lg shadow p-6 max-w-lg">
+                <h3 class="text-lg font-semibold mb-4 flex items-center gap-2"><i data-lucide="plus-circle"></i>إرسال رسالة جديدة</h3>
+                <form class="space-y-4">
+                  <div>
+                    <label class="block mb-1">إلى:</label>
+                    <input type="text" name="to" placeholder="اسم المعلم" class="w-full border rounded p-2 focus:outline-blue-400">
                   </div>
-                  <div class="mt-4">
-                    <label class="block mb-1">نبذة تعريفية (اختياري):</label>
-                    <textarea name="bio" rows="2" class="w-full border rounded p-2 focus:outline-blue-400" placeholder="اكتب نبذة مختصرة عنك، خبراتك، أو اهتماماتك الدراسية..."></textarea>
+                  <div>
+                    <label class="block mb-1">الموضوع:</label>
+                    <input type="text" name="subject" class="w-full border rounded p-2 focus:outline-blue-400">
                   </div>
-                </div>
-                <!-- تغيير كلمة المرور -->
-                <div class="bg-white rounded-lg shadow p-6">
-                  <div class="text-xl font-semibold mb-4 flex items-center gap-2"><i data-lucide="lock"></i>تغيير كلمة المرور</div>
-                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <label class="block mb-1">كلمة المرور الحالية:</label>
-                      <input type="password" name="current_password" class="w-full border rounded p-2 focus:outline-blue-400">
-                    </div>
-                    <div>
-                      <label class="block mb-1">كلمة المرور الجديدة:</label>
-                      <input type="password" name="new_password" class="w-full border rounded p-2 focus:outline-blue-400">
-                    </div>
+                  <div>
+                    <label class="block mb-1">الرسالة:</label>
+                    <textarea name="body" rows="3" class="w-full border rounded p-2 focus:outline-blue-400"></textarea>
                   </div>
-                  <div class="mt-4">
-                    <label class="block mb-1">تأكيد كلمة المرور الجديدة:</label>
-                    <input type="password" name="confirm_password" class="w-full border rounded p-2 focus:outline-blue-400">
-                  </div>
-                </div>
-                <!-- زر الحفظ -->
-                <div class="flex justify-end">
-                  <button type="submit" class="bg-primary text-white px-8 py-2 rounded hover:bg-primary-dark flex items-center gap-2"><i data-lucide="save"></i>حفظ التغييرات</button>
-                </div>
-              </form>
+                  <button type="submit" class="bg-primary text-white px-6 py-2 rounded hover:bg-primary-dark flex items-center gap-2"><i data-lucide="send"></i>إرسال</button>
+                </form>
             </div>
-          </div>
         </main>
-       
+        <footer class="bg-card border-t border-gray-200 py-4 text-center text-sm text-text-secondary">
+            جميع الحقوق محفوظة &copy; منصتي التعليمية
+        </footer>
     </div>
 </div>
 <script src="script.js"></script>
