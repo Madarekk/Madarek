@@ -379,7 +379,7 @@ document.addEventListener('DOMContentLoaded', () => {
             { key: 'name', label: 'المستخدم' },
             { key: 'role', label: 'الدور' },
             { key: 'email', label: 'البريد الإلكتروني' },
-            { key: 'enrollmentId', label: 'معرف المستخدم' },
+            { key: 'enrollmentId', label: 'رقم القيد' },
             { key: 'phone', label: 'رقم الهاتف' },
             { key: 'createdAt', label: 'تاريخ الإنشاء' },
             { key: 'actions', label: 'الإجراءات' },
@@ -389,7 +389,7 @@ document.addEventListener('DOMContentLoaded', () => {
             { key: 'role', label: 'الدور' },
             { key: 'email', label: 'البريد الإلكتروني' },
             { key: 'subjects', label: 'المواد' },
-            { key: 'enrollmentId', label: 'معرف المستخدم' },
+            { key: 'enrollmentId', label: 'رقم القيد' },
             { key: 'phone', label: 'رقم الهاتف' },
             { key: 'createdAt', label: 'تاريخ الإنشاء' },
             { key: 'actions', label: 'الإجراءات' },
@@ -399,7 +399,7 @@ document.addEventListener('DOMContentLoaded', () => {
             { key: 'role', label: 'الدور' },
             { key: 'email', label: 'البريد الإلكتروني' },
             { key: 'courses', label: 'الدورات' },
-            { key: 'enrollmentId', label: 'معرف المستخدم' },
+            { key: 'enrollmentId', label: 'رقم القيد' },
             { key: 'phone', label: 'رقم الهاتف' },
             { key: 'createdAt', label: 'تاريخ الإنشاء' },
             { key: 'actions', label: 'الإجراءات' },
@@ -411,7 +411,7 @@ document.addEventListener('DOMContentLoaded', () => {
             { key: 'class', label: 'الصف' },
             { key: 'section', label: 'الفصل' },
             { key: 'parentName', label: 'اسم ولي الأمر' },
-            { key: 'enrollmentId', label: 'معرف المستخدم' },
+            { key: 'enrollmentId', label: 'رقم القيد' },
             { key: 'phone', label: 'رقم الهاتف' },
             { key: 'createdAt', label: 'تاريخ الإنشاء' },
             { key: 'actions', label: 'الإجراءات' },
@@ -421,8 +421,8 @@ document.addEventListener('DOMContentLoaded', () => {
             { key: 'role', label: 'الدور' },
             { key: 'email', label: 'البريد الإلكتروني' },
             { key: 'childName', label: 'اسم الابن' },
-            { key: 'enrollmentId', label: 'معرف المستخدم' },
-            { key: 'phone', label: 'رقم الهاتف' },
+            { key: 'enrollmentId', label: 'رقم القيد' },
+            { key: 'phone', label: 'رقم الهاتف' }, 
             { key: 'createdAt', label: 'تاريخ الإنشاء' },
             { key: 'actions', label: 'الإجراءات' },
         ],
@@ -478,14 +478,12 @@ document.addEventListener('DOMContentLoaded', () => {
                             <button class="text-primary hover:text-primary-dark ml-2 p-1 rounded-md focus:outline-none focus:ring-2 focus:ring-primary edit-user-btn">تعديل</button>
                             <button class="text-red-600 hover:text-red-900 p-1 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 delete-user-btn">حذف</button>
                             <button class="text-accent hover:text-primary-dark p-1 rounded-md focus:outline-none focus:ring-2 focus:ring-accent contact-btn">تواصل مع ولي الأمر</button>
-                            <button class="text-gray-700 hover:text-primary-dark p-1 rounded-md focus:outline-none focus:ring-2 focus:ring-primary show-password-btn" ${passwordAttr}>إظهار كلمة المرور</button>
                         </td>`;
                     } else {
                         rows += `<td class="px-3 py-4 whitespace-nowrap text-sm font-medium">
                             <button class="text-primary hover:text-primary-dark ml-2 p-1 rounded-md focus:outline-none focus:ring-2 focus:ring-primary edit-user-btn">تعديل</button>
                             <button class="text-red-600 hover:text-red-900 p-1 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 delete-user-btn">حذف</button>
                             <button class="text-accent hover:text-primary-dark p-1 rounded-md focus:outline-none focus:ring-2 focus:ring-accent contact-btn">تواصل</button>
-                            <button class="text-gray-700 hover:text-primary-dark p-1 rounded-md focus:outline-none focus:ring-2 focus:ring-primary show-password-btn" ${passwordAttr}>إظهار كلمة المرور</button>
                         </td>`;
                     }
                 } else if (col.key === 'subjects' && user.subjects) {

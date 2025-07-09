@@ -68,6 +68,9 @@
                             <li><a href="../grades.html"
                                     class="sidebar-link group flex items-center px-3 py-3 text-base rounded-lg"><i
                                         data-lucide="bar-chart-3" class="ml-3 h-5 w-5"></i>الدرجات</a></li>
+                            <li><a href="../messages.html"
+                                    class="sidebar-link group flex items-center px-3 py-3 text-base rounded-lg"><i
+                                        data-lucide="message-square" class="ml-3 h-5 w-5"></i>الرسائل</a></li>
                             <li><a href="../profile.html"
                                     class="sidebar-link group flex items-center px-3 py-3 text-base rounded-lg"><i
                                         data-lucide="user" class="ml-3 h-5 w-5"></i>الملف الشخصي</a></li>
@@ -106,6 +109,9 @@
                         <li><a href="../grades.html"
                                 class="sidebar-link group flex items-center px-3 py-3 text-base rounded-lg"><i
                                     data-lucide="bar-chart-3" class="ml-3 h-5 w-5"></i>الدرجات</a></li>
+                        <li><a href="../messages.html"
+                                class="sidebar-link group flex items-center px-3 py-3 text-base rounded-lg"><i
+                                    data-lucide="message-square" class="ml-3 h-5 w-5"></i>الرسائل</a></li>
                         <li><a href="../profile.html"
                                 class="sidebar-link group flex items-center px-3 py-3 text-base rounded-lg"><i
                                     data-lucide="user" class="ml-3 h-5 w-5"></i>الملف الشخصي</a></li>
@@ -155,7 +161,7 @@
                                     class="flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
                                     <div
                                         class="h-10 w-10 rounded-full bg-primary text-white flex items-center justify-center text-lg font-bold">
-                                       و</div>
+                                        و</div>
                                     <span class="mr-3 text-text-primary font-semibold hidden sm:block">ولي الامر</span>
                                     <i data-lucide="chevron-down"
                                         class="w-4 h-4 mr-1 text-text-secondary hidden sm:block"></i>
@@ -218,33 +224,35 @@
                 </nav>
 
                 <div>
-    <div class="bg-white rounded-lg shadow-md p-8 mb-8">
-        <div class="text-center mb-2 text-sm text-gray-400">اسم المادة اهني</div>
-        <h2 class="text-xl font-bold text-center mb-6">واجب الجمع</h2>
-        <div class="mb-6 text-center">
-            قم بحل التمارين من 1 إلى 5 في صفحة 12 من الكتاب المدرسي.
-        </div>
-        <div class="pt-2 text-sm text-text-secondary text-left flex items-center justify-start gap-1">
-            <i data-lucide="calendar" class="w-4 h-4"></i>
-            <span class="font-semibold">آخر موعد للتسليم: 2025-07-10</span>
-        </div>
-    </div>
-    <div class="bg-white rounded-lg shadow-md p-8 mb-8">
-        <div class="text-center mb-2 text-sm text-gray-400">ملفات الواجب</div>
-        <h2 class="text-lg font-bold text-center mb-6">الملفات المرفقة</h2>
-        <div class="flex flex-col items-center gap-6">
-            <div class="w-full flex justify-center">
-                <a href="/files/واجب_الجمع.pdf" download
-                    class="flex items-center gap-3 p-4 bg-gray-50 rounded-lg border border-gray-200 hover:bg-gray-100 transition w-full max-w-xs justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-red-500">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v2.25A2.25 2.25 0 0 1 17.25 18.75H6.75A2.25 2.25 0 0 1 4.5 16.5V14.25m15 0L12 21m0 0l-7.5-6.75M12 21V3" />
-                    </svg>
-                    <span class="text-gray-700 font-semibold">واجب الجمع - PDF</span>
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
+                    <div class="bg-white rounded-lg shadow-md p-8 mb-8">
+                        <div class="text-center mb-2 text-sm text-gray-400">اسم المادة اهني</div>
+                        <h2 class="text-xl font-bold text-center mb-6">واجب الجمع</h2>
+                        <div class="mb-6 text-center">
+                            قم بحل التمارين من 1 إلى 5 في صفحة 12 من الكتاب المدرسي.
+                        </div>
+                        <div class="pt-2 text-sm text-text-secondary text-left flex items-center justify-start gap-1">
+                            <i data-lucide="calendar" class="w-4 h-4"></i>
+                            <span class="font-semibold">آخر موعد للتسليم: 2025-07-10</span>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md p-8 mb-8">
+                        <div class="text-center mb-2 text-sm text-gray-400">ملفات الواجب</div>
+                        <h2 class="text-lg font-bold text-center mb-6">الملفات المرفقة</h2>
+                        <div class="flex flex-col items-center gap-6">
+                            <div class="w-full flex justify-center">
+                                <a href="/files/واجب_الجمع.pdf" download
+                                    class="flex items-center gap-3 p-4 bg-gray-50 rounded-lg border border-gray-200 hover:bg-gray-100 transition w-full max-w-xs justify-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-red-500">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M19.5 14.25v2.25A2.25 2.25 0 0 1 17.25 18.75H6.75A2.25 2.25 0 0 1 4.5 16.5V14.25m15 0L12 21m0 0l-7.5-6.75M12 21V3" />
+                                    </svg>
+                                    <span class="text-gray-700 font-semibold">واجب الجمع - PDF</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </main>
 
 
