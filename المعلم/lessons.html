@@ -184,6 +184,44 @@
                     </button>
                 </div>
 
+                <!-- Class Filter -->
+                <div class="mb-6 bg-card p-4 shadow rounded-lg border border-gray-200">
+                    <div class="flex flex-col sm:flex-row gap-4 items-end">
+                        <div class="flex-1">
+                            <label for="lessonClassFilter" class="block text-sm font-medium text-text-secondary mb-1">فلتر الفصل</label>
+                            <select id="lessonClassFilter" class="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm">
+                                <option value="">جميع الفصول</option>
+                                <option value="الصف الأول (أ)">الصف الأول (أ)</option>
+                                <option value="الصف الأول (ب)">الصف الأول (ب)</option>
+                                <option value="الصف الثاني (أ)">الصف الثاني (أ)</option>
+                                <option value="الصف الثاني (ب)">الصف الثاني (ب)</option>
+                                <option value="الصف الثالث (أ)">الصف الثالث (أ)</option>
+                                <option value="الصف الثالث (ب)">الصف الثالث (ب)</option>
+                                <option value="الصف الرابع (أ)">الصف الرابع (أ)</option>
+                                <option value="الصف الرابع (ب)">الصف الرابع (ب)</option>
+                                <option value="الصف الخامس (أ)">الصف الخامس (أ)</option>
+                                <option value="الصف الخامس (ب)">الصف الخامس (ب)</option>
+                                <option value="الصف السادس (أ)">الصف السادس (أ)</option>
+                                <option value="الصف السادس (ب)">الصف السادس (ب)</option>
+                                <option value="الصف السابع (أ)">الصف السابع (أ)</option>
+                                <option value="الصف السابع (ب)">الصف السابع (ب)</option>
+                                <option value="الصف الثامن (أ)">الصف الثامن (أ)</option>
+                                <option value="الصف الثامن (ب)">الصف الثامن (ب)</option>
+                                <option value="الصف التاسع (أ)">الصف التاسع (أ)</option>
+                                <option value="الصف التاسع (ب)">الصف التاسع (ب)</option>
+                            </select>
+                        </div>
+                        <div class="flex gap-2">
+                            <button id="applyLessonFilter" class="bg-primary text-white py-2 px-4 rounded-md text-sm font-medium hover:bg-primary-dark transition-colors flex items-center">
+                                <i data-lucide="filter" class="ml-2 w-4 h-4"></i> تطبيق الفلتر
+                            </button>
+                            <button id="clearLessonFilter" class="bg-gray-200 text-gray-700 py-2 px-4 rounded-md text-sm font-medium hover:bg-gray-300 transition-colors">
+                                مسح الفلتر
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Lessons List -->
                 <div class="grid grid-cols-1 gap-8">
                     <!-- قسم دروس التاريخ -->
@@ -318,7 +356,7 @@
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                        <label for="lessonClass" class="block text-sm font-medium text-text-secondary">السنة الدراسية</label>
+                        <label for="lessonClass" class="block text-sm font-medium text-text-secondary">الفصل</label>
                         <select id="lessonClass" name="lessonClass" required class="mt-1 block w-full p-2 border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm">
                             <option value="">اختر السنة...</option>
                             <option value="الصف الأول (أ)">الصف الأول (أ)</option>
@@ -544,7 +582,7 @@
             lessonDetailsContent.innerHTML = `
                 <div><span class='font-medium'>عنوان الدرس:</span> ${lesson.title}</div>
                 <div><span class='font-medium'>المادة:</span> ${lesson.subject}</div>
-                <div><span class='font-medium'>السنة الدراسية:</span> ${lesson.class}</div>
+                <div><span class='font-medium'>الفصل:</span> ${lesson.class}</div>
                 <div><span class='font-medium'>محتوى الدرس:</span><div class="bg-gray-50 rounded p-2 mt-1 whitespace-pre-line">${lesson.textContent || ''}</div></div>
                 ${fileSection}
                 <div><span class='font-medium'>تاريخ النشر:</span> ${lesson.publishDate || ''}</div>
@@ -565,6 +603,40 @@
                 document.body.classList.remove('overflow-hidden');
             }
         });
+
+        // تفعيل فلتر الفصل
+        const lessonClassFilter = document.getElementById('lessonClassFilter');
+        const applyLessonFilter = document.getElementById('applyLessonFilter');
+        const clearLessonFilter = document.getElementById('clearLessonFilter');
+
+        function filterLessonsByClass(selectedClass) {
+            const allLessonCards = document.querySelectorAll('.item-card');
+            
+            allLessonCards.forEach(card => {
+                const subjectClassText = card.querySelector('.lesson-card-subject-class')?.textContent || '';
+                const cardClass = subjectClassText.includes(' - ') ? subjectClassText.split(' - ')[1] : '';
+                
+                if (selectedClass === '' || cardClass === selectedClass) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        if (applyLessonFilter) {
+            applyLessonFilter.addEventListener('click', () => {
+                const selectedClass = lessonClassFilter.value;
+                filterLessonsByClass(selectedClass);
+            });
+        }
+
+        if (clearLessonFilter) {
+            clearLessonFilter.addEventListener('click', () => {
+                lessonClassFilter.value = '';
+                filterLessonsByClass('');
+            });
+        }
     </script>
 </body>
 </html>

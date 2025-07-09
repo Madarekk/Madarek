@@ -184,6 +184,44 @@
                     </button>
                 </div>
 
+                <!-- Class Filter -->
+                <div class="mb-6 bg-card p-4 shadow rounded-lg border border-gray-200">
+                    <div class="flex flex-col sm:flex-row gap-4 items-end">
+                        <div class="flex-1">
+                            <label for="assignmentClassFilter" class="block text-sm font-medium text-text-secondary mb-1">فلتر الفصل</label>
+                            <select id="assignmentClassFilter" class="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm">
+                                <option value="">جميع الفصول</option>
+                                <option value="الصف الأول (أ)">الصف الأول (أ)</option>
+                                <option value="الصف الأول (ب)">الصف الأول (ب)</option>
+                                <option value="الصف الثاني (أ)">الصف الثاني (أ)</option>
+                                <option value="الصف الثاني (ب)">الصف الثاني (ب)</option>
+                                <option value="الصف الثالث (أ)">الصف الثالث (أ)</option>
+                                <option value="الصف الثالث (ب)">الصف الثالث (ب)</option>
+                                <option value="الصف الرابع (أ)">الصف الرابع (أ)</option>
+                                <option value="الصف الرابع (ب)">الصف الرابع (ب)</option>
+                                <option value="الصف الخامس (أ)">الصف الخامس (أ)</option>
+                                <option value="الصف الخامس (ب)">الصف الخامس (ب)</option>
+                                <option value="الصف السادس (أ)">الصف السادس (أ)</option>
+                                <option value="الصف السادس (ب)">الصف السادس (ب)</option>
+                                <option value="الصف السابع (أ)">الصف السابع (أ)</option>
+                                <option value="الصف السابع (ب)">الصف السابع (ب)</option>
+                                <option value="الصف الثامن (أ)">الصف الثامن (أ)</option>
+                                <option value="الصف الثامن (ب)">الصف الثامن (ب)</option>
+                                <option value="الصف التاسع (أ)">الصف التاسع (أ)</option>
+                                <option value="الصف التاسع (ب)">الصف التاسع (ب)</option>
+                            </select>
+                        </div>
+                        <div class="flex gap-2">
+                            <button id="applyAssignmentFilter" class="bg-primary text-white py-2 px-4 rounded-md text-sm font-medium hover:bg-primary-dark transition-colors flex items-center">
+                                <i data-lucide="filter" class="ml-2 w-4 h-4"></i> تطبيق الفلتر
+                            </button>
+                            <button id="clearAssignmentFilter" class="bg-gray-200 text-gray-700 py-2 px-4 rounded-md text-sm font-medium hover:bg-gray-300 transition-colors">
+                                مسح الفلتر
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Assignments List -->
                 <div class="grid grid-cols-1 gap-8">
                     <!-- قسم واجبات التاريخ -->
@@ -199,6 +237,7 @@
                                     </h3>
                                 </div>
                                 <div class="text-sm text-text-secondary mt-2 assignment-card-description">اكتب بحثاً قصيراً عن أهم إنجازات الفراعنة.</div>
+                                <div class="text-xs text-accent font-medium mt-2">الفصل: الصف الأول (أ)</div>
                                 <div class="flex justify-end space-x-2 space-x-reverse mt-auto pt-3">
                                     <button class="text-secondary hover:text-secondary-dark text-sm p-1 action-edit"><i data-lucide="edit" class="w-4 h-4"></i></button>
                                     <button class="text-red-500 hover:text-red-700 text-sm p-1 action-delete"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
@@ -217,6 +256,7 @@
                                     </h3>
                                 </div>
                                 <div class="text-sm text-text-secondary mt-2 assignment-card-description">حلّل أسباب ونتائج الحروب الصليبية في نقاط مختصرة.</div>
+                                <div class="text-xs text-accent font-medium mt-2">الفصل: الصف الثاني (ب)</div>
                                 <div class="flex justify-end space-x-2 space-x-reverse mt-auto pt-3">
                                     <button class="text-secondary hover:text-secondary-dark text-sm p-1 action-edit"><i data-lucide="edit" class="w-4 h-4"></i></button>
                                     <button class="text-red-500 hover:text-red-700 text-sm p-1 action-delete"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
@@ -235,6 +275,7 @@
                                     </h3>
                                 </div>
                                 <div class="text-sm text-text-secondary mt-2 assignment-card-description">اذكر أهم الخلفاء العباسيين ودورهم في تطور الدولة.</div>
+                                <div class="text-xs text-accent font-medium mt-2">الفصل: الصف الثالث (أ)</div>
                                 <div class="flex justify-end space-x-2 space-x-reverse mt-auto pt-3">
                                     <button class="text-secondary hover:text-secondary-dark text-sm p-1 action-edit"><i data-lucide="edit" class="w-4 h-4"></i></button>
                                     <button class="text-red-500 hover:text-red-700 text-sm p-1 action-delete"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
@@ -260,6 +301,7 @@
                                     </h3>
                                 </div>
                                 <div class="text-sm text-text-secondary mt-2 assignment-card-description">اشرح أهمية علم الجغرافيا في حياتنا اليومية.</div>
+                                <div class="text-xs text-accent font-medium mt-2">الفصل: الصف الرابع (ب)</div>
                                 <div class="flex justify-end space-x-2 space-x-reverse mt-auto pt-3">
                                     <button class="text-secondary hover:text-secondary-dark text-sm p-1 action-edit"><i data-lucide="edit" class="w-4 h-4"></i></button>
                                     <button class="text-red-500 hover:text-red-700 text-sm p-1 action-delete"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
@@ -278,6 +320,7 @@
                                     </h3>
                                 </div>
                                 <div class="text-sm text-text-secondary mt-2 assignment-card-description">عدد أنواع الخرائط واستخدام كل نوع منها.</div>
+                                <div class="text-xs text-accent font-medium mt-2">الفصل: الصف الخامس (أ)</div>
                                 <div class="flex justify-end space-x-2 space-x-reverse mt-auto pt-3">
                                     <button class="text-secondary hover:text-secondary-dark text-sm p-1 action-edit"><i data-lucide="edit" class="w-4 h-4"></i></button>
                                     <button class="text-red-500 hover:text-red-700 text-sm p-1 action-delete"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
@@ -296,6 +339,7 @@
                                     </h3>
                                 </div>
                                 <div class="text-sm text-text-secondary mt-2 assignment-card-description">ناقش العوامل التي تؤثر في مناخ العالم مع أمثلة.</div>
+                                <div class="text-xs text-accent font-medium mt-2">الفصل: الصف السادس (ب)</div>
                                 <div class="flex justify-end space-x-2 space-x-reverse mt-auto pt-3">
                                     <button class="text-secondary hover:text-secondary-dark text-sm p-1 action-edit"><i data-lucide="edit" class="w-4 h-4"></i></button>
                                     <button class="text-red-500 hover:text-red-700 text-sm p-1 action-delete"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
@@ -332,13 +376,39 @@
                     <label for="assignmentMaxGrade" class="block text-sm font-medium text-text-secondary">الدرجة القصوى للواجب</label>
                     <input type="number" id="assignmentMaxGrade" name="assignmentMaxGrade" min="1" max="1000" required class="mt-1 block w-full p-2 border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm" placeholder="مثال: 20">
                 </div>
-                <div>
-                    <label for="assignmentSubject" class="block text-sm font-medium text-text-secondary">المادة</label>
-                    <select id="assignmentSubject" name="assignmentSubject" required class="mt-1 block w-full p-2 border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm">
-                        <option value="">اختر المادة...</option>
-                        <option value="التاريخ">التاريخ</option>
-                        <option value="الجغرافيا">الجغرافيا</option>
-                    </select>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label for="assignmentClass" class="block text-sm font-medium text-text-secondary">الفصل</label>
+                        <select id="assignmentClass" name="assignmentClass" required class="mt-1 block w-full p-2 border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm">
+                            <option value="">اختر الفصل...</option>
+                            <option value="الصف الأول (أ)">الصف الأول (أ)</option>
+                            <option value="الصف الأول (ب)">الصف الأول (ب)</option>
+                            <option value="الصف الثاني (أ)">الصف الثاني (أ)</option>
+                            <option value="الصف الثاني (ب)">الصف الثاني (ب)</option>
+                            <option value="الصف الثالث (أ)">الصف الثالث (أ)</option>
+                            <option value="الصف الثالث (ب)">الصف الثالث (ب)</option>
+                            <option value="الصف الرابع (أ)">الصف الرابع (أ)</option>
+                            <option value="الصف الرابع (ب)">الصف الرابع (ب)</option>
+                            <option value="الصف الخامس (أ)">الصف الخامس (أ)</option>
+                            <option value="الصف الخامس (ب)">الصف الخامس (ب)</option>
+                            <option value="الصف السادس (أ)">الصف السادس (أ)</option>
+                            <option value="الصف السادس (ب)">الصف السادس (ب)</option>
+                            <option value="الصف السابع (أ)">الصف السابع (أ)</option>
+                            <option value="الصف السابع (ب)">الصف السابع (ب)</option>
+                            <option value="الصف الثامن (أ)">الصف الثامن (أ)</option>
+                            <option value="الصف الثامن (ب)">الصف الثامن (ب)</option>
+                            <option value="الصف التاسع (أ)">الصف التاسع (أ)</option>
+                            <option value="الصف التاسع (ب)">الصف التاسع (ب)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="assignmentSubject" class="block text-sm font-medium text-text-secondary">المادة</label>
+                        <select id="assignmentSubject" name="assignmentSubject" required class="mt-1 block w-full p-2 border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm">
+                            <option value="">اختر المادة...</option>
+                            <option value="التاريخ">التاريخ</option>
+                            <option value="الجغرافيا">الجغرافيا</option>
+                        </select>
+                    </div>
                 </div>
                 <div>
                     <label for="assignmentContent" class="block text-sm font-medium text-text-secondary">محتوى الواجب</label>
@@ -587,6 +657,50 @@
           if (!userMenu.classList.contains('hidden') && !userMenu.contains(e.target) && e.target !== userMenuButton) {
             userMenu.classList.add('hidden');
           }
+        });
+      }
+
+      // تفعيل فلتر الفصل للواجبات
+      const assignmentClassFilter = document.getElementById('assignmentClassFilter');
+      const applyAssignmentFilter = document.getElementById('applyAssignmentFilter');
+      const clearAssignmentFilter = document.getElementById('clearAssignmentFilter');
+
+      function filterAssignmentsByClass(selectedClass) {
+        const allAssignmentCards = document.querySelectorAll('.item-card');
+        
+        allAssignmentCards.forEach(card => {
+          // البحث عن معلومات الفصل في الكارد (يمكن تعديل هذا حسب البنية الفعلية)
+          const cardContainer = card.closest('#historyAssignments, #geographyAssignments');
+          const isHistory = cardContainer && cardContainer.id === 'historyAssignments';
+          
+          // تحديد الفصل بناءً على موقع الكارد (يمكن تعديل هذا ليتطابق مع البيانات الفعلية)
+          let cardClass = '';
+          if (isHistory) {
+            // يمكن إضافة منطق لتحديد الفصل من البيانات الفعلية
+            cardClass = 'الصف الأول (أ)'; // مثال مؤقت
+          } else {
+            cardClass = 'الصف الأول (ب)'; // مثال مؤقت
+          }
+          
+          if (selectedClass === '' || cardClass === selectedClass) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      }
+
+      if (applyAssignmentFilter) {
+        applyAssignmentFilter.addEventListener('click', () => {
+          const selectedClass = assignmentClassFilter.value;
+          filterAssignmentsByClass(selectedClass);
+        });
+      }
+
+      if (clearAssignmentFilter) {
+        clearAssignmentFilter.addEventListener('click', () => {
+          assignmentClassFilter.value = '';
+          filterAssignmentsByClass('');
         });
       }
     </script>
