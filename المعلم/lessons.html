@@ -186,10 +186,10 @@
 
                 <!-- Class Filter -->
                 <div class="mb-6 bg-card p-4 shadow rounded-lg border border-gray-200">
-                    <div class="flex flex-col sm:flex-row gap-4 items-end">
-                        <div class="flex-1">
-                            <label for="lessonClassFilter" class="block text-sm font-medium text-text-secondary mb-1">فلتر الفصل</label>
-                            <select id="lessonClassFilter" class="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm">
+                    <div class="space-y-4">
+                        <div>
+                            <label for="lessonClassFilter" class="block text-sm font-medium text-text-secondary mb-2">فلتر الفصل</label>
+                            <select id="lessonClassFilter" class="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-primary focus:border-primary text-sm">
                                 <option value="">جميع الفصول</option>
                                 <option value="الصف الأول (أ)">الصف الأول (أ)</option>
                                 <option value="الصف الأول (ب)">الصف الأول (ب)</option>
@@ -211,11 +211,11 @@
                                 <option value="الصف التاسع (ب)">الصف التاسع (ب)</option>
                             </select>
                         </div>
-                        <div class="flex gap-2">
-                            <button id="applyLessonFilter" class="bg-primary text-white py-2 px-4 rounded-md text-sm font-medium hover:bg-primary-dark transition-colors flex items-center">
+                        <div class="flex flex-col sm:flex-row gap-3">
+                            <button id="applyLessonFilter" class="flex-1 bg-primary text-white py-3 px-4 rounded-lg text-sm font-medium hover:bg-primary-dark transition-colors flex items-center justify-center">
                                 <i data-lucide="filter" class="ml-2 w-4 h-4"></i> تطبيق الفلتر
                             </button>
-                            <button id="clearLessonFilter" class="bg-gray-200 text-gray-700 py-2 px-4 rounded-md text-sm font-medium hover:bg-gray-300 transition-colors">
+                            <button id="clearLessonFilter" class="flex-1 bg-gray-200 text-gray-700 py-3 px-4 rounded-lg text-sm font-medium hover:bg-gray-300 transition-colors">
                                 مسح الفلتر
                             </button>
                         </div>

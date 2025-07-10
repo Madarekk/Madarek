@@ -231,121 +231,248 @@
             </header>
 
             <!-- Page content -->
-            <main class="flex-1 overflow-y-auto p-6 lg:p-8">
-                <nav class="bg-white p-4 mb-6 rounded-lg shadow-sm">
-                    <ul class="flex flex-wrap items-center gap-4 text-sm font-medium text-text-secondary">
+            <main class="flex-1 overflow-y-auto p-3 sm:p-4 md:p-6 lg:p-8">
+                <!-- Breadcrumb Navigation -->
+                <nav class="bg-white p-3 sm:p-4 mb-4 sm:mb-6 rounded-lg shadow-sm">
+                    <ul
+                        class="flex flex-wrap items-center gap-2 sm:gap-4 text-xs sm:text-sm font-medium text-text-secondary">
                         <li>
-                            <a href="الرئيسية.html" class="flex items-center hover:text-primary">
-                                <i data-lucide="home" class="ml-2 h-5 w-5"></i>
+                            <a href="الرئيسية.html"
+                                class="flex items-center hover:text-primary transition-colors p-1 sm:p-2 rounded">
+                                <i data-lucide="home" class="ml-1 sm:ml-2 h-4 w-4 sm:h-5 sm:w-5"></i>
                                 <span class="hidden sm:inline">الرئيسية</span>
                             </a>
                         </li>
                         <li>
-                            <a href="الدروس.html" class="flex items-center hover:text-primary">
-                                <i data-lucide="layers" class="ml-2 h-5 w-5"></i>
+                            <a href="الدروس.html"
+                                class="flex items-center hover:text-primary transition-colors p-1 sm:p-2 rounded">
+                                <i data-lucide="layers" class="ml-1 sm:ml-2 h-4 w-4 sm:h-5 sm:w-5"></i>
                                 <span class="hidden sm:inline">الدروس</span>
                             </a>
                         </li>
                         <li>
-                            <a href="الاختبارات.html" class="flex items-center hover:text-primary">
-                                <i data-lucide="file-check-2" class="ml-2 h-5 w-5"></i>
+                            <a href="الاختبارات.html"
+                                class="flex items-center hover:text-primary transition-colors p-1 sm:p-2 rounded">
+                                <i data-lucide="file-check-2" class="ml-1 sm:ml-2 h-4 w-4 sm:h-5 sm:w-5"></i>
                                 <span class="hidden sm:inline">الاختبارات</span>
                             </a>
                         </li>
                         <li>
-                            <a href="الواجبات.html" class="flex items-center hover:text-primary">
-                                <i data-lucide="notebook-tabs" class="ml-2 h-5 w-5"></i>
+                            <a href="الواجبات.html"
+                                class="flex items-center hover:text-primary transition-colors p-1 sm:p-2 rounded">
+                                <i data-lucide="notebook-tabs" class="ml-1 sm:ml-2 h-4 w-4 sm:h-5 sm:w-5"></i>
                                 <span class="hidden sm:inline">الواجبات</span>
                             </a>
                         </li>
                         <li>
-                            <a href="الدرجات.html" class="flex items-center hover:text-primary">
-                                <i data-lucide="bar-chart-3" class="ml-2 h-5 w-5"></i>
+                            <a href="الدرجات.html"
+                                class="flex items-center hover:text-primary transition-colors p-1 sm:p-2 rounded">
+                                <i data-lucide="bar-chart-3" class="ml-1 sm:ml-2 h-4 w-4 sm:h-5 sm:w-5"></i>
                                 <span class="hidden sm:inline">الدرجات</span>
                             </a>
                         </li>
                         <li>
                             <a href="النقاشات.html"
-                                class="flex items-center bg-primary text-white font-bold rounded-lg px-4 py-2 shadow-lg scale-105">
-                                <i data-lucide="message-square" class="ml-2 h-5 w-5"></i>
+                                class="flex items-center bg-primary text-white font-bold rounded-lg px-2 sm:px-4 py-1 sm:py-2 shadow-lg scale-105">
+                                <i data-lucide="message-square" class="ml-1 sm:ml-2 h-4 w-4 sm:h-5 sm:w-5"></i>
                                 <span class="hidden sm:inline">النقاشات</span>
                             </a>
                         </li>
                     </ul>
                 </nav>
 
-
-                <div>
-                    <div class="flex items-center gap-4 mb-6">
-                        <h2 class="text-lg font-bold text-text-primary mb-6 text-right">نشر النقاش في</h2>
-                        <div class="relative inline-block w-40">
-                            <select class="block w-full px-4 py-2 text-right text-gray-700 bg-white border border-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
-                                <option value="1">فصلي</option>
-                                <option value="2">المادة</option>
-                            </select>
-                            <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
-                                <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M19 9l-7 7-7-7"></path>
-                                </svg>
+                <!-- Page Header -->
+                <div class="mb-4 sm:mb-6">
+                    <div
+                        class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-3 sm:mb-4">
+                        <div class="flex items-center gap-2 sm:gap-4">
+                            <div class="relative w-full sm:w-auto">
+                                <select
+                                    class="block w-full sm:w-40 px-3 sm:px-4 py-2 text-right text-gray-700 bg-white border border-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary text-sm">
+                                    <option value="class">نقاشات الفصل</option>
+                                    <option value="subject">نقاشات المادة</option>
+                                </select>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <h2 class="text-2xl font-bold text-text-primary mb-6 text-right">نقاشات لكل مجموعات المادة</h2>
-                    <div class="bg-white rounded-2xl shadow-lg p-6 mb-8 flex flex-col gap-4 max-w-full sm:max-w-lg md:max-w-md mx-auto">
-                        <div class="flex items-start gap-4">
+                <!-- Create New Discussion -->
+                <div
+                    class="bg-white rounded-xl sm:rounded-2xl shadow-lg p-3 sm:p-4 md:p-6 mb-6 sm:mb-8 max-w-4xl mx-auto">
+                    <div class="flex items-start gap-2 sm:gap-4">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="أفاتار"
+                            class="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full border border-gray-200 shadow-sm flex-shrink-0">
+                        <div class="flex-1 min-w-0">
+                            <textarea rows="3" placeholder="قم بكتابة منشور جديد..."
+                                class="w-full border border-gray-200 rounded-lg p-3 sm:p-4 focus:outline-none focus:ring-2 focus:ring-primary resize-none text-right text-text-primary placeholder:text-gray-400 text-sm sm:text-base transition-colors"></textarea>
+                            <div
+                                class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mt-3 sm:mt-4">
+                                <div class="flex items-center gap-3 sm:gap-4 text-gray-500">
+                                    <button title="إرفاق ملف" class="hover:text-primary transition-colors p-1">
+                                        <i data-lucide="paperclip" class="w-4 h-4 sm:w-5 sm:h-5"></i>
+                                    </button>
+                                    <button title="إضافة رمز تعبيري" class="hover:text-primary transition-colors p-1">
+                                        <i data-lucide="smile" class="w-4 h-4 sm:w-5 sm:h-5"></i>
+                                    </button>
+                                </div>
+                                <button
+                                    class="flex items-center justify-center gap-2 bg-primary hover:bg-primary-dark text-white font-bold rounded-lg px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base shadow transition-colors w-full sm:w-auto">
+                                    <i data-lucide="send" class="w-4 h-4 sm:w-5 sm:h-5"></i>
+                                    <span>نشر</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Discussions List -->
+                <div class="space-y-4 sm:space-y-6 max-w-4xl mx-auto">
+                    <!-- Discussion Item -->
+                    <div class="bg-white rounded-xl sm:rounded-2xl shadow-lg p-3 sm:p-4 md:p-6">
+                        <div class="flex items-start gap-2 sm:gap-4">
                             <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="أفاتار"
-                                class="w-14 h-14 rounded-full border border-gray-200 shadow-sm">
-                            <textarea rows="4" placeholder="قم بكتابة منشور جديد..."
-                                class="flex-1 border border-gray-200 rounded-lg p-4 focus:outline-none focus:ring-2 focus:ring-primary resize-none text-right text-text-primary placeholder:text-gray-400"></textarea>
-                        </div>
-                        <div class="flex items-center justify-between mt-2">
-                            <button
-                                class="flex items-center gap-2 bg-blue-700 hover:bg-blue-800 text-white font-bold rounded-lg px-8 py-3 text-lg shadow transition-colors">
-                                <i data-lucide="send" class="w-5 h-5"></i>
-                                نشر
-                            </button>
-                            <div class="flex items-center gap-6 text-gray-500">
-                                <button title="قائمة" class="hover:text-primary"><i data-lucide="list"
-                                        class="w-6 h-6"></i></button>
-                                <button title="إرفاق ملف" class="hover:text-primary"><i data-lucide="paperclip"
-                                        class="w-6 h-6"></i></button>
+                                class="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full border border-gray-200 shadow-sm flex-shrink-0">
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-start sm:items-center justify-between gap-2 mb-2 sm:mb-3">
+                                    <div class="min-w-0 flex-1">
+                                        <h3 class="text-base sm:text-lg font-bold text-text-primary truncate">مصطفى محمد
+                                        </h3>
+                                        <p class="text-gray-500 text-xs sm:text-sm">نشر منذ 2 ساعات</p>
+                                    </div>
+                                    <button
+                                        class="text-gray-400 hover:text-primary transition-colors p-1 flex-shrink-0">
+                                        <i data-lucide="more-horizontal" class="w-4 h-4 sm:w-5 sm:h-5"></i>
+                                    </button>
+                                </div>
+                                <p
+                                    class="text-text-primary text-right mb-3 sm:mb-4 leading-relaxed text-sm sm:text-base">
+                                    مرحباً جميعاً! لدي سؤال حول المعادلات التربيعية في الدرس الأخير. هل يمكن لأحد
+                                    مساعدتي في حل هذه المعادلة: x² + 5x + 6 = 0؟ شكراً لكم!
+                                </p>
+
+                                <!-- Discussion Actions -->
+                                <div class="flex items-center justify-between pt-3 sm:pt-4 border-t border-gray-100">
+                                    <div class="flex items-center gap-3 sm:gap-6">
+                                        <i data-lucide="message-square" class="w-4 h-4 sm:w-5 sm:h-5"></i>
+                                        <span class="text-xs sm:text-sm">5 ردود</span>
+                                    </div>
+                                </div>
+
+                                <!-- Reply Form with File Attachment -->
+                                <div class="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-gray-100">
+                                    <form
+                                        class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3">
+                                        <div class="flex-1 flex items-center gap-2">
+                                            <input type="text" placeholder="اكتب ردك هنا..."
+                                                class="flex-1 border border-gray-200 rounded-lg px-3 sm:px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary text-sm sm:text-base text-right transition-colors" />
+                                            <label title="إرفاق ملف"
+                                                class="cursor-pointer hover:text-primary transition-colors flex items-center p-1">
+                                                <i data-lucide="paperclip" class="w-4 h-4 sm:w-5 sm:h-5"></i>
+                                                <input type="file" class="hidden" />
+                                            </label>
+                                        </div>
+                                        <button type="submit"
+                                            class="bg-primary hover:bg-primary-dark text-white rounded-lg px-3 sm:px-4 py-2 text-sm sm:text-base font-bold shadow transition-colors flex items-center gap-1 sm:gap-2 flex-shrink-0">
+                                            <i data-lucide="send" class="w-3 h-3 sm:w-4 sm:h-4"></i>
+                                            <span class="hidden sm:inline">رد</span>
+                                        </button>
+                                    </form>
+                                </div>
+
+                                <!-- Replies -->
+                                <div class="mt-3 sm:mt-4 space-y-2 sm:space-y-3">
+                                    <div class="bg-gray-50 rounded-lg p-3 sm:p-4">
+                                        <div class="flex items-start gap-2 sm:gap-3">
+                                            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
+                                                alt="أفاتار"
+                                                class="w-6 h-6 sm:w-8 sm:h-8 rounded-full border border-gray-200 flex-shrink-0">
+                                            <div class="flex-1 min-w-0">
+                                                <div class="flex items-center gap-1 sm:gap-2 mb-1">
+                                                    <h4
+                                                        class="font-semibold text-text-primary text-xs sm:text-sm truncate">
+                                                        أحمد علي</h4>
+                                                    <span class="text-gray-500 text-xs">منذ ساعة</span>
+                                                </div>
+                                                <p class="text-text-primary text-xs sm:text-sm">يمكنك استخدام طريقة
+                                                    التحليل إلى عوامل: (x + 2)(x + 3) = 0، إذن x = -2 أو x = -3</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="bg-gray-50 rounded-lg p-3 sm:p-4">
+                                        <div class="flex items-start gap-2 sm:gap-3">
+                                            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
+                                                alt="أفاتار"
+                                                class="w-6 h-6 sm:w-8 sm:h-8 rounded-full border border-gray-200 flex-shrink-0">
+                                            <div class="flex-1 min-w-0">
+                                                <div class="flex items-center gap-1 sm:gap-2 mb-1">
+                                                    <h4
+                                                        class="font-semibold text-text-primary text-xs sm:text-sm truncate">
+                                                        فاطمة أحمد</h4>
+                                                    <span class="text-gray-500 text-xs">منذ 30 دقيقة</span>
+                                                </div>
+                                                <p class="text-text-primary text-xs sm:text-sm">أو يمكنك استخدام الصيغة
+                                                    العامة: x = (-b ± √(b² - 4ac)) / 2a</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- هنا ستضاف منشورات النقاش لاحقًا -->
-                    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6 flex flex-col gap-4 max-w-full sm:max-w-lg md:max-w-md mx-auto">
-                        <div class="flex items-start gap-4">
+                    <!-- Another Discussion -->
+                    <div class="bg-white rounded-xl sm:rounded-2xl shadow-lg p-3 sm:p-4 md:p-6">
+                        <div class="flex items-start gap-2 sm:gap-4">
                             <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="أفاتار"
-                                class="w-14 h-14 rounded-full border border-gray-200 shadow-sm">
-                            <div class="flex-1">
-                                <h3 class="text-lg font-bold text-text-primary">مصطفى محمد</h3>
-                                <p class="text-gray-500 text-sm">نشر منذ 2 ساعات</p>
+                                class="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full border border-gray-200 shadow-sm flex-shrink-0">
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-start sm:items-center justify-between gap-2 mb-2 sm:mb-3">
+                                    <div class="min-w-0 flex-1">
+                                        <h3 class="text-base sm:text-lg font-bold text-text-primary truncate">سارة محمود
+                                        </h3>
+                                        <p class="text-gray-500 text-xs sm:text-sm">نشر منذ 5 ساعات</p>
+                                    </div>
+                                    <button
+                                        class="text-gray-400 hover:text-primary transition-colors p-1 flex-shrink-0">
+                                        <i data-lucide="more-horizontal" class="w-4 h-4 sm:w-5 sm:h-5"></i>
+                                    </button>
+                                </div>
+                                <p
+                                    class="text-text-primary text-right mb-3 sm:mb-4 leading-relaxed text-sm sm:text-base">
+                                    هل يمكن لأحد شرح مفهوم المشتقات بطريقة مبسطة؟ أجد صعوبة في فهم العلاقة بين المشتقة
+                                    والمنحنى.
+                                </p>
+
+                                <!-- Discussion Actions -->
+                                <div class="flex items-center justify-between pt-3 sm:pt-4 border-t border-gray-100">
+                                    <div class="flex items-center gap-3 sm:gap-6">
+                                        <i data-lucide="message-square" class="w-4 h-4 sm:w-5 sm:h-5"></i>
+                                        <span class="text-xs sm:text-sm">3 ردود</span>
+                                    </div>
+                                </div>
+
+                                <!-- Reply Form -->
+                                <div class="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-gray-100">
+                                    <form class="flex items-center gap-2 sm:gap-3">
+                                        <input type="text" placeholder="اكتب ردك هنا..."
+                                            class="flex-1 border border-gray-200 rounded-lg px-3 sm:px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary text-sm sm:text-base text-right transition-colors" />
+                                        <label title="إرفاق ملف"
+                                            class="cursor-pointer hover:text-primary transition-colors flex items-center p-1">
+                                            <i data-lucide="paperclip" class="w-4 h-4 sm:w-5 sm:h-5"></i>
+                                            <input type="file" class="hidden" />
+                                        </label>
+                                        <button type="submit"
+                                            class="bg-primary hover:bg-primary-dark text-white rounded-lg px-3 sm:px-4 py-2 text-sm sm:text-base font-bold shadow transition-colors flex items-center gap-1 sm:gap-2 flex-shrink-0">
+                                            <i data-lucide="send" class="w-3 h-3 sm:w-4 sm:h-4"></i>
+                                            <span class="hidden sm:inline">رد</span>
+                                        </button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
-                        <p class="text-text-primary text-right">هذا النقاش تجربة تجربة تجربة تجربة تجرب جرب Lorem ipsum
-                            dolor sit amet consectetur adipisicing elit. Hic incidunt rem deleniti cumque, dolor ipsum
-                            architecto asperiores beatae id magni in nesciunt suscipit doloremque aut, repellat sunt
-                            eius eligendi nobis.</p>
-                        <form class="flex items-center gap-2 mt-2">
-                            <input type="text" placeholder="اكتب ردك هنا..."
-                                class="flex-1 border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-base" />
-                            <label class="flex items-center gap-1 hover:text-primary">
-                                <i data-lucide="paperclip" class="w-6 h-6"></i>
-                                <input type="file" class="hidden">
-                            </label>
-                            <button type="submit"
-                                class="bg-blue-700 hover:bg-blue-800 text-white rounded-lg px-4 py-2 text-base font-bold shadow flex items-center gap-1">
-                                <i data-lucide="send" class="w-5 h-5"></i>
-                                إرسال
-                            </button>
-                        </form>
                     </div>
-
-
                 </div>
             </main>
         </div>

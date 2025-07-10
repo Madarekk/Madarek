@@ -186,10 +186,10 @@
 
                 <!-- Class Filter -->
                 <div class="mb-6 bg-card p-4 shadow rounded-lg border border-gray-200">
-                    <div class="flex flex-col sm:flex-row gap-4 items-end">
-                        <div class="flex-1">
-                            <label for="assignmentClassFilter" class="block text-sm font-medium text-text-secondary mb-1">فلتر الفصل</label>
-                            <select id="assignmentClassFilter" class="w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm">
+                    <div class="space-y-4">
+                        <div>
+                            <label for="assignmentClassFilter" class="block text-sm font-medium text-text-secondary mb-2">فلتر الفصل</label>
+                            <select id="assignmentClassFilter" class="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-primary focus:border-primary text-sm">
                                 <option value="">جميع الفصول</option>
                                 <option value="الصف الأول (أ)">الصف الأول (أ)</option>
                                 <option value="الصف الأول (ب)">الصف الأول (ب)</option>
@@ -211,11 +211,11 @@
                                 <option value="الصف التاسع (ب)">الصف التاسع (ب)</option>
                             </select>
                         </div>
-                        <div class="flex gap-2">
-                            <button id="applyAssignmentFilter" class="bg-primary text-white py-2 px-4 rounded-md text-sm font-medium hover:bg-primary-dark transition-colors flex items-center">
+                        <div class="flex flex-col sm:flex-row gap-3">
+                            <button id="applyAssignmentFilter" class="flex-1 bg-primary text-white py-3 px-4 rounded-lg text-sm font-medium hover:bg-primary-dark transition-colors flex items-center justify-center">
                                 <i data-lucide="filter" class="ml-2 w-4 h-4"></i> تطبيق الفلتر
                             </button>
-                            <button id="clearAssignmentFilter" class="bg-gray-200 text-gray-700 py-2 px-4 rounded-md text-sm font-medium hover:bg-gray-300 transition-colors">
+                            <button id="clearAssignmentFilter" class="flex-1 bg-gray-200 text-gray-700 py-3 px-4 rounded-lg text-sm font-medium hover:bg-gray-300 transition-colors">
                                 مسح الفلتر
                             </button>
                         </div>
@@ -358,15 +358,15 @@
     </div>
 
     <!-- Create/Edit Assignment Modal (Button to open it is removed) -->
-    <div id="assignmentModal" class="fixed inset-0 bg-gray-600 bg-opacity-75 overflow-y-auto h-full w-full flex items-center justify-center hidden z-50 modal">
-        <div class="relative mx-auto p-6 border w-full max-w-2xl shadow-xl rounded-xl bg-card">
+    <div id="assignmentModal" class="fixed inset-0 bg-gray-600 bg-opacity-75 overflow-y-auto h-full w-full flex items-start justify-center hidden z-50 modal p-4">
+        <div class="relative mx-auto w-full max-w-2xl shadow-xl rounded-xl bg-card my-8">
             <div class="flex items-center justify-between mb-4">
                 <h3 id="assignmentModalTitle" class="text-xl font-semibold text-text-primary">إضافة واجب جديد</h3>
                 <button class="close-modal-btn text-gray-400 hover:text-gray-600">
                     <i data-lucide="x" class="w-6 h-6"></i>
                 </button>
             </div>
-            <form id="assignmentForm" class="space-y-4">
+            <form id="assignmentForm" class="space-y-4 p-6">
                 <input type="hidden" id="assignmentId" name="assignmentId">
                 <div>
                     <label for="assignmentTitle" class="block text-sm font-medium text-text-secondary">عنوان الواجب</label>
@@ -432,8 +432,8 @@
     </div>
 
     <!-- Assignment Details Modal -->
-    <div id="assignmentDetailsModal" class="fixed inset-0 bg-gray-600 bg-opacity-75 overflow-y-auto h-full w-full flex items-center justify-center hidden z-50 modal">
-        <div class="relative mx-auto p-6 border w-full max-w-xl shadow-xl rounded-xl bg-card">
+    <div id="assignmentDetailsModal" class="fixed inset-0 bg-gray-600 bg-opacity-75 overflow-y-auto h-full w-full flex items-start justify-center hidden z-50 modal p-4">
+        <div class="relative mx-auto w-full max-w-xl shadow-xl rounded-xl bg-card my-8">
             <div class="flex items-center justify-between mb-4">
                 <h3 id="assignmentDetailsTitle" class="text-xl font-semibold text-text-primary">تفاصيل الواجب</h3>
                 <button id="closeAssignmentDetailsBtn" class="text-gray-400 hover:text-gray-600">
@@ -450,8 +450,8 @@
         </div>
     </div>
     <!-- Assignment Grades Modal -->
-    <div id="assignmentGradesModal" class="fixed inset-0 bg-gray-600 bg-opacity-75 overflow-y-auto h-full w-full flex items-center justify-center hidden z-50 modal">
-        <div class="relative mx-auto p-6 border w-full max-w-lg shadow-xl rounded-xl bg-card">
+    <div id="assignmentGradesModal" class="fixed inset-0 bg-gray-600 bg-opacity-75 overflow-y-auto h-full w-full flex items-start justify-center hidden z-50 modal p-4">
+        <div class="relative mx-auto w-full max-w-lg shadow-xl rounded-xl bg-card my-8">
             <div class="flex items-center justify-between mb-4">
                 <h3 class="text-xl font-semibold text-text-primary">إدخال درجات الطلاب</h3>
                 <button id="closeGradesModalBtn" class="text-gray-400 hover:text-gray-600">
@@ -476,6 +476,22 @@
             </form>
         </div>
     </div>
+    <style>
+        /* تحسين modals للهاتف */
+        @media (max-width: 768px) {
+            .modal {
+                padding: 1rem;
+            }
+            .modal > div {
+                max-height: calc(100vh - 2rem);
+                overflow-y: auto;
+            }
+            .modal form {
+                max-height: calc(100vh - 8rem);
+                overflow-y: auto;
+            }
+        }
+    </style>
     <script src="icons.js"></script>
     <script src="script.js"></script>
     <script type="module">

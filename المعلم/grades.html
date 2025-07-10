@@ -315,15 +315,15 @@
     </div>
 
     <!-- Add/Edit Grade Modal -->
-    <div id="addGradeModal" class="fixed inset-0 bg-gray-600 bg-opacity-75 overflow-y-auto h-full w-full flex items-center justify-center hidden z-50 modal">
-        <div class="relative mx-auto p-6 border w-full max-w-2xl shadow-xl rounded-xl bg-card">
+    <div id="addGradeModal" class="fixed inset-0 bg-gray-600 bg-opacity-75 overflow-y-auto h-full w-full flex items-start justify-center hidden z-50 modal p-4">
+        <div class="relative mx-auto w-full max-w-2xl shadow-xl rounded-xl bg-card my-8">
             <div class="flex items-center justify-between mb-4">
                 <h3 class="text-xl font-semibold text-text-primary">إضافة تقييم جديد</h3>
                 <button class="close-modal-btn text-gray-400 hover:text-gray-600">
                     <i data-lucide="x" class="w-6 h-6"></i>
                 </button>
             </div>
-            <form id="addGradeForm" class="space-y-4">
+            <form id="addGradeForm" class="space-y-4 p-6">
                 <!-- Academic Year and Student Selection -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
@@ -432,6 +432,22 @@
         </div>
     </div>
 
+    <style>
+        /* تحسين modals للهاتف */
+        @media (max-width: 768px) {
+            .modal {
+                padding: 1rem;
+            }
+            .modal > div {
+                max-height: calc(100vh - 2rem);
+                overflow-y: auto;
+            }
+            .modal form {
+                max-height: calc(100vh - 8rem);
+                overflow-y: auto;
+            }
+        }
+    </style>
     <script src="../الطالب/script.js"></script>
     <script src="icons.js"></script>
     <script type="module" src="script.js"></script>
